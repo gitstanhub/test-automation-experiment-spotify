@@ -1,5 +1,6 @@
 package com.spotify.api.models;
 
+import com.spotify.api.models.commons.ArtistCommons;
 import lombok.Data;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 @Data
 public class ArtistDataResponseModel {
 
-    private ExternalUrls external_urls;
+    private ArtistCommons.ExternalUrls external_urls;
 
     private Followers followers;
 
@@ -17,31 +18,19 @@ public class ArtistDataResponseModel {
 
     private String id;
 
-    private List<Images> images;
+    private List<ArtistCommons.Images> images;
 
     private String name;
 
-    private int popularity;
+    private Integer popularity;
 
     private String type;
 
     private String uri;
 
     @Data
-    public static class ExternalUrls {
-        private String spotify;
-    }
-
-    @Data
     public static class Followers {
         private String href;
-        private int total;
-    }
-
-    @Data
-    public static class Images {
-        private int height;
-        private String url;
-        private int width;
+        private Integer total;
     }
 }
