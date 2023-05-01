@@ -1,53 +1,30 @@
 package com.spotify.api.tests;
 
 import com.spotify.api.clients.ArtistClient;
-import com.spotify.api.models.ArtistAlbumsResponseModel;
-import com.spotify.api.models.ArtistDataResponseModel;
-import com.spotify.api.models.ArtistRelatedResponseModel;
-import com.spotify.api.models.ArtistTopTracksResponseModel;
-import org.assertj.core.api.Assertions;
+import com.spotify.api.models.artist.*;
+import com.spotify.api.utils.ApiAssertionsUtil;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.ClassBasedNavigableIterableAssert.assertThat;
 
 public class ArtistTests {
 
     ArtistClient artistClient = new ArtistClient();
+    ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
 
     @Test
     void artistProfileTest() {
         ArtistDataResponseModel artistData = artistClient.getArtistData();
-        Assertions.assertThat(artistData.getName()).isEqualTo("Capital Bra");
+        apiAssertionsUtil.verifyFieldValue(artistData.getName(), "Capital Bra");
 
         ArtistTopTracksResponseModel artistTopTracks = artistClient.getArtistTopTracks();
-        Assertions.assertThat(artistTopTracks.getTracks().get(0).getName()).isEqualTo("Discokugel");
+        apiAssertionsUtil.verifyFieldValue(artistTopTracks.getTracks().get(0).getName(), "Discokugel");
 
         ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums();
-        Assertions.assertThat(artistAlbums.getItems().get(0).getName()).isEqualTo("DEUTSCHRAP BRANDNEU");
+        apiAssertionsUtil.verifyFieldValue(artistAlbums.getItems().get(0).getName(), "DEUTSCHRAP BRANDNEU");
 
         ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists();
-        Assertions.assertThat(artistRelated.getArtists().get(0).getName()).isEqualTo("AK AUSSERKONTROLLE");
+        apiAssertionsUtil.verifyFieldValue(artistRelated.getArtists().get(0).getName(), "AK AUSSERKONTROLLE");
 
+        ArtistMultipleResponseModel artistsMultiple = artistClient.getMultipleArtistsData();
+        apiAssertionsUtil.verifyFieldValue(artistsMultiple.getArtists().get(1).getName(), "Yeat");
     }
-
-
-
-//    @Test
-//    void multipleArtistsDataTest() {
-//        given()
-//                .log().uri()
-//                .log().headers()
-//                .header("Content-Type", "application/json")
-//                .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
-//                .param("ids", "4WZGDpNwrC0vNQyl9QzF7d,3qiHUAX7zY4Qnjx8TNUzVx,07SFzTMeYf5P8Rd32a9Zzw")
-//                .when()
-//                .get("https://api.spotify.com/v1/artists")
-//                .then()
-//                .log().status()
-//                .log().body()
-//                .statusCode(200);
-//    }
-
-
-
 }

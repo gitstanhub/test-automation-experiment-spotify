@@ -1,4 +1,4 @@
-package com.spotify.api.models;
+package com.spotify.api.models.artist;
 
 import com.spotify.api.models.commons.ArtistCommons;
 import lombok.Data;
@@ -32,5 +32,4 @@ public class ArtistAlbumsResponseModel {
         private String type;
         private String uri;
     }
-
 }
