@@ -1,14 +1,9 @@
 package com.spotify.api.clients;
 
-import com.spotify.api.models.ArtistAlbumsResponseModel;
-import com.spotify.api.models.ArtistDataResponseModel;
-import com.spotify.api.models.ArtistRelatedResponseModel;
-import com.spotify.api.models.ArtistTopTracksResponseModel;
+import com.spotify.api.models.artist.*;
 import com.spotify.api.utils.AuthUtil;
-import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ArtistClient {
 
@@ -18,9 +13,9 @@ public class ArtistClient {
                 .log().headers()
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
-                .when()
+        .when()
                 .get("https://api.spotify.com/v1/artists/4WZGDpNwrC0vNQyl9QzF7d")
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -34,9 +29,9 @@ public class ArtistClient {
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
                 .param("market", "DE")
-                .when()
+        .when()
                 .get("https://api.spotify.com/v1/artists/4WZGDpNwrC0vNQyl9QzF7d/top-tracks")
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -51,9 +46,9 @@ public class ArtistClient {
                 .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
                 .param("include_groups", "album")
                 .param("market", "DE")
-                .when()
+        .when()
                 .get("https://api.spotify.com/v1/artists/4WZGDpNwrC0vNQyl9QzF7d/albums")
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -66,12 +61,37 @@ public class ArtistClient {
                 .log().headers()
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
-                .when()
+        .when()
                 .get("https://api.spotify.com/v1/artists/4WZGDpNwrC0vNQyl9QzF7d/related-artists")
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
                 .extract().as(ArtistRelatedResponseModel.class);
+    }
+
+    public ArtistMultipleResponseModel getMultipleArtistsData() {
+
+        String[] artistsCollection = {
+                "4WZGDpNwrC0vNQyl9QzF7d",
+                "3qiHUAX7zY4Qnjx8TNUzVx",
+                "07SFzTMeYf5P8Rd32a9Zzw"
+        };
+
+        String artistsParam = String.join(",", artistsCollection);
+
+        return given()
+                .log().uri()
+                .log().headers()
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
+                .param("ids", artistsParam)
+        .when()
+                .get("https://api.spotify.com/v1/artists")
+        .then()
+                .log().status()
+                .log().body()
+                .statusCode(200)
+                .extract().as(ArtistMultipleResponseModel.class);
     }
 }
