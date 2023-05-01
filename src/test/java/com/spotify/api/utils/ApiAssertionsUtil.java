@@ -6,16 +6,16 @@ import java.util.Map;
 
 public class ApiAssertionsUtil {
 
-    public ApiAssertionsUtil verifyResponseSingleField(Object field, Object expectedValue) {
-        Assertions.assertThat(field).isEqualTo(expectedValue);
+    public ApiAssertionsUtil verifyResponseSingleField(Object actualValue, Object expectedValue) {
+        Assertions.assertThat(actualValue).isEqualTo(expectedValue);
         return this;
     }
 
-    public ApiAssertionsUtil verifyResponseMultipleFields(Map<Object, Object> expectedFieldsAndValues) {
-        for (Map.Entry<Object, Object> entry : expectedFieldsAndValues.entrySet()) {
-            Object expectedField = entry.getKey();
+    public ApiAssertionsUtil verifyResponseMultipleFields(Map<Object, Object> actualAndExpectedValues) {
+        for (Map.Entry<Object, Object> entry : actualAndExpectedValues.entrySet()) {
+            Object actualValue = entry.getKey();
             Object expectedValue = entry.getValue();
-            verifyResponseSingleField(expectedField, expectedValue);
+            verifyResponseSingleField(actualValue, expectedValue);
         }
         return this;
     }

@@ -1,7 +1,6 @@
 package com.spotify.api.clients;
 
-import com.spotify.api.models.artist.*;
-import com.spotify.api.utils.AuthUtil;
+import com.spotify.api.models.response.artist.*;
 
 import static com.spotify.api.specifications.ArtistSpec.artistRequestSpec;
 import static com.spotify.api.specifications.ArtistSpec.artistResponseSpec;
@@ -61,7 +60,7 @@ public class ArtistClient {
         return given(artistRequestSpec)
                 .param("ids", artistsParam)
         .when()
-                .get("https://api.spotify.com/v1/artists")
+                .get()
         .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistMultipleResponseModel.class);
