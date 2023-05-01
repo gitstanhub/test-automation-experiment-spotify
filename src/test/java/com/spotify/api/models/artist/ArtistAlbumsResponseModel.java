@@ -1,6 +1,6 @@
 package com.spotify.api.models.artist;
 
-import com.spotify.api.models.commons.ArtistCommons;
+import com.spotify.api.models.commons.ArtistCommonsResponseModel;
 import lombok.Data;
 
 import java.util.List;
@@ -21,10 +21,10 @@ public class ArtistAlbumsResponseModel {
         private String album_group;
         private String album_type;
         private List<ArtistDataResponseModel> artists;
-        private ArtistCommons.ExternalUrls external_urls;
+        private ArtistCommonsResponseModel.ExternalUrls external_urls;
         private String href;
         private String id;
-        private List<ArtistCommons.Images> images;
+        private List<ArtistCommonsResponseModel.Images> images;
         private String name;
         private String release_date;
         private String release_date_precision;

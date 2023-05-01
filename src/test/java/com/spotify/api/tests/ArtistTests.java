@@ -5,6 +5,8 @@ import com.spotify.api.models.artist.*;
 import com.spotify.api.utils.ApiAssertionsUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 public class ArtistTests {
 
     ArtistClient artistClient = new ArtistClient();
@@ -13,18 +15,24 @@ public class ArtistTests {
     @Test
     void artistProfileTest() {
         ArtistDataResponseModel artistData = artistClient.getArtistData();
-        apiAssertionsUtil.verifyFieldValue(artistData.getName(), "Capital Bra");
-
         ArtistTopTracksResponseModel artistTopTracks = artistClient.getArtistTopTracks();
-        apiAssertionsUtil.verifyFieldValue(artistTopTracks.getTracks().get(0).getName(), "Discokugel");
-
         ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums();
-        apiAssertionsUtil.verifyFieldValue(artistAlbums.getItems().get(0).getName(), "DEUTSCHRAP BRANDNEU");
-
         ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists();
-        apiAssertionsUtil.verifyFieldValue(artistRelated.getArtists().get(0).getName(), "AK AUSSERKONTROLLE");
 
+        Map<Object, Object> expectedResponse = Map.of(
+                artistData.getName(), "Capital Bra",
+                artistTopTracks.getTracks().get(0).getName(), "Discokugel",
+                artistAlbums.getItems().get(0).getName(), "DEUTSCHRAP BRANDNEU",
+                artistRelated.getArtists().get(0).getName(), "AK AUSSERKONTROLLE"
+        );
+
+        apiAssertionsUtil.verifyResponseMultipleFields(expectedResponse);
+    }
+
+    @Test
+    void multipleArtistProfilesTest() {
         ArtistMultipleResponseModel artistsMultiple = artistClient.getMultipleArtistsData();
-        apiAssertionsUtil.verifyFieldValue(artistsMultiple.getArtists().get(1).getName(), "Yeat");
+
+        apiAssertionsUtil.verifyResponseSingleField(artistsMultiple.getArtists().get(1).getName(), "Yeat");
     }
 }
