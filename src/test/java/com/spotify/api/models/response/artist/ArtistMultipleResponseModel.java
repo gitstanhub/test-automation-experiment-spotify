@@ -1,4 +1,4 @@
-package com.spotify.api.models.artist;
+package com.spotify.api.models.response.artist;
 
 import lombok.Data;
 

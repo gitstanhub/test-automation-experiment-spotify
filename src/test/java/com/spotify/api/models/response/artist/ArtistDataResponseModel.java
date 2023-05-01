@@ -1,6 +1,6 @@
-package com.spotify.api.models.artist;
+package com.spotify.api.models.response.artist;
 
-import com.spotify.api.models.commons.ArtistCommonsResponseModel;
+import com.spotify.api.models.response.commons.ArtistCommonsResponseModel;
 import lombok.Data;
 
 import java.util.List;
