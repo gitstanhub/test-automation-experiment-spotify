@@ -18,10 +18,13 @@ public class ArtistTests {
 
     @Test
     void artistProfileTest() {
-        ArtistDataResponseModel artistData = artistClient.getArtistData();
-        ArtistTopTracksResponseModel artistTopTracks = artistClient.getArtistTopTracks();
-        ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums();
-        ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists();
+        String artistID = "4WZGDpNwrC0vNQyl9QzF7d";
+        String country = "DE";
+
+        ArtistDataResponseModel artistData = artistClient.getArtistData(artistID);
+        ArtistTopTracksResponseModel artistTopTracks = artistClient.getArtistTopTracks(country, artistID);
+        ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums(country, artistID);
+        ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists(artistID);
 
         Map<Object, Object> actualAndExpectedValues = Map.of(
                 artistResponseFieldsUtil.getArtistName(artistData), ARTIST_NAME_SINGLE_PROFILE,
@@ -35,7 +38,13 @@ public class ArtistTests {
 
     @Test
     void multipleArtistProfilesTest() {
-        ArtistMultipleResponseModel artistsMultiple = artistClient.getMultipleArtistsData();
+        String[] artistsCollection = {
+                "4WZGDpNwrC0vNQyl9QzF7d",
+                "3qiHUAX7zY4Qnjx8TNUzVx",
+                "07SFzTMeYf5P8Rd32a9Zzw"
+        };
+
+        ArtistMultipleResponseModel artistsMultiple = artistClient.getMultipleArtistsData(artistsCollection);
 
         apiAssertionsUtil.verifyResponseSingleField(artistResponseFieldsUtil.getArtistName(artistsMultiple, 1), ARTIST_NAME_MULTIPLE_PROFILES);
     }

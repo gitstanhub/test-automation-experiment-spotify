@@ -8,54 +8,47 @@ import static io.restassured.RestAssured.given;
 
 public class ArtistClient {
 
-    public ArtistDataResponseModel getArtistData() {
+    public ArtistDataResponseModel getArtistData(String artistId) {
         return given(artistRequestSpec)
         .when()
-                .get("4WZGDpNwrC0vNQyl9QzF7d")
+                .get(artistId)
         .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistDataResponseModel.class);
     }
 
-    public ArtistTopTracksResponseModel getArtistTopTracks() {
+    public ArtistTopTracksResponseModel getArtistTopTracks(String country, String artistID) {
         return given(artistRequestSpec)
-                .param("market", "DE")
+                .param("market", country)
         .when()
-                .get("4WZGDpNwrC0vNQyl9QzF7d/top-tracks")
+                .get(artistID + "/top-tracks")
         .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistTopTracksResponseModel.class);
     }
 
-    public ArtistAlbumsResponseModel getArtistAlbums() {
+    public ArtistAlbumsResponseModel getArtistAlbums(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("include_groups", "album")
-                .param("market", "DE")
+                .param("market", country)
         .when()
-                .get("4WZGDpNwrC0vNQyl9QzF7d/albums")
+                .get(artistID + "/albums")
         .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistAlbumsResponseModel.class);
     }
 
-    public ArtistRelatedResponseModel getRelatedArtists() {
+    public ArtistRelatedResponseModel getRelatedArtists(String artistID) {
         return given(artistRequestSpec)
         .when()
-                .get("4WZGDpNwrC0vNQyl9QzF7d/related-artists")
+                .get(artistID + "/related-artists")
         .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistRelatedResponseModel.class);
     }
 
-    public ArtistMultipleResponseModel getMultipleArtistsData() {
-
-        String[] artistsCollection = {
-                "4WZGDpNwrC0vNQyl9QzF7d",
-                "3qiHUAX7zY4Qnjx8TNUzVx",
-                "07SFzTMeYf5P8Rd32a9Zzw"
-        };
-
-        String artistsParam = String.join(",", artistsCollection);
+    public ArtistMultipleResponseModel getMultipleArtistsData(String[] artists) {
+        String artistsParam = String.join(",", artists);
 
         return given(artistRequestSpec)
                 .param("ids", artistsParam)
