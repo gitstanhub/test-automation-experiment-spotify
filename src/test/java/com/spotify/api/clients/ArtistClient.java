@@ -1,77 +1,61 @@
 package com.spotify.api.clients;
 
-import com.spotify.api.models.ArtistAlbumsResponseModel;
-import com.spotify.api.models.ArtistDataResponseModel;
-import com.spotify.api.models.ArtistRelatedResponseModel;
-import com.spotify.api.models.ArtistTopTracksResponseModel;
-import com.spotify.api.utils.AuthUtil;
-import io.restassured.response.ValidatableResponse;
+import com.spotify.api.models.response.artist.*;
 
+import static com.spotify.api.specifications.ArtistSpec.artistRequestSpec;
+import static com.spotify.api.specifications.ArtistSpec.artistResponseSpec;
 import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ArtistClient {
 
-    public ArtistDataResponseModel getArtistData() {
-        return given()
-                .log().uri()
-                .log().headers()
-                .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
-                .when()
-                .get("https://api.spotify.com/v1/artists/4WZGDpNwrC0vNQyl9QzF7d")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+    public ArtistDataResponseModel getArtistData(String artistId) {
+        return given(artistRequestSpec)
+        .when()
+                .get(artistId)
+        .then()
+                .spec(artistResponseSpec)
                 .extract().as(ArtistDataResponseModel.class);
     }
 
-    public ArtistTopTracksResponseModel getArtistTopTracks() {
-        return given()
-                .log().uri()
-                .log().headers()
-                .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
-                .param("market", "DE")
-                .when()
-                .get("https://api.spotify.com/v1/artists/4WZGDpNwrC0vNQyl9QzF7d/top-tracks")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+    public ArtistTopTracksResponseModel getArtistTopTracks(String country, String artistID) {
+        return given(artistRequestSpec)
+                .param("market", country)
+        .when()
+                .get(artistID + "/top-tracks")
+        .then()
+                .spec(artistResponseSpec)
                 .extract().as(ArtistTopTracksResponseModel.class);
     }
 
-    public ArtistAlbumsResponseModel getArtistAlbums() {
-        return given()
-                .log().uri()
-                .log().headers()
-                .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
+    public ArtistAlbumsResponseModel getArtistAlbums(String country, String artistID) {
+        return given(artistRequestSpec)
                 .param("include_groups", "album")
-                .param("market", "DE")
-                .when()
-                .get("https://api.spotify.com/v1/artists/4WZGDpNwrC0vNQyl9QzF7d/albums")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .param("market", country)
+        .when()
+                .get(artistID + "/albums")
+        .then()
+                .spec(artistResponseSpec)
                 .extract().as(ArtistAlbumsResponseModel.class);
     }
 
-    public ArtistRelatedResponseModel getRelatedArtists() {
-        return given()
-                .log().uri()
-                .log().headers()
-                .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
-                .when()
-                .get("https://api.spotify.com/v1/artists/4WZGDpNwrC0vNQyl9QzF7d/related-artists")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+    public ArtistRelatedResponseModel getRelatedArtists(String artistID) {
+        return given(artistRequestSpec)
+        .when()
+                .get(artistID + "/related-artists")
+        .then()
+                .spec(artistResponseSpec)
                 .extract().as(ArtistRelatedResponseModel.class);
+    }
+
+    public ArtistMultipleResponseModel getMultipleArtistsData(String[] artists) {
+        String artistsParam = String.join(",", artists);
+
+        return given(artistRequestSpec)
+                .param("ids", artistsParam)
+        .when()
+                .get()
+        .then()
+                .spec(artistResponseSpec)
+                .extract().as(ArtistMultipleResponseModel.class);
     }
 }

@@ -1,9 +1,9 @@
-package com.spotify.api.models.commons;
+package com.spotify.api.models.response.commons;
 
 import lombok.Data;
 
 @Data
-public class ArtistCommons {
+public class ArtistCommonsResponseModel {
 
     @Data
     public static class ExternalUrls {

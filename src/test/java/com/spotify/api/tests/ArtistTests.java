@@ -1,53 +1,51 @@
 package com.spotify.api.tests;
 
 import com.spotify.api.clients.ArtistClient;
-import com.spotify.api.models.ArtistAlbumsResponseModel;
-import com.spotify.api.models.ArtistDataResponseModel;
-import com.spotify.api.models.ArtistRelatedResponseModel;
-import com.spotify.api.models.ArtistTopTracksResponseModel;
-import org.assertj.core.api.Assertions;
+import com.spotify.api.models.response.artist.*;
+import com.spotify.api.utils.ApiAssertionsUtil;
+import com.spotify.api.utils.response.ArtistResponseFieldsUtil;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.ClassBasedNavigableIterableAssert.assertThat;
+import java.util.Map;
+
+import static com.spotify.api.constants.ArtistProfileConstants.*;
 
 public class ArtistTests {
 
     ArtistClient artistClient = new ArtistClient();
+    ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
+    ArtistResponseFieldsUtil artistResponseFieldsUtil = new ArtistResponseFieldsUtil();
 
     @Test
     void artistProfileTest() {
-        ArtistDataResponseModel artistData = artistClient.getArtistData();
-        Assertions.assertThat(artistData.getName()).isEqualTo("Capital Bra");
+        String artistID = "4WZGDpNwrC0vNQyl9QzF7d";
+        String country = "DE";
 
-        ArtistTopTracksResponseModel artistTopTracks = artistClient.getArtistTopTracks();
-        Assertions.assertThat(artistTopTracks.getTracks().get(0).getName()).isEqualTo("Discokugel");
+        ArtistDataResponseModel artistData = artistClient.getArtistData(artistID);
+        ArtistTopTracksResponseModel artistTopTracks = artistClient.getArtistTopTracks(country, artistID);
+        ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums(country, artistID);
+        ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists(artistID);
 
-        ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums();
-        Assertions.assertThat(artistAlbums.getItems().get(0).getName()).isEqualTo("DEUTSCHRAP BRANDNEU");
+        Map<Object, Object> actualAndExpectedValues = Map.of(
+                artistResponseFieldsUtil.getArtistName(artistData), ARTIST_NAME_SINGLE_PROFILE,
+                artistResponseFieldsUtil.getTrackName(artistTopTracks, 0), ARTIST_TOP_TRACK_TITLE,
+                artistResponseFieldsUtil.getArtistAlbumName(artistAlbums, 0), ARTIST_ALBUM_TITLE,
+                artistResponseFieldsUtil.getArtistRelated(artistRelated, 0), ARTIST_RELATED_NAME
+        );
 
-        ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists();
-        Assertions.assertThat(artistRelated.getArtists().get(0).getName()).isEqualTo("AK AUSSERKONTROLLE");
-
+        apiAssertionsUtil.verifyResponseMultipleFields(actualAndExpectedValues);
     }
 
+    @Test
+    void multipleArtistProfilesTest() {
+        String[] artistsCollection = {
+                "4WZGDpNwrC0vNQyl9QzF7d",
+                "3qiHUAX7zY4Qnjx8TNUzVx",
+                "07SFzTMeYf5P8Rd32a9Zzw"
+        };
 
+        ArtistMultipleResponseModel artistsMultiple = artistClient.getMultipleArtistsData(artistsCollection);
 
-//    @Test
-//    void multipleArtistsDataTest() {
-//        given()
-//                .log().uri()
-//                .log().headers()
-//                .header("Content-Type", "application/json")
-//                .header("Authorization", "Bearer " + AuthUtil.getAuthToken())
-//                .param("ids", "4WZGDpNwrC0vNQyl9QzF7d,3qiHUAX7zY4Qnjx8TNUzVx,07SFzTMeYf5P8Rd32a9Zzw")
-//                .when()
-//                .get("https://api.spotify.com/v1/artists")
-//                .then()
-//                .log().status()
-//                .log().body()
-//                .statusCode(200);
-//    }
-
-
-
+        apiAssertionsUtil.verifyResponseSingleField(artistResponseFieldsUtil.getArtistName(artistsMultiple, 1), ARTIST_NAME_MULTIPLE_PROFILES);
+    }
 }
