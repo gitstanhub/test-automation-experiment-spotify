@@ -8,7 +8,7 @@ import org.apache.http.client.utils.URLEncodedUtils;
 
 import java.nio.charset.StandardCharsets;
 
-public class AuthUtil {
+public class ApiAuthUtil {
 
     private static String authToken;
 
