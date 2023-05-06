@@ -1,6 +1,6 @@
 package com.spotify.api.clients;
 
-import com.spotify.api.utils.ApiAuthUtil;
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
@@ -12,7 +12,27 @@ import static io.restassured.RestAssured.given;
 
 public class SearchClient {
 
-    public ValidatableResponse search(String query, List<String> type, Optional<String> market, Optional<Integer> limit, Optional<Integer> offset, Optional<String> includeExternal) {
+    @Step
+    public ValidatableResponse search(String query, List<String> type) {
+        return search(query, type, null, null, null, null);
+    }
+
+    @Step
+    public ValidatableResponse searchWithMarket(String query, List<String> type, String market) {
+        return search(query, type, market, null, null, null);
+    }
+
+    @Step
+    public ValidatableResponse searchWithLimitOffset(String query, List<String> type, Integer limit, Integer offset) {
+        return search(query, type, null, limit, offset, null);
+    }
+
+    @Step
+    public ValidatableResponse searchWithIncludeExternal(String query, List<String> type, String includeExternal) {
+        return search(query, type, null, null, null, includeExternal);
+    }
+
+    private ValidatableResponse search(String query, List<String> type, String market, Integer limit, Integer offset, String includeExternal) {
         RequestSpecification request =
                 given(searchRequestSpec)
                         .param("q", query)
@@ -30,14 +50,10 @@ public class SearchClient {
             }
         });
 
-        return request
-                .when()
-                        .get()
+        return request.
+                when()
+                .get()
                 .then()
-                        .spec(searchResponseSpec);
+                .spec(searchResponseSpec);
     }
-
 }
-
-
-
