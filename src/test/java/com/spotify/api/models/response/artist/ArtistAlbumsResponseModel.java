@@ -18,9 +18,11 @@ public class ArtistAlbumsResponseModel {
 
     @Data
     public static class Item {
+
         private String album_group;
         private String album_type;
         private List<ArtistDataResponseModel> artists;
+        private List<String> available_markets;
         private ArtistCommonsResponseModel.ExternalUrls external_urls;
         private String href;
         private String id;

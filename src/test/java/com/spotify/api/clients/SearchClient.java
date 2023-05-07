@@ -1,7 +1,7 @@
 package com.spotify.api.clients;
 
+import com.spotify.api.models.response.search.SearchResponseModel;
 import io.qameta.allure.Step;
-import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
 import java.util.*;
@@ -13,30 +13,43 @@ import static io.restassured.RestAssured.given;
 public class SearchClient {
 
     @Step
-    public ValidatableResponse search(String query, List<String> type) {
-        return search(query, type, null, null, null, null);
+    public SearchResponseModel search(String query, List<String> types) {
+
+        return search(query, types, null, null, null, null);
     }
 
     @Step
-    public ValidatableResponse searchWithMarket(String query, List<String> type, String market) {
-        return search(query, type, market, null, null, null);
+    public SearchResponseModel searchWithMarket(String query, List<String> types, String market) {
+
+        return search(query, types, market, null, null, null);
     }
 
     @Step
-    public ValidatableResponse searchWithLimitOffset(String query, List<String> type, Integer limit, Integer offset) {
-        return search(query, type, null, limit, offset, null);
+    public SearchResponseModel searchWithMarketLimitOffset (String query, List<String> types, String market, Integer limit, Integer offset) {
+
+        return search(query, types, market, limit, offset, null);
     }
 
     @Step
-    public ValidatableResponse searchWithIncludeExternal(String query, List<String> type, String includeExternal) {
-        return search(query, type, null, null, null, includeExternal);
+    public SearchResponseModel searchWithLimitOffset(String query, List<String> types, Integer limit, Integer offset) {
+
+        return search(query, types, null, limit, offset, null);
     }
 
-    private ValidatableResponse search(String query, List<String> type, String market, Integer limit, Integer offset, String includeExternal) {
+    @Step
+    public SearchResponseModel searchWithIncludeExternal(String query, List<String> types, String includeExternal) {
+
+        return search(query, types, null, null, null, includeExternal);
+    }
+
+    private SearchResponseModel search(String query, List<String> types, String market, Integer limit, Integer offset, String includeExternal) {
+
+        String typesParamValue = String.join(",", types);
+
         RequestSpecification request =
                 given(searchRequestSpec)
                         .param("q", query)
-                        .param("type", type);
+                        .param("type", typesParamValue);
 
         Map<String, Object> optionalParams = new HashMap<>();
         optionalParams.put("market", market);
@@ -54,6 +67,7 @@ public class SearchClient {
                 when()
                 .get()
                 .then()
-                .spec(searchResponseSpec);
+                .spec(searchResponseSpec)
+                .extract().as(SearchResponseModel.class);
     }
 }

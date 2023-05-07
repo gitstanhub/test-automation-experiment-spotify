@@ -21,6 +21,7 @@ public class ArtistDataResponseModel {
 
     @Data
     public static class Followers {
+
         private String href;
         private Integer total;
     }
