@@ -13,10 +13,8 @@ public class SearchRequestModel {
     private List<String> searchTypes;
 
     public SearchRequestModel(SearchTypes... specifiedSearchTypes) {
-
         this.searchTypes = Arrays.stream(specifiedSearchTypes)
                 .map(SearchTypes::getValue)
                 .collect(Collectors.toList());
     }
-
 }

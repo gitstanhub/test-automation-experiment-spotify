@@ -14,31 +14,26 @@ public class SearchClient {
 
     @Step
     public SearchResponseModel search(String query, List<String> types) {
-
         return search(query, types, null, null, null, null);
     }
 
     @Step
     public SearchResponseModel searchWithMarket(String query, List<String> types, String market) {
-
         return search(query, types, market, null, null, null);
     }
 
     @Step
     public SearchResponseModel searchWithMarketLimitOffset (String query, List<String> types, String market, Integer limit, Integer offset) {
-
         return search(query, types, market, limit, offset, null);
     }
 
     @Step
     public SearchResponseModel searchWithLimitOffset(String query, List<String> types, Integer limit, Integer offset) {
-
         return search(query, types, null, limit, offset, null);
     }
 
     @Step
     public SearchResponseModel searchWithIncludeExternal(String query, List<String> types, String includeExternal) {
-
         return search(query, types, null, null, null, includeExternal);
     }
 
