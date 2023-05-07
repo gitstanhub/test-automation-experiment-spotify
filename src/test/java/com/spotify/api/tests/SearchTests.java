@@ -1,5 +1,6 @@
 package com.spotify.api.tests;
 
+import com.neovisionaries.i18n.CountryCode;
 import com.spotify.api.clients.SearchClient;
 import com.spotify.api.constants.artist.ArtistProfileConstants;
 import com.spotify.api.constants.search.SearchTypes;
@@ -34,6 +35,16 @@ public class SearchTests {
     @Test
     void searchPlaylistByCountryTest() {
 
+        SearchRequestModel searchRequestModel = new SearchRequestModel(
+                SearchTypes.PLAYLIST
+        );
+
+        String countryCode = String.valueOf(CountryCode.getByCode("DE"));
+
+        SearchResponseModel searchResults = searchClient
+                .searchWithMarket("Capital Bra", searchRequestModel.getSearchTypes(), countryCode);
+
+//        apiAssertionsUtil.verifyResponseSingleField(searchRes)
 
     }
 

@@ -1,6 +1,6 @@
 package com.spotify.api.models.response.artist;
 
-import com.spotify.api.models.response.commons.ArtistCommonsResponseModel;
+import com.spotify.api.models.response.commons.ApiCommonsResponseModel;
 import lombok.Data;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class ArtistTopTracksResponseModel {
         private Integer duration_ms;
         private Boolean explicit;
         private ExternalIds external_ids;
-        private ArtistCommonsResponseModel.ExternalUrls external_urls;
+        private ApiCommonsResponseModel.ExternalUrls external_urls;
         private String href;
         private String id;
         private Boolean is_local;
@@ -36,10 +36,10 @@ public class ArtistTopTracksResponseModel {
         private String album_group;
         private String album_type;
         private List<ArtistDataResponseModel> artists;
-        private ArtistCommonsResponseModel.ExternalUrls external_urls;
+        private ApiCommonsResponseModel.ExternalUrls external_urls;
         private String href;
         private String id;
-        private List<ArtistCommonsResponseModel.Images> images;
+        private List<ApiCommonsResponseModel.Images> images;
         private Boolean is_playable;
         private String name;
         private String release_date;
