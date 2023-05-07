@@ -13,13 +13,10 @@ public enum SearchTypes {
     private final String value;
 
     SearchTypes(String value) {
-
         this.value = value;
     }
 
     public String getValue() {
-
         return value;
     }
-
 }

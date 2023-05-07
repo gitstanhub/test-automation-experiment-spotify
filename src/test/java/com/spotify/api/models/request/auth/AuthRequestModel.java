@@ -17,9 +17,11 @@ public class AuthRequestModel {
     public List<NameValuePair> getBodyParams() {
 
         List<NameValuePair> bodyParamsList = new ArrayList<>();
+
         bodyParamsList.add(new BasicNameValuePair("grant_type", getGrant_type()));
         bodyParamsList.add(new BasicNameValuePair("client_id", getClient_id()));
         bodyParamsList.add(new BasicNameValuePair("client_secret", getClient_secret()));
+
         return bodyParamsList;
     }
 }

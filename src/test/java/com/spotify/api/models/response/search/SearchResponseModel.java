@@ -14,7 +14,6 @@ public class SearchResponseModel {
 
     @Data
     private static class Artists {
-
         private String href;
         private List<ArtistDataResponseModel> items;
         private Integer limit;
