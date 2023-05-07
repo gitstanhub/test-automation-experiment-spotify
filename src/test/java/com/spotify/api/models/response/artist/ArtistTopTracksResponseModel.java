@@ -12,6 +12,7 @@ public class ArtistTopTracksResponseModel {
 
     @Data
     public static class Track {
+
         private Album album;
         private List<ArtistDataResponseModel> artists;
         private Integer disc_number;
@@ -33,6 +34,7 @@ public class ArtistTopTracksResponseModel {
 
     @Data
     public static class Album {
+
         private String album_group;
         private String album_type;
         private List<ArtistDataResponseModel> artists;
@@ -51,6 +53,7 @@ public class ArtistTopTracksResponseModel {
 
     @Data
     public static class ExternalIds {
+
         private String isrc;
     }
 }

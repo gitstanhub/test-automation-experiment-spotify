@@ -1,24 +1,44 @@
 package com.spotify.api.tests;
 
 import com.spotify.api.clients.SearchClient;
+import com.spotify.api.constants.artist.ArtistProfileConstants;
+import com.spotify.api.constants.search.SearchTypes;
+import com.spotify.api.models.request.search.SearchRequestModel;
+import com.spotify.api.models.response.search.SearchResponseModel;
+import com.spotify.api.utils.ApiAssertionsUtil;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class SearchTests {
 
     SearchClient searchClient = new SearchClient();
+    ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
 
     @Test
-    void searchTest() {
-        List<String> types = Arrays.asList("album");
+    void searchAlbumsTest() {
 
-        searchClient.search("Capital Bra", types);
+        SearchRequestModel searchRequestModel = new SearchRequestModel(
+                SearchTypes.ALBUM,
+                SearchTypes.ARTIST
+        );
+
+        SearchResponseModel searchResults = searchClient
+                .searchWithLimitOffset("Capital Bra", searchRequestModel.getSearchTypes(), 5, 0);
+
+        apiAssertionsUtil.verifyResponseSingleField(
+                searchResults.getAlbums().getItems().get(0).getArtists().get(0).getName(),
+                ArtistProfileConstants.ARTIST_NAME_SINGLE_PROFILE
+        );
+
     }
 
-/// add test for regular album search
-// add test for audiobook + ES country
-// add test for 400 code when params are empty
+    @Test
+    void searchPlaylistByCountryTest() {
+
+    }
+
+    @Test
+    void searchEmptyParamsTest() {
+
+    }
 
 }
