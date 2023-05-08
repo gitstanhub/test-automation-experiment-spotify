@@ -2,6 +2,7 @@ package com.spotify.api.clients;
 
 import com.spotify.api.models.response.search.SearchResponseModel;
 import io.qameta.allure.Step;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
 
 import java.util.*;
@@ -23,7 +24,7 @@ public class SearchClient {
     }
 
     @Step
-    public SearchResponseModel searchWithMarketLimitOffset (String query, List<String> types, String market, Integer limit, Integer offset) {
+    public SearchResponseModel searchWithMarketLimitOffset(String query, List<String> types, String market, Integer limit, Integer offset) {
         return search(query, types, market, limit, offset, null);
     }
 
@@ -39,7 +40,8 @@ public class SearchClient {
 
     private SearchResponseModel search(String query, List<String> types, String market, Integer limit, Integer offset, String includeExternal) {
 
-        String typesParamValue = String.join(",", types);
+        String typesParamValue = types != null ? String.join(",", types) : null;
+
 
         RequestSpecification request =
                 given(searchRequestSpec)
@@ -58,11 +60,21 @@ public class SearchClient {
             }
         });
 
-        return request.
+        if (query != null && typesParamValue != null) {
+            return request.
                 when()
                 .get()
                 .then()
                 .spec(searchResponseSpec)
                 .extract().as(SearchResponseModel.class);
+        } else {
+            return request
+                    .when()
+                    .get()
+                    .then()
+                    .log().status()
+                    .statusCode(400)
+                    .extract().as(SearchResponseModel.class);
+        }
     }
 }

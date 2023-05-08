@@ -29,7 +29,6 @@ public class SearchTests {
                 searchResults.getAlbums().getItems().get(0).getArtists().get(0).getName(),
                 ArtistProfileConstants.ARTIST_NAME_SINGLE_PROFILE
         );
-
     }
 
     @Test
@@ -44,13 +43,20 @@ public class SearchTests {
         SearchResponseModel searchResults = searchClient
                 .searchWithMarket("Capital Bra", searchRequestModel.getSearchTypes(), countryCode);
 
-//        apiAssertionsUtil.verifyResponseSingleField(searchRes)
-
+        apiAssertionsUtil.verifyResponseSingleField(
+                searchResults.getPlaylists().getItems().get(0).getName(),
+                "CAPITAL BRA - KEIN PLATZ"
+        );
     }
 
     @Test
     void searchEmptyParamsTest() {
 
-    }
+        SearchResponseModel searchResults = searchClient
+                .search(null, null);
 
+        apiAssertionsUtil.verifyResponseSingleField(
+                searchResults.getError().getMessage(), "No search query"
+        );
+    }
 }
