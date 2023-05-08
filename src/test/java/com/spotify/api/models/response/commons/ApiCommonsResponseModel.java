@@ -16,4 +16,10 @@ public class ApiCommonsResponseModel {
         private String url;
         private Integer width;
     }
+
+    @Data
+    public static class Error {
+        private Integer status;
+        private String message;
+    }
 }
