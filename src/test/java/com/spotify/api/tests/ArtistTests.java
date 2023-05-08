@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static com.spotify.api.constants.ArtistProfileConstants.*;
+import static com.spotify.api.constants.artist.ArtistProfileConstants.*;
 
 public class ArtistTests {
 
@@ -18,6 +18,7 @@ public class ArtistTests {
 
     @Test
     void artistProfileTest() {
+
         String artistID = "4WZGDpNwrC0vNQyl9QzF7d";
         String country = "DE";
 
@@ -38,6 +39,7 @@ public class ArtistTests {
 
     @Test
     void multipleArtistProfilesTest() {
+
         String[] artistsCollection = {
                 "4WZGDpNwrC0vNQyl9QzF7d",
                 "3qiHUAX7zY4Qnjx8TNUzVx",

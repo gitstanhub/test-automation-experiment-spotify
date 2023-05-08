@@ -48,6 +48,7 @@ public class ArtistClient {
     }
 
     public ArtistMultipleResponseModel getMultipleArtistsData(String[] artists) {
+
         String artistsParam = String.join(",", artists);
 
         return given(artistRequestSpec)

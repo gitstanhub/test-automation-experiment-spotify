@@ -1,4 +1,4 @@
-package com.spotify.api.constants;
+package com.spotify.api.constants.artist;
 
 public class ArtistProfileConstants {
 

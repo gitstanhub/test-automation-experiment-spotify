@@ -3,7 +3,7 @@ package com.spotify.api.models.response.commons;
 import lombok.Data;
 
 @Data
-public class ArtistCommonsResponseModel {
+public class ApiCommonsResponseModel {
 
     @Data
     public static class ExternalUrls {
@@ -15,5 +15,11 @@ public class ArtistCommonsResponseModel {
         private Integer height;
         private String url;
         private Integer width;
+    }
+
+    @Data
+    public static class Error {
+        private Integer status;
+        private String message;
     }
 }
