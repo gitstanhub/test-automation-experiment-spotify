@@ -2,7 +2,7 @@ package com.spotify.api.utils;
 
 import static io.restassured.RestAssured.given;
 
-import com.spotify.api.models.request.auth.AuthRequestBodyModel;
+import com.spotify.api.models.request.auth.AuthRequestModel;
 import io.restassured.response.Response;
 import org.apache.http.client.utils.URLEncodedUtils;
 
@@ -13,10 +13,11 @@ public class ApiAuthUtil {
     private static String authToken;
 
     private static void generateAuthToken() {
-        AuthRequestBodyModel authRequestBodyModel = new AuthRequestBodyModel();
+
+        AuthRequestModel authRequestBodyModel = new AuthRequestModel();
         authRequestBodyModel.setGrant_type("client_credentials");
-        authRequestBodyModel.setClient_id("7aaa8656480f4a629d02973618636403");
-        authRequestBodyModel.setClient_secret("2616a7f644b94b90a015f7c70257f79d");
+        authRequestBodyModel.setClient_id("");
+        authRequestBodyModel.setClient_secret("");
 
         String requestBody = URLEncodedUtils.format(authRequestBodyModel.getBodyParams(), StandardCharsets.UTF_8);
 
@@ -37,6 +38,7 @@ public class ApiAuthUtil {
     }
 
     public static String getAuthToken() {
+
         if (authToken == null) {
             generateAuthToken();
         }
