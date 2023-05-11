@@ -2,8 +2,8 @@ package com.spotify.tests;
 
 import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.SearchClient;
-import com.spotify.constants.artist.ArtistProfileConstants;
-import com.spotify.constants.search.SearchTypes;
+import com.spotify.testdata.artist.ArtistProfileTestData;
+import com.spotify.testdata.search.SearchTypes;
 import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
 import com.spotify.utils.ApiAssertionsUtil;
@@ -27,7 +27,7 @@ public class SearchTests {
 
         apiAssertionsUtil.verifyResponseSingleField(
                 searchResults.getAlbums().getItems().get(0).getArtists().get(0).getName(),
-                ArtistProfileConstants.ARTIST_NAME_SINGLE_PROFILE
+                ArtistProfileTestData.ARTIST_NAME_SINGLE_PROFILE
         );
     }
 
