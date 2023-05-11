@@ -35,6 +35,6 @@ target/
 .project
 .settings/org.eclipse.buildship.core.prefs
 .vscode
-/gradlew
-/gradlew.bat
+**/gradlew
+**/gradlew.bat
 **/.DS_Store
