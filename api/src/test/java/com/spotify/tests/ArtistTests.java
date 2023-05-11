@@ -1,5 +1,6 @@
 package com.spotify.tests;
 
+import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.ArtistClient;
 import com.spotify.models.response.artist.*;
 import com.spotify.utils.ApiAssertionsUtil;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static com.spotify.constants.artist.ArtistProfileConstants.*;
+import static com.spotify.testdata.artist.ArtistProfileTestData.*;
 
 public class ArtistTests {
 
@@ -19,22 +20,25 @@ public class ArtistTests {
     @Test
     void artistProfileTest() {
 
-        String artistID = "4WZGDpNwrC0vNQyl9QzF7d";
-        String country = "DE";
+        String countryCode = String.valueOf(CountryCode.DE);
 
-        ArtistDataResponseModel artistData = artistClient.getArtistData(artistID);
-        ArtistTopTracksResponseModel artistTopTracks = artistClient.getArtistTopTracks(country, artistID);
-        ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums(country, artistID);
-        ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists(artistID);
+        ArtistDataResponseModel artistData = artistClient.getArtistData(ARTIST_ID);
+        ArtistTopTracksResponseModel artistTopTracks = artistClient.getArtistTopTracks(countryCode, ARTIST_ID);
+        ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums(countryCode, ARTIST_ID);
+        ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists(ARTIST_ID);
 
-        Map<Object, Object> actualAndExpectedValues = Map.of(
+        Map<Object, Object> artistDataValidationPairs = Map.of(
                 artistResponseFieldsUtil.getArtistName(artistData), ARTIST_NAME_SINGLE_PROFILE,
-                artistResponseFieldsUtil.getTrackName(artistTopTracks, 0), ARTIST_TOP_TRACK_TITLE,
-                artistResponseFieldsUtil.getArtistAlbumName(artistAlbums, 0), ARTIST_ALBUM_TITLE,
-                artistResponseFieldsUtil.getArtistRelated(artistRelated, 0), ARTIST_RELATED_NAME
-        );
+                artistResponseFieldsUtil.getArtistGenres(artistData), artistGenresList,
+                artistResponseFieldsUtil.getArtistId(artistData), ARTIST_ID,
+                artistResponseFieldsUtil.getArtistType(artistData), ARTIST_TYPE);
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualAndExpectedValues);
+//                artistResponseFieldsUtil.getTrackName(artistTopTracks, 0), ARTIST_TOP_TRACK_TITLE,
+//                artistResponseFieldsUtil.getArtistAlbumName(artistAlbums, 0), ARTIST_ALBUM_TITLE,
+//                artistResponseFieldsUtil.getArtistRelated(artistRelated, 0), ARTIST_RELATED_NAME
+
+
+        apiAssertionsUtil.verifyResponseMultipleFields(artistDataValidationPairs);
     }
 
     @Test

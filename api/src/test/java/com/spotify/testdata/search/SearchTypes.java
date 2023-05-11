@@ -1,4 +1,4 @@
-package com.spotify.constants.search;
+package com.spotify.testdata.search;
 
 public enum SearchTypes {
 
