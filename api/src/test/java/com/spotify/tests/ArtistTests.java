@@ -28,8 +28,8 @@ public class ArtistTests {
         ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists(ARTIST_ID);
 
         Map<Object, Object> artistDataValidationPairs = Map.of(
-                artistResponseFieldsUtil.getArtistName(artistData), ARTIST_NAME_SINGLE_PROFILE,
                 artistResponseFieldsUtil.getArtistGenres(artistData), artistGenresList,
+                artistResponseFieldsUtil.getArtistName(artistData), ARTIST_NAME_SINGLE_PROFILE,
                 artistResponseFieldsUtil.getArtistId(artistData), ARTIST_ID,
                 artistResponseFieldsUtil.getArtistType(artistData), ARTIST_TYPE);
 
@@ -39,6 +39,7 @@ public class ArtistTests {
 
 
         apiAssertionsUtil.verifyResponseMultipleFields(artistDataValidationPairs);
+
     }
 
     @Test

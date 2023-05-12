@@ -32,6 +32,10 @@ public class ArtistResponseFieldsUtil {
         return artistDataResponse.getImages().get(imagePosition);
     }
 
+    public Integer getArtistPopularity(ArtistDataResponseModel artistDataResponse) {
+        return artistDataResponse.getPopularity();
+    }
+
 
     //ArtistMultipleResponseModel
     public String getArtistName(ArtistMultipleResponseModel artistMultipleResponse, int artistPosition) {
