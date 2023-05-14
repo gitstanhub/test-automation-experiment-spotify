@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class ArtistMultipleResponseModel {
 
-    private List<ArtistDataResponseModel> artists;
+    private List<ArtistProfileResponseModel> artists;
 }

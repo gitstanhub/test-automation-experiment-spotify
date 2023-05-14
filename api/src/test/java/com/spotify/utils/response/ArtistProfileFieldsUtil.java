@@ -5,34 +5,33 @@ import com.spotify.models.response.commons.ApiCommonsResponseModel;
 
 import java.util.List;
 
-public class ArtistResponseFieldsUtil {
+public class ArtistProfileFieldsUtil {
 
-    //ArtistDataResponseModel
-    public String getArtistName(ArtistDataResponseModel artistDataResponse) {
+    public String getArtistName(ArtistProfileResponseModel artistDataResponse) {
         return artistDataResponse.getName();
     }
 
-    public String getArtistType(ArtistDataResponseModel artistDataResponse) {
+    public String getArtistType(ArtistProfileResponseModel artistDataResponse) {
         return artistDataResponse.getType();
     }
 
-    public String getArtistUri(ArtistDataResponseModel artistDataResponse) {
+    public String getArtistUri(ArtistProfileResponseModel artistDataResponse) {
         return artistDataResponse.getUri();
     }
 
-    public List<String> getArtistGenres(ArtistDataResponseModel artistDataResponse) {
+    public List<String> getArtistGenres(ArtistProfileResponseModel artistDataResponse) {
         return artistDataResponse.getGenres();
     }
 
-    public String getArtistId(ArtistDataResponseModel artistDataResponse) {
+    public String getArtistId(ArtistProfileResponseModel artistDataResponse) {
         return artistDataResponse.getId();
     }
 
-    public ApiCommonsResponseModel.Images getArtistImage(ArtistDataResponseModel artistDataResponse, int imagePosition) {
+    public ApiCommonsResponseModel.Images getArtistImage(ArtistProfileResponseModel artistDataResponse, int imagePosition) {
         return artistDataResponse.getImages().get(imagePosition);
     }
 
-    public Integer getArtistPopularity(ArtistDataResponseModel artistDataResponse) {
+    public Integer getArtistPopularity(ArtistProfileResponseModel artistDataResponse) {
         return artistDataResponse.getPopularity();
     }
 
@@ -43,10 +42,7 @@ public class ArtistResponseFieldsUtil {
     }
 
 
-    //ArtistTopTracksResponseModel
-    public String getTrackName(ArtistTopTracksResponseModel artistTopTracksResponse, int trackPosition) {
-        return artistTopTracksResponse.getTracks().get(trackPosition).getName();
-    }
+
 
 
     //ArtistAlbumsResponseModel

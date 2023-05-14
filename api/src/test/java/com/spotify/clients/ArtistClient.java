@@ -8,13 +8,13 @@ import static io.restassured.RestAssured.given;
 
 public class ArtistClient {
 
-    public ArtistDataResponseModel getArtistData(String artistId) {
+    public ArtistProfileResponseModel getArtistData(String artistId) {
         return given(artistRequestSpec)
         .when()
                 .get(artistId)
         .then()
                 .spec(artistResponseSpec)
-                .extract().as(ArtistDataResponseModel.class);
+                .extract().as(ArtistProfileResponseModel.class);
     }
 
     public ArtistTopTracksResponseModel getArtistTopTracks(String country, String artistID) {
