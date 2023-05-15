@@ -1,4 +1,4 @@
-package com.spotify.utils.response;
+package com.spotify.utils.responsefields.artist;
 
 import com.spotify.models.response.artist.*;
 import com.spotify.models.response.commons.ApiCommonsResponseModel;

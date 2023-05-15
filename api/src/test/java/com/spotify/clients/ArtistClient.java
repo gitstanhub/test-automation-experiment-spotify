@@ -1,6 +1,7 @@
 package com.spotify.clients;
 
 import com.spotify.models.response.artist.*;
+import io.qameta.allure.Step;
 
 import static com.spotify.specifications.ArtistSpec.artistRequestSpec;
 import static com.spotify.specifications.ArtistSpec.artistResponseSpec;
@@ -8,6 +9,7 @@ import static io.restassured.RestAssured.given;
 
 public class ArtistClient {
 
+    @Step
     public ArtistProfileResponseModel getArtistData(String artistId) {
         return given(artistRequestSpec)
         .when()
@@ -17,6 +19,7 @@ public class ArtistClient {
                 .extract().as(ArtistProfileResponseModel.class);
     }
 
+    @Step
     public ArtistTopTracksResponseModel getArtistTopTracks(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("market", country)
@@ -27,6 +30,7 @@ public class ArtistClient {
                 .extract().as(ArtistTopTracksResponseModel.class);
     }
 
+    @Step
     public ArtistAlbumsResponseModel getArtistAlbums(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("include_groups", "album")
@@ -38,6 +42,7 @@ public class ArtistClient {
                 .extract().as(ArtistAlbumsResponseModel.class);
     }
 
+    @Step
     public ArtistRelatedResponseModel getRelatedArtists(String artistID) {
         return given(artistRequestSpec)
         .when()
@@ -47,6 +52,7 @@ public class ArtistClient {
                 .extract().as(ArtistRelatedResponseModel.class);
     }
 
+    @Step
     public ArtistMultipleResponseModel getMultipleArtistsData(String[] artists) {
 
         String artistsParam = String.join(",", artists);

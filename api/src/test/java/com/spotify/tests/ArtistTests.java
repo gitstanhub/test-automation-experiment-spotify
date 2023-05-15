@@ -3,9 +3,9 @@ package com.spotify.tests;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.ArtistClient;
 import com.spotify.models.response.artist.*;
-import com.spotify.utils.ApiAssertionsUtil;
-import com.spotify.utils.response.ArtistProfileFieldsUtil;
-import com.spotify.utils.response.ArtistTopTracksFieldsUtil;
+import com.spotify.utils.assertions.ApiAssertionsUtil;
+import com.spotify.utils.responsefields.artist.ArtistProfileFieldsUtil;
+import com.spotify.utils.responsefields.artist.ArtistTopTracksFieldsUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -39,10 +39,8 @@ public class ArtistTests {
                 artistResponseFieldsUtil.getArtistUri(artistData), CAPITAL_BRA_PROFILE.getArtistUri()
         );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(artistDataValidationData);
-
         Map<Object, Object> artistTopTracksValidationData = Map.of(
-                artistTopTracksFieldsUtil.getTrackName(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackName(),
+                artistTopTracksFieldsUtil.getTrackName(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName()), CAPITAL_BRA_NEYMAR_TRACK.getTrackName(),
                 artistTopTracksFieldsUtil.getTrackId(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackId(),
                 artistTopTracksFieldsUtil.getTrackDuration(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackDurationMs(),
                 artistTopTracksFieldsUtil.getTrackType(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackType(),
@@ -51,9 +49,13 @@ public class ArtistTests {
                 artistTopTracksFieldsUtil.getTrackExplicitStatus(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackExplicit()
                 );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(artistTopTracksValidationData);
+        Map<Object, Object> artistAlbumValidationData = Map.of(
 
-//                artistResponseFieldsUtil.getTrackName(artistTopTracks, 0), ARTIST_TOP_TRACK_TITLE,
+        );
+
+        apiAssertionsUtil.verifyResponseMultipleFields(artistTopTracksValidationData);
+        apiAssertionsUtil.verifyResponseMultipleFields(artistDataValidationData);
+
 //                artistResponseFieldsUtil.getArtistAlbumName(artistAlbums, 0), ARTIST_ALBUM_TITLE,
 //                artistResponseFieldsUtil.getArtistRelated(artistRelated, 0), ARTIST_RELATED_NAME
 

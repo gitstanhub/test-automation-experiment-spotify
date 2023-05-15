@@ -1,4 +1,4 @@
-package com.spotify.utils;
+package com.spotify.utils.assertions;
 
 import org.assertj.core.api.Assertions;
 

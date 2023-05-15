@@ -1,4 +1,4 @@
-package com.spotify.utils;
+package com.spotify.utils.auth;
 
 import static io.restassured.RestAssured.given;
 
