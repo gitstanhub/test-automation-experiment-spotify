@@ -40,14 +40,14 @@ public class ArtistTests {
         );
 
         Map<Object, Object> artistTopTracksValidationData = Map.of(
-                artistTopTracksFieldsUtil.getTrackName(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName()), CAPITAL_BRA_NEYMAR_TRACK.getTrackName(),
-                artistTopTracksFieldsUtil.getTrackId(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackId(),
-                artistTopTracksFieldsUtil.getTrackDuration(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackDurationMs(),
-                artistTopTracksFieldsUtil.getTrackType(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackType(),
-                artistTopTracksFieldsUtil.getTrackAlbumName(artistTopTracks, 1), CAPITAL_BRA_BERLIN_LEBT_ALBUM.getAlbumName(),
-                artistTopTracksFieldsUtil.getTrackArtistName(artistTopTracks, 1, 0), CAPITAL_BRA_PROFILE.getArtistName(),
-                artistTopTracksFieldsUtil.getTrackExplicitStatus(artistTopTracks, 1), CAPITAL_BRA_NEYMAR_TRACK.getTrackExplicit()
-                );
+                artistTopTracksFieldsUtil.getTrackName(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName()),CAPITAL_BRA_NEYMAR_TRACK.getTrackName(),
+                artistTopTracksFieldsUtil.getTrackId(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName()),CAPITAL_BRA_NEYMAR_TRACK.getTrackId(),
+                artistTopTracksFieldsUtil.getTrackDuration(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName()), CAPITAL_BRA_NEYMAR_TRACK.getTrackDurationMs(),
+                artistTopTracksFieldsUtil.getTrackType(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName()), CAPITAL_BRA_NEYMAR_TRACK.getTrackType(),
+                artistTopTracksFieldsUtil.getTrackAlbumName(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName()), CAPITAL_BRA_BERLIN_LEBT_ALBUM.getAlbumName(),
+                artistTopTracksFieldsUtil.getTrackArtistName(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName(), CAPITAL_BRA_PROFILE.getArtistName()), CAPITAL_BRA_PROFILE.getArtistName(),
+                artistTopTracksFieldsUtil.getTrackExplicitStatus(artistTopTracks, CAPITAL_BRA_NEYMAR_TRACK.getTrackName()), CAPITAL_BRA_NEYMAR_TRACK.getTrackExplicit()
+        );
 
         Map<Object, Object> artistAlbumValidationData = Map.of(
 
