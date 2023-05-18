@@ -3,9 +3,9 @@ package com.spotify.testdata.artist;
 import java.util.Arrays;
 import java.util.List;
 
-public enum ArtistProfiles {
+public enum ArtistEntities {
 
-    CAPITAL_BRA_PROFILE("Capital Bra", "4WZGDpNwrC0vNQyl9QzF7d", Arrays.asList("german hip hop"), "artist");
+    CAPITAL_BRA("Capital Bra", "4WZGDpNwrC0vNQyl9QzF7d", Arrays.asList("german hip hop"), "artist");
 
     private final String artistName;
     private final List<String> artistGenres;
@@ -13,7 +13,7 @@ public enum ArtistProfiles {
     private final String artistType;
 
 
-    ArtistProfiles(String artistName, String artistId,  List<String> artistGenres, String artistType) {
+    ArtistEntities(String artistName, String artistId, List<String> artistGenres, String artistType) {
         this.artistName = artistName;
         this.artistGenres = artistGenres;
         this.artistId = artistId;

@@ -1,17 +1,22 @@
 package com.spotify.testdata.artist;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum ArtistAlbums {
 
-    CAPITAL_BRA_BERLIN_LEBT_ALBUM("Berlin lebt", "2vdeSISq7TAWLDiEhFJ3nz", 40, "2018-07-06", "day");
+    BERLIN_LEBT("Berlin lebt", Arrays.asList("Capital Bra"), "2vdeSISq7TAWLDiEhFJ3nz", 40, "2018-07-06", "day");
 
+    private final List<String> albumArtists;
     private final String albumName;
     private final String albumId;
     private final Integer albumTotalTracks;
     private final String albumReleaseDate;
     private final String albumReleaseDatePrecision;
 
-    ArtistAlbums(String albumName, String albumId, Integer albumTotalTracks, String albumReleaseDate, String albumReleaseDatePrecision) {
+    ArtistAlbums(String albumName, List<String> albumArtists, String albumId, Integer albumTotalTracks, String albumReleaseDate, String albumReleaseDatePrecision) {
         this.albumName = albumName;
+        this.albumArtists = albumArtists;
         this.albumId = albumId;
         this.albumTotalTracks = albumTotalTracks;
         this.albumReleaseDate = albumReleaseDate;
@@ -20,6 +25,10 @@ public enum ArtistAlbums {
 
     public String getAlbumName() {
         return albumName;
+    }
+
+    public List<String> getAlbumArtists() {
+        return albumArtists;
     }
 
     public String getAlbumId() {

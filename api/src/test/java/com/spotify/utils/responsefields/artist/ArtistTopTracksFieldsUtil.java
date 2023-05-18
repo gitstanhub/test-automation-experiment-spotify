@@ -49,13 +49,18 @@ public class ArtistTopTracksFieldsUtil {
     }
 
     public String getTrackArtistName(ArtistTopTracksResponseModel artistTopTracksResponse, int trackPosition, int artistPosition) {
-        ArtistTopTracksResponseModel.Track track = getTrack(artistTopTracksResponse, trackPosition);
-        return getTrackArtist(track, artistPosition).getName();
+        ArtistTopTracksResponseModel.Track desiredTrack = getTrack(artistTopTracksResponse, trackPosition);
+        return getTrackArtist(desiredTrack, artistPosition).getName();
     }
 
     public String getTrackArtistName(ArtistTopTracksResponseModel artistTopTracksResponse, String desiredTrackName, String desiredArtistName) {
         ArtistTopTracksResponseModel.Track desiredTrack = getTrack(artistTopTracksResponse, desiredTrackName);
         return getTrackArtist(desiredTrack, desiredArtistName).getName();
+    }
+
+    public String getTrackArtistName(ArtistTopTracksResponseModel artistTopTracksResponse, String desiredTrackName, int artistPosition) {
+        ArtistTopTracksResponseModel.Track desiredTrack = getTrack(artistTopTracksResponse, desiredTrackName);
+        return getTrackArtist(desiredTrack, artistPosition).getName();
     }
 
     public Boolean getTrackExplicitStatus(ArtistTopTracksResponseModel artistTopTracksResponse, int trackPosition) {
