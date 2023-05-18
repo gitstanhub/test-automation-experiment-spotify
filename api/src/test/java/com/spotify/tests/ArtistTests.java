@@ -3,6 +3,7 @@ package com.spotify.tests;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.ArtistClient;
 import com.spotify.models.response.artist.*;
+import com.spotify.testdata.artist.assertions.ArtistAssertionData;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
 import com.spotify.utils.responsefields.artist.ArtistProfileFieldsUtil;
 import com.spotify.utils.responsefields.artist.ArtistTopTracksFieldsUtil;
@@ -27,21 +28,23 @@ public class ArtistTests {
 
         ArtistProfileResponseModel fetchedArtistData = artistClient.getArtistData(CAPITAL_BRA.getArtistId());
 
-        List<Object> actualArtistData = new ArrayList<>();
-        actualArtistData.add(artistResponseFieldsUtil.getArtistGenres(fetchedArtistData));
-        actualArtistData.add(artistResponseFieldsUtil.getArtistName(fetchedArtistData));
-        actualArtistData.add(artistResponseFieldsUtil.getArtistId(fetchedArtistData));
-        actualArtistData.add(artistResponseFieldsUtil.getArtistType(fetchedArtistData));
-        actualArtistData.add(artistResponseFieldsUtil.getArtistUri(fetchedArtistData));
+        ArtistAssertionData.ActualArtistData actualArtistData = new ArtistAssertionData.ActualArtistData(
+                artistResponseFieldsUtil.getArtistName(fetchedArtistData),
+                artistResponseFieldsUtil.getArtistGenres(fetchedArtistData),
+                artistResponseFieldsUtil.getArtistId(fetchedArtistData),
+                artistResponseFieldsUtil.getArtistType(fetchedArtistData),
+                artistResponseFieldsUtil.getArtistUri(fetchedArtistData)
+        );
 
-        List<Object> expectedArtistData = new ArrayList<>();
-        expectedArtistData.add(CAPITAL_BRA.getArtistGenres());
-        expectedArtistData.add(CAPITAL_BRA.getArtistName());
-        expectedArtistData.add(CAPITAL_BRA.getArtistId());
-        expectedArtistData.add(CAPITAL_BRA.getArtistType());
-        expectedArtistData.add(CAPITAL_BRA.getArtistUri());
+        ArtistAssertionData.ExpectedArtistData expectedArtistData = new ArtistAssertionData.ExpectedArtistData(
+                CAPITAL_BRA.getArtistName(),
+                CAPITAL_BRA.getArtistGenres(),
+                CAPITAL_BRA.getArtistId(),
+                CAPITAL_BRA.getArtistType(),
+                CAPITAL_BRA.getArtistUri()
+        );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualArtistData, expectedArtistData);
+        apiAssertionsUtil.verifyResponseMultipleFields(actualArtistData.toList(), expectedArtistData.toList());
 
 
         String countryCode = String.valueOf(CountryCode.DE);
