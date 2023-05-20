@@ -1,11 +1,13 @@
 package com.spotify.testdata.artist.assertions;
 
+import com.spotify.testdata.commons.AssertionData;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistAssertionData {
+public class ArtistAssertionData extends AssertionData {
 
-    public static class ActualArtistData {
+    public static class ActualArtistData extends ActualAssertionData {
 
         private final String actualArtistName;
         private final List<String> actualArtistGenres;
@@ -52,7 +54,7 @@ public class ArtistAssertionData {
         }
     }
 
-    public static class ExpectedArtistData {
+    public static class ExpectedArtistData extends ExpectedAssertionData {
 
         private final String expectedArtistName;
         private final List<String> expectedArtistGenres;

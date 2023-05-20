@@ -2,7 +2,7 @@ package com.spotify.tests;
 
 import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.SearchClient;
-import com.spotify.testdata.search.SearchTypes;
+import com.spotify.testdata.search.constants.SearchTypes;
 import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
 import com.spotify.utils.assertions.ApiAssertionsUtil;

@@ -1,4 +1,4 @@
-package com.spotify.testdata.artist;
+package com.spotify.testdata.artist.constants;
 
 import java.util.Arrays;
 import java.util.List;

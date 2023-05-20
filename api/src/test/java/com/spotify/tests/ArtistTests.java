@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.spotify.testdata.artist.AristTracks.*;
-import static com.spotify.testdata.artist.ArtistAlbums.*;
-import static com.spotify.testdata.artist.ArtistEntities.*;
+import static com.spotify.testdata.artist.constants.AristTracks.*;
+import static com.spotify.testdata.artist.constants.ArtistAlbums.*;
+import static com.spotify.testdata.artist.constants.ArtistEntities.*;
 
 public class ArtistTests {
 
