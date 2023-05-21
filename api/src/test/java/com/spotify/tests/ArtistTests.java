@@ -4,6 +4,7 @@ import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.ArtistClient;
 import com.spotify.models.response.artist.*;
 import com.spotify.testdata.artist.assertions.ArtistAssertionData;
+import com.spotify.testdata.artist.assertions.ArtistTopTracksAssertionData;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
 import com.spotify.utils.responsefields.artist.ArtistProfileFieldsUtil;
 import com.spotify.utils.responsefields.artist.ArtistTopTracksFieldsUtil;
@@ -44,34 +45,51 @@ public class ArtistTests {
                 CAPITAL_BRA.getArtistUri()
         );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualArtistData.toList(), expectedArtistData.toList());
-
-
         String countryCode = String.valueOf(CountryCode.DE);
         ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracks(countryCode, CAPITAL_BRA.getArtistId());
 
-        List<Object> actualTopTracksData = new ArrayList<>();
-        actualTopTracksData.add(artistTopTracksFieldsUtil.getTrackId(fetchedArtistTopTracks, NEYMAR.getTrackName()));
-        actualTopTracksData.add(artistTopTracksFieldsUtil.getTrackDuration(fetchedArtistTopTracks, NEYMAR.getTrackName()));
-        actualTopTracksData.add(artistTopTracksFieldsUtil.getTrackType(fetchedArtistTopTracks, NEYMAR.getTrackName()));
-        actualTopTracksData.add(artistTopTracksFieldsUtil.getTrackAlbumName(fetchedArtistTopTracks, NEYMAR.getTrackName()));
-        actualTopTracksData.add(artistTopTracksFieldsUtil.getTrackArtistName(fetchedArtistTopTracks, NEYMAR.getTrackName(), 0));
-        actualTopTracksData.add(artistTopTracksFieldsUtil.getTrackExplicitStatus(fetchedArtistTopTracks, NEYMAR.getTrackName()));
+        ArtistTopTracksAssertionData.ActualTopTracksData actualTopTracksData = new ArtistTopTracksAssertionData.ActualTopTracksData(
+                artistTopTracksFieldsUtil.getTrackId(fetchedArtistTopTracks, NEYMAR.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackDuration(fetchedArtistTopTracks, NEYMAR.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackType(fetchedArtistTopTracks, NEYMAR.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackAlbumName(fetchedArtistTopTracks, NEYMAR.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackArtistName(fetchedArtistTopTracks, NEYMAR.getTrackName(), 0),
+                artistTopTracksFieldsUtil.getTrackExplicitStatus(fetchedArtistTopTracks, NEYMAR.getTrackName())
+        );
 
-        List<Object> expectedTopTracksData = new ArrayList<>();
-        expectedTopTracksData.add(NEYMAR.getTrackId());
-        expectedTopTracksData.add(NEYMAR.getTrackDurationMs());
-        expectedTopTracksData.add(NEYMAR.getTrackType());
-        expectedTopTracksData.add(BERLIN_LEBT.getAlbumName());
-        expectedTopTracksData.add(CAPITAL_BRA.getArtistName());
-        expectedTopTracksData.add(NEYMAR.getTrackExplicit());
+        ArtistTopTracksAssertionData.ExpectedTopTracksData expectedTopTracksData = new ArtistTopTracksAssertionData.ExpectedTopTracksData(
+                NEYMAR.getTrackId(),
+                NEYMAR.getTrackDurationMs(),
+                NEYMAR.getTrackType(),
+                BERLIN_LEBT.getAlbumName(),
+                CAPITAL_BRA.getArtistName(),
+                NEYMAR.getTrackExplicit()
+        );
 
+        apiAssertionsUtil.verifyResponseMultipleFields(actualArtistData, expectedArtistData);
         apiAssertionsUtil.verifyResponseMultipleFields(actualTopTracksData, expectedTopTracksData);
+
+//        List<Object> actualTopTracksDataList = new ArrayList<>();
+//        actualTopTracksDataList.add(artistTopTracksFieldsUtil.getTrackId(fetchedArtistTopTracks, NEYMAR.getTrackName()));
+//        actualTopTracksDataList.add(artistTopTracksFieldsUtil.getTrackDuration(fetchedArtistTopTracks, NEYMAR.getTrackName()));
+//        actualTopTracksDataList.add(artistTopTracksFieldsUtil.getTrackType(fetchedArtistTopTracks, NEYMAR.getTrackName()));
+//        actualTopTracksDataList.add(artistTopTracksFieldsUtil.getTrackAlbumName(fetchedArtistTopTracks, NEYMAR.getTrackName()));
+//        actualTopTracksDataList.add(artistTopTracksFieldsUtil.getTrackArtistName(fetchedArtistTopTracks, NEYMAR.getTrackName(), 0));
+//        actualTopTracksDataList.add(artistTopTracksFieldsUtil.getTrackExplicitStatus(fetchedArtistTopTracks, NEYMAR.getTrackName()));
+//
+//        List<Object> expectedTopTracksDataList = new ArrayList<>();
+//        expectedTopTracksDataList.add(NEYMAR.getTrackId());
+//        expectedTopTracksDataList.add(NEYMAR.getTrackDurationMs());
+//        expectedTopTracksDataList.add(NEYMAR.getTrackType());
+//        expectedTopTracksDataList.add(BERLIN_LEBT.getAlbumName());
+//        expectedTopTracksDataList.add(CAPITAL_BRA.getArtistName());
+//        expectedTopTracksDataList.add(NEYMAR.getTrackExplicit());
+
+
+//        apiAssertionsUtil.verifyResponseMultipleFields(actualTopTracksDataList, expectedTopTracksDataList);
 
 
         ArtistAlbumsResponseModel artistAlbums = artistClient.getArtistAlbums(countryCode, CAPITAL_BRA.getArtistId());
-
-
 
         ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists(CAPITAL_BRA.getArtistId());
 
