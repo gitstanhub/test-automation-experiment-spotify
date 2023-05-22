@@ -85,16 +85,16 @@ public class ArtistTopTracksFieldsUtil {
         if (foundTrack.isPresent()) {
             return foundTrack.get();
         } else {
-            throw new NoSuchElementException("Track with expected name is not found");
+            throw new NoSuchElementException("Track with the provided name is not found");
         }
     }
 
-    private ArtistProfileResponseModel getTrackArtist(ArtistTopTracksResponseModel.Track track, int artistPosition) {
-        if (artistPosition < 0 || artistPosition >= track.getArtists().size()) {
+    private ArtistProfileResponseModel getTrackArtist(ArtistTopTracksResponseModel.Track track, int desiredArtistPosition) {
+        if (desiredArtistPosition < 0 || desiredArtistPosition >= track.getArtists().size()) {
             throw new IndexOutOfBoundsException("Artist position is out of bounds. Please provide an artist position between 0 and "
                     + track.getArtists().size() + ".");
         }
-        return track.getArtists().get(artistPosition);
+        return track.getArtists().get(desiredArtistPosition);
     }
 
     private ArtistProfileResponseModel getTrackArtist(ArtistTopTracksResponseModel.Track track, String desiredArtistName) {
@@ -103,7 +103,7 @@ public class ArtistTopTracksFieldsUtil {
         if (foundArtist.isPresent()) {
             return foundArtist.get();
         } else {
-            throw new NoSuchElementException("Artist with expected name is not found");
+            throw new NoSuchElementException("Artist with the provided name is not found");
         }
     }
 }

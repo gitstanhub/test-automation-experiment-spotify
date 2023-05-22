@@ -1,12 +1,16 @@
 package com.spotify.testdata.artist.assertions;
 
 import com.spotify.testdata.commons.AssertionData;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistAssertionData extends AssertionData {
+public class ArtistEntitiesAssertionData extends AssertionData {
 
+    @Data
+    @EqualsAndHashCode(callSuper = false)
     public static class ActualArtistData extends ActualAssertionData {
 
         private final String actualArtistName;
@@ -23,26 +27,6 @@ public class ArtistAssertionData extends AssertionData {
             this.actualArtistUri = actualArtistUri;
         }
 
-        public String getActualArtistName() {
-            return actualArtistName;
-        }
-
-        public List<String> getActualArtistGenres() {
-            return actualArtistGenres;
-        }
-
-        public String getActualArtistId() {
-            return actualArtistId;
-        }
-
-        public String getActualArtistType() {
-            return actualArtistType;
-        }
-
-        public String getActualArtistUri() {
-            return actualArtistUri;
-        }
-
         public List<Object> toList() {
             List<Object> actualFieldsList = new ArrayList<>();
             actualFieldsList.add(this.getActualArtistName());
@@ -54,6 +38,8 @@ public class ArtistAssertionData extends AssertionData {
         }
     }
 
+    @Data
+    @EqualsAndHashCode(callSuper = false)
     public static class ExpectedArtistData extends ExpectedAssertionData {
 
         private final String expectedArtistName;
@@ -68,26 +54,6 @@ public class ArtistAssertionData extends AssertionData {
             this.expectedArtistId = expectedArtistId;
             this.expectedArtistType = expectedArtistType;
             this.expectedArtistUri = expectedArtistUri;
-        }
-
-        public String getExpectedArtistName() {
-            return expectedArtistName;
-        }
-
-        public List<String> getExpectedArtistGenres() {
-            return expectedArtistGenres;
-        }
-
-        public String getExpectedArtistId() {
-            return expectedArtistId;
-        }
-
-        public String getExpectedArtistType() {
-            return expectedArtistType;
-        }
-
-        public String getExpectedArtistUri() {
-            return expectedArtistUri;
         }
 
         public List<Object> toList() {
