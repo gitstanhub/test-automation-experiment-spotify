@@ -22,7 +22,7 @@ public class ArtistSpec {
 
     public static ResponseSpecification artistResponseSpec = new ResponseSpecBuilder()
             .log(LogDetail.STATUS)
-//            .log(LogDetail.BODY)
+            .log(LogDetail.BODY)
             .expectStatusCode(200)
             .build();
 }

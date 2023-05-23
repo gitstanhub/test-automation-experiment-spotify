@@ -11,7 +11,7 @@ public class ArtistAlbumsAssertionData extends AssertionData {
 
     @Data
     @EqualsAndHashCode(callSuper = false)
-    public static class ActualAlbumsData extends ActualAssertionData {
+    public static class ActualAlbumData extends ActualAssertionData {
 
         private final String actualAlbumName;
         private final String actualAlbumId;
@@ -20,7 +20,7 @@ public class ArtistAlbumsAssertionData extends AssertionData {
         private final Integer actualAlbumTotalTracks;
         private final String actualAlbumReleaseDate;
 
-        public ActualAlbumsData(String actualAlbumName, String actualAlbumId, String actualAlbumArtistName, String actualAlbumType, Integer actualAlbumTotalTracks, String actualAlbumReleaseDate) {
+        public ActualAlbumData(String actualAlbumName, String actualAlbumId, String actualAlbumArtistName, String actualAlbumType, Integer actualAlbumTotalTracks, String actualAlbumReleaseDate) {
             this.actualAlbumName = actualAlbumName;
             this.actualAlbumId = actualAlbumId;
             this.actualAlbumArtistName = actualAlbumArtistName;
@@ -43,7 +43,7 @@ public class ArtistAlbumsAssertionData extends AssertionData {
 
     @Data
     @EqualsAndHashCode(callSuper = false)
-    public static class ExpectedAlbumsData extends ExpectedAssertionData {
+    public static class ExpectedAlbumData extends ExpectedAssertionData {
 
         private final String expectedAlbumName;
         private final String expectedAlbumId;
@@ -53,7 +53,7 @@ public class ArtistAlbumsAssertionData extends AssertionData {
         private final String expectedAlbumReleaseDate;
 
 
-        public ExpectedAlbumsData(String expectedAlbumName, String expectedAlbumId, String expectedAlbumArtistName, String expectedAlbumType, Integer expectedAlbumTotalTracks, String expectedAlbumReleaseDate) {
+        public ExpectedAlbumData(String expectedAlbumName, String expectedAlbumId, String expectedAlbumArtistName, String expectedAlbumType, Integer expectedAlbumTotalTracks, String expectedAlbumReleaseDate) {
             this.expectedAlbumName = expectedAlbumName;
             this.expectedAlbumId = expectedAlbumId;
             this.expectedAlbumArtistName = expectedAlbumArtistName;

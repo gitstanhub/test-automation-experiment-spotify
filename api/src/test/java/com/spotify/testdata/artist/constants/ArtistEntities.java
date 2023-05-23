@@ -5,13 +5,13 @@ import java.util.List;
 
 public enum ArtistEntities {
 
-    CAPITAL_BRA("Capital Bra", "4WZGDpNwrC0vNQyl9QzF7d", Arrays.asList("german hip hop"), "artist");
+    CAPITAL_BRA("Capital Bra", "4WZGDpNwrC0vNQyl9QzF7d", Arrays.asList("german hip hop"), "artist"),
+    AK_AUSSERKONTOLLE("AK AUSSERKONTROLLE", "07SFzTMeYf5P8Rd32a9Zzw", Arrays.asList("german hip hop"), "artist");
 
     private final String artistName;
     private final List<String> artistGenres;
     private final String artistId;
     private final String artistType;
-
 
     ArtistEntities(String artistName, String artistId, List<String> artistGenres, String artistType) {
         this.artistName = artistName;
@@ -35,8 +35,6 @@ public enum ArtistEntities {
     public String getArtistType() {
         return artistType;
     }
-
-
 
     public String getArtistUri() {
         return "spotify:" + this.artistType + ":" + this.artistId;

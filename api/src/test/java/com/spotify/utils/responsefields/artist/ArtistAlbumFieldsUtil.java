@@ -2,7 +2,6 @@ package com.spotify.utils.responsefields.artist;
 
 import com.spotify.models.response.artist.ArtistAlbumsResponseModel;
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
-import com.spotify.models.response.artist.ArtistTopTracksResponseModel;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -61,5 +60,4 @@ public class ArtistAlbumFieldsUtil {
         }
         return album.getArtists().get(desiredArtisPosition);
     }
-
 }

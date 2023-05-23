@@ -5,10 +5,12 @@ import com.spotify.clients.ArtistClient;
 import com.spotify.models.response.artist.*;
 import com.spotify.testdata.artist.assertions.ArtistAlbumsAssertionData;
 import com.spotify.testdata.artist.assertions.ArtistEntitiesAssertionData;
+import com.spotify.testdata.artist.assertions.ArtistRelatedAssertionData;
 import com.spotify.testdata.artist.assertions.ArtistTracksAssertionData;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
 import com.spotify.utils.responsefields.artist.ArtistAlbumFieldsUtil;
 import com.spotify.utils.responsefields.artist.ArtistProfileFieldsUtil;
+import com.spotify.utils.responsefields.artist.ArtistRelatedFieldsUtil;
 import com.spotify.utils.responsefields.artist.ArtistTopTracksFieldsUtil;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +25,7 @@ public class ArtistTests {
     ArtistProfileFieldsUtil artistResponseFieldsUtil = new ArtistProfileFieldsUtil();
     ArtistTopTracksFieldsUtil artistTopTracksFieldsUtil = new ArtistTopTracksFieldsUtil();
     ArtistAlbumFieldsUtil artistAlbumFieldsUtil = new ArtistAlbumFieldsUtil();
+    ArtistRelatedFieldsUtil artistRelatedFieldsUtil = new ArtistRelatedFieldsUtil();
 
     @Test
     void artistProfileTest() {
@@ -73,8 +76,7 @@ public class ArtistTests {
 
         ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbums(countryCode, CAPITAL_BRA.getArtistId());
 
-        ArtistAlbumsAssertionData.ActualAlbumsData actualAlbumsData = new ArtistAlbumsAssertionData.ActualAlbumsData(
-
+        ArtistAlbumsAssertionData.ActualAlbumData actualAlbumsData = new ArtistAlbumsAssertionData.ActualAlbumData(
                 artistAlbumFieldsUtil.getAlbumName(fetchedArtistAlbums, BERLIN_LEBT.getAlbumName()),
                 artistAlbumFieldsUtil.getAlbumId(fetchedArtistAlbums, BERLIN_LEBT.getAlbumName()),
                 artistAlbumFieldsUtil.getAlbumArtistName(fetchedArtistAlbums, BERLIN_LEBT.getAlbumName(), 0),
@@ -83,7 +85,7 @@ public class ArtistTests {
                 artistAlbumFieldsUtil.getAlbumReleaseDate(fetchedArtistAlbums, BERLIN_LEBT.getAlbumName())
         );
 
-        ArtistAlbumsAssertionData.ExpectedAlbumsData expectedAlbumsData = new ArtistAlbumsAssertionData.ExpectedAlbumsData(
+        ArtistAlbumsAssertionData.ExpectedAlbumData expectedAlbumsData = new ArtistAlbumsAssertionData.ExpectedAlbumData(
                 BERLIN_LEBT.getAlbumName(),
                 BERLIN_LEBT.getAlbumId(),
                 BERLIN_LEBT.getAlbumArtists().get(0),
@@ -92,12 +94,28 @@ public class ArtistTests {
                 BERLIN_LEBT.getAlbumReleaseDate()
         );
 
-        ArtistRelatedResponseModel artistRelated = artistClient.getRelatedArtists(CAPITAL_BRA.getArtistId());
+        ArtistRelatedResponseModel fetchedArtistRelated = artistClient.getRelatedArtists(CAPITAL_BRA.getArtistId());
 
+        ArtistRelatedAssertionData.ActualRelatedArtistData actualRelatedArtistData = new ArtistRelatedAssertionData.ActualRelatedArtistData(
+                artistRelatedFieldsUtil.getRelatedArtistName(fetchedArtistRelated, AK_AUSSERKONTOLLE.getArtistName()),
+                artistRelatedFieldsUtil.getRelatedArtistGenres(fetchedArtistRelated, AK_AUSSERKONTOLLE.getArtistName()),
+                artistRelatedFieldsUtil.getRelatedArtistId(fetchedArtistRelated, AK_AUSSERKONTOLLE.getArtistName()),
+                artistRelatedFieldsUtil.getRelatedArtistType(fetchedArtistRelated, AK_AUSSERKONTOLLE.getArtistName()),
+                artistRelatedFieldsUtil.getRelatedArtistUri(fetchedArtistRelated, AK_AUSSERKONTOLLE.getArtistName())
+        );
+
+        ArtistRelatedAssertionData.ExpectedRelatedArtistData expectedAssertionData = new ArtistRelatedAssertionData.ExpectedRelatedArtistData(
+                AK_AUSSERKONTOLLE.getArtistName(),
+                AK_AUSSERKONTOLLE.getArtistGenres(),
+                AK_AUSSERKONTOLLE.getArtistId(),
+                AK_AUSSERKONTOLLE.getArtistType(),
+                AK_AUSSERKONTOLLE.getArtistUri()
+        );
 
         apiAssertionsUtil.verifyResponseMultipleFields(actualArtistData, expectedArtistData);
         apiAssertionsUtil.verifyResponseMultipleFields(actualTopTracksData, expectedTopTracksData);
         apiAssertionsUtil.verifyResponseMultipleFields(actualAlbumsData, expectedAlbumsData);
+        apiAssertionsUtil.verifyResponseMultipleFields(actualRelatedArtistData, expectedAssertionData);
     }
 
     @Test

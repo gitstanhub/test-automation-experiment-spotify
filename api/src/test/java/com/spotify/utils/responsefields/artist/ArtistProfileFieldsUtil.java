@@ -27,29 +27,13 @@ public class ArtistProfileFieldsUtil {
         return artistDataResponse.getId();
     }
 
-    public ApiCommonsResponseModel.Images getArtistImage(ArtistProfileResponseModel artistDataResponse, int imagePosition) {
-        return artistDataResponse.getImages().get(imagePosition);
-    }
 
-    public Integer getArtistPopularity(ArtistProfileResponseModel artistDataResponse) {
-        return artistDataResponse.getPopularity();
-    }
 
 
     //ArtistMultipleResponseModel
     public String getArtistName(ArtistMultipleResponseModel artistMultipleResponse, int artistPosition) {
         return artistMultipleResponse.getArtists().get(artistPosition).getName();
     }
-
-
-
-
-
-    //ArtistAlbumsResponseModel
-    public String getArtistAlbumName(ArtistAlbumsResponseModel artistAlbumsResponse, int albumPosition) {
-        return artistAlbumsResponse.getItems().get(albumPosition).getName();
-    }
-
 
     //ArtistRelatedResponseModel
     public String getArtistRelated(ArtistRelatedResponseModel artistRelatedResponse, int relatedArtistPosition) {
