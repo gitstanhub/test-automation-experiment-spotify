@@ -3,6 +3,8 @@ package com.spotify.clients;
 import com.spotify.models.response.artist.*;
 import io.qameta.allure.Step;
 
+import java.util.List;
+
 import static com.spotify.specifications.ArtistSpec.artistRequestSpec;
 import static com.spotify.specifications.ArtistSpec.artistResponseSpec;
 import static io.restassured.RestAssured.given;
@@ -53,7 +55,7 @@ public class ArtistClient {
     }
 
     @Step
-    public ArtistMultipleResponseModel getMultipleArtistsData(String[] artists) {
+    public ArtistMultipleResponseModel getMultipleArtistsData(List<String> artists) {
 
         String artistsParam = String.join(",", artists);
 

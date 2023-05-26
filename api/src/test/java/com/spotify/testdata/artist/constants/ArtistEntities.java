@@ -6,7 +6,8 @@ import java.util.List;
 public enum ArtistEntities {
 
     CAPITAL_BRA("Capital Bra", "4WZGDpNwrC0vNQyl9QzF7d", Arrays.asList("german hip hop"), "artist"),
-    AK_AUSSERKONTOLLE("AK AUSSERKONTROLLE", "07SFzTMeYf5P8Rd32a9Zzw", Arrays.asList("german hip hop"), "artist");
+    AK_AUSSERKONTOLLE("AK AUSSERKONTROLLE", "07SFzTMeYf5P8Rd32a9Zzw", Arrays.asList("german hip hop"), "artist"),
+    YEAT("Yeat", "3qiHUAX7zY4Qnjx8TNUzVx", Arrays.asList("pluggnb", "rage rap"), "artist");
 
     private final String artistName;
     private final List<String> artistGenres;

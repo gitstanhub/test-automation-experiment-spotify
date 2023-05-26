@@ -14,6 +14,9 @@ import com.spotify.utils.responsefields.artist.ArtistRelatedFieldsUtil;
 import com.spotify.utils.responsefields.artist.ArtistTopTracksFieldsUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static com.spotify.testdata.artist.constants.AristTracks.*;
 import static com.spotify.testdata.artist.constants.ArtistAlbums.*;
 import static com.spotify.testdata.artist.constants.ArtistEntities.*;
@@ -121,13 +124,14 @@ public class ArtistTests {
     @Test
     void multipleArtistProfilesTest() {
 
-        String[] artistsCollection = {
-                "4WZGDpNwrC0vNQyl9QzF7d",
-                "3qiHUAX7zY4Qnjx8TNUzVx",
-                "07SFzTMeYf5P8Rd32a9Zzw"
-        };
+        List<String> artistsCollection = Arrays.asList(
+                CAPITAL_BRA.getArtistId(),
+                AK_AUSSERKONTOLLE.getArtistId(),
+                YEAT.getArtistId()
+        );
 
-        ArtistMultipleResponseModel artistsMultiple = artistClient.getMultipleArtistsData(artistsCollection);
+        ArtistMultipleResponseModel fetchedArtistMultiple = artistClient.getMultipleArtistsData(artistsCollection);
+
 
 //        apiAssertionsUtil.verifyResponseSingleField(artistResponseFieldsUtil.getArtistName(artistsMultiple, 1), ARTIST_NAME_MULTIPLE_PROFILES);
     }
