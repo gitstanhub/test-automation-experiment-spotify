@@ -12,18 +12,19 @@ import java.util.stream.Collectors;
 public class ArtistMultipleFieldsUtil {
 
     public List<String> getMultipleArtistsNames(ArtistMultipleResponseModel artistMultipleResponse) {
-        return getArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getName).collect(Collectors.toList());
+        return getMultipleArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getName).collect(Collectors.toList());
     }
 
-    public List<List<String>> getArtistGenres(ArtistMultipleResponseModel artistMultipleResponse) {
-        return getArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getGenres).collect(Collectors.toList());
+    public List<String> getMultipleArtistGenres(ArtistMultipleResponseModel artistMultipleResponse) {
+//        return getArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getGenres).collect(Collectors.toList());
+        return getMultipleArtists(artistMultipleResponse).stream().map(artist -> String.join(",", artist.getGenres())).collect(Collectors.toList());
     }
 
-    public List<String> getArtistId(ArtistMultipleResponseModel artistMultipleResponse) {
-        return getArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getId).collect(Collectors.toList());
+    public List<String> getMultipleArtistIds(ArtistMultipleResponseModel artistMultipleResponse) {
+        return getMultipleArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getId).collect(Collectors.toList());
     }
 
-    private List<ArtistProfileResponseModel> getArtists(ArtistMultipleResponseModel artistMultipleResponse) {
+    private List<ArtistProfileResponseModel> getMultipleArtists(ArtistMultipleResponseModel artistMultipleResponse) {
         return artistMultipleResponse.getArtists();
     }
 

@@ -3,15 +3,10 @@ package com.spotify.tests;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.ArtistClient;
 import com.spotify.models.response.artist.*;
-import com.spotify.testdata.artist.assertions.ArtistAlbumsAssertionData;
-import com.spotify.testdata.artist.assertions.ArtistEntitiesAssertionData;
-import com.spotify.testdata.artist.assertions.ArtistRelatedAssertionData;
-import com.spotify.testdata.artist.assertions.ArtistTracksAssertionData;
+import com.spotify.testdata.artist.assertions.*;
+import com.spotify.testdata.commons.AssertionData;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
-import com.spotify.utils.responsefields.artist.ArtistAlbumFieldsUtil;
-import com.spotify.utils.responsefields.artist.ArtistProfileFieldsUtil;
-import com.spotify.utils.responsefields.artist.ArtistRelatedFieldsUtil;
-import com.spotify.utils.responsefields.artist.ArtistTopTracksFieldsUtil;
+import com.spotify.utils.responsefields.artist.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -29,6 +24,7 @@ public class ArtistTests {
     ArtistTopTracksFieldsUtil artistTopTracksFieldsUtil = new ArtistTopTracksFieldsUtil();
     ArtistAlbumFieldsUtil artistAlbumFieldsUtil = new ArtistAlbumFieldsUtil();
     ArtistRelatedFieldsUtil artistRelatedFieldsUtil = new ArtistRelatedFieldsUtil();
+    ArtistMultipleFieldsUtil artistMultipleFieldsUtil = new ArtistMultipleFieldsUtil();
 
     @Test
     void artistProfileTest() {
@@ -124,15 +120,39 @@ public class ArtistTests {
     @Test
     void multipleArtistProfilesTest() {
 
-        List<String> artistsCollection = Arrays.asList(
+        //write a builder and put into test data in ExpectedMultipleArtistData
+        List<String> artistsIdsCollection = Arrays.asList(
                 CAPITAL_BRA.getArtistId(),
                 AK_AUSSERKONTOLLE.getArtistId(),
                 YEAT.getArtistId()
         );
 
-        ArtistMultipleResponseModel fetchedArtistMultiple = artistClient.getMultipleArtistsData(artistsCollection);
+        List<String> artistNamesCollection = Arrays.asList(
+                CAPITAL_BRA.getArtistName(),
+                AK_AUSSERKONTOLLE.getArtistName(),
+                YEAT.getArtistName()
+        );
 
+        List<String> artistGenresCollection = Arrays.asList(
+                String.join(",", CAPITAL_BRA.getArtistGenres()),
+                String.join(",", AK_AUSSERKONTOLLE.getArtistGenres()),
+                String.join(",", YEAT.getArtistGenres())
+        );
 
-//        apiAssertionsUtil.verifyResponseSingleField(artistResponseFieldsUtil.getArtistName(artistsMultiple, 1), ARTIST_NAME_MULTIPLE_PROFILES);
+        ArtistMultipleResponseModel fetchedArtistMultiple = artistClient.getMultipleArtistsData(artistsIdsCollection);
+
+        ArtistMultipleAssertionData.ActualMultipleArtistData actualMultipleArtistData = new ArtistMultipleAssertionData.ActualMultipleArtistData(
+                artistMultipleFieldsUtil.getMultipleArtistsNames(fetchedArtistMultiple),
+                artistMultipleFieldsUtil.getMultipleArtistGenres(fetchedArtistMultiple),
+                artistMultipleFieldsUtil.getMultipleArtistIds(fetchedArtistMultiple)
+        );
+
+        ArtistMultipleAssertionData.ExpectedMultipleArtistData expectedMultipleArtistData = new ArtistMultipleAssertionData.ExpectedMultipleArtistData(
+                artistNamesCollection,
+                artistGenresCollection,
+                artistsIdsCollection
+        );
+
+        apiAssertionsUtil.verifyResponseMultipleFields(actualMultipleArtistData, expectedMultipleArtistData);
     }
 }
