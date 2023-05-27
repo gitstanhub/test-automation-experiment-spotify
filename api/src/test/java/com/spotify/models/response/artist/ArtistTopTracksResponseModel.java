@@ -13,7 +13,7 @@ public class ArtistTopTracksResponseModel {
     @Data
     public static class Track {
         private Album album;
-        private List<ArtistDataResponseModel> artists;
+        private List<ArtistProfileResponseModel> artists;
         private Integer disc_number;
         private Integer duration_ms;
         private Boolean explicit;
@@ -35,7 +35,7 @@ public class ArtistTopTracksResponseModel {
     public static class Album {
         private String album_group;
         private String album_type;
-        private List<ArtistDataResponseModel> artists;
+        private List<ArtistProfileResponseModel> artists;
         private ApiCommonsResponseModel.ExternalUrls external_urls;
         private String href;
         private String id;

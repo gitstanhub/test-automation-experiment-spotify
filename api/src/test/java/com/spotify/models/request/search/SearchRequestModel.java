@@ -1,6 +1,6 @@
 package com.spotify.models.request.search;
 
-import com.spotify.testdata.search.SearchTypes;
+import com.spotify.testdata.search.constants.SearchTypes;
 import lombok.Data;
 
 import java.util.Arrays;

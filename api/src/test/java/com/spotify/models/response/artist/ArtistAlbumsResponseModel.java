@@ -20,7 +20,7 @@ public class ArtistAlbumsResponseModel {
     public static class Item {
         private String album_group;
         private String album_type;
-        private List<ArtistDataResponseModel> artists;
+        private List<ArtistProfileResponseModel> artists;
         private List<String> available_markets;
         private ApiCommonsResponseModel.ExternalUrls external_urls;
         private String href;

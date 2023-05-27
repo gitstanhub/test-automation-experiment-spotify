@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ArtistDataResponseModel {
+public class ArtistProfileResponseModel {
 
     private ApiCommonsResponseModel.ExternalUrls external_urls;
     private Followers followers;
