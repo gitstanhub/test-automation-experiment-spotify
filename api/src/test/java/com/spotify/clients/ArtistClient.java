@@ -1,6 +1,9 @@
 package com.spotify.clients;
 
 import com.spotify.models.response.artist.*;
+import io.qameta.allure.Step;
+
+import java.util.List;
 
 import static com.spotify.specifications.ArtistSpec.artistRequestSpec;
 import static com.spotify.specifications.ArtistSpec.artistResponseSpec;
@@ -8,15 +11,17 @@ import static io.restassured.RestAssured.given;
 
 public class ArtistClient {
 
-    public ArtistDataResponseModel getArtistData(String artistId) {
+    @Step
+    public ArtistProfileResponseModel getArtistData(String artistId) {
         return given(artistRequestSpec)
         .when()
                 .get(artistId)
         .then()
                 .spec(artistResponseSpec)
-                .extract().as(ArtistDataResponseModel.class);
+                .extract().as(ArtistProfileResponseModel.class);
     }
 
+    @Step
     public ArtistTopTracksResponseModel getArtistTopTracks(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("market", country)
@@ -27,6 +32,7 @@ public class ArtistClient {
                 .extract().as(ArtistTopTracksResponseModel.class);
     }
 
+    @Step
     public ArtistAlbumsResponseModel getArtistAlbums(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("include_groups", "album")
@@ -38,6 +44,7 @@ public class ArtistClient {
                 .extract().as(ArtistAlbumsResponseModel.class);
     }
 
+    @Step
     public ArtistRelatedResponseModel getRelatedArtists(String artistID) {
         return given(artistRequestSpec)
         .when()
@@ -47,7 +54,8 @@ public class ArtistClient {
                 .extract().as(ArtistRelatedResponseModel.class);
     }
 
-    public ArtistMultipleResponseModel getMultipleArtistsData(String[] artists) {
+    @Step
+    public ArtistMultipleResponseModel getMultipleArtistsData(List<String> artists) {
 
         String artistsParam = String.join(",", artists);
 

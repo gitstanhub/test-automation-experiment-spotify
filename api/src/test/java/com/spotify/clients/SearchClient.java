@@ -40,7 +40,6 @@ public class SearchClient {
 
         String typesParamValue = types != null ? String.join(",", types) : null;
 
-
         RequestSpecification request =
                 given(searchRequestSpec)
                         .param("q", query)

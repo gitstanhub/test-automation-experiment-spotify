@@ -1,7 +1,7 @@
 package com.spotify.models.response.search;
 
 import com.spotify.models.response.artist.ArtistAlbumsResponseModel;
-import com.spotify.models.response.artist.ArtistDataResponseModel;
+import com.spotify.models.response.artist.ArtistProfileResponseModel;
 import com.spotify.models.response.commons.ApiCommonsResponseModel;
 import com.spotify.models.response.playlist.PlaylistResponseModel;
 import lombok.Data;
@@ -31,7 +31,7 @@ public class SearchResponseModel {
     @Data
     @EqualsAndHashCode(callSuper = true)
     public static class Artists extends SearchResponsePaginationBase {
-        private List<ArtistDataResponseModel> items;
+        private List<ArtistProfileResponseModel> items;
     }
 
     @Data
