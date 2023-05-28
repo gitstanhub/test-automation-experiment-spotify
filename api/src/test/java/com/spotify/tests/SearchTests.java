@@ -6,6 +6,7 @@ import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
 import com.spotify.utils.requestfields.search.SearchRequestFieldsUtil;
+
 import org.junit.jupiter.api.Test;
 
 public class SearchTests {
