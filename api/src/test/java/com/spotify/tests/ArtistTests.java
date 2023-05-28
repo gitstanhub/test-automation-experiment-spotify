@@ -4,7 +4,7 @@ import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.ArtistClient;
 import com.spotify.models.response.artist.*;
 import com.spotify.testdata.artist.assertions.*;
-import com.spotify.testdata.commons.AssertionData;
+import com.spotify.testdata.artist.constants.ArtistEntities;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
 import com.spotify.utils.responsefields.artist.*;
 import org.junit.jupiter.api.Test;
@@ -120,26 +120,17 @@ public class ArtistTests {
     @Test
     void multipleArtistProfilesTest() {
 
-        //write a builder and put into test data in ExpectedMultipleArtistData
-        List<String> artistsIdsCollection = Arrays.asList(
-                CAPITAL_BRA.getArtistId(),
-                AK_AUSSERKONTOLLE.getArtistId(),
-                YEAT.getArtistId()
+        List<ArtistEntities> inScopeArtists = Arrays.asList(
+                CAPITAL_BRA,
+                AK_AUSSERKONTOLLE,
+                YEAT
         );
 
-        List<String> artistNamesCollection = Arrays.asList(
-                CAPITAL_BRA.getArtistName(),
-                AK_AUSSERKONTOLLE.getArtistName(),
-                YEAT.getArtistName()
-        );
+        List<String> inScopeArtistsIds = ArtistEntities.getMultipleArtistIds(inScopeArtists);
+        List<String> inScopeArtistsNames = ArtistEntities.getMultipleArtistNames(inScopeArtists);
+        List<String> inScopeArtistsGenres = ArtistEntities.getMultipleArtistGenres(inScopeArtists);
 
-        List<String> artistGenresCollection = Arrays.asList(
-                String.join(",", CAPITAL_BRA.getArtistGenres()),
-                String.join(",", AK_AUSSERKONTOLLE.getArtistGenres()),
-                String.join(",", YEAT.getArtistGenres())
-        );
-
-        ArtistMultipleResponseModel fetchedArtistMultiple = artistClient.getMultipleArtistsData(artistsIdsCollection);
+        ArtistMultipleResponseModel fetchedArtistMultiple = artistClient.getMultipleArtistsData(inScopeArtistsIds);
 
         ArtistMultipleAssertionData.ActualMultipleArtistData actualMultipleArtistData = new ArtistMultipleAssertionData.ActualMultipleArtistData(
                 artistMultipleFieldsUtil.getMultipleArtistsNames(fetchedArtistMultiple),
@@ -148,9 +139,9 @@ public class ArtistTests {
         );
 
         ArtistMultipleAssertionData.ExpectedMultipleArtistData expectedMultipleArtistData = new ArtistMultipleAssertionData.ExpectedMultipleArtistData(
-                artistNamesCollection,
-                artistGenresCollection,
-                artistsIdsCollection
+                inScopeArtistsNames,
+                inScopeArtistsGenres,
+                inScopeArtistsIds
         );
 
         apiAssertionsUtil.verifyResponseMultipleFields(actualMultipleArtistData, expectedMultipleArtistData);
