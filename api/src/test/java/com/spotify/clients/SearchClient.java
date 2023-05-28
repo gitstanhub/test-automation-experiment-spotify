@@ -1,6 +1,8 @@
 package com.spotify.clients;
 
+import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
+import com.spotify.testdata.search.constants.SearchTypes;
 import io.qameta.allure.Step;
 import io.restassured.specification.RequestSpecification;
 
@@ -10,6 +12,11 @@ import static com.spotify.specifications.SearchSpec.*;
 import static io.restassured.RestAssured.given;
 
 public class SearchClient {
+
+//    @Step
+//    public SearchRequestModel addSearchTypes(SearchTypes... specifiedSearchTypes) {
+//        return new SearchRequestModel(specifiedSearchTypes);
+//    }
 
     @Step
     public SearchResponseModel search(String query, List<String> types) {

@@ -1,11 +1,10 @@
 package com.spotify.utils.responsefields.artist;
 
 import com.spotify.models.response.artist.*;
-import com.spotify.models.response.commons.ApiCommonsResponseModel;
 
 import java.util.List;
 
-public class ArtistProfileFieldsUtil {
+public class ArtistProfileResponseFieldsUtil {
 
     public String getArtistName(ArtistProfileResponseModel artistDataResponse) {
         return artistDataResponse.getName();
@@ -27,16 +26,4 @@ public class ArtistProfileFieldsUtil {
         return artistDataResponse.getId();
     }
 
-
-
-
-    //ArtistMultipleResponseModel
-    public String getArtistName(ArtistMultipleResponseModel artistMultipleResponse, int artistPosition) {
-        return artistMultipleResponse.getArtists().get(artistPosition).getName();
-    }
-
-    //ArtistRelatedResponseModel
-    public String getArtistRelated(ArtistRelatedResponseModel artistRelatedResponse, int relatedArtistPosition) {
-        return artistRelatedResponse.getArtists().get(relatedArtistPosition).getName();
-    }
 }

@@ -16,19 +16,18 @@ import static com.spotify.testdata.artist.constants.AristTracks.*;
 import static com.spotify.testdata.artist.constants.ArtistAlbums.*;
 import static com.spotify.testdata.artist.constants.ArtistEntities.*;
 
-public class ArtistTests {
+public class ArtistDataFetchTests {
 
     ArtistClient artistClient = new ArtistClient();
     ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
-    ArtistProfileFieldsUtil artistResponseFieldsUtil = new ArtistProfileFieldsUtil();
-    ArtistTopTracksFieldsUtil artistTopTracksFieldsUtil = new ArtistTopTracksFieldsUtil();
-    ArtistAlbumFieldsUtil artistAlbumFieldsUtil = new ArtistAlbumFieldsUtil();
-    ArtistRelatedFieldsUtil artistRelatedFieldsUtil = new ArtistRelatedFieldsUtil();
-    ArtistMultipleFieldsUtil artistMultipleFieldsUtil = new ArtistMultipleFieldsUtil();
+    ArtistProfileResponseFieldsUtil artistResponseFieldsUtil = new ArtistProfileResponseFieldsUtil();
+    ArtistTopTracksResponseFieldsUtil artistTopTracksFieldsUtil = new ArtistTopTracksResponseFieldsUtil();
+    ArtistAlbumResponseFieldsUtil artistAlbumFieldsUtil = new ArtistAlbumResponseFieldsUtil();
+    RelatedArtistsResponseFieldsUtil artistRelatedFieldsUtil = new RelatedArtistsResponseFieldsUtil();
+    MultipleArtistsResponseFieldsUtil artistMultipleFieldsUtil = new MultipleArtistsResponseFieldsUtil();
 
     @Test
-    void artistProfileTest() {
-
+    void fetchArtistProfileTest() {
         ArtistProfileResponseModel fetchedArtistData = artistClient.getArtistData(CAPITAL_BRA.getArtistId());
 
         ArtistEntitiesAssertionData.ActualArtistData actualArtistData = new ArtistEntitiesAssertionData.ActualArtistData(
@@ -47,7 +46,11 @@ public class ArtistTests {
                 CAPITAL_BRA.getArtistUri()
         );
 
+        apiAssertionsUtil.verifyResponseMultipleFields(actualArtistData, expectedArtistData);
+    }
 
+    @Test
+    void fetchArtistTopTracksTest() {
         String countryCode = String.valueOf(CountryCode.DE);
 
         ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracks(countryCode, CAPITAL_BRA.getArtistId());
@@ -72,6 +75,12 @@ public class ArtistTests {
                 NEYMAR.getTrackExplicit()
         );
 
+        apiAssertionsUtil.verifyResponseMultipleFields(actualTopTracksData, expectedTopTracksData);
+    }
+
+    @Test
+    void fetchArtistAlbumsTest() {
+        String countryCode = String.valueOf(CountryCode.DE);
 
         ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbums(countryCode, CAPITAL_BRA.getArtistId());
 
@@ -93,6 +102,11 @@ public class ArtistTests {
                 BERLIN_LEBT.getAlbumReleaseDate()
         );
 
+        apiAssertionsUtil.verifyResponseMultipleFields(actualAlbumsData, expectedAlbumsData);
+    }
+
+    @Test
+    void fetchRelatedArtistsTest() {
         ArtistRelatedResponseModel fetchedArtistRelated = artistClient.getRelatedArtists(CAPITAL_BRA.getArtistId());
 
         ArtistRelatedAssertionData.ActualRelatedArtistData actualRelatedArtistData = new ArtistRelatedAssertionData.ActualRelatedArtistData(
@@ -111,15 +125,11 @@ public class ArtistTests {
                 AK_AUSSERKONTOLLE.getArtistUri()
         );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualArtistData, expectedArtistData);
-        apiAssertionsUtil.verifyResponseMultipleFields(actualTopTracksData, expectedTopTracksData);
-        apiAssertionsUtil.verifyResponseMultipleFields(actualAlbumsData, expectedAlbumsData);
         apiAssertionsUtil.verifyResponseMultipleFields(actualRelatedArtistData, expectedAssertionData);
     }
 
     @Test
-    void multipleArtistProfilesTest() {
-
+    void fetchMultipleArtistsProfilesTest() {
         List<ArtistEntities> inScopeArtists = Arrays.asList(
                 CAPITAL_BRA,
                 AK_AUSSERKONTOLLE,

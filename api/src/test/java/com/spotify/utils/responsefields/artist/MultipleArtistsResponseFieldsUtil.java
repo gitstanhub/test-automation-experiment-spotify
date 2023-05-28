@@ -2,14 +2,11 @@ package com.spotify.utils.responsefields.artist;
 
 import com.spotify.models.response.artist.ArtistMultipleResponseModel;
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
-import com.spotify.models.response.artist.ArtistRelatedResponseModel;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ArtistMultipleFieldsUtil {
+public class MultipleArtistsResponseFieldsUtil {
 
     public List<String> getMultipleArtistsNames(ArtistMultipleResponseModel artistMultipleResponse) {
         return getMultipleArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getName).collect(Collectors.toList());

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class ArtistRelatedFieldsUtil {
+public class RelatedArtistsResponseFieldsUtil {
 
     public String getRelatedArtistName(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
         return getRelatedArtist(artistRelatedResponse, desiredArtistName).getName();

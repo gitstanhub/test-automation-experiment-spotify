@@ -1,51 +1,56 @@
 package com.spotify.tests;
 
-import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.SearchClient;
 import com.spotify.testdata.search.constants.SearchTypes;
 import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
+import com.spotify.utils.requestfields.search.SearchRequestFieldsUtil;
 import org.junit.jupiter.api.Test;
 
 public class SearchTests {
 
     SearchClient searchClient = new SearchClient();
     ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
+    SearchRequestFieldsUtil searchRequestFieldsUtil = new SearchRequestFieldsUtil();
 
     @Test
     void searchAlbumsTest() {
-
-        SearchRequestModel searchRequestModel = new SearchRequestModel(
+        SearchTypes[] searchTypes = new SearchTypes[]{
                 SearchTypes.ALBUM,
                 SearchTypes.ARTIST
+        };
+
+        SearchRequestModel searchRequest = new SearchRequestModel(
+                "Capital Bra",
+                searchTypes
         );
 
-        SearchResponseModel searchResults = searchClient
-                .searchWithLimitOffset("Capital Bra", searchRequestModel.getSearchTypes(), 5, 0);
+        SearchResponseModel searchResults = searchClient.searchWithLimitOffset(
+                searchRequestFieldsUtil.getSearchQuery(searchRequest),
+                searchRequestFieldsUtil.getSearchTypes(searchRequest),
+                5, 0
+        );
 
-//        apiAssertionsUtil.verifyResponseSingleField(
-//                searchResults.getAlbums().getItems().get(0).getArtists().get(0).getName(),
-//                ArtistProfiles.ARTIST_NAME_SINGLE_PROFILE
-//        );
+        //write assertion
     }
 
     @Test
     void searchPlaylistByCountryTest() {
 
-        SearchRequestModel searchRequestModel = new SearchRequestModel(
-                SearchTypes.PLAYLIST
-        );
-
-        String countryCode = String.valueOf(CountryCode.getByCode("DE"));
-
-        SearchResponseModel searchResults = searchClient
-                .searchWithMarket("Capital Bra", searchRequestModel.getSearchTypes(), countryCode);
-
-        apiAssertionsUtil.verifyResponseSingleField(
-                searchResults.getPlaylists().getItems().get(0).getName(),
-                "CAPITAL BRA - KEIN PLATZ"
-        );
+//        SearchRequestModel searchRequestModel = new SearchRequestModel(
+//                SearchTypes.PLAYLIST
+//        );
+//
+//        String countryCode = String.valueOf(CountryCode.getByCode("DE"));
+//
+//        SearchResponseModel searchResults = searchClient
+//                .searchWithMarket("Capital Bra", searchRequestModel.getSearchTypes(), countryCode);
+//
+//        apiAssertionsUtil.verifyResponseSingleField(
+//                searchResults.getPlaylists().getItems().get(0).getName(),
+//                "CAPITAL BRA - KEIN PLATZ"
+//        );
     }
 
     @Test

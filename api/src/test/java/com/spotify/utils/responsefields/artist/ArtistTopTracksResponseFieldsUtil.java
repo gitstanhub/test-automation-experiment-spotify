@@ -6,7 +6,7 @@ import com.spotify.models.response.artist.ArtistTopTracksResponseModel;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class ArtistTopTracksFieldsUtil {
+public class ArtistTopTracksResponseFieldsUtil {
 
     public String getTrackName(ArtistTopTracksResponseModel artistTopTracksResponse, int trackPosition) {
         return getTrack(artistTopTracksResponse, trackPosition).getName();
