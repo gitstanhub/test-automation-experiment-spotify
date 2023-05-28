@@ -15,7 +15,7 @@ public class SearchTests {
     SearchRequestFieldsUtil searchRequestFieldsUtil = new SearchRequestFieldsUtil();
 
     @Test
-    void searchAlbumsTest() {
+    void searchForArtistsAndAlbumsTest() {
         SearchTypes[] searchTypes = new SearchTypes[]{
                 SearchTypes.ALBUM,
                 SearchTypes.ARTIST
@@ -36,7 +36,7 @@ public class SearchTests {
     }
 
     @Test
-    void searchPlaylistByCountryTest() {
+    void searchForPlaylistsByCountryTest() {
 
 //        SearchRequestModel searchRequestModel = new SearchRequestModel(
 //                SearchTypes.PLAYLIST
@@ -54,7 +54,7 @@ public class SearchTests {
     }
 
     @Test
-    void searchEmptyParamsTest() {
+    void searchWithoutRequiredParamsTest() {
 
         SearchResponseModel searchResults = searchClient
                 .search(null, null);
