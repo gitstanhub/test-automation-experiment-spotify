@@ -9,11 +9,12 @@ import java.util.stream.Collectors;
 
 @Data
 public class SearchRequestModel {
+    private String q;
+    private List<String> type;
 
-    private List<String> searchTypes;
-
-    public SearchRequestModel(SearchTypes... specifiedSearchTypes) {
-        this.searchTypes = Arrays.stream(specifiedSearchTypes)
+    public SearchRequestModel(String searchQuery, SearchTypes... specifiedSearchTypes) {
+        this.q = searchQuery;
+        this.type = Arrays.stream(specifiedSearchTypes)
                 .map(SearchTypes::getValue)
                 .collect(Collectors.toList());
     }

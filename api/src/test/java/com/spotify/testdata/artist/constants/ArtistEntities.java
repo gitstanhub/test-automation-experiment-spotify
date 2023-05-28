@@ -1,5 +1,6 @@
 package com.spotify.testdata.artist.constants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,17 +42,27 @@ public enum ArtistEntities {
         return "spotify:" + this.artistType + ":" + this.artistId;
     }
 
+    public static List<String> getMultipleArtistIds(List<ArtistEntities> multipleArtists) {
+        List<String> multipleArtistIds = new ArrayList<>();
+        for (ArtistEntities artistEntity : multipleArtists) {
+            multipleArtistIds.add(artistEntity.getArtistId());
+        }
+        return multipleArtistIds;
+    }
 
+    public static List<String> getMultipleArtistNames(List<ArtistEntities> multipleArtists) {
+        List<String> multipleArtistNames = new ArrayList<>();
+        for (ArtistEntities artistEntity : multipleArtists) {
+            multipleArtistNames.add(artistEntity.getArtistName());
+        }
+        return multipleArtistNames;
+    }
 
-//    public static final String ARTIST_ID = "4WZGDpNwrC0vNQyl9QzF7d";
-//
-//    public static final String ARTIST_NAME_MULTIPLE_PROFILES = "Yeat";
-//    public static final String ARTIST_TOP_TRACK_TITLE = "Discokugel";
-//    public static final String ARTIST_ALBUM_TITLE = "DEUTSCHRAP BRANDNEU";
-//    public static final String ARTIST_RELATED_NAME = "AK AUSSERKONTROLLE";
-//    public static final String ARTIST_TYPE = "artist";
-//
-//
-//    public static List<String> artistGenresList = Arrays.asList("german hip hop");
-
+    public static List<String> getMultipleArtistGenres(List<ArtistEntities> multipleArtists) {
+        List<String> multipleArtistGenres = new ArrayList<>();
+        for (ArtistEntities artistEntity : multipleArtists) {
+            multipleArtistGenres.add(String.join(",", artistEntity.getArtistGenres()));
+        }
+        return multipleArtistGenres;
+    }
 }
