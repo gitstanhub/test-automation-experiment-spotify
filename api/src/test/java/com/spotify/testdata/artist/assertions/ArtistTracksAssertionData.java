@@ -1,6 +1,7 @@
 package com.spotify.testdata.artist.assertions;
 
 import com.spotify.testdata.commons.AssertionData;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,6 +12,7 @@ public class ArtistTracksAssertionData extends AssertionData {
 
     @Data
     @EqualsAndHashCode(callSuper = false)
+    @AllArgsConstructor
     public static class ActualTracksData extends ActualAssertionData {
 
         private final String actualTrackName;
@@ -21,16 +23,17 @@ public class ArtistTracksAssertionData extends AssertionData {
         private final String actualTrackArtistName;
         private final Boolean actualTrackExplicitStatus;
 
-        public ActualTracksData(String actualTrackName, String trackId, Integer trackDuration, String trackType, String trackAlbumName, String trackArtistName, Boolean trackExplicitStatus) {
-            this.actualTrackName = actualTrackName;
-            this.actualTrackId = trackId;
-            this.actualTrackDuration = trackDuration;
-            this.actualTrackType = trackType;
-            this.actualTrackAlbumName = trackAlbumName;
-            this.actualTrackArtistName = trackArtistName;
-            this.actualTrackExplicitStatus = trackExplicitStatus;
-        }
+//        public ActualTracksData(String actualTrackName, String trackId, Integer trackDuration, String trackType, String trackAlbumName, String trackArtistName, Boolean trackExplicitStatus) {
+//            this.actualTrackName = actualTrackName;
+//            this.actualTrackId = trackId;
+//            this.actualTrackDuration = trackDuration;
+//            this.actualTrackType = trackType;
+//            this.actualTrackAlbumName = trackAlbumName;
+//            this.actualTrackArtistName = trackArtistName;
+//            this.actualTrackExplicitStatus = trackExplicitStatus;
+//        }
 
+        @Override
         public List<Object> toList() {
             List<Object> actualFieldList = new ArrayList<>();
             actualFieldList.add(this.getActualTrackName());
@@ -46,6 +49,7 @@ public class ArtistTracksAssertionData extends AssertionData {
 
     @Data
     @EqualsAndHashCode(callSuper = false)
+    @AllArgsConstructor
     public static class ExpectedTracksData extends ExpectedAssertionData {
 
         private final String expectedTrackName;
@@ -56,16 +60,17 @@ public class ArtistTracksAssertionData extends AssertionData {
         private final String expectedTrackArtistName;
         private final Boolean expectedTrackExplicitStatus;
 
-        public ExpectedTracksData(String expectedTrackName, String expectedTrackId, Integer expectedTrackDuration, String expectedTrackType, String expectedTrackAlbumName, String expectedTrackArtistName, Boolean expectedTrackExplicitStatus) {
-            this.expectedTrackName = expectedTrackName;
-            this.expectedTrackId = expectedTrackId;
-            this.expectedTrackDuration = expectedTrackDuration;
-            this.expectedTrackType = expectedTrackType;
-            this.expectedTrackAlbumName = expectedTrackAlbumName;
-            this.expectedTrackArtistName = expectedTrackArtistName;
-            this.expectedTrackExplicitStatus = expectedTrackExplicitStatus;
-        }
+//        public ExpectedTracksData(String expectedTrackName, String expectedTrackId, Integer expectedTrackDuration, String expectedTrackType, String expectedTrackAlbumName, String expectedTrackArtistName, Boolean expectedTrackExplicitStatus) {
+//            this.expectedTrackName = expectedTrackName;
+//            this.expectedTrackId = expectedTrackId;
+//            this.expectedTrackDuration = expectedTrackDuration;
+//            this.expectedTrackType = expectedTrackType;
+//            this.expectedTrackAlbumName = expectedTrackAlbumName;
+//            this.expectedTrackArtistName = expectedTrackArtistName;
+//            this.expectedTrackExplicitStatus = expectedTrackExplicitStatus;
+//        }
 
+        @Override
         public List<Object> toList() {
             List<Object> expectedFieldList = new ArrayList<>();
             expectedFieldList.add(this.getExpectedTrackName());
