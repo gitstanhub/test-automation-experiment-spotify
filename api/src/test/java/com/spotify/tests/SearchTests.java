@@ -22,10 +22,15 @@ public class SearchTests {
                 SearchTypes.ARTIST
         };
 
-        SearchRequestModel searchRequest = new SearchRequestModel(
-                "Capital Bra",
-                searchTypes
-        );
+//        SearchRequestModel searchRequest = new SearchRequestModel(
+//                "Capital Bra",
+//                searchTypes
+//        );
+
+        SearchRequestModel searchRequest = SearchRequestModel.builder()
+                .searchQuery("Capital Bra")
+                .specifiedSearchTypes(searchTypes)
+                .build();
 
         SearchResponseModel searchResults = searchClient.searchWithLimitOffset(
                 searchRequestFieldsUtil.getSearchQuery(searchRequest),

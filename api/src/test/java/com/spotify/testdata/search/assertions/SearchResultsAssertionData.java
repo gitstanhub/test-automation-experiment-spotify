@@ -24,32 +24,32 @@ public class SearchResultsAssertionData extends AssertionData {
     public static class ActualSearchResultsData extends ActualAssertionData {
 
         //Albums
-        private PaginationData albumsPaginationData;
-        private List<String> albumsTypes;
-        private List<String> albumsArtists;
+        private PaginationData actualAlbumsPaginationData;
+        private List<String> actualAlbumsTypes;
+        private List<String> actualAlbumsArtists;
 
         //Artists
-        private PaginationData artistsPaginationData;
-        private List<String> artistsTypes;
+        private PaginationData actualArtistsPaginationData;
+        private List<String> actualArtistsTypes;
 
         //Playlists
-        private PaginationData playlistsPaginationData;
-        private List<String> playlistsTypes;
+        private PaginationData actualPlaylistsPaginationData;
+        private List<String> actualPlaylistsTypes;
 
         @Override
         public List<Object> toList() {
             List<Object> actualFieldList = new ArrayList<>();
             Stream.of(
-                            getAlbumsPaginationData().getLimit(),
-                            getAlbumsPaginationData().getOffset(),
-                            getAlbumsTypes(),
-                            getAlbumsArtists(),
-                            getArtistsPaginationData().getLimit(),
-                            getArtistsPaginationData().getOffset(),
-                            getArtistsTypes(),
-                            getPlaylistsPaginationData().getLimit(),
-                            getPlaylistsPaginationData().getOffset(),
-                            getPlaylistsTypes()
+                            getActualAlbumsPaginationData().getLimit(),
+                            getActualAlbumsPaginationData().getOffset(),
+                            getActualAlbumsTypes(),
+                            getActualAlbumsArtists(),
+                            getActualArtistsPaginationData().getLimit(),
+                            getActualArtistsPaginationData().getOffset(),
+                            getActualArtistsTypes(),
+                            getActualPlaylistsPaginationData().getLimit(),
+                            getActualPlaylistsPaginationData().getOffset(),
+                            getActualPlaylistsTypes()
                     )
                     .filter(Objects::nonNull)
                     .forEach(actualFieldList::add);
@@ -57,5 +57,42 @@ public class SearchResultsAssertionData extends AssertionData {
         }
     }
 
+    @Data
+    @EqualsAndHashCode(callSuper = false)
+    @Builder
+    public static class ExpectedSearchResultsData extends ExpectedAssertionData {
 
+        //Album
+        private PaginationData expectedAlbumsPaginationData;
+        private List<String> expectedAlbumsTypes;
+        private List<String> expectedAlbumsArtists;
+
+        //Artists
+        private PaginationData expectedArtistsPaginationData;
+        private List<String> expectedArtistsTypes;
+
+        //Playlists
+        private PaginationData expectedPlaylistsPaginationData;
+        private List<String> expectedPlaylistsTypes;
+
+        @Override
+        public List<Object> toList() {
+            List<Object> actualFieldList = new ArrayList<>();
+            Stream.of(
+                            getExpectedAlbumsPaginationData().getLimit(),
+                            getExpectedAlbumsPaginationData().getOffset(),
+                            getExpectedAlbumsTypes(),
+                            getExpectedAlbumsArtists(),
+                            getExpectedArtistsPaginationData().getLimit(),
+                            getExpectedArtistsPaginationData().getOffset(),
+                            getExpectedArtistsTypes(),
+                            getExpectedPlaylistsPaginationData().getLimit(),
+                            getExpectedPlaylistsPaginationData().getOffset(),
+                            getExpectedPlaylistsTypes()
+                    )
+                    .filter(Objects::nonNull)
+                    .forEach(actualFieldList::add);
+            return actualFieldList;
+        }
+    }
 }
