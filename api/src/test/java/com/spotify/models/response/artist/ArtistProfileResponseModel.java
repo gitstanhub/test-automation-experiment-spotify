@@ -1,5 +1,6 @@
 package com.spotify.models.response.artist;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.spotify.models.response.commons.ApiCommonsResponseModel;
 import lombok.Data;
 
@@ -8,7 +9,9 @@ import java.util.List;
 @Data
 public class ArtistProfileResponseModel {
 
-    private ApiCommonsResponseModel.ExternalUrls external_urls;
+    @JsonProperty("external_urls")
+    private ApiCommonsResponseModel.ExternalUrls externalUrls;
+
     private Followers followers;
     private List<String> genres;
     private String href;

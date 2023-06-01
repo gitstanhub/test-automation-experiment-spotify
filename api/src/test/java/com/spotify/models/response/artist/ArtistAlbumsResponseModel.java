@@ -1,5 +1,6 @@
 package com.spotify.models.response.artist;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.spotify.models.response.commons.ApiCommonsResponseModel;
 import lombok.Data;
 
@@ -18,18 +19,34 @@ public class ArtistAlbumsResponseModel {
 
     @Data
     public static class Item {
-        private String album_group;
-        private String album_type;
+        @JsonProperty("album_group")
+        private String albumGroup;
+
+        @JsonProperty("album_type")
+        private String albumType;
+
         private List<ArtistProfileResponseModel> artists;
-        private List<String> available_markets;
-        private ApiCommonsResponseModel.ExternalUrls external_urls;
+
+        @JsonProperty("available_markets")
+        private List<String> availableMarkets;
+
+        @JsonProperty("external_urls")
+        private ApiCommonsResponseModel.ExternalUrls externalUrls;
+
         private String href;
         private String id;
         private List<ApiCommonsResponseModel.Images> images;
         private String name;
-        private String release_date;
-        private String release_date_precision;
-        private Integer total_tracks;
+
+        @JsonProperty("release_date")
+        private String releaseDate;
+
+        @JsonProperty("release_date_precision")
+        private String releaseDatePrecision;
+
+        @JsonProperty("total_tracks")
+        private Integer totalTracks;
+
         private String type;
         private String uri;
     }

@@ -22,10 +22,8 @@ public class SearchTests {
                 SearchTypes.ARTIST
         };
 
-//        SearchRequestModel searchRequest = new SearchRequestModel(
-//                "Capital Bra",
-//                searchTypes
-//        );
+        int desiredLimit = 5;
+        int desiredOffset = 0;
 
         SearchRequestModel searchRequest = SearchRequestModel.builder()
                 .searchQuery("Capital Bra")
@@ -35,10 +33,10 @@ public class SearchTests {
         SearchResponseModel searchResults = searchClient.searchWithLimitOffset(
                 searchRequestFieldsUtil.getSearchQuery(searchRequest),
                 searchRequestFieldsUtil.getSearchTypes(searchRequest),
-                5, 0
+                desiredLimit, desiredOffset
         );
 
-        //write assertion
+
     }
 
     @Test

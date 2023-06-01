@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class SearchResponseModel {
 
-    private ArtistAlbumsResponseModel albums;
+    private Albums albums;
     private Artists artists;
     private Playlists playlists;
 
@@ -31,7 +31,7 @@ public class SearchResponseModel {
     @Data
     @EqualsAndHashCode(callSuper = false)
     public static class Albums extends SearchResponsePaginationBase {
-        private List<ArtistAlbumsResponseModel> items;
+        private List<ArtistAlbumsResponseModel.Item> items;
     }
 
     @Data
