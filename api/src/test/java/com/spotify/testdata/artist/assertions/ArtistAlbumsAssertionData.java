@@ -22,15 +22,6 @@ public class ArtistAlbumsAssertionData extends AssertionData {
         private final Integer actualAlbumTotalTracks;
         private final String actualAlbumReleaseDate;
 
-//        public ActualAlbumData(String actualAlbumName, String actualAlbumId, String actualAlbumArtistName, String actualAlbumType, Integer actualAlbumTotalTracks, String actualAlbumReleaseDate) {
-//            this.actualAlbumName = actualAlbumName;
-//            this.actualAlbumId = actualAlbumId;
-//            this.actualAlbumArtistName = actualAlbumArtistName;
-//            this.actualAlbumType = actualAlbumType;
-//            this.actualAlbumTotalTracks = actualAlbumTotalTracks;
-//            this.actualAlbumReleaseDate = actualAlbumReleaseDate;
-//        }
-
         @Override
         public List<Object> toList() {
             List<Object> actualFieldList = new ArrayList<>();
@@ -55,16 +46,6 @@ public class ArtistAlbumsAssertionData extends AssertionData {
         private final String expectedAlbumType;
         private final Integer expectedAlbumTotalTracks;
         private final String expectedAlbumReleaseDate;
-
-
-//        public ExpectedAlbumData(String expectedAlbumName, String expectedAlbumId, String expectedAlbumArtistName, String expectedAlbumType, Integer expectedAlbumTotalTracks, String expectedAlbumReleaseDate) {
-//            this.expectedAlbumName = expectedAlbumName;
-//            this.expectedAlbumId = expectedAlbumId;
-//            this.expectedAlbumArtistName = expectedAlbumArtistName;
-//            this.expectedAlbumType = expectedAlbumType;
-//            this.expectedAlbumTotalTracks = expectedAlbumTotalTracks;
-//            this.expectedAlbumReleaseDate = expectedAlbumReleaseDate;
-//        }
 
         @Override
         public List<Object> toList() {

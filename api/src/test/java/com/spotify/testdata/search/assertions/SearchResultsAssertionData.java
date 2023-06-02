@@ -26,7 +26,7 @@ public class SearchResultsAssertionData extends AssertionData {
         //Albums
         private PaginationData actualAlbumsPaginationData;
         private List<String> actualAlbumsTypes;
-        private List<String> actualAlbumsArtists;
+        private List<String> actualAlbumsArtistsNames;
 
         //Artists
         private PaginationData actualArtistsPaginationData;
@@ -43,7 +43,7 @@ public class SearchResultsAssertionData extends AssertionData {
                             getActualAlbumsPaginationData().getLimit(),
                             getActualAlbumsPaginationData().getOffset(),
                             getActualAlbumsTypes(),
-                            getActualAlbumsArtists(),
+                            getActualAlbumsArtistsNames(),
                             getActualArtistsPaginationData().getLimit(),
                             getActualArtistsPaginationData().getOffset(),
                             getActualArtistsTypes(),
