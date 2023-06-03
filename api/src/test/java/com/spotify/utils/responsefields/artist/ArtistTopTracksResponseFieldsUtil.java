@@ -25,11 +25,11 @@ public class ArtistTopTracksResponseFieldsUtil {
     }
 
     public Integer getTrackDuration(ArtistTopTracksResponseModel artistTopTracksResponse, int trackPosition) {
-        return getTrack(artistTopTracksResponse, trackPosition).getDuration_ms();
+        return getTrack(artistTopTracksResponse, trackPosition).getDurationMs();
     }
 
     public Integer getTrackDuration(ArtistTopTracksResponseModel artistTopTracksResponse, String desiredTrackName) {
-        return getTrack(artistTopTracksResponse, desiredTrackName).getDuration_ms();
+        return getTrack(artistTopTracksResponse, desiredTrackName).getDurationMs();
     }
 
     public String getTrackType(ArtistTopTracksResponseModel artistTopTracksResponse, int trackPosition) {

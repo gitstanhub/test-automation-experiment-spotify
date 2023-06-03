@@ -11,15 +11,20 @@ public class PlaylistResponseModel {
 
     private Boolean collaborative;
     private String description;
-    private ApiCommonsResponseModel.ExternalUrls external_urls;
+
+    @JsonProperty("external_urls")
+    private ApiCommonsResponseModel.ExternalUrls externalUrls;
+
     private String href;
     private String id;
     private List<ApiCommonsResponseModel.Images> images;
     private String name;
     private Owner owner;
     private String primary_color;
+
     @JsonProperty("public")
     private Boolean isPublic;
+
     private String snapshot_id;
     private Tracks tracks;
     private String type;
@@ -27,8 +32,12 @@ public class PlaylistResponseModel {
 
     @Data
     private static class Owner {
-        private String display_name;
-        private ApiCommonsResponseModel.ExternalUrls external_urls;
+        @JsonProperty("display_name")
+        private String displayName;
+
+        @JsonProperty("external_urls")
+        private ApiCommonsResponseModel.ExternalUrls externalUrls;
+
         private String href;
         private String id;
         private String type;

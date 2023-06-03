@@ -1,7 +1,9 @@
 package com.spotify.models.response.artist;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.spotify.models.response.commons.ApiCommonsResponseModel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -12,42 +14,52 @@ public class ArtistTopTracksResponseModel {
 
     @Data
     public static class Track {
-        private Album album;
+//        private Album album;
+        private ArtistAlbumsResponseModel.Item album;
         private List<ArtistProfileResponseModel> artists;
-        private Integer disc_number;
-        private Integer duration_ms;
+
+        @JsonProperty("disc_number")
+        private Integer discNumber;
+
+        @JsonProperty("duration_ms")
+        private Integer durationMs;
+
         private Boolean explicit;
-        private ExternalIds external_ids;
-        private ApiCommonsResponseModel.ExternalUrls external_urls;
+
+        @JsonProperty("external_ids")
+        private ExternalIds externalIds;
+
+        @JsonProperty("external_urls")
+        private ApiCommonsResponseModel.ExternalUrls externalUrls;
+
         private String href;
         private String id;
-        private Boolean is_local;
-        private Boolean is_playable;
+
+        @JsonProperty("is_local")
+        private Boolean isLocal;
+
+        @JsonProperty("is_playable")
+        private Boolean isPlayable;
+
         private String name;
         private Integer popularity;
-        private String preview_url;
-        private Integer track_number;
+
+        @JsonProperty("preview_url")
+        private String previewUrls;
+
+        @JsonProperty("track_number")
+        private Integer trackNumber;
+
         private String type;
         private String uri;
     }
 
-    @Data
-    public static class Album {
-        private String album_group;
-        private String album_type;
-        private List<ArtistProfileResponseModel> artists;
-        private ApiCommonsResponseModel.ExternalUrls external_urls;
-        private String href;
-        private String id;
-        private List<ApiCommonsResponseModel.Images> images;
-        private Boolean is_playable;
-        private String name;
-        private String release_date;
-        private String release_date_precision;
-        private Integer total_tracks;
-        private String type;
-        private String uri;
-    }
+//    @Data
+//    @EqualsAndHashCode(callSuper = false)
+//    public static class Album extends ArtistAlbumsResponseModel.Item {
+//        @JsonProperty("is_playable")
+//        private Boolean isPlayable;
+//    }
 
     @Data
     public static class ExternalIds {
