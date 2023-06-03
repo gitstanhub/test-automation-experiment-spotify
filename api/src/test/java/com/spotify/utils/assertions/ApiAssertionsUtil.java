@@ -8,6 +8,18 @@ import java.util.Map;
 
 public class ApiAssertionsUtil {
 
+    public ApiAssertionsUtil verifyEachResponseFieldContains(List<String> actualResponseFieldsData, String expectedValue) {
+        for (String fieldValue : actualResponseFieldsData) {
+            Assertions.assertThat(fieldValue).contains(expectedValue);
+        }
+        return this;
+    }
+
+    public ApiAssertionsUtil verifySomeResponseFieldsContain(List<String> actualResponseFieldsData, String expectedValue) {
+        Assertions.assertThat(actualResponseFieldsData).contains(expectedValue);
+        return this;
+    }
+
     public ApiAssertionsUtil verifyResponseSingleField(Object actualValue, Object expectedValue) {
         Assertions.assertThat(actualValue).isEqualTo(expectedValue);
         return this;

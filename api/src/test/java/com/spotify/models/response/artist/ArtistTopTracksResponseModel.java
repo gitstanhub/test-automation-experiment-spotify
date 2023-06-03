@@ -14,7 +14,8 @@ public class ArtistTopTracksResponseModel {
 
     @Data
     public static class Track {
-        private Album album;
+//        private Album album;
+        private ArtistAlbumsResponseModel.Item album;
         private List<ArtistProfileResponseModel> artists;
 
         @JsonProperty("disc_number")
@@ -53,12 +54,12 @@ public class ArtistTopTracksResponseModel {
         private String uri;
     }
 
-    @Data
-    @EqualsAndHashCode(callSuper = false)
-    public static class Album extends ArtistAlbumsResponseModel.Item{
-        @JsonProperty("is_playable")
-        private Boolean isPlayable;
-    }
+//    @Data
+//    @EqualsAndHashCode(callSuper = false)
+//    public static class Album extends ArtistAlbumsResponseModel.Item {
+//        @JsonProperty("is_playable")
+//        private Boolean isPlayable;
+//    }
 
     @Data
     public static class ExternalIds {

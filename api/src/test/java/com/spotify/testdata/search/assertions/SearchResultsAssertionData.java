@@ -1,6 +1,7 @@
 package com.spotify.testdata.search.assertions;
 
 import com.spotify.testdata.commons.AssertionData;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 public class SearchResultsAssertionData extends AssertionData {
 
     @Data
+    @AllArgsConstructor
     public static class PaginationData {
         private Integer limit;
         private Integer offset;
@@ -27,14 +29,17 @@ public class SearchResultsAssertionData extends AssertionData {
         private PaginationData actualAlbumsPaginationData;
         private List<String> actualAlbumsTypes;
         private List<String> actualAlbumsArtistsNames;
+        private Integer actualAlbumsItemsSize;
 
         //Artists
         private PaginationData actualArtistsPaginationData;
         private List<String> actualArtistsTypes;
+        private Integer actualArtistsItemsSize;
 
         //Playlists
         private PaginationData actualPlaylistsPaginationData;
         private List<String> actualPlaylistsTypes;
+        private Integer actualPlaylistsItemsSize;
 
         @Override
         public List<Object> toList() {
@@ -66,14 +71,18 @@ public class SearchResultsAssertionData extends AssertionData {
         private PaginationData expectedAlbumsPaginationData;
         private List<String> expectedAlbumsTypes;
         private List<String> expectedAlbumsArtists;
+        private Integer expectedAlbumsItemsSize;
+
 
         //Artists
         private PaginationData expectedArtistsPaginationData;
         private List<String> expectedArtistsTypes;
+        private Integer expectedArtistsItemsSize;
 
         //Playlists
         private PaginationData expectedPlaylistsPaginationData;
         private List<String> expectedPlaylistsTypes;
+        private Integer expectedPlaylistsItemsSize;
 
         @Override
         public List<Object> toList() {

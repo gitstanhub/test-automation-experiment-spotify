@@ -36,6 +36,10 @@ public class ArtistAlbumsResponseModel {
         private String href;
         private String id;
         private List<ApiCommonsResponseModel.Images> images;
+
+        @JsonProperty("is_playable")
+        private Boolean isPlayable;
+
         private String name;
 
         @JsonProperty("release_date")

@@ -10,6 +10,15 @@ import java.util.stream.Collectors;
 
 public class SearchResponseFieldsUtil {
 
+    public Integer getItemsCount(SearchResponseModel searchResponse, String objectType) {
+        return switch(objectType) {
+            case("albums") -> getAlbumsPage(searchResponse).getItems().size();
+            case("artists") -> getArtists(searchResponse).getItems().size();
+            case("playlists") -> getPlaylists(searchResponse).getItems().size();
+            default -> throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
+        };
+    }
+
     public List<String> getAllPlaylistsTypes(SearchResponseModel searchResponse) {
         return getPlaylists(searchResponse).getItems().stream().map(PlaylistResponseModel::getType).collect(Collectors.toList());
     }
