@@ -1,6 +1,7 @@
 package com.spotify.testdata.artist.assertions;
 
 import com.spotify.testdata.commons.AssertionData;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,6 +12,7 @@ public class ArtistRelatedAssertionData extends AssertionData {
 
     @Data
     @EqualsAndHashCode(callSuper = false)
+    @AllArgsConstructor
     public static class ActualRelatedArtistData extends ActualAssertionData {
 
         private final String actualArtistName;
@@ -19,14 +21,15 @@ public class ArtistRelatedAssertionData extends AssertionData {
         private final String actualArtistType;
         private final String actualArtistUri;
 
-        public ActualRelatedArtistData(String actualArtistName, List<String> actualArtistGenres, String actualArtistId, String actualArtistType, String actualArtistUri) {
-            this.actualArtistName = actualArtistName;
-            this.actualArtistGenres = actualArtistGenres;
-            this.actualArtistId = actualArtistId;
-            this.actualArtistType = actualArtistType;
-            this.actualArtistUri = actualArtistUri;
-        }
+//        public ActualRelatedArtistData(String actualArtistName, List<String> actualArtistGenres, String actualArtistId, String actualArtistType, String actualArtistUri) {
+//            this.actualArtistName = actualArtistName;
+//            this.actualArtistGenres = actualArtistGenres;
+//            this.actualArtistId = actualArtistId;
+//            this.actualArtistType = actualArtistType;
+//            this.actualArtistUri = actualArtistUri;
+//        }
 
+        @Override
         public List<Object> toList() {
             List<Object> actualFieldsList = new ArrayList<>();
             actualFieldsList.add(this.getActualArtistName());
@@ -40,6 +43,7 @@ public class ArtistRelatedAssertionData extends AssertionData {
 
     @Data
     @EqualsAndHashCode(callSuper = false)
+    @AllArgsConstructor
     public static class ExpectedRelatedArtistData extends ExpectedAssertionData {
 
         private final String expectedArtistName;
@@ -48,14 +52,15 @@ public class ArtistRelatedAssertionData extends AssertionData {
         private final String expectedArtistType;
         private final String expectedArtistUri;
 
-        public ExpectedRelatedArtistData(String expectedArtistName, List<String> expectedArtistGenres, String expectedArtistId, String expectedArtistType, String expectedArtistUri) {
-            this.expectedArtistName = expectedArtistName;
-            this.expectedArtistGenres = expectedArtistGenres;
-            this.expectedArtistId = expectedArtistId;
-            this.expectedArtistType = expectedArtistType;
-            this.expectedArtistUri = expectedArtistUri;
-        }
+//        public ExpectedRelatedArtistData(String expectedArtistName, List<String> expectedArtistGenres, String expectedArtistId, String expectedArtistType, String expectedArtistUri) {
+//            this.expectedArtistName = expectedArtistName;
+//            this.expectedArtistGenres = expectedArtistGenres;
+//            this.expectedArtistId = expectedArtistId;
+//            this.expectedArtistType = expectedArtistType;
+//            this.expectedArtistUri = expectedArtistUri;
+//        }
 
+        @Override
         public List<Object> toList() {
             List<Object> expectedFieldsList = new ArrayList<>();
             expectedFieldsList.add(this.getExpectedArtistName());

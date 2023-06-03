@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class SearchResponseModel {
 
-    private ArtistAlbumsResponseModel albums;
+    private Albums albums;
     private Artists artists;
     private Playlists playlists;
 
@@ -29,13 +29,19 @@ public class SearchResponseModel {
     }
 
     @Data
-    @EqualsAndHashCode(callSuper = true)
+    @EqualsAndHashCode(callSuper = false)
+    public static class Albums extends SearchResponsePaginationBase {
+        private List<ArtistAlbumsResponseModel.Item> items;
+    }
+
+    @Data
+    @EqualsAndHashCode(callSuper = false)
     public static class Artists extends SearchResponsePaginationBase {
         private List<ArtistProfileResponseModel> items;
     }
 
     @Data
-    @EqualsAndHashCode(callSuper = true)
+    @EqualsAndHashCode(callSuper = false)
     public static class Playlists extends SearchResponsePaginationBase {
         private List<PlaylistResponseModel> items;
     }

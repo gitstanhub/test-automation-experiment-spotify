@@ -13,7 +13,6 @@ public class MultipleArtistsResponseFieldsUtil {
     }
 
     public List<String> getMultipleArtistGenres(ArtistMultipleResponseModel artistMultipleResponse) {
-//        return getArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getGenres).collect(Collectors.toList());
         return getMultipleArtists(artistMultipleResponse).stream().map(artist -> String.join(",", artist.getGenres())).collect(Collectors.toList());
     }
 

@@ -12,4 +12,8 @@ public class SearchRequestFieldsUtil {
     public List<String> getSearchTypes(SearchRequestModel searchRequest) {
         return searchRequest.getType();
     }
+
+    public String getSearchMarket(SearchRequestModel searchRequest) {
+        return searchRequest.getMarket();
+    }
 }

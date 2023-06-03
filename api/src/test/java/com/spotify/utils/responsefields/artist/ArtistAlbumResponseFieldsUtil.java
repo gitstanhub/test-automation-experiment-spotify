@@ -22,15 +22,15 @@ public class ArtistAlbumResponseFieldsUtil {
     }
 
     public String getAlbumType(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
-        return getAlbum(artistAlbumsResponse, desiredAlbumName).getAlbum_type();
+        return getAlbum(artistAlbumsResponse, desiredAlbumName).getAlbumType();
     }
 
     public Integer getAlbumTotalTracks(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
-        return getAlbum(artistAlbumsResponse, desiredAlbumName).getTotal_tracks();
+        return getAlbum(artistAlbumsResponse, desiredAlbumName).getTotalTracks();
     }
 
     public String getAlbumReleaseDate(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
-        return getAlbum(artistAlbumsResponse, desiredAlbumName).getRelease_date();
+        return getAlbum(artistAlbumsResponse, desiredAlbumName).getReleaseDate();
     }
 
     private ArtistAlbumsResponseModel.Item getAlbum(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
