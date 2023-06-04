@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import static com.spotify.testdata.artist.constants.ArtistEntities.CAPITAL_BRA;
 
 public class SearchTests {
-
+    //TODO: Move client initialisation under @BeforeAll
     SearchClient searchClient = new SearchClient();
     ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
     SearchRequestFieldsUtil searchRequestFieldsUtil = new SearchRequestFieldsUtil();
