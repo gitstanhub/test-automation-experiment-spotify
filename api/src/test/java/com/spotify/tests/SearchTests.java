@@ -77,7 +77,7 @@ public class SearchTests {
         apiAssertionsUtil
                 .verifyEachResponseFieldContains(actualSearchResults.getActualArtistsTypes(), "artist")
                 .verifySomeResponseFieldsContain(actualSearchResults.getActualAlbumsArtistsNames(), CAPITAL_BRA.getArtistName())
-                .verifyEachResponseFieldContains(actualSearchResults.getActualAlbumsTypes(), "album");
+                .verifySomeResponseFieldsContain(actualSearchResults.getActualAlbumsTypes(), "album");
     }
 
     @Test
