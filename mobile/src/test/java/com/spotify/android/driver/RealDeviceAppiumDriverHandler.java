@@ -16,7 +16,7 @@ import static io.appium.java_client.remote.MobilePlatform.ANDROID;
 public class RealDeviceAppiumDriverHandler {
 
     private static AndroidDriver driver;
-    private WebDriverWait wait;
+    private static WebDriverWait wait;
 
     private void setUp() throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -46,7 +46,7 @@ public class RealDeviceAppiumDriverHandler {
         return driver;
     }
 
-    public WebDriverWait getWait() {
+    public static WebDriverWait getWait() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait;
     }
