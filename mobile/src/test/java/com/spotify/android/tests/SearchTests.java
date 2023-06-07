@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 public class SearchTests extends MobileAndroidTestBase {
 
 //    @Test
-//    public void searchAlbumTest()
+//    public void searchForAlbumTest()
 
 //    @Test
-//    public void searchArtistTest()
+//    public void searchForArtistTest()
 }

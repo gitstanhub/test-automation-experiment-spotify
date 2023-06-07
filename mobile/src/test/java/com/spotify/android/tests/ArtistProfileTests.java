@@ -1,21 +1,30 @@
 package com.spotify.android.tests;
 
+import com.spotify.android.pageobjects.commons.NavigationBar;
 import com.spotify.android.tests.base.MobileAndroidTestBase;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ArtistProfileTests extends MobileAndroidTestBase {
 
-    @Test
-    public void artistProfileTest() {
+    NavigationBar navigationBar = new NavigationBar(driver);
 
+    @Test
+    public void accessArtistProfileTest() {
         driver.findElement(By.xpath("//android.widget.Button[contains(@text,'Log in')]")).click();
         driver.findElement(By.id("com.spotify.music:id/username_text")).sendKeys("stasdmitruk1@gmail.com");
         driver.findElement(By.id("com.spotify.music:id/password_text")).sendKeys("3Dabde70!481516");
         driver.findElement(By.id("com.spotify.music:id/login_button")).click();
+
+        wait.until(webElement -> navigationBar.getNavigationBar().isDisplayed());
+
+
+
+
 
 //        List<WebElement> elements = driver.findElements(By.xpath("//*"));
 //        for (WebElement element : elements) {
@@ -27,7 +36,10 @@ public class ArtistProfileTests extends MobileAndroidTestBase {
 //        }
 
 //@Test
-//        public void artistDiscographyTest()
-
+//        public void accessArtistDiscographyTest()
     }
+
+
+//    @Test
+//    public void accessArtistSpotifyCodeTest()
 }
