@@ -22,7 +22,7 @@ public class SearchTests {
     SearchResponseFieldsUtil searchResponseFieldsUtil = new SearchResponseFieldsUtil();
 
     @Test
-    void searchForArtistsAndAlbumsTest() {
+    void artistsAndAlbumsAreFound() {
         SearchTypes[] searchTypes = new SearchTypes[]{
                 SearchTypes.ALBUM,
                 SearchTypes.ARTIST
@@ -81,7 +81,7 @@ public class SearchTests {
     }
 
     @Test
-    void searchForPlaylistsByCountryTest() {
+    void playlistsByCountryAreFound() {
         SearchTypes[] searchTypes = new SearchTypes[]{
                 SearchTypes.PLAYLIST
         };
@@ -120,7 +120,7 @@ public class SearchTests {
     }
 
     @Test
-    void searchWithoutRequiredParamsTest() {
+    void searchWithoutRequiredParamsIsNotPossible() {
 
         SearchResponseModel searchResults = searchClient
                 .search(null, null);

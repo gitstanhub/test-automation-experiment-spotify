@@ -6,22 +6,16 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.time.Duration;
 import java.util.List;
 
 public class ArtistProfileTests extends MobileAndroidTestBase {
 
-    NavigationBar navigationBar = new NavigationBar(driver);
+    private final NavigationBar navigationBar = new NavigationBar(driver);
 
     @Test
-    public void accessArtistProfileTest() {
-        driver.findElement(By.xpath("//android.widget.Button[contains(@text,'Log in')]")).click();
-        driver.findElement(By.id("com.spotify.music:id/username_text")).sendKeys("spotify_user_login");
-        driver.findElement(By.id("com.spotify.music:id/password_text")).sendKeys("spotify_user_password");
-        driver.findElement(By.id("com.spotify.music:id/login_button")).click();
+    public void artistProfileIsAvailable() {
 
         wait.until(webElement -> navigationBar.getNavigationBar().isDisplayed());
-
 
 
 
@@ -34,6 +28,8 @@ public class ArtistProfileTests extends MobileAndroidTestBase {
 //            System.out.println("Resource-ID:" + element.getAttribute("resourceId"));
 //            System.out.println("********************");
 //        }
+
+
 
 //@Test
 //        public void accessArtistDiscographyTest()

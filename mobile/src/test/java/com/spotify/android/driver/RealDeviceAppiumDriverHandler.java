@@ -28,6 +28,7 @@ public class RealDeviceAppiumDriverHandler {
         desiredCapabilities.setCapability(MobileCapabilityType.UDID, "01021FFBA000PH");
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 4 XL Android 13");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, false);
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), desiredCapabilities);
 
