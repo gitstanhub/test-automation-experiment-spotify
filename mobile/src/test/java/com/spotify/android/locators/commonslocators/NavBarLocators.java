@@ -1,6 +1,6 @@
-package com.spotify.android.pageobjects.locators;
+package com.spotify.android.locators.commonslocators;
 
-public class CommonsLocators {
+public class NavBarLocators {
 
     public final static String NAVIGATION_BAR = "com.spotify.music:id/navigation_bar";
     public final static String NAVIGATION_BAR_HOME_TAB = "com.spotify.music:id/home_tab";
