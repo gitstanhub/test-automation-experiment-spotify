@@ -1,21 +1,23 @@
 package com.spotify.android.tests;
 
 import com.spotify.android.pageobjects.commons.NavigationBar;
+import com.spotify.android.pageobjects.pages.LibraryPage;
 import com.spotify.android.tests.base.MobileAndroidTestBase;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class ArtistProfileTests extends MobileAndroidTestBase {
 
     private final NavigationBar navigationBar = new NavigationBar(driver);
+    private final LibraryPage libraryPage = new LibraryPage(driver, wait);
 
     @Test
-    public void artistProfileIsAvailable() {
+    public void artistProfileIsPresented() {
+        navigationBar.clickLibraryButton();
+        libraryPage
+//                .clickArtistsButton()
+                .selectArtistItem("Capital Bra");
 
-        wait.until(webElement -> navigationBar.getNavigationBar().isDisplayed());
+//        wait.until(webElement -> navigationBar.getNavigationBar().isDisplayed());
 
 
 

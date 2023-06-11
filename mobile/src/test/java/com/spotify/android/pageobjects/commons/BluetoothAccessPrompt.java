@@ -1,15 +1,14 @@
 package com.spotify.android.pageobjects.commons;
 
+import com.spotify.android.pageobjects.commons.base.PermissionAccessPrompt;
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BluetoothAccessPrompt extends PermissionAccessPrompt{
+public class BluetoothAccessPrompt extends PermissionAccessPrompt {
 
     public BluetoothAccessPrompt(AndroidDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -21,8 +20,8 @@ public class BluetoothAccessPrompt extends PermissionAccessPrompt{
             if (getAccessWidgetDescription().getText().contains("Bluetooth")) {
                 getAccessWidgetLaterButton().click();
             }
-        } catch (NoSuchElementException e) {
-            System.out.println("No Bluetooth Access Prompt found. Proceeding further...");
+        } catch (TimeoutException e) {
+            System.out.println("No Bluetooth Access Prompt is visible to handle. Proceeding further...");
         }
     }
 

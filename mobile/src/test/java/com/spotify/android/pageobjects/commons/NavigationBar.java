@@ -14,7 +14,43 @@ public class NavigationBar {
         this.driver = driver;
     }
 
-    public WebElement getNavigationBar() {
+    public NavigationBar clickHomeButton() {
+        getHomeButton().click();
+        return this;
+    }
+
+    public NavigationBar clickSearchButton() {
+        getSearchButton().click();
+        return this;
+    }
+
+    public NavigationBar clickLibraryButton() {
+        getLibraryButton().click();
+        return this;
+    }
+
+    public NavigationBar clickPremiumButton() {
+        getPremiumButton().click();
+        return this;
+    }
+
+    private WebElement getNavigationBar() {
         return driver.findElement(By.id(NAVIGATION_BAR));
+    }
+
+    private WebElement getHomeButton() {
+        return driver.findElement(By.id("com.spotify.music:id/home_tab"));
+    }
+
+    private WebElement getSearchButton() {
+        return driver.findElement(By.id("com.spotify.music:id/search_tab"));
+    }
+
+    private WebElement getLibraryButton() {
+        return driver.findElement(By.id("com.spotify.music:id/your_library_tab"));
+    }
+
+    private WebElement getPremiumButton() {
+        return driver.findElement(By.id("com.spotify.music:id/premium_tab"));
     }
 }

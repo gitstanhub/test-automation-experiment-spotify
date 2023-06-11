@@ -2,7 +2,6 @@ package com.spotify.android.driver;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -48,7 +47,7 @@ public class RealDeviceAppiumDriverHandler {
     }
 
     public static WebDriverWait getWait() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofMillis(1500));
         return wait;
     }
 
