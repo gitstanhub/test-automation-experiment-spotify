@@ -2,7 +2,7 @@ package com.spotify.android.pageobjects.pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,17 +37,15 @@ public class LoginPage {
         return this;
     }
 
-    public void handleLoginState(String username, String password) {
+    public void handleLoginFor(String username, String password) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Button[contains(@text,'Log in')]")));
-            if (getLogInButton().isDisplayed()) {
-                clickLogInButton();
-                fillInUsernameField(username);
-                fillInPasswordField(password);
-                clickLoginSubmitButton();
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("User is already logged in. Proceeding further...");
+            clickLogInButton();
+            fillInUsernameField(username);
+            fillInPasswordField(password);
+            clickLoginSubmitButton();
+        } catch (TimeoutException e) {
+            System.out.println("No Login button is visible to handle. Proceeding further...");
         }
     }
 
