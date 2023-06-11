@@ -27,7 +27,7 @@ public class ArtistDataFetchTests {
     MultipleArtistsResponseFieldsUtil artistMultipleFieldsUtil = new MultipleArtistsResponseFieldsUtil();
 
     @Test
-    void fetchArtistProfileTest() {
+    void artistProfileIsFetched() {
         ArtistProfileResponseModel fetchedArtistData = artistClient.getArtistData(CAPITAL_BRA.getArtistId());
 
         ArtistEntitiesAssertionData.ActualArtistData actualArtistData = new ArtistEntitiesAssertionData.ActualArtistData(
@@ -50,7 +50,7 @@ public class ArtistDataFetchTests {
     }
 
     @Test
-    void fetchArtistTopTracksTest() {
+    void artistTopTracksAreFetched() {
         String countryCode = String.valueOf(CountryCode.DE);
 
         ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracks(countryCode, CAPITAL_BRA.getArtistId());
@@ -79,7 +79,7 @@ public class ArtistDataFetchTests {
     }
 
     @Test
-    void fetchArtistAlbumsTest() {
+    void artistAlbumsAreFetched() {
         String countryCode = String.valueOf(CountryCode.DE);
 
         ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbums(countryCode, CAPITAL_BRA.getArtistId());
@@ -106,7 +106,7 @@ public class ArtistDataFetchTests {
     }
 
     @Test
-    void fetchRelatedArtistsTest() {
+    void relatedArtistsAreFetched() {
         ArtistRelatedResponseModel fetchedArtistRelated = artistClient.getRelatedArtists(CAPITAL_BRA.getArtistId());
 
         ArtistRelatedAssertionData.ActualRelatedArtistData actualRelatedArtistData = new ArtistRelatedAssertionData.ActualRelatedArtistData(
@@ -129,7 +129,7 @@ public class ArtistDataFetchTests {
     }
 
     @Test
-    void fetchMultipleArtistsProfilesTest() {
+    void multipleArtistsProfilesAreFetched() {
         List<ArtistEntities> inScopeArtists = Arrays.asList(
                 CAPITAL_BRA,
                 AK_AUSSERKONTOLLE,

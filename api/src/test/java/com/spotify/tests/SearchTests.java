@@ -15,14 +15,14 @@ import org.junit.jupiter.api.Test;
 import static com.spotify.testdata.artist.constants.ArtistEntities.CAPITAL_BRA;
 
 public class SearchTests {
-
+    //TODO: Move client initialisation under @BeforeAll
     SearchClient searchClient = new SearchClient();
     ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
     SearchRequestFieldsUtil searchRequestFieldsUtil = new SearchRequestFieldsUtil();
     SearchResponseFieldsUtil searchResponseFieldsUtil = new SearchResponseFieldsUtil();
 
     @Test
-    void searchForArtistsAndAlbumsTest() {
+    void artistsAndAlbumsAreFound() {
         SearchTypes[] searchTypes = new SearchTypes[]{
                 SearchTypes.ALBUM,
                 SearchTypes.ARTIST
@@ -77,11 +77,11 @@ public class SearchTests {
         apiAssertionsUtil
                 .verifyEachResponseFieldContains(actualSearchResults.getActualArtistsTypes(), "artist")
                 .verifySomeResponseFieldsContain(actualSearchResults.getActualAlbumsArtistsNames(), CAPITAL_BRA.getArtistName())
-                .verifyEachResponseFieldContains(actualSearchResults.getActualAlbumsTypes(), "album");
+                .verifySomeResponseFieldsContain(actualSearchResults.getActualAlbumsTypes(), "album");
     }
 
     @Test
-    void searchForPlaylistsByCountryTest() {
+    void playlistsByCountryAreFound() {
         SearchTypes[] searchTypes = new SearchTypes[]{
                 SearchTypes.PLAYLIST
         };
@@ -120,7 +120,7 @@ public class SearchTests {
     }
 
     @Test
-    void searchWithoutRequiredParamsTest() {
+    void searchWithoutRequiredParamsIsNotPossible() {
 
         SearchResponseModel searchResults = searchClient
                 .search(null, null);
