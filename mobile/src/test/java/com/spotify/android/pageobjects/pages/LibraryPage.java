@@ -165,8 +165,7 @@ public class LibraryPage {
 //    }
 
     private WebElement getListItemByTitle(String title) {
-
-        WebElement element = wait.until(driver -> {
+        return wait.until(driver -> {
             driver.findElement(AppiumBy.androidUIAutomator(
                     "new UiScrollable(new UiSelector().resourceId(\"com.spotify.music:id/recycler_view\")).scrollForward()"
             ));
@@ -177,9 +176,5 @@ public class LibraryPage {
                             title)
             ));
         });
-        return element;
     }
-
-
-
 }

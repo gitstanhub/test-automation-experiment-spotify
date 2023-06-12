@@ -14,7 +14,7 @@ public class ArtistProfileTests extends MobileAndroidTestBase {
     public void artistProfileIsPresented() {
         navigationBar.clickLibraryButton();
         libraryPage
-//                .clickArtistsButton()
+                .clickArtistsButton()
                 .selectArtistItem("Capital Bra");
 
 //        wait.until(webElement -> navigationBar.getNavigationBar().isDisplayed());
