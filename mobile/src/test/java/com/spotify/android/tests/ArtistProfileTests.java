@@ -1,21 +1,31 @@
 package com.spotify.android.tests;
 
-import com.spotify.android.pageobjects.commons.NavigationBar;
+import com.spotify.android.pageobjects.commons.Navigation;
+import com.spotify.android.pageobjects.pages.ArtistProfilePage;
 import com.spotify.android.pageobjects.pages.LibraryPage;
 import com.spotify.android.tests.base.MobileAndroidTestBase;
 import org.junit.jupiter.api.Test;
 
 public class ArtistProfileTests extends MobileAndroidTestBase {
 
-    private final NavigationBar navigationBar = new NavigationBar(driver);
+    private final Navigation navigationBar = new Navigation(driver);
     private final LibraryPage libraryPage = new LibraryPage(driver, wait);
+    private final ArtistProfilePage artistProfilePage = new ArtistProfilePage(driver);
 
     @Test
     public void artistProfileIsPresented() {
         navigationBar.clickLibraryButton();
-        libraryPage
-                .clickArtistsButton()
-                .selectArtistItem("Capital Bra");
+        libraryPage.selectArtistItem("Oliver Tree");
+        artistProfilePage
+                .verifyProfileTitleAvailable("Oliver Tree")
+                .verifyMonthlyListenersCountAvailable()
+                .verifyFollowButtonAvailable()
+                .verifyShuffleButtonAvailable()
+                .verifyContextMenuButtonAvailable()
+                .verifyPlayButtonAvailable()
+                .verifyTrackCloudContainsArtist("Oliver Tree");
+//                .verifyPopularReleasesTitleIsAvailable();
+
 
 //        wait.until(webElement -> navigationBar.getNavigationBar().isDisplayed());
 

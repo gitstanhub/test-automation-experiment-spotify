@@ -24,8 +24,8 @@ public class RealDeviceAppiumDriverHandler {
         desiredCapabilities.setCapability("appActivity", "com.spotify.music.MainActivity");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, ANDROID);
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, ANDROID_UIAUTOMATOR2);
-        desiredCapabilities.setCapability(MobileCapabilityType.UDID, "01021FFBA000PH");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 4 XL Android 13");
+        desiredCapabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 4 (Android 13) - Emulated");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.0");
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, false);
 
@@ -47,7 +47,7 @@ public class RealDeviceAppiumDriverHandler {
     }
 
     public static WebDriverWait getWait() {
-        wait = new WebDriverWait(driver, Duration.ofMillis(1500));
+        wait = new WebDriverWait(driver, Duration.ofMillis(3000));
         return wait;
     }
 

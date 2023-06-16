@@ -6,35 +6,40 @@ import org.openqa.selenium.WebElement;
 
 import static com.spotify.android.locators.commonslocators.NavBarLocators.NAVIGATION_BAR;
 
-public class NavigationBar {
+public class Navigation {
 
     private final AndroidDriver driver;
 
-    public NavigationBar(AndroidDriver driver) {
+    public Navigation(AndroidDriver driver) {
         this.driver = driver;
     }
 
-    public NavigationBar clickHomeButton() {
+    public Navigation clickHomeButton() {
         getHomeButton().click();
         return this;
     }
 
-    public NavigationBar clickSearchButton() {
+    public Navigation clickSearchButton() {
         getSearchButton().click();
         return this;
     }
 
-    public NavigationBar clickLibraryButton() {
+    public Navigation clickLibraryButton() {
         getLibraryButton().click();
         return this;
     }
 
-    public NavigationBar clickPremiumButton() {
+    public Navigation clickPremiumButton() {
         getPremiumButton().click();
         return this;
     }
 
-    private WebElement getNavigationBar() {
+    public Navigation clickBackButton() {
+        getBackButton().click();
+        return this;
+    }
+
+    private WebElement getNavBar() {
         return driver.findElement(By.id(NAVIGATION_BAR));
     }
 
@@ -52,5 +57,9 @@ public class NavigationBar {
 
     private WebElement getPremiumButton() {
         return driver.findElement(By.id("com.spotify.music:id/premium_tab"));
+    }
+
+    private WebElement getBackButton() {
+        return driver.findElement(By.id("com.spotify.music:id/back_button"));
     }
 }
