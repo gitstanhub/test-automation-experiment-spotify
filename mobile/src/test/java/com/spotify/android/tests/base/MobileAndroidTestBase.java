@@ -20,9 +20,9 @@ public class MobileAndroidTestBase {
 
     @BeforeEach
     public void login() {
-        loginPage.handleLoginFor("", "");
+        loginPage.handleLoginFor("spotify_user_login", "");
         bluetoothAccessPrompt.handleAccessPrompt();
-//        screensaverAd.handleScreensaverAd();
+        screensaverAd.handleScreensaverAd();
     }
 
     @AfterEach

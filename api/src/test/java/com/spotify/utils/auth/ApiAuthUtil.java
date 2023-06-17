@@ -17,7 +17,7 @@ public class ApiAuthUtil {
         AuthRequestModel authRequestBodyModel = new AuthRequestModel();
         authRequestBodyModel.setGrant_type("client_credentials");
         authRequestBodyModel.setClient_id("client_id_key");
-        authRequestBodyModel.setClient_secret("");
+        authRequestBodyModel.setClient_secret("client_secret_key");
 
         String requestBody = URLEncodedUtils.format(authRequestBodyModel.getBodyParams(), StandardCharsets.UTF_8);
 

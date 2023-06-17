@@ -49,6 +49,7 @@ public class LoginPage {
         }
     }
 
+    //ToDo: Replace xpath with UIAutomator
     private WebElement getLogInButton() {
         return driver.findElement(By.xpath("//android.widget.Button[contains(@text,'Log in')]"));
     }
