@@ -20,9 +20,9 @@ public class MobileAndroidTestBase {
 
     @BeforeEach
     public void login() {
-        loginPage.handleLoginFor("", "");
+        loginPage.handleLoginFor("stasdmitruk1@gmail.com", "");
         bluetoothAccessPrompt.handleAccessPrompt();
-//        screensaverAd.handleScreensaverAd();
+        screensaverAd.handleScreensaverAd();
     }
 
     @AfterEach

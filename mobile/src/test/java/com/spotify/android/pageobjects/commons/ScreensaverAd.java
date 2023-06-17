@@ -18,6 +18,7 @@ public class ScreensaverAd {
     }
 
     public void handleScreensaverAd() {
+        //TODO: instead of catching exceptions, try to write a method that would assert that element is not visible
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/screensaver_ad_banner")));
             clickOnScreensaverAdDismissButton();
