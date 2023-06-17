@@ -1,17 +1,22 @@
 package com.spotify.android.pageobjects.pages;
 
 import com.spotify.android.utils.assertions.ElementChecks;
+import com.spotify.android.utils.navigation.PageNavigationActions;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ArtistProfilePage {
 
     private final AndroidDriver driver;
-    private final ElementChecks elementChecks = new ElementChecks();
+    private final ElementChecks elementChecks;
+    private final PageNavigationActions pageNavigationActions;
 
-    public ArtistProfilePage(AndroidDriver driver) {
+    public ArtistProfilePage(AndroidDriver driver, WebDriverWait wait) {
         this.driver = driver;
+        this.elementChecks = new ElementChecks(driver, wait);
+        this.pageNavigationActions = new PageNavigationActions(driver, wait);
     }
 
     public ArtistProfilePage verifyProfileTitleAvailable(String artistName) {
@@ -50,7 +55,8 @@ public class ArtistProfilePage {
     }
 
     public ArtistProfilePage verifyPopularReleasesTitleIsAvailable() {
-        elementChecks.assertElementIsVisible(getPopularReleasesTitle());
+        pageNavigationActions.scrollToElementWithInnerTextTemp("com.spotify.music:id/section_heading2_title", "Artist Playlists");
+        elementChecks.assertElementIsVisible(getArtistPlaylistTitle());
         return this;
     }
 
@@ -87,7 +93,7 @@ public class ArtistProfilePage {
     }
 
     private WebElement getPopularReleasesTitle() {
-        return driver.findElement(By.id("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='Popular releases']"));
+        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='Popular releases']"));
     }
 
     private WebElement getSeeDiscographyButton() {

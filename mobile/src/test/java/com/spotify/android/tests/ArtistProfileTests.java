@@ -10,21 +10,23 @@ public class ArtistProfileTests extends MobileAndroidTestBase {
 
     private final Navigation navigationBar = new Navigation(driver);
     private final LibraryPage libraryPage = new LibraryPage(driver, wait);
-    private final ArtistProfilePage artistProfilePage = new ArtistProfilePage(driver);
+    private final ArtistProfilePage artistProfilePage = new ArtistProfilePage(driver, wait);
 
     @Test
     public void artistProfileIsPresented() {
         navigationBar.clickLibraryButton();
-        libraryPage.selectArtistItem("Oliver Tree");
+        libraryPage
+                .clickArtistsButton()
+                .scrollAndSelectArtistItem("Gzuz");
         artistProfilePage
-                .verifyProfileTitleAvailable("Oliver Tree")
+                .verifyProfileTitleAvailable("Gzuz")
                 .verifyMonthlyListenersCountAvailable()
                 .verifyFollowButtonAvailable()
                 .verifyShuffleButtonAvailable()
                 .verifyContextMenuButtonAvailable()
                 .verifyPlayButtonAvailable()
-                .verifyTrackCloudContainsArtist("Oliver Tree");
-//                .verifyPopularReleasesTitleIsAvailable();
+                .verifyTrackCloudContainsArtist("Gzuz")
+                .verifyPopularReleasesTitleIsAvailable();
 
 
 //        wait.until(webElement -> navigationBar.getNavigationBar().isDisplayed());
