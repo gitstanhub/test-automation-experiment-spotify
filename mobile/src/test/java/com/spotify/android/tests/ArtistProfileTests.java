@@ -17,15 +17,15 @@ public class ArtistProfileTests extends MobileAndroidTestBase {
         navigationBar.clickLibraryButton();
         libraryPage
                 .clickArtistsButton()
-                .scrollAndSelectArtistItem("Gzuz");
+                .selectArtistItem("Oliver Tree");
         artistProfilePage
-                .verifyProfileTitleAvailable("Gzuz")
+                .verifyProfileTitleAvailable("Oliver Tree")
                 .verifyMonthlyListenersCountAvailable()
                 .verifyFollowButtonAvailable()
                 .verifyShuffleButtonAvailable()
                 .verifyContextMenuButtonAvailable()
                 .verifyPlayButtonAvailable()
-                .verifyTrackCloudContainsArtist("Gzuz")
+                .verifyTrackCloudContainsArtist("Oliver Tree")
                 .verifyPopularReleasesTitleIsAvailable();
 
 

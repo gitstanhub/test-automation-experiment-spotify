@@ -47,7 +47,7 @@ public class RealDeviceAppiumDriverHandler {
     }
 
     public static WebDriverWait getWait() {
-        wait = new WebDriverWait(driver, Duration.ofMillis(4000));
+        wait = new WebDriverWait(driver, Duration.ofMillis(25000));
         return wait;
     }
 

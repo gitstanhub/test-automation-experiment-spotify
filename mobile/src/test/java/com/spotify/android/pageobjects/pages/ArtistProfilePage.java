@@ -55,7 +55,7 @@ public class ArtistProfilePage {
     }
 
     public ArtistProfilePage verifyPopularReleasesTitleIsAvailable() {
-        pageNavigationActions.scrollToElementWithInnerTextTemp("com.spotify.music:id/section_heading2_title", "Artist Playlists");
+        pageNavigationActions.swipeToElementWithInnerText("com.spotify.music:id/section_heading2_title", "Artist Playlists", 10);
         elementChecks.assertElementIsVisible(getArtistPlaylistTitle());
         return this;
     }

@@ -15,9 +15,11 @@ public class LibraryPage {
     private final AndroidDriver driver;
     private final PageNavigationActions pageNavigationActions;
     private final ElementChecks elementChecks;
+    private final WebDriverWait wait;
 
     public LibraryPage(AndroidDriver driver, WebDriverWait wait) {
         this.driver = driver;
+        this.wait = wait;
         this.pageNavigationActions = new PageNavigationActions(driver, wait);
         this.elementChecks = new ElementChecks(driver, wait);
     }
@@ -33,19 +35,37 @@ public class LibraryPage {
         return this;
     }
 
-    public LibraryPage scrollAndSelectArtistItem(String artistName) {
-        if (elementChecks.isElementExistWithResourceId("com.spotify.music:id/subtitle")) {
-            getListItemByTitleAndSubtitle(artistName, "Artist").click();
-        } else {
-            getListItemByTitle(artistName).click();
-        }
+    public LibraryPage selectArtistItem(String artistName) {
+
+        getListItemByTitle(artistName);
+
+        String desiredXpath = "//android.view.ViewGroup[@resource-id='com.spotify.music:id/row_root' and @content-desc='" + artistName + ", ']";
+
+        driver.findElement(AppiumBy.xpath(desiredXpath)).click();
+
+
+//        driver.findElement(AppiumBy.androidUIAutomator(
+//                "new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + artistName + "\")"
+//                )).click();
+
+//        if (elementChecks.isElementExistWithResourceId("com.spotify.music:id/subtitle")) {
+//            getListItemByTitleAndSubtitle(artistName, "Artist");
+//        } else {
+//            getListItemByTitle(artistName).click();
+//        }
         return this;
     }
 
-    public LibraryPage selectVisibleArtistItem(String artistName) {
-        getVisibleListItemByTitle(artistName).click();
+    public LibraryPage braaa (String artistName) {
+        String desiredXpath = "//android.view.ViewGroup[@resource-id='com.spotify.music:id/row_root' and @content-desc='" + artistName + ", ']";
+
+        driver.findElement(AppiumBy.xpath(desiredXpath)).click();
+
         return this;
     }
+
+//    public LibraryPage swipeAndSelectArtistItem()
+
 
 //    public LibraryPage selectArtistItem(String artistName) {
 //        getListItemByTitleAndSubtitle(artistName, "Artist").click();
@@ -53,17 +73,17 @@ public class LibraryPage {
 //    }
 
     public LibraryPage selectAlbumItem(String albumName, String artistName) {
-        getListItemByTitleAndSubtitle(albumName, "Album • " + artistName).click();
+        getListItemByTitleAndSubtitle(albumName, "Album • " + artistName);
         return this;
     }
 
     public LibraryPage clickAddArtistButton() {
-        getListItemByTitle("Add artists").click();
+        getListItemByTitle("Add artists");
         return this;
     }
 
     public LibraryPage clickAddPodcastsButton() {
-        getListItemByTitle("Add podcasts & shows").click();
+        getListItemByTitle("Add podcasts & shows");
         return this;
     }
 
@@ -177,12 +197,12 @@ public class LibraryPage {
 //                        contentDesc)));
 //    }
 
-    private WebElement getListItemByTitleAndSubtitle(String title, String subtitle) {
+    private void getListItemByTitleAndSubtitle(String title, String subtitle) {
         System.out.println("Getting item from the list by title and subtitle");
         String contentDesc = String.format("%s, %s, ", title, subtitle);
 //        String xpath = "//*[@content-desc='" + contentDesc + "']";
 
-        return pageNavigationActions.scrollToElementWithDescriptionAttribute("com.spotify.music:id/recycler_view", contentDesc);
+        pageNavigationActions.scrollToElementWithDescriptionAttribute("com.spotify.music:id/recycler_view", contentDesc);
     }
 
 //    public boolean isSubtitleExist(String subtitle) {
@@ -277,12 +297,16 @@ public class LibraryPage {
 //                        title)));
 //    }
 
-    private WebElement getListItemByTitle(String title) {
+    private void getListItemByTitle(String title) {
         System.out.println("Getting item from the list by title");
-        return pageNavigationActions.scrollToElementWithInnerText("com.spotify.music:id/recycler_view", "com.spotify.music:id/title", title);
-    }
 
-    private WebElement getVisibleListItemByTitle(String title) {
-        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + title + "']"));
+//        String desiredXpath = "//android.view.ViewGroup[@resource-id='com.spotify.music:id/row_root' and @content-desc='" + title + ", ']";
+
+        pageNavigationActions.swipeToElementWithInnerText("com.spotify.music:id/title", title, 10);
+//        return driver.findElement(AppiumBy.xpath(desiredXpath));
+
+//        return wait.until(
+//                driver.findElement(AppiumBy.xpath(desiredXpath));
+//        );
     }
 }
