@@ -22,7 +22,7 @@ public class MobileAndroidTestBase {
     public void login() {
         loginPage.handleLoginFor("stasdmitruk1@gmail.com", "3Dabde70!481516");
         bluetoothAccessPrompt.handleAccessPrompt();
-//        screensaverAd.handleScreensaverAd();
+        screensaverAd.handleScreensaverAd();
     }
 
     @AfterEach

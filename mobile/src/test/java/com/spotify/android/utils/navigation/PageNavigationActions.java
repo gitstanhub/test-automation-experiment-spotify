@@ -24,283 +24,33 @@ public class PageNavigationActions {
         this.androidDeviceGestures = new AndroidDeviceGestures(driver);
     }
 
-    public void scrollToElementWithInnerText(String scrollableElementResourceId, String scrollTargetResourceId, String scrollTargetText) {
+    public void scrollIntoElementWithText(String scrollableElementResourceId, String targetResourceId, String targetText) {
         driver.findElement(AppiumBy.androidUIAutomator(
                 String.format(
                         "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
                                 ".scrollIntoView(new UiSelector().resourceId(\"%s\").text(\"%s\"))",
-                        scrollableElementResourceId, scrollTargetResourceId, scrollTargetText)));
+                        scrollableElementResourceId, targetResourceId, targetText)));
     }
 
-//    public WebElement scrollToElementWithInnerTextTemp(String scrollTargetResourceId, String scrollTargetText) {
-//        String uiSelector = "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")";
-//        String uiScrollable = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(" + uiSelector + ")";
-//
-//        return driver.findElement(AppiumBy.androidUIAutomator(uiScrollable));
-//    }
+    public void scrollIntoElementWithDescription(String scrollableElementResourceId, String targetDescription) {
+        driver.findElement(AppiumBy.androidUIAutomator(
+                String.format(
+                        "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
+                                ".scrollIntoView(new UiSelector().description(\"%s\"))",
+                        scrollableElementResourceId, targetDescription)));
+    }
 
-//    public WebElement scrollToElementWithInnerTextTemp(String scrollableElementResourceId, String scrollTargetResourceId, String scrollTargetText) {
-//        String xpath = String.format("//*[@resource-id='%s' and @text='%s']", scrollTargetResourceId, scrollTargetText);
-//
-//        return wait.until(driver -> {
-//            driver.findElement(AppiumBy.androidUIAutomator(
-//                    "new UiScrollable(new UiSelector().resourceId(\"" + scrollableElementResourceId + "\")).scrollForward()"
-//            ));
-//            return driver.findElement(By.xpath(xpath));
-//        });
-//    }
-
-//    public void swipeToElementWithInnerTextTemp(String scrollTargetResourceId, String scrollTargetText) {
-////        String xpath = String.format("//*[@resource-id='%s' and @text='%s']", scrollTargetResourceId, scrollTargetText);
-//
-//        FluentWait<WebDriver> customWait = wait.withTimeout(Duration.ofMillis(9000));
-//
-//         customWait.until(driver -> {
-//
-//            Map<String, Object> scrollObject = new HashMap<>();
-//            scrollObject.put("direction", "up");
-//            scrollObject.put("percent", 1);
-//            scrollObject.put("left", 460);
-//            scrollObject.put("top", 1150);
-//            scrollObject.put("width", 300);
-//            scrollObject.put("height", 650);
-//            scrollObject.put("speed", 3500);
-//
-//            WebElement element = null;
-//            boolean canScrollMore = true;
-//
-//            while (canScrollMore && element == null) {
-//                try {
-//                    element = driver.findElement(AppiumBy.androidUIAutomator(
-//                            "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//                    ));
-////                    ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
-////                    element = driver.findElement(By.xpath(xpath));
-//
-//                } catch (NoSuchElementException e) {
-//                    ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", scrollObject);
-//                    canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", scrollObject);
-//                }
-//            }
-//            return element;
-//        });
-//    }
-
-//    public WebElement swipeToElementWithInnerText(String scrollTargetResourceId, String scrollTargetText) {
-//        FluentWait<WebDriver> customWait = wait.withTimeout(Duration.ofMillis(9000));
-//
-//        return customWait.until(driver -> {
-//
-//            Map<String, Object> scrollObject = new HashMap<>();
-//            scrollObject.put("direction", "up");
-//            scrollObject.put("percent", 1);
-//            scrollObject.put("left", 460);
-//            scrollObject.put("top", 1150);
-//            scrollObject.put("width", 300);
-//            scrollObject.put("height", 650);
-//            scrollObject.put("speed", 3500);
-//
-//            WebElement element = null;
-//            boolean canScrollMore = true;
-//
-//            while (canScrollMore) {
-//                try {
-//                    element = driver.findElement(AppiumBy.androidUIAutomator(
-//                            "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//                    ));
-//
-//                    if (element != null) {
-//                        break;
-//                    }
-//                } catch (NoSuchElementException e) {
-//                    System.out.println("Desired element seems to be out of page focus. Trying to swipe down...");
-//                }
-//
-//                try {
-//                    ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
-//                    element = driver.findElement(AppiumBy.androidUIAutomator(
-//                            "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//                    ));
-//
-//                    if (element != null) {
-//                        break;
-//                    }
-//                } catch (NoSuchElementException e2) {
-//                    canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", scrollObject);
-//                }
-//            }
-//            return element;
-//        });
-//    }
-
-//    public WebElement getToElementWithInnerText(String scrollTargetResourceId, String scrollTargetText) {
-//        FluentWait<WebDriver> customWait = wait.withTimeout(Duration.ofMillis(10000));
-//
-//        WebElement element = null;
-//
-//        try {
-//            element = driver.findElement(AppiumBy.androidUIAutomator(
-//                    "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//            ));
-//
-//            if (element != null) {
-//                return element;
-//            }
-//        } catch (NoSuchElementException e) {
-//            boolean canScrollMore = true;
-//
-//            while (canScrollMore) {
-//                androidDeviceGestures.scrollDown();
-//                try {
-//                    element = driver.findElement(AppiumBy.androidUIAutomator(
-//                            "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//                    ));
-//
-//                    if (element != null) {
-//                        return element;
-//                    }
-//                } catch (NoSuchElementException e2) {
-//                    System.out.println("Couldn't find the  desired element from the second attempt. Trying to scroll futher...");
-//                    canScrollMore = androidDeviceGestures.scrollDown();
-//                }
-//            }
-//        }
-//        throw new NoSuchElementException("Couldn't find the desired element after scrolling attempts");
-//    }
-
-//    public WebElement getToElementWithInnerText(String scrollTargetResourceId, String scrollTargetText) {
-//        String xpath = String.format("//*[@resource-id='%s' and @text='%s']", scrollTargetResourceId, scrollTargetText);
-//
-//        WebElement element;
-//
-//        try {
-//            element = driver.findElement(By.xpath(xpath));
-//
-//            if (element != null) {
-//                return element;
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Couldn't find the desired element from the first attempt. Trying to scroll futher...");
-//            boolean canScrollMore = false;
-//
-//            while (!canScrollMore) {
-//                canScrollMore = androidDeviceGestures.scrollDown();
-//                System.out.println("Scroll returns: " + canScrollMore);
-//                try {
-//                    element = driver.findElement(By.xpath(xpath));
-//
-//                    if (element != null) {
-//                        return element;
-//                    }
-//                } catch (Exception e2) {
-//                    System.out.println("Couldn't find the  desired element from another attempt. Trying to scroll further...");
-//                }
-//            }
-//        }
-//        throw new NoSuchElementException("Couldn't find the desired element after scrolling attempts");
-//    }
-
-//    public WebElement getToElementWithInnerText(String scrollTargetResourceId, String scrollTargetText) {
-//
-//        WebElement element;
-//
-//        try {
-//            element = driver.findElement(AppiumBy.androidUIAutomator(
-//                    "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//            ));
-//
-//            if (element != null) {
-//                return element;
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Couldn't find the desired element from the first attempt. Trying to scroll futher...");
-//            boolean canScrollMore = false;
-//
-//            while (!canScrollMore) {
-//                canScrollMore = androidDeviceGestures.scrollDown();
-//                System.out.println("Scroll returns: " + canScrollMore);
-//                try {
-//                    element = driver.findElement(AppiumBy.androidUIAutomator(
-//                            "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//                    ));
-//
-//                    if (element != null) {
-//                        return element;
-//                    }
-//                } catch (Exception e2) {
-//                    System.out.println("Couldn't find the  desired element from another attempt. Trying to scroll further...");
-//                }
-//            }
-//        }
-//        throw new NoSuchElementException("Couldn't find the desired element after scrolling attempts");
-//    }
-
-//    public WebElement getToElementWithInnerText(String scrollTargetResourceId, String scrollTargetText) {
-//        FluentWait<WebDriver> customWait = wait.withTimeout(Duration.ofMillis(9000));
-//
-//        try {
-//            return customWait.until(driver -> {
-//                WebElement element;
-//
-//                try {
-//                    element = driver.findElement(AppiumBy.androidUIAutomator(
-//                            "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//                    ));
-//
-//                    if (element != null) {
-//                        return element;
-//                    }
-//                } catch (Exception e) {
-//                    System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
-//
-//                    androidDeviceGestures.swipeDown();
-//                }
-//
-//            })
-//
-//        } catch (TimeoutException e) {
-//            throw new NoSuchElementException("Couldn't find the desired element after few swiping attempts");
-//        }
-//
-//    }
-
-//    public WebElement getToElementWithInnerText(String scrollTargetResourceId, String scrollTargetText) {
-//        FluentWait<WebDriver> customWait = wait
-//                .withTimeout(Duration.ofMillis(9000))
-//                .ignoring(NoSuchElementException.class);
-//
-//        try {
-//            return wait.until(driver -> {
-//                WebElement element;
-//
-//                try {
-//                    element = driver.findElement(AppiumBy.androidUIAutomator(
-//                            "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-//                    ));
-//
-//                    if (element != null) {
-//                        return element;
-//                    }
-//                } catch (NoSuchElementException e) {
-//                    System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
-//                    androidDeviceGestures.swipeDown();
-//                }
-//
-//                return null;
-//            });
-//        } catch (TimeoutException ignored) {
-//            throw new NoSuchElementException("Couldn't find the desired element after few swiping attempts");
-//        }
-//    }
-
-    public void swipeToElementWithInnerText(String scrollTargetResourceId, String scrollTargetText, int maxSwipes) {
+    public void swipeToElementWithText(String targetResourceId, String targetText, int maxSwipes) {
         int attempts = 0;
+
         androidDeviceGestures.slightlySwipeDown();
+
         while (attempts < maxSwipes) {
             try {
                 WebElement element = driver.findElement(AppiumBy.androidUIAutomator(
-                        "new UiSelector().resourceId(\"" + scrollTargetResourceId + "\").text(\"" + scrollTargetText + "\")"
-                ));
+                        String.format(
+                                "new UiSelector().resourceId(\"%s\").text(\"%s\")",
+                                targetResourceId, targetText)));
 
                 if (element != null) {
                     return;
@@ -314,12 +64,70 @@ public class PageNavigationActions {
         throw new NoSuchElementException("Couldn't find the desired element after " + attempts + " swiping attempts.");
     }
 
+    public void swipeToElementWithDescription(String targetDescriptionAttribute, int maxSwipes) {
+        int attempts = 0;
 
-    public void scrollToElementWithDescriptionAttribute(String scrollableElementResourceId, String scrollTargetDescription) {
-        driver.findElement(AppiumBy.androidUIAutomator(
-                String.format(
-                        "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
-                                ".scrollIntoView(new UiSelector().description(\"%s\"))",
-                        scrollableElementResourceId, scrollTargetDescription)));
+        androidDeviceGestures.slightlySwipeDown();
+
+        while (attempts < maxSwipes) {
+            try {
+                WebElement element = driver.findElement(AppiumBy.androidUIAutomator(
+                        String.format(
+                                "new UiSelector().description(\"%s\")",
+                                targetDescriptionAttribute)));
+
+                if (element != null) {
+                    return;
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+                androidDeviceGestures.swipeDown();
+            }
+            attempts++;
+        }
+        throw new NoSuchElementException("Couldn't find the desired element after " + attempts + " swiping attempts.");
     }
+
+    public void swipeToElementWithId(String targetId, String direction, int maxSwipes) {
+        int attempts = 0;
+
+        switch (direction) {
+            case (Direction.DIRECTION_UP) -> androidDeviceGestures.slightlySwipeUp();
+            case (Direction.DIRECTION_DOWN) -> androidDeviceGestures.slightlySwipeDown();
+            case (Direction.DIRECTION_LEFT) -> androidDeviceGestures.slightlySwipeLeft();
+            case (Direction.DIRECTION_RIGHT) -> androidDeviceGestures.slightlySwipeRight();
+            default ->
+                    throw new IllegalArgumentException("Wrong direction type is specified. Should be one of: up, down, left or right");
+        }
+
+        while (attempts < maxSwipes) {
+            try {
+                WebElement element = driver.findElement(By.id(targetId));
+
+                if (element != null) {
+                    return;
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+
+                switch (direction) {
+                    case (Direction.DIRECTION_UP) -> androidDeviceGestures.swipeUp();
+                    case (Direction.DIRECTION_DOWN) -> androidDeviceGestures.swipeDown();
+                    case (Direction.DIRECTION_LEFT) -> androidDeviceGestures.swipeLeft();
+                    case (Direction.DIRECTION_RIGHT) -> androidDeviceGestures.swipeRight();
+                    default ->
+                            throw new IllegalArgumentException("Wrong direction type is specified. Should be one of: up, down, left or right");
+                }
+            }
+            attempts++;
+        }
+        throw new NoSuchElementException("Couldn't find the desired element after " + attempts + " swiping attempts.");
+    }
+
+        public static class Direction {
+            public static final String DIRECTION_UP = "up";
+            public static final String DIRECTION_DOWN = "down";
+            public static final String DIRECTION_LEFT = "left";
+            public static final String DIRECTION_RIGHT = "right";
+        }
 }

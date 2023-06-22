@@ -13,28 +13,43 @@ public class ArtistProfileTests extends MobileAndroidTestBase {
     private final ArtistProfilePage artistProfilePage = new ArtistProfilePage(driver, wait);
 
     @Test
-    public void artistProfileIsPresented() {
-        navigationBar.clickLibraryButton();
+    public void artistProfileCanBeOpenedFromLibrary() {
+
+        navigationBar
+                .clickLibraryButton();
         libraryPage
+                .verifyLibraryPageIsOpened()
                 .clickArtistsButton()
-                .selectArtistItem("Oliver Tree");
+                .verifyArtistButtonIsSelected()
+                .selectArtistItem("Eminem");
         artistProfilePage
-                .verifyProfileTitleAvailable("Oliver Tree")
+                .verifyProfileTitleAvailable("Eminem")
                 .verifyMonthlyListenersCountAvailable()
                 .verifyFollowButtonAvailable()
-                .verifyShuffleButtonAvailable()
                 .verifyContextMenuButtonAvailable()
+                .verifyShuffleButtonAvailable()
                 .verifyPlayButtonAvailable()
-                .verifyTrackCloudContainsArtist("Oliver Tree")
+                .verifyTrackCloudContainsArtist("Eminem")
                 .verifyPopularReleasesTitleIsAvailable();
+    }
+}
 
 
-//        wait.until(webElement -> navigationBar.getNavigationBar().isDisplayed());
+
+
+
+//@Test
+//        public void accessArtistDiscographyTest()
+
+
+
+//    @Test
+//    public void accessArtistSpotifyCodeTest()
 
 
 
 
-//        List<WebElement> elements = driver.findElements(By.xpath("//*"));
+    //        List<WebElement> elements = driver.findElements(By.xpath("//*"));
 //        for (WebElement element : elements) {
 //            System.out.println("Tag:" + element.getTagName());
 //            System.out.println("Text:" + element.getText());
@@ -43,13 +58,3 @@ public class ArtistProfileTests extends MobileAndroidTestBase {
 //            System.out.println("********************");
 //        }
 
-
-
-//@Test
-//        public void accessArtistDiscographyTest()
-    }
-
-
-//    @Test
-//    public void accessArtistSpotifyCodeTest()
-}

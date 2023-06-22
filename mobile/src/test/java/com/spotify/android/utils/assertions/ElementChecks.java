@@ -5,7 +5,6 @@ import io.appium.java_client.android.AndroidDriver;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ElementChecks {
@@ -32,7 +31,6 @@ public class ElementChecks {
 
     public void assertElementIsSelected(WebElement element) {
         Assertions.assertEquals("true", element.getAttribute("selected"));
-//        wait.until(ExpectedConditions.attributeContains(element, "selected", "true"));
     }
 
     public boolean isElementExistWithResourceId(String resourceId) {
