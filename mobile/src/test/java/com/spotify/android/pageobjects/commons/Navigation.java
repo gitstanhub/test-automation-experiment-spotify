@@ -14,28 +14,33 @@ public class Navigation {
         this.driver = driver;
     }
 
-    public Navigation clickHomeButton() {
+    public Navigation tapHomeButton() {
         getHomeButton().click();
         return this;
     }
 
-    public Navigation clickSearchButton() {
+    public Navigation tapSearchButton() {
         getSearchButton().click();
         return this;
     }
 
-    public Navigation clickLibraryButton() {
+    public Navigation tapLibraryButton() {
         getLibraryButton().click();
         return this;
     }
 
-    public Navigation clickPremiumButton() {
+    public Navigation tapPremiumButton() {
         getPremiumButton().click();
         return this;
     }
 
-    public Navigation clickBackButton() {
+    public Navigation tapBackButton() {
         getBackButton().click();
+        return this;
+    }
+
+    public Navigation tapCloseButton() {
+        getCloseButton().click();
         return this;
     }
 
@@ -61,5 +66,9 @@ public class Navigation {
 
     private WebElement getBackButton() {
         return driver.findElement(By.id("com.spotify.music:id/back_button"));
+    }
+
+    private WebElement getCloseButton() {
+        return driver.findElement(By.id("com.spotify.music:id/close_button"));
     }
 }

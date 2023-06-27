@@ -40,17 +40,17 @@ public class LibraryPage {
         return this;
     }
 
-    public LibraryPage clickArtistsButton() {
+    public LibraryPage tapArtistsButton() {
         getArtistsButton().click();
         return this;
     }
 
-    public LibraryPage clickAlbumsButton() {
+    public LibraryPage tapAlbumsButton() {
         getAlbumsButton().click();
         return this;
     }
 
-    public LibraryPage clickSortButton() {
+    public LibraryPage tapSortButton() {
         String resourceId = "com.spotify.music:id/sort";
 
         pageNavigationActions.swipeToElementById(resourceId, PageNavigationActions.Direction.DIRECTION_UP, 10);
@@ -74,22 +74,22 @@ public class LibraryPage {
         return this;
     }
 
-//    public LibraryPage clickAddArtistButton() {
+//    public LibraryPage tapAddArtistButton() {
 //        getListItemByTitle("Add artists").click();
 //        return this;
 //    }
 
-//    public LibraryPage clickAddPodcastsButton() {
+//    public LibraryPage tapAddPodcastsButton() {
 //        getListItemByTitle("Add podcasts & shows").click();
 //        return this;
 //    }
 
-    public LibraryPage clickSearchButton() {
+    public LibraryPage tapSearchButton() {
         getSearchButton().click();
         return this;
     }
 
-    public LibraryPage clickCreatePlaylistButton() {
+    public LibraryPage tapCreatePlaylistButton() {
         getCreatePlaylistButton().click();
         return this;
     }

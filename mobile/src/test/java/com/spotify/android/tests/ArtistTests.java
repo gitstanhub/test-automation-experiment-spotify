@@ -1,7 +1,9 @@
 package com.spotify.android.tests;
 
+import com.spotify.android.pageobjects.commons.ContextMenu;
 import com.spotify.android.pageobjects.commons.MediaInteraction;
 import com.spotify.android.pageobjects.commons.Navigation;
+import com.spotify.android.pageobjects.commons.SpotifyCode;
 import com.spotify.android.pageobjects.pages.ArtistDiscographyPage;
 import com.spotify.android.pageobjects.pages.ArtistProfilePage;
 import com.spotify.android.pageobjects.pages.LibraryPage;
@@ -15,15 +17,16 @@ public class ArtistTests extends MobileAndroidTestBase {
     private final ArtistProfilePage artistProfilePage = new ArtistProfilePage(driver, wait);
     private final MediaInteraction mediaInteraction = new MediaInteraction(driver, wait);
     private final ArtistDiscographyPage aristDiscographyPage = new ArtistDiscographyPage(driver, wait);
+    private final ContextMenu contextMenu = new ContextMenu(driver, wait);
+    private final SpotifyCode spotifyCode = new SpotifyCode(driver, wait);
 
     @Test
     public void artistProfileCanBeOpenedFromLibrary() {
-
         navigationBar
-                .clickLibraryButton();
+                .tapLibraryButton();
         libraryPage
                 .verifyLibraryPageIsOpened()
-                .clickArtistsButton()
+                .tapArtistsButton()
                 .verifyArtistButtonIsSelected()
                 .selectArtistItem("Oliver Tree");
         artistProfilePage
@@ -43,12 +46,11 @@ public class ArtistTests extends MobileAndroidTestBase {
 
     @Test
     public void artistDiscographyCanBeOpenedFromProfile() {
-
         navigationBar
-                .clickLibraryButton();
+                .tapLibraryButton();
         libraryPage
                 .verifyLibraryPageIsOpened()
-                .clickArtistsButton()
+                .tapArtistsButton()
                 .verifyArtistButtonIsSelected()
                 .selectArtistItem("Oliver Tree");
         artistProfilePage
@@ -61,20 +63,20 @@ public class ArtistTests extends MobileAndroidTestBase {
                 .verifySinglesTitleIsAvailable()
                 .verifyDiscographyItemIsAvailable("Miss You (Remix)", 2022);
     }
+
+    @Test
+    public void artistSpotifyCodeCanBeOpenedFromProfile() {
+        navigationBar
+                .tapLibraryButton();
+        libraryPage
+                .verifyLibraryPageIsOpened()
+                .selectArtistItem("Oliver Tree");
+        mediaInteraction
+                .tapContextMenuButton();
+        contextMenu
+                .verifyContextMenuTitleIsAvailable("Oliver Tree")
+                .tapShowSpotifyCodeButton();
+        spotifyCode
+                .verifySpotifyCodeIsAvailable();
+    }
 }
-
-//    @Test
-//    public void accessArtistSpotifyCodeTest()
-
-
-
-
-    //        List<WebElement> elements = driver.findElements(By.xpath("//*"));
-//        for (WebElement element : elements) {
-//            System.out.println("Tag:" + element.getTagName());
-//            System.out.println("Text:" + element.getText());
-//            System.out.println("Class:" + element.getAttribute("class"));
-//            System.out.println("Resource-ID:" + element.getAttribute("resourceId"));
-//            System.out.println("********************");
-//        }
-

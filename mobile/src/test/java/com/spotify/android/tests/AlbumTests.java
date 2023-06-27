@@ -18,9 +18,9 @@ public class AlbumTests extends MobileAndroidTestBase {
     public void artistAlbumCanBeOpenedFromLibrary() {
 
         navigationBar
-                .clickLibraryButton();
+                .tapLibraryButton();
         libraryPage
-                .clickAlbumsButton()
+                .tapAlbumsButton()
                 .selectAlbumItem("The Eminem Show", "Eminem");
         albumPage
                 .verifyAlbumTitleHasText("The Eminem Show")

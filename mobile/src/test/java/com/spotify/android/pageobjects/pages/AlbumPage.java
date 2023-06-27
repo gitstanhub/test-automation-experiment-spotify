@@ -16,7 +16,7 @@ public class AlbumPage {
     private final PageNavigationActions pageNavigationActions;
     private final MediaInteraction mediaInteraction;
 
-    public AlbumPage (AndroidDriver driver, WebDriverWait wait) {
+    public AlbumPage(AndroidDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.elementChecks = new ElementChecks(driver, wait);
         this.pageNavigationActions = new PageNavigationActions(driver, wait);
@@ -35,7 +35,7 @@ public class AlbumPage {
     }
 
     public AlbumPage verifyAlbumInfoHasText(String albumInfo) {
-        elementChecks.assertElementHasExactText(getMetaData(),albumInfo);
+        elementChecks.assertElementHasExactText(getMetaData(), albumInfo);
         return this;
     }
 

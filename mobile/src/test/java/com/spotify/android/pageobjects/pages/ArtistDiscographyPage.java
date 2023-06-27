@@ -48,7 +48,6 @@ public class ArtistDiscographyPage {
     }
 
 
-
     private WebElement getPageTitle() {
         return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/glue_toolbar_title' and @text='Releases']"));
     }

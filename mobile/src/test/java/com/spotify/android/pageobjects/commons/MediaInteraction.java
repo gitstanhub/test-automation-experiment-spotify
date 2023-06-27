@@ -12,10 +12,15 @@ public class MediaInteraction {
     private final WebDriverWait wait;
     private final ElementChecks elementChecks;
 
-    public MediaInteraction (AndroidDriver driver, WebDriverWait wait) {
+    public MediaInteraction(AndroidDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         this.elementChecks = new ElementChecks(driver, wait);
+    }
+
+    public MediaInteraction tapContextMenuButton() {
+        getContextMenuButton().click();
+        return this;
     }
 
     public MediaInteraction verifyContextMenuButtonIsAvailable() {
