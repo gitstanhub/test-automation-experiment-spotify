@@ -21,13 +21,13 @@ public class ScreensaverAd {
         //TODO: instead of catching exceptions, try to write a method that would assert that element is not visible
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/screensaver_ad_banner")));
-            clickOnScreensaverAdDismissButton();
+            tapOnScreensaverAdDismissButton();
         } catch (TimeoutException e) {
             System.out.println("No Screensaver Ad is visible to handle. Proceeding further...");
         }
     }
 
-    public ScreensaverAd clickOnScreensaverAdDismissButton() {
+    public ScreensaverAd tapOnScreensaverAdDismissButton() {
         getScreensaverAdDismissButton().click();
         return this;
     }
