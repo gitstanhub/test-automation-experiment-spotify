@@ -19,33 +19,18 @@ public class ArtistProfilePage {
         this.pageNavigationActions = new PageNavigationActions(driver, wait);
     }
 
-    public ArtistProfilePage verifyProfileTitleAvailable(String artistName) {
+    public ArtistProfilePage verifyProfileTitleHasText(String artistName) {
         elementChecks.assertElementHasExactText(getTitle(), artistName);
         return this;
     }
 
-    public ArtistProfilePage verifyMonthlyListenersCountAvailable() {
-        elementChecks.assertElementIsVisible(getMetaData());
-        return this;
-    }
-
-    public ArtistProfilePage verifyFollowButtonAvailable() {
+    public ArtistProfilePage verifyFollowButtonIsAvailable() {
         elementChecks.assertElementIsVisible(getFollowButton());
         return this;
     }
 
-    public ArtistProfilePage verifyContextMenuButtonAvailable() {
-        elementChecks.assertElementIsVisible(getContextMenuButton());
-        return this;
-    }
-
-    public ArtistProfilePage verifyShuffleButtonAvailable() {
-        elementChecks.assertElementIsVisible(getShuffleButton());
-        return this;
-    }
-
-    public ArtistProfilePage verifyPlayButtonAvailable() {
-        elementChecks.assertElementIsVisible(getPlayPauseButton());
+    public ArtistProfilePage verifyMonthlyListenersCountIsAvailable() {
+        elementChecks.assertElementIsVisible(getMetaData());
         return this;
     }
 
@@ -54,9 +39,27 @@ public class ArtistProfilePage {
         return this;
     }
 
-    public ArtistProfilePage verifyPopularReleasesTitleIsAvailable() {
-        pageNavigationActions.swipeToElementWithText("com.spotify.music:id/section_heading2_title", "Artist Playlists", 10);
+    public ArtistProfilePage verifyPopularReleasesSectionIsAvailable() {
+        pageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", "Popular releases", 10);
+        elementChecks.assertElementIsVisible(getPopularReleasesTitle());
+        return this;
+    }
+
+    public ArtistProfilePage verifyArtistPlaylistsSectionIsAvailable() {
+        pageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", "Artist Playlists", 10);
         elementChecks.assertElementIsVisible(getArtistPlaylistTitle());
+        return this;
+    }
+
+    public ArtistProfilePage verifyFansAlsoLikeSectionIsAvailable() {
+        pageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", "Fans also like", 10);
+        elementChecks.assertElementIsVisible(getFansAlsoLikeTitle());
+        return this;
+    }
+
+    public ArtistProfilePage tapSeeDiscographyButton() {
+        pageNavigationActions.swipeToElementByText("See all events", 10);
+        getSeeDiscographyButton().click();
         return this;
     }
 
@@ -72,24 +75,12 @@ public class ArtistProfilePage {
         return driver.findElement(By.id("com.spotify.music:id/follow_button"));
     }
 
-    private WebElement getContextMenuButton() {
-        return driver.findElement(By.id("com.spotify.music:id/context_menu_button"));
-    }
-
-    private WebElement getShuffleButton() {
-        return driver.findElement(By.id("com.spotify.music:id/shuffle_button"));
-    }
-
-    private WebElement getPlayPauseButton() {
-        return driver.findElement(By.id("com.spotify.music:id/button_play_and_pause"));
-    }
-
     private WebElement getTrackCloud() {
         return driver.findElement(By.id("com.spotify.music:id/track_cloud_content"));
     }
 
     private WebElement getArtistPickTitle() {
-        return driver.findElement(By.id("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='Artist Pick']"));
+        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='Artist Pick']"));
     }
 
     private WebElement getPopularReleasesTitle() {

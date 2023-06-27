@@ -130,5 +130,4 @@ public class AndroidDeviceGestures {
 
         ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
     }
-
 }

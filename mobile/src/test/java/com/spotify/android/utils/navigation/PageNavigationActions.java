@@ -3,14 +3,7 @@ package com.spotify.android.utils.navigation;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.sql.Time;
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 
 public class PageNavigationActions {
 
@@ -24,7 +17,7 @@ public class PageNavigationActions {
         this.androidDeviceGestures = new AndroidDeviceGestures(driver);
     }
 
-    public void scrollIntoElementWithText(String scrollableElementResourceId, String targetResourceId, String targetText) {
+    public void scrollIntoElementByText(String scrollableElementResourceId, String targetResourceId, String targetText) {
         driver.findElement(AppiumBy.androidUIAutomator(
                 String.format(
                         "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
@@ -32,7 +25,7 @@ public class PageNavigationActions {
                         scrollableElementResourceId, targetResourceId, targetText)));
     }
 
-    public void scrollIntoElementWithDescription(String scrollableElementResourceId, String targetDescription) {
+    public void scrollIntoElementByDescription(String scrollableElementResourceId, String targetDescription) {
         driver.findElement(AppiumBy.androidUIAutomator(
                 String.format(
                         "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
@@ -40,7 +33,7 @@ public class PageNavigationActions {
                         scrollableElementResourceId, targetDescription)));
     }
 
-    public void swipeToElementWithText(String targetResourceId, String targetText, int maxSwipes) {
+    public void swipeToElementByText(String targetResourceId, String targetText, int maxSwipes) {
         int attempts = 0;
 
         androidDeviceGestures.slightlySwipeDown();
@@ -61,10 +54,59 @@ public class PageNavigationActions {
             }
             attempts++;
         }
-        throw new NoSuchElementException("Couldn't find the desired element after " + attempts + " swiping attempts.");
+        throw new NoSuchElementException("Couldn't find the desired element \"" + targetText + "\" after " + attempts + " swiping attempts.");
     }
 
-    public void swipeToElementWithDescription(String targetDescriptionAttribute, int maxSwipes) {
+    public void swipeToElementWithSiblingByText(String parentResourceId, String childSiblingText1, String childSiblingText2, int maxSwipes) {
+        int attempts = 0;
+
+        androidDeviceGestures.slightlySwipeDown();
+
+        while (attempts < maxSwipes) {
+            try {
+                WebElement element = driver.findElement(AppiumBy.androidUIAutomator(
+                        String.format(
+                                "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
+                                parentResourceId, childSiblingText1, childSiblingText2)));
+
+                if (element != null) {
+                    return;
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+                androidDeviceGestures.swipeDown();
+            }
+            attempts++;
+        }
+        throw new NoSuchElementException("Couldn't find the desired element pair \"" + childSiblingText1 + " - " + childSiblingText2 + "\" after " + attempts + " swiping attempts.");
+    }
+
+
+    public void swipeToElementByText(String targetText, int maxSwipes) {
+        int attempts = 0;
+
+        androidDeviceGestures.slightlySwipeDown();
+
+        while (attempts < maxSwipes) {
+            try {
+                WebElement element = driver.findElement(AppiumBy.androidUIAutomator(
+                        String.format(
+                                "new UiSelector().text(\"%s\")",
+                                targetText)));
+
+                if (element != null) {
+                    return;
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+                androidDeviceGestures.swipeDown();
+            }
+            attempts++;
+        }
+        throw new NoSuchElementException("Couldn't find the desired element \"" + targetText + "\" after " + attempts + " swiping attempts.");
+    }
+
+    public void swipeToElementByDescription(String targetDescriptionAttribute, int maxSwipes) {
         int attempts = 0;
 
         androidDeviceGestures.slightlySwipeDown();
@@ -85,10 +127,10 @@ public class PageNavigationActions {
             }
             attempts++;
         }
-        throw new NoSuchElementException("Couldn't find the desired element after " + attempts + " swiping attempts.");
+        throw new NoSuchElementException("Couldn't find the desired element \"" + targetDescriptionAttribute + "\" after " + attempts + " swiping attempts.");
     }
 
-    public void swipeToElementWithId(String targetId, String direction, int maxSwipes) {
+    public void swipeToElementById(String targetId, String direction, int maxSwipes) {
         int attempts = 0;
 
         switch (direction) {
@@ -124,10 +166,10 @@ public class PageNavigationActions {
         throw new NoSuchElementException("Couldn't find the desired element after " + attempts + " swiping attempts.");
     }
 
-        public static class Direction {
-            public static final String DIRECTION_UP = "up";
-            public static final String DIRECTION_DOWN = "down";
-            public static final String DIRECTION_LEFT = "left";
-            public static final String DIRECTION_RIGHT = "right";
-        }
+    public static class Direction {
+        public static final String DIRECTION_UP = "up";
+        public static final String DIRECTION_DOWN = "down";
+        public static final String DIRECTION_LEFT = "left";
+        public static final String DIRECTION_RIGHT = "right";
+    }
 }
