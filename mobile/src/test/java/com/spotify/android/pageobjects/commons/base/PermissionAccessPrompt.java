@@ -15,9 +15,14 @@ public abstract class PermissionAccessPrompt {
     }
 
     public abstract void handleAccessPrompt();
+
     protected abstract WebElement getAccessWidget();
+
     protected abstract WebElement getAccessWidgetTitle();
+
     protected abstract WebElement getAccessWidgetDescription();
+
     protected abstract WebElement getAccessWidgetAcceptButton();
+
     protected abstract WebElement getAccessWidgetLaterButton();
 }

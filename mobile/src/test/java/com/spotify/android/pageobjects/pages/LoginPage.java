@@ -17,7 +17,7 @@ public class LoginPage {
         this.wait = wait;
     }
 
-    public LoginPage clickLogInButton() {
+    public LoginPage tapLogInButton() {
         getLogInButton().click();
         return this;
     }
@@ -32,7 +32,7 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage clickLoginSubmitButton() {
+    public LoginPage tapLoginSubmitButton() {
         getLoginSubmitButton().click();
         return this;
     }
@@ -40,10 +40,10 @@ public class LoginPage {
     public void handleLoginFor(String username, String password) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Button[contains(@text,'Log in')]")));
-            clickLogInButton();
+            tapLogInButton();
             fillInUsernameField(username);
             fillInPasswordField(password);
-            clickLoginSubmitButton();
+            tapLoginSubmitButton();
         } catch (TimeoutException e) {
             System.out.println("No Login button is visible to handle. Proceeding further...");
         }
