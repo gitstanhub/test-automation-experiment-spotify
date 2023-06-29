@@ -40,6 +40,21 @@ public class LibraryPage {
         return this;
     }
 
+    public LibraryPage verifyLibraryPageIsOpened() {
+        elementChecks.assertElementIsVisible(getLibraryTitle());
+        return this;
+    }
+
+    public LibraryPage verifyArtistButtonIsSelected() {
+        elementChecks.assertElementSelected(getArtistsButton());
+        return this;
+    }
+
+    public LibraryPage verifyAlbumsButtonIsSelected() {
+        elementChecks.assertElementSelected(getAlbumsButton());
+        return this;
+    }
+
     public LibraryPage tapArtistsButton() {
         getArtistsButton().click();
         return this;
@@ -56,21 +71,6 @@ public class LibraryPage {
         pageNavigationActions.swipeToElementById(resourceId, PageNavigationActions.Direction.DIRECTION_UP, 10);
         getSortButton().click();
 
-        return this;
-    }
-
-    public LibraryPage verifyLibraryPageIsOpened() {
-        elementChecks.assertElementIsVisible(getLibraryTitle());
-        return this;
-    }
-
-    public LibraryPage verifyArtistButtonIsSelected() {
-        elementChecks.assertElementSelected(getArtistsButton());
-        return this;
-    }
-
-    public LibraryPage verifyAlbumsButtonIsSelected() {
-        elementChecks.assertElementSelected(getAlbumsButton());
         return this;
     }
 
@@ -91,6 +91,11 @@ public class LibraryPage {
 
     public LibraryPage tapCreatePlaylistButton() {
         getCreatePlaylistButton().click();
+        return this;
+    }
+
+    public LibraryPage choosePlaylistOption() {
+        getCreatePlaylistMenuPlaylistButton().click();
         return this;
     }
 
@@ -128,6 +133,18 @@ public class LibraryPage {
 
     private WebElement getChangeLayoutButton() {
         return driver.findElement(By.id("com.spotify.music:id/icon_grid_list"));
+    }
+
+    private WebElement getCreatePlaylistMenuTitle() {
+        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/heading' and @text='Create']"));
+    }
+
+    private WebElement getCreatePlaylistMenuPlaylistButton() {
+        return driver.findElement(By.id("com.spotify.music:id/create_playlist_row"));
+    }
+
+    private WebElement getCreatePlaylistMenuBlendButton() {
+        return driver.findElement(By.id("com.spotify.music:id/title"));
     }
 
     private WebElement getListItemByTitleAndSubtitle(String title, String subtitle) {
