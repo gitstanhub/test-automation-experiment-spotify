@@ -1,4 +1,4 @@
-package com.spotify.android.pageobjects.commons.base;
+package com.spotify.android.pageobjects.commons.accessprompts;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
