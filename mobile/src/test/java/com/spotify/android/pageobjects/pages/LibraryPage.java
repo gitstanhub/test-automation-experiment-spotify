@@ -41,7 +41,7 @@ public class LibraryPage {
     }
 
     public LibraryPage verifyLibraryPageIsOpened() {
-        elementChecks.assertElementIsVisible(getLibraryTitle());
+        elementChecks.assertElementIsVisible(getLibraryPageTitle());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class LibraryPage {
         return driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_image\").description(\"Go to profile and settings\")"));
     }
 
-    private WebElement getLibraryTitle() {
+    private WebElement getLibraryPageTitle() {
         return driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_title\").description(\"Your Library Heading\")"));
     }
 

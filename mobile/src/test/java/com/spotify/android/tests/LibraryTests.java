@@ -45,7 +45,7 @@ public class LibraryTests extends MobileAndroidTestBase {
                 .verifyLibraryPageIsOpened()
                 .tapSearchButton();
         librarySearchPage
-                .searchFor("Oliver Tree")
+                .searchLibraryFor("Oliver Tree")
                 .verifySearchResultIsAvailable("Oliver Tree", "Artist");
     }
 }

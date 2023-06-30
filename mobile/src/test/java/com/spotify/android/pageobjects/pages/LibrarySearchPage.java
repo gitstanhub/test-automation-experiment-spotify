@@ -25,8 +25,8 @@ public class LibrarySearchPage {
         this.androidDeviceActions = new AndroidDeviceActions(driver);
     }
 
-    public LibrarySearchPage searchFor(String searchQuery) {
-        getSearchField().sendKeys(searchQuery);
+    public LibrarySearchPage searchLibraryFor(String searchQuery) {
+        getLibrarySearchField().sendKeys(searchQuery);
         return this;
     }
 
@@ -35,7 +35,7 @@ public class LibrarySearchPage {
         return this;
     }
 
-    private WebElement getSearchField() {
+    private WebElement getLibrarySearchField() {
         return driver.findElement(By.id("com.spotify.music:id/edit_text"));
     }
 
