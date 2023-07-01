@@ -30,6 +30,11 @@ public class SearchResultsPage {
         return this;
     }
 
+    public SearchResultsPage tapAlbumFilterButton() {
+        getAlbumsFilterButton().click();
+        return this;
+    }
+
     public SearchResultsPage verifySearchResultIsAvailable(String expectedSearchResult) {
         elementChecks.assertElementIsVisible(getSearchResult(expectedSearchResult));
         return this;

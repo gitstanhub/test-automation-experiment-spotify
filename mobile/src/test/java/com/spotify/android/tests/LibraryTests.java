@@ -33,9 +33,10 @@ public class LibraryTests extends MobileAndroidTestBase {
                 .verifyPlaylistNameIsExact("Braa");
     }
 
-//    @Test
-//    public void deletePlaylistTest()
+    @Test
+    public void playlistCanBeDeletedFromLibrary() {
 
+    }
 
     @Test
     public void artistCanBeSearchedInLibrary() {

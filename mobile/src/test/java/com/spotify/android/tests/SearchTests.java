@@ -20,11 +20,21 @@ public class SearchTests extends MobileAndroidTestBase {
                 .verifySearchPageIsOpened()
                 .tapGlobalSearchField();
         searchResultsPage
-                .searchGloballyFor("Nirvana")
+                .searchGloballyFor("Eminem")
                 .tapArtistsFilterButton()
-                .verifySearchResultIsAvailable("Nirvana");
+                .verifySearchResultIsAvailable("Eminem");
     }
 
-//    @Test
-//    public void searchForAlbumTest()
+    @Test
+    public void albumCanBeSearchedGlobally() {
+        navigation
+                .tapSearchButton();
+        searchPage
+                .verifySearchPageIsOpened()
+                .tapGlobalSearchField();
+        searchResultsPage
+                .searchGloballyFor("The Eminem Show")
+                .tapAlbumFilterButton()
+                .verifySearchResultIsAvailable("The Eminem Show");
+    }
 }
