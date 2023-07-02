@@ -9,12 +9,12 @@ public class PageNavigationActions {
 
     private final AndroidDriver driver;
     private final WebDriverWait wait;
-    private final AndroidDeviceGestures androidDeviceGestures;
+    private final AndroidDeviceActions androidDeviceGestures;
 
     public PageNavigationActions(AndroidDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
-        this.androidDeviceGestures = new AndroidDeviceGestures(driver);
+        this.androidDeviceGestures = new AndroidDeviceActions(driver);
     }
 
     public void scrollIntoElementByText(String scrollableElementResourceId, String targetResourceId, String targetText) {

@@ -40,27 +40,18 @@ public class LibraryPage {
         return this;
     }
 
-    public LibraryPage tapArtistsButton() {
-        getArtistsButton().click();
-        return this;
-    }
+    public LibraryPage selectPlaylistItem(String playlistName, String playlistAuthorName) {
 
-    public LibraryPage tapAlbumsButton() {
-        getAlbumsButton().click();
-        return this;
-    }
-
-    public LibraryPage tapSortButton() {
-        String resourceId = "com.spotify.music:id/sort";
-
-        pageNavigationActions.swipeToElementById(resourceId, PageNavigationActions.Direction.DIRECTION_UP, 10);
-        getSortButton().click();
-
+        if (elementChecks.isElementSelected(getPlaylistsButton())) {
+            getListItemByTitleAndSubtitle(playlistName, playlistAuthorName).click();
+        } else {
+            getListItemByTitleAndSubtitle(playlistName, "Playlist • " + playlistAuthorName).click();
+        }
         return this;
     }
 
     public LibraryPage verifyLibraryPageIsOpened() {
-        elementChecks.assertElementIsVisible(getLibraryTitle());
+        elementChecks.assertElementIsVisible(getLibraryPageTitle());
         return this;
     }
 
@@ -71,6 +62,30 @@ public class LibraryPage {
 
     public LibraryPage verifyAlbumsButtonIsSelected() {
         elementChecks.assertElementSelected(getAlbumsButton());
+        return this;
+    }
+
+    public LibraryPage tapArtistsButton() {
+        getArtistsButton().click();
+        return this;
+    }
+
+    public LibraryPage tapAlbumsButton() {
+        getAlbumsButton().click();
+        return this;
+    }
+
+    public LibraryPage tapPlaylistsButton() {
+        getPlaylistsButton().click();
+        return this;
+    }
+
+    public LibraryPage tapSortButton() {
+        String resourceId = "com.spotify.music:id/sort";
+
+        pageNavigationActions.swipeToElementById(resourceId, PageNavigationActions.Direction.DIRECTION_UP, 10);
+        getSortButton().click();
+
         return this;
     }
 
@@ -94,11 +109,16 @@ public class LibraryPage {
         return this;
     }
 
+    public LibraryPage choosePlaylistOption() {
+        getCreatePlaylistMenuPlaylistButton().click();
+        return this;
+    }
+
     private WebElement getProfileButton() {
         return driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_image\").description(\"Go to profile and settings\")"));
     }
 
-    private WebElement getLibraryTitle() {
+    private WebElement getLibraryPageTitle() {
         return driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_title\").description(\"Your Library Heading\")"));
     }
 
@@ -128,6 +148,18 @@ public class LibraryPage {
 
     private WebElement getChangeLayoutButton() {
         return driver.findElement(By.id("com.spotify.music:id/icon_grid_list"));
+    }
+
+    private WebElement getCreatePlaylistMenuTitle() {
+        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/heading' and @text='Create']"));
+    }
+
+    private WebElement getCreatePlaylistMenuPlaylistButton() {
+        return driver.findElement(By.id("com.spotify.music:id/create_playlist_row"));
+    }
+
+    private WebElement getCreatePlaylistMenuBlendButton() {
+        return driver.findElement(By.id("com.spotify.music:id/title"));
     }
 
     private WebElement getListItemByTitleAndSubtitle(String title, String subtitle) {
