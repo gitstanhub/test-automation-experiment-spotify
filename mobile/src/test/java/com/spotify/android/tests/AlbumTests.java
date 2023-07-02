@@ -15,11 +15,11 @@ public class AlbumTests extends MobileAndroidTestBase {
     private final AlbumPage albumPage = new AlbumPage(driver, wait);
 
     @Test
-    public void artistAlbumCanBeOpenedFromLibrary() {
-
+    public void albumCanBeOpenedFromLibrary() {
         navigationBar
                 .tapLibraryButton();
         libraryPage
+                .verifyLibraryPageIsOpened()
                 .tapAlbumsButton()
                 .selectAlbumItem("The Eminem Show", "Eminem");
         albumPage

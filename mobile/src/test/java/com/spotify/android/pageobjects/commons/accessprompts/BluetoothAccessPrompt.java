@@ -1,6 +1,5 @@
-package com.spotify.android.pageobjects.commons;
+package com.spotify.android.pageobjects.commons.accessprompts;
 
-import com.spotify.android.pageobjects.commons.base.PermissionAccessPrompt;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -16,6 +15,7 @@ public class BluetoothAccessPrompt extends PermissionAccessPrompt {
 
     public void handleAccessPrompt() {
         try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/touch_outside")));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/design_bottom_sheet")));
             if (getAccessWidgetDescription().getText().contains("Bluetooth")) {
                 getAccessWidgetLaterButton().click();
@@ -24,6 +24,20 @@ public class BluetoothAccessPrompt extends PermissionAccessPrompt {
             System.out.println("No Bluetooth Access Prompt is visible to handle. Proceeding further...");
         }
     }
+
+//    public void handleAccessPrompt() {
+//        FluentWait<AndroidDriver> fLuentWait = new FluentWait<>(driver)
+//                .withTimeout(Duration.ofMillis(6000))
+//                .pollingEvery(Duration.ofMillis(2000))
+//                .ignoring(NoSuchElementException.class);
+//
+//        try {
+//            fLuentWait.until(driver) -> {
+//                WebElement element = driver.
+//
+//            }
+//        }
+//    }
 
     protected WebElement getAccessWidget() {
         return driver.findElement(By.id("com.spotify.music:id/design_bottom_sheet"));
@@ -43,5 +57,9 @@ public class BluetoothAccessPrompt extends PermissionAccessPrompt {
 
     protected WebElement getAccessWidgetLaterButton() {
         return driver.findElement(By.id("com.spotify.music:id/later_button"));
+    }
+
+    protected WebElement getTouchOutsideArea() {
+        return driver.findElement(By.id("com.spotify.music:id/touch_outside"));
     }
 }

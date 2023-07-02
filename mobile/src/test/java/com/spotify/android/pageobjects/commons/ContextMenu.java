@@ -27,6 +27,11 @@ public class ContextMenu {
         return this;
     }
 
+    public ContextMenu tapDeletePlaylistButton() {
+        getDeletePlaylistButton().click();
+        return this;
+    }
+
     private WebElement getContextMenuTitle(String titleText) {
         return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + titleText + "']"));
     }
@@ -122,6 +127,36 @@ public class ContextMenu {
     private WebElement getLikeAllSongsButton() {
         return driver.findElement(AppiumBy.androidUIAutomator(
                 "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Like all songs\"))"
+        ));
+    }
+
+    private WebElement getEditPlaylistButton() {
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Edit playlist\"))"
+        ));
+    }
+
+    private WebElement getDeletePlaylistButton() {
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Delete Playlist\"))"
+        ));
+    }
+
+    private WebElement getInviteCollaboratorsButton() {
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Delete Playlist\"))"
+        ));
+    }
+
+    private WebElement getRemoveFromProfileButton() {
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Remove from profile\"))"
+        ));
+    }
+
+    private WebElement getMakePrivateButton() {
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Make private\"))"
         ));
     }
 }

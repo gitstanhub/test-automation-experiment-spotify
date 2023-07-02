@@ -1,7 +1,7 @@
 package com.spotify.android.tests.base;
 
 import com.spotify.android.driver.RealDeviceAppiumDriverHandler;
-import com.spotify.android.pageobjects.commons.BluetoothAccessPrompt;
+import com.spotify.android.pageobjects.commons.accessprompts.BluetoothAccessPrompt;
 import com.spotify.android.pageobjects.commons.ScreensaverAd;
 import com.spotify.android.pageobjects.pages.LoginPage;
 import io.appium.java_client.android.AndroidDriver;
@@ -20,9 +20,8 @@ public class MobileAndroidTestBase {
 
     @BeforeEach
     public void login() {
-        loginPage.handleLoginFor("spotify_user_login", "");
+        loginPage.handleLoginFor("", "");
         bluetoothAccessPrompt.handleAccessPrompt();
-        screensaverAd.handleScreensaverAd();
     }
 
     @AfterEach

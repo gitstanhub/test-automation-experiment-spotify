@@ -1,16 +1,18 @@
 package com.spotify.android.utils.navigation;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AndroidDeviceGestures {
+public class AndroidDeviceActions {
 
     private final AndroidDriver driver;
 
-    public AndroidDeviceGestures(AndroidDriver driver) {
+    public AndroidDeviceActions(AndroidDriver driver) {
         this.driver = driver;
     }
 
@@ -129,5 +131,9 @@ public class AndroidDeviceGestures {
         scrollObject.put("speed", 330);
 
         ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+    }
+
+    public void tapKeyboardSearchButton() {
+        driver.pressKey(new KeyEvent(AndroidKey.SEARCH));
     }
 }

@@ -83,6 +83,7 @@ public class AlbumPage {
         return driver.findElement(By.id("com.spotify.music:id/title"));
     }
 
+    //ToDo: move findElement pieces into separate methods as utility class
     private WebElement getCreatorNamesRow() {
         return driver.findElement(By.id("com.spotify.music:id/creator_names"));
     }
