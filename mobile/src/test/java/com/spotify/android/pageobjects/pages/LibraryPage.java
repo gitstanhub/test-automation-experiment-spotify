@@ -40,6 +40,16 @@ public class LibraryPage {
         return this;
     }
 
+    public LibraryPage selectPlaylistItem(String playlistName, String playlistAuthorName) {
+
+        if (elementChecks.isElementSelected(getPlaylistsButton())) {
+            getListItemByTitleAndSubtitle(playlistName, playlistAuthorName).click();
+        } else {
+            getListItemByTitleAndSubtitle(playlistName, "Playlist • " + playlistAuthorName).click();
+        }
+        return this;
+    }
+
     public LibraryPage verifyLibraryPageIsOpened() {
         elementChecks.assertElementIsVisible(getLibraryPageTitle());
         return this;
@@ -62,6 +72,11 @@ public class LibraryPage {
 
     public LibraryPage tapAlbumsButton() {
         getAlbumsButton().click();
+        return this;
+    }
+
+    public LibraryPage tapPlaylistsButton() {
+        getPlaylistsButton().click();
         return this;
     }
 

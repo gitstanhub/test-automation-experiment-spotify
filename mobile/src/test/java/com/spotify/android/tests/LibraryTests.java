@@ -1,5 +1,7 @@
 package com.spotify.android.tests;
 
+import com.spotify.android.pageobjects.commons.ContextMenu;
+import com.spotify.android.pageobjects.commons.MediaInteraction;
 import com.spotify.android.pageobjects.commons.Navigation;
 import com.spotify.android.pageobjects.pages.LibraryPage;
 import com.spotify.android.pageobjects.pages.LibrarySearchPage;
@@ -15,6 +17,8 @@ public class LibraryTests extends MobileAndroidTestBase {
     private final PlaylistCreationPage playlistCreationPage = new PlaylistCreationPage(driver, wait);
     private final PlaylistPage playlistPage = new PlaylistPage(driver, wait);
     private final LibrarySearchPage librarySearchPage = new LibrarySearchPage(driver, wait);
+    private final MediaInteraction mediaInteraction = new MediaInteraction(driver, wait);
+    private final ContextMenu contextMenu = new ContextMenu(driver, wait);
 
     @Test
     public void playlistCanBeCreatedFromLibrary() {
@@ -35,7 +39,24 @@ public class LibraryTests extends MobileAndroidTestBase {
 
     @Test
     public void playlistCanBeDeletedFromLibrary() {
-
+        navigation
+                .tapLibraryButton();
+        libraryPage
+                .verifyLibraryPageIsOpened()
+                .tapPlaylistsButton()
+                .selectPlaylistItem("Braa", "Stanislav");
+        playlistPage
+                .verifyPlaylistNameIsExact("Braa");
+        mediaInteraction
+                .tapContextMenuButton();
+        contextMenu
+                .tapDeletePlaylistButton();
+        playlistPage
+                .verifyDeletePopupTitleIsAvailable()
+                .verifyDeletePopupSubtitleIsAvailable()
+                .tapPlaylistDeleteConfirmButton();
+        libraryPage
+                .verifyLibraryPageIsOpened();
     }
 
     @Test
