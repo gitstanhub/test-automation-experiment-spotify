@@ -3,12 +3,13 @@ package com.spotify.driver;
 import com.microsoft.playwright.*;
 
 public class PlaywrightDriverHandler {
+//ToDo : move driver management into factory class, add SpringBoot @Lazy and @Autowired to the page object initialisation
 
     private static Playwright playwright;
     private static BrowserContext context;
     private static Page page;
 
-    public void createDriver() {
+    private void createDriver() {
         playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         context = browser.newContext();

@@ -7,13 +7,14 @@ import com.spotify.android.pageobjects.pages.LibraryPage;
 import com.spotify.android.tests.base.MobileAndroidTestBase;
 import org.junit.jupiter.api.Test;
 
-public class AlbumTests extends MobileAndroidTestBase {
+public class AlbumsTests extends MobileAndroidTestBase {
 
     private final Navigation navigationBar = new Navigation(driver);
     private final LibraryPage libraryPage = new LibraryPage(driver, wait);
     private final MediaInteraction mediaInteraction = new MediaInteraction(driver, wait);
     private final AlbumPage albumPage = new AlbumPage(driver, wait);
 
+    //ToDo: move to LibraryTests
     @Test
     public void albumCanBeOpenedFromLibrary() {
         navigationBar
