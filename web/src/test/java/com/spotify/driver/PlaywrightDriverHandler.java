@@ -1,9 +1,10 @@
 package com.spotify.driver;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.impl.SharedSelectors;
 
 public class PlaywrightDriverHandler {
-//ToDo : move driver management into factory class, add SpringBoot @Lazy and @Autowired to the page object initialisation
+//TODO : move driver management into factory class, add SpringBoot @Lazy and @Autowired to the page object initialisation
 
     private static Playwright playwright;
     private static BrowserContext context;
@@ -14,7 +15,8 @@ public class PlaywrightDriverHandler {
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         context = browser.newContext();
         page = context.newPage();
-        page.setViewportSize(1024, 1024);
+        page.setViewportSize(1280, 720);
+        new SharedSelectors().setTestIdAttribute("id99");
     }
 
     public void closeDriver() {
