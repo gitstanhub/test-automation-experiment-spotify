@@ -1,7 +1,6 @@
 package com.spotify.driver;
 
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.impl.SharedSelectors;
 
 public class PlaywrightDriverHandler {
 //TODO : move driver management into factory class, add SpringBoot @Lazy and @Autowired to the page object initialisation
@@ -16,7 +15,6 @@ public class PlaywrightDriverHandler {
         context = browser.newContext();
         page = context.newPage();
         page.setViewportSize(1280, 720);
-        new SharedSelectors().setTestIdAttribute("id99");
     }
 
     public void closeDriver() {
@@ -24,7 +22,7 @@ public class PlaywrightDriverHandler {
         playwright.close();
     }
 
-    public static Page getPage() {
+    public Page getPage() {
         if (page == null) {
             new PlaywrightDriverHandler().createDriver();
         }

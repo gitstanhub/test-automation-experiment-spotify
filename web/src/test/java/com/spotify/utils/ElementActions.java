@@ -23,4 +23,5 @@ public class ElementActions {
     public Locator findElementByIdAttribute(String idAttribute) {
         return page.locator("#" + idAttribute);
     }
+
 }
