@@ -20,6 +20,7 @@ public class LibraryTests extends MobileAndroidTestBase {
     private final MediaInteraction mediaInteraction = new MediaInteraction(driver, wait);
     private final ContextMenu contextMenu = new ContextMenu(driver, wait);
 
+    //ToDo: move to PlaylistsTests
     @Test
     public void playlistCanBeCreatedFromLibrary() {
         navigation

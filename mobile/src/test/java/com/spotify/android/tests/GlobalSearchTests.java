@@ -6,14 +6,14 @@ import com.spotify.android.pageobjects.pages.SearchResultsPage;
 import com.spotify.android.tests.base.MobileAndroidTestBase;
 import org.junit.jupiter.api.Test;
 
-public class SearchTests extends MobileAndroidTestBase {
+public class GlobalSearchTests extends MobileAndroidTestBase {
 
     private final Navigation navigation = new Navigation(driver);
     private final SearchPage searchPage = new SearchPage(driver, wait);
     private final SearchResultsPage searchResultsPage = new SearchResultsPage(driver, wait);
 
     @Test
-    public void artistCanBeSearchedGlobally() {
+    public void artistCanBeFound() {
         navigation
                 .tapSearchButton();
         searchPage
@@ -26,7 +26,7 @@ public class SearchTests extends MobileAndroidTestBase {
     }
 
     @Test
-    public void albumCanBeSearchedGlobally() {
+    public void albumCanBeFound() {
         navigation
                 .tapSearchButton();
         searchPage

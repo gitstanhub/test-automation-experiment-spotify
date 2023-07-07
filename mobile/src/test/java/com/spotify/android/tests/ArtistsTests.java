@@ -10,7 +10,7 @@ import com.spotify.android.pageobjects.pages.LibraryPage;
 import com.spotify.android.tests.base.MobileAndroidTestBase;
 import org.junit.jupiter.api.Test;
 
-public class ArtistTests extends MobileAndroidTestBase {
+public class ArtistsTests extends MobileAndroidTestBase {
 
     private final Navigation navigationBar = new Navigation(driver);
     private final LibraryPage libraryPage = new LibraryPage(driver, wait);
@@ -20,6 +20,7 @@ public class ArtistTests extends MobileAndroidTestBase {
     private final ContextMenu contextMenu = new ContextMenu(driver, wait);
     private final SpotifyCode spotifyCode = new SpotifyCode(driver, wait);
 
+    //ToDo: move to LibraryTests
     @Test
     public void artistProfileCanBeOpenedFromLibrary() {
         navigationBar
