@@ -11,7 +11,11 @@ public class GlobalSearchTests extends WebPlaywrightTestBase {
     @Test
     public void songCanBeFound() {
         searchPage
-                .openSearchPage();
+                .openSearchPage()
+                .fillInSearchField("Life Goes On by Oliver Tree")
+                .verifyAllFilterButtonIsAvailable()
+                .clickSongsFilterButton()
+                .verifySearchedSongIsReturnedInTop10Results("Life Goes On", "Oliver Tree");
     }
 
     //@Test

@@ -3,6 +3,9 @@ package com.spotify.utils;
 import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.AriaRole;
+
+import java.util.List;
 
 public class ElementActions {
 
@@ -20,8 +23,19 @@ public class ElementActions {
         return page.getByTestId(testId);
     }
 
-    public Locator findElementByIdAttribute(String idAttribute) {
+    public Locator findElementById(String idAttribute) {
         return page.locator("#" + idAttribute);
     }
 
+    public Locator findElementByRole(AriaRole role, String elementText) {
+        return page.getByRole(role, new Page.GetByRoleOptions().setName(elementText).setExact(true));
+    }
+
+    public Locator findElementBySelector(String selector) {
+        return page.locator(selector);
+    }
+
+    public List<Locator> findAllElementsBySelector(String selector) {
+        return page.locator(selector).all();
+    }
 }

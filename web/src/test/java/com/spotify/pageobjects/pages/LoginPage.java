@@ -59,8 +59,7 @@ public class LoginPage {
             fillInPassword(password);
             clickLoginButton();
             page.waitForSelector("[data-testid = 'web-player-link']", new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
-//            Assertions.assertTrue(findWebPlayerButton().isEnabled());
-//            browserActions.navigateToUrl("https://open.spotify.com/search");
+            clickWebPlayerButton();
         } else if (findLoggedInStateTitle().isVisible()) {
             clickWebPlayerButton();
         }
