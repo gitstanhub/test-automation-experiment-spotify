@@ -39,7 +39,8 @@ dependencies {
             "io.appium:java-client:8.3.0",
             "commons-io:commons-io:2.11.0",
             "org.seleniumhq.selenium:selenium-java:4.9.1",
-            "org.aeonbits.owner:owner:1.0.12"
+            "org.aeonbits.owner:owner:1.0.12",
+            "com.google.guava:guava:32.1.1-jre"
     )
 }
 

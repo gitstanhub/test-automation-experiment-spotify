@@ -19,7 +19,8 @@ public class LibraryTests extends WebPlaywrightTestBase {
         libraryPage
                 .verifyLibraryButtonIsAvailable()
                 .clickExpandLibraryButton()
-                .selectSortByOption("Alphabetical");
+                .selectSortByOption("Alphabetical")
+                .verifyLibraryListIsSortedAsc();
     }
 
     //@Test

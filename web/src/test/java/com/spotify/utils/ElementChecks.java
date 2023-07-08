@@ -20,4 +20,8 @@ public class ElementChecks {
     public boolean isElementVisible(Locator locator) {
         return locator.isVisible();
     }
+
+    public boolean isElementVisibleWithText(String elementText) {
+        return elementActions.findElementByText(elementText).isVisible();
+    }
 }
