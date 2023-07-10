@@ -25,19 +25,23 @@ public class ArtistsTests extends MobileAndroidTestBase {
     public void artistProfileCanBeOpenedFromLibrary() {
         navigationBar
                 .tapLibraryButton();
+
         libraryPage
                 .verifyLibraryPageIsOpened()
                 .tapArtistsButton()
                 .verifyArtistButtonIsSelected()
                 .selectArtistItem("Oliver Tree");
+
         artistProfilePage
                 .verifyProfileTitleHasText("Oliver Tree")
                 .verifyMonthlyListenersCountIsAvailable()
                 .verifyFollowButtonIsAvailable();
+
         mediaInteraction
                 .verifyContextMenuButtonIsAvailable()
                 .verifyShuffleButtonIsAvailable()
                 .verifyPlayButtonIsAvailable();
+
         artistProfilePage
                 .verifyTrackCloudContainsArtist("Oliver Tree")
                 .verifyPopularReleasesSectionIsAvailable()
@@ -49,13 +53,16 @@ public class ArtistsTests extends MobileAndroidTestBase {
     public void artistDiscographyCanBeOpenedFromProfile() {
         navigationBar
                 .tapLibraryButton();
+
         libraryPage
                 .verifyLibraryPageIsOpened()
                 .tapArtistsButton()
                 .verifyArtistButtonIsSelected()
                 .selectArtistItem("Oliver Tree");
+
         artistProfilePage
                 .tapSeeDiscographyButton();
+
         aristDiscographyPage
                 .verifyDiscographyTitleIsAvailable()
                 .verifyLatestReleaseTitleIsAvailable()
@@ -69,14 +76,18 @@ public class ArtistsTests extends MobileAndroidTestBase {
     public void artistSpotifyCodeCanBeOpenedFromProfile() {
         navigationBar
                 .tapLibraryButton();
+
         libraryPage
                 .verifyLibraryPageIsOpened()
                 .selectArtistItem("Oliver Tree");
+
         mediaInteraction
                 .tapContextMenuButton();
+
         contextMenu
                 .verifyContextMenuTitleIsAvailable("Oliver Tree")
                 .tapShowSpotifyCodeButton();
+
         spotifyCode
                 .verifySpotifyCodeIsAvailable();
     }
