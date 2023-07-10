@@ -1,6 +1,6 @@
 package com.spotify.tests;
 
-import com.spotify.pageobjects.commons.ContextMenu;
+import com.spotify.pageobjects.commons.OptionsMenu;
 import com.spotify.pageobjects.pages.HomePage;
 import com.spotify.pageobjects.pages.LibraryPage;
 import com.spotify.pageobjects.pages.PlaylistPage;
@@ -11,7 +11,7 @@ public class LibraryTests extends WebPlaywrightTestBase {
 
     private final HomePage homePage = new HomePage(page);
     private final LibraryPage libraryPage = new LibraryPage(page);
-    private final ContextMenu contextMenu = new ContextMenu(page);
+    private final OptionsMenu optionsMenu = new OptionsMenu(page);
     private final PlaylistPage playlistPage = new PlaylistPage(page);
 
     @Test
@@ -36,8 +36,8 @@ public class LibraryTests extends WebPlaywrightTestBase {
                 .verifyPlaylistsFilterButtonIsPressed()
                 .rightClickLibraryItemWithText("Future Nostalgia");
 
-        contextMenu
-                .verifyContextMenuIsAvailable()
+        optionsMenu
+                .verifyOptionsMenuIsAvailable()
                 .clickEditDetailsOption();
 
         playlistPage

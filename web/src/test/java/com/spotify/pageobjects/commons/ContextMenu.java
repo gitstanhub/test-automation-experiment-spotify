@@ -5,7 +5,6 @@ import com.microsoft.playwright.Page;
 import com.spotify.utils.BrowserActions;
 import com.spotify.utils.ElementActions;
 import com.spotify.utils.ElementChecks;
-import org.junit.jupiter.api.Assertions;
 
 public class ContextMenu {
 
@@ -21,22 +20,30 @@ public class ContextMenu {
         this.elementChecks = new ElementChecks(page);
     }
 
-    public ContextMenu verifyContextMenuIsAvailable() {
-        page.waitForSelector("div[id='context-menu']");
-        Assertions.assertTrue(elementChecks.isElementVisible(findContextMenu()));
+    public ContextMenu clickContextMenuButton() {
+        findContextMenuButton().click();
         return this;
     }
 
-    public ContextMenu clickEditDetailsOption() {
-        findEditDetailsOption().click();
+    public ContextMenu selectShareOption() {
+        findShareOption().hover();
         return this;
     }
 
-    private Locator findContextMenu() {
-        return elementActions.findElementBySelector("div[id='context-menu']");
+    public ContextMenu clickEmbedAlbumOption() {
+        findEmbedAlbumOption().click();
+        return this;
     }
 
-    private Locator findEditDetailsOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Edit details");
+    private Locator findContextMenuButton() {
+        return elementActions.findElementBySelector("button[data-testid='add-button'] + button[data-testid='more-button']");
+    }
+
+    private Locator findShareOption() {
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Share");
+    }
+
+    private Locator findEmbedAlbumOption() {
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Embed album");
     }
 }
