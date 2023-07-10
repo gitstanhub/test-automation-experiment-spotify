@@ -20,9 +20,13 @@ public class AlbumsTests extends WebPlaywrightTestBase {
                 .selectShareOption()
                 .clickEmbedAlbumOption();
 
+        albumPage
+                .verifyEmbedAlbumModalIsAvailable()
+                .clickShowCodeCheckbox()
+                .verifyIframeCodeFieldContainsAlbum("2cWBwpqMsDJC1ZUwz813lo")
+                .clickEmbedCodeCopyButton()
+                .verifyEmbedCodeCopyButtonIsClicked();
     }
-    //@Test
-    //void albumEmbeddedLinkCanBeGenerated
 
     //@Test
     //void albumVersionCanBeSwitched
