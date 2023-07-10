@@ -2,6 +2,7 @@ package com.spotify.utils;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import org.junit.jupiter.api.Assertions;
 
 public class ElementChecks {
 
@@ -22,6 +23,10 @@ public class ElementChecks {
     }
 
     public boolean isElementVisibleWithText(String elementText) {
-        return elementActions.findElementByText(elementText).isVisible();
+        return elementActions.findElementByExactText(elementText).isVisible();
+    }
+
+    public void assertInputElementContainsText(String expectedText, Locator locator) {
+        Assertions.assertEquals(expectedText, locator.inputValue(), "Couldn't find the expected text inside the specified element");
     }
 }

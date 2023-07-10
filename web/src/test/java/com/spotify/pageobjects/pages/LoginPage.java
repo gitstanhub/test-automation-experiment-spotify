@@ -79,11 +79,11 @@ public class LoginPage {
     }
 
     private Locator findSignedOutStateTitle() {
-        return elementActions.findElementByText("Log in to Spotify");
+        return elementActions.findElementByExactText("Log in to Spotify");
     }
 
     private Locator findLoggedInStateTitle() {
-        return elementActions.findElementByText("Logged in as");
+        return elementActions.findElementByExactText("Logged in as");
     }
 
     private Locator findWebPlayerButton() {

@@ -25,13 +25,16 @@ public class LibraryTests extends MobileAndroidTestBase {
     public void playlistCanBeCreatedFromLibrary() {
         navigation
                 .tapLibraryButton();
+
         libraryPage
                 .tapCreatePlaylistButton()
                 .choosePlaylistOption();
+
         playlistCreationPage
                 .verifyPlaylistCreationPageIsOpened()
                 .enterPlaylistName("Braa")
                 .tapCreateButton();
+
         playlistPage
                 .verifyPlaylistArtworkIsAvailable()
                 .verifyPlaylistNameIsAvailable()
@@ -42,20 +45,26 @@ public class LibraryTests extends MobileAndroidTestBase {
     public void playlistCanBeDeletedFromLibrary() {
         navigation
                 .tapLibraryButton();
+
         libraryPage
                 .verifyLibraryPageIsOpened()
                 .tapPlaylistsButton()
                 .selectPlaylistItem("Braa", "Stanislav");
+
         playlistPage
                 .verifyPlaylistNameIsExact("Braa");
+
         mediaInteraction
                 .tapContextMenuButton();
+
         contextMenu
                 .tapDeletePlaylistButton();
+
         playlistPage
                 .verifyDeletePopupTitleIsAvailable()
                 .verifyDeletePopupSubtitleIsAvailable()
                 .tapPlaylistDeleteConfirmButton();
+
         libraryPage
                 .verifyLibraryPageIsOpened();
     }
@@ -64,9 +73,11 @@ public class LibraryTests extends MobileAndroidTestBase {
     public void artistCanBeSearchedInLibrary() {
         navigation
                 .tapLibraryButton();
+
         libraryPage
                 .verifyLibraryPageIsOpened()
                 .tapSearchButton();
+
         librarySearchPage
                 .searchLibraryFor("Oliver Tree")
                 .verifySearchResultIsAvailable("Oliver Tree", "Artist");

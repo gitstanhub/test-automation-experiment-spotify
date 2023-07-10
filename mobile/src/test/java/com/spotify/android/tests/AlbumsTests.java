@@ -19,20 +19,24 @@ public class AlbumsTests extends MobileAndroidTestBase {
     public void albumCanBeOpenedFromLibrary() {
         navigationBar
                 .tapLibraryButton();
+
         libraryPage
                 .verifyLibraryPageIsOpened()
                 .tapAlbumsButton()
                 .selectAlbumItem("The Eminem Show", "Eminem");
+
         albumPage
                 .verifyAlbumTitleHasText("The Eminem Show")
                 .verifyArtistNamesRowContainsArtist("Eminem")
                 .verifyAlbumInfoHasText("Album • 2002")
                 .verifyFavouritesButtonIsAvailable()
                 .verifyDownloadButtonIsAvailable();
+
         mediaInteraction
                 .verifyContextMenuButtonIsAvailable()
                 .verifyShuffleButtonIsAvailable()
                 .verifyPlayButtonIsAvailable();
+
         albumPage
                 .verifyTrackCloudIsAvailable()
                 .verifyAlbumReleaseDateIs("May 26, 2002")
