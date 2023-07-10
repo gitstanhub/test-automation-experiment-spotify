@@ -49,6 +49,11 @@ public class SearchPage {
         return this;
     }
 
+    public SearchPage clickPlaylistsFilterButton() {
+        findPlaylistsFilterButton().click();
+        return this;
+    }
+
     public SearchPage verifySearchedSongIsReturnedInTop10Results(String expectedSongTitle, String expectedSongArtist) {
         page.waitForSelector("[data-testid = 'tracklist-row']");
 
@@ -84,6 +89,34 @@ public class SearchPage {
         Assertions.assertTrue(isExpectedSongReturned);
 
         System.out.println(Arrays.deepToString(songAndArtistArray));
+
+        return this;
+    }
+
+    public SearchPage verifySearchedPlaylistIsReturnedInTop10Results(String expectedPlaylistTitle) {
+        page.waitForSelector("[data-testid='infinite-scroll-list']");
+
+        String[] playlistsArray = new String[10];
+
+        for (int i = 0; i < 10; i++) {
+            String playlistTitleSelector = "[data-testid='search-category-card-" + i + "'] a div";
+
+            Locator playlistTitleElement = findPlaylistSearchResultTitle(playlistTitleSelector);
+
+            if (playlistTitleElement != null) {
+                String playlistTitle = playlistTitleElement.innerText();
+
+                playlistsArray[i] = playlistTitle;
+            }
+        }
+
+        boolean isExpectedPlaylistReturned = Arrays.stream(playlistsArray)
+                .filter(Objects::nonNull)
+                .anyMatch(item -> item.equals(expectedPlaylistTitle));
+
+        Assertions.assertTrue(isExpectedPlaylistReturned);
+
+        System.out.println(Arrays.toString(playlistsArray));
 
         return this;
     }
@@ -134,6 +167,15 @@ public class SearchPage {
             return elementActions.findAllElementsBySelector(songElementSelector);
         } catch (PlaywrightException e) {
             System.out.println("Couldn't find the specified search result element for the song");
+            return null;
+        }
+    }
+
+    private Locator findPlaylistSearchResultTitle(String playlistElementSelector) {
+        try {
+            return elementActions.findElementBySelector(playlistElementSelector);
+        } catch (PlaywrightException e) {
+            System.out.println("Couldn't find the specified search result element for the playlist");
             return null;
         }
     }
