@@ -59,6 +59,32 @@ public class AlbumPage {
         return this;
     }
 
+    public AlbumPage clickAlbumTypeSwitcher() {
+        findAlbumTypeSwitcher().click();
+        return this;
+    }
+
+    public AlbumPage selectAlbumTypeSwitcherOption(String optionName) {
+        findAlbumTypeSwitcherOption(optionName).click();
+        return this;
+    }
+
+    public AlbumPage verifyExplicitTracksAreAvailable() {
+       Assertions.assertTrue(elementChecks.isElementVisible(findExplicitIcon()));
+       return this;
+    }
+
+    public AlbumPage verifyExplicitTracksAreNotAvailable() {
+        Assertions.assertFalse(elementChecks.isElementVisible(findExplicitIcon()));
+        return this;
+    }
+
+    public AlbumPage verifyAlbumPageIsAvailable() {
+        page.waitForSelector("[data-testid='album-page']");
+        Assertions.assertTrue(elementChecks.isElementVisible(findAlbumPageSection()));
+        return this;
+    }
+
     private Locator findEmbedAlbumModal() {
         return elementActions.findElementBySelector("div[aria-label='Embed album']");
     }
@@ -73,5 +99,21 @@ public class AlbumPage {
 
     private Locator findEmbedCodeCopyButton() {
         return elementActions.findElementBySelectorAndText("label[for='ewg-showcode'] + button[data-encore-id='buttonPrimary'] span", "Copy");
+    }
+
+    private Locator findAlbumTypeSwitcher() {
+        return elementActions.findElementBySelectorAndText("button span", "1 more release");
+    }
+
+    private Locator findAlbumTypeSwitcherOption(String optionName) {
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] ul[tabindex] a", optionName);
+    }
+
+    private Locator findExplicitIcon() {
+        return elementActions.findElementBySelectorAndText("span[aria-label='Explicit']", "E").locator("nth=0");
+    }
+
+    private Locator findAlbumPageSection() {
+        return elementActions.findElementByTestId("album-page");
     }
 }

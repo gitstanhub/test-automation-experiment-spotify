@@ -28,9 +28,19 @@ public class AlbumsTests extends WebPlaywrightTestBase {
                 .verifyEmbedCodeCopyButtonIsClicked();
     }
 
-    //@Test
-    //void albumVersionCanBeSwitched
+    @Test
+    public void albumVersionCanBeSwitched() {
+        albumPage
+                .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")
+                .verifyAlbumPageIsAvailable()
+                .verifyExplicitTracksAreAvailable()
+                .clickAlbumTypeSwitcher()
+                .selectAlbumTypeSwitcherOption("The Eminem Show")
+                .verifyExplicitTracksAreNotAvailable();
+    }
 
-    //@Test
-    //void albumCanBeAddedToPlaylist
+    @Test
+    public void albumCanBeAddedToPlaylist() {
+
+    }
 }
