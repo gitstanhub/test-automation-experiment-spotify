@@ -35,6 +35,16 @@ public class ContextMenu {
         return this;
     }
 
+    public ContextMenu selectAddToPlaylistOption() {
+        findAddToPlaylistOption().hover();
+        return this;
+    }
+
+    public ContextMenu clickCreatePlaylistButton() {
+        findCreatePlaylistOption().click();
+        return this;
+    }
+
     private Locator findContextMenuButton() {
         return elementActions.findElementBySelector("button[data-testid='add-button'] + button[data-testid='more-button']");
     }
@@ -45,5 +55,13 @@ public class ContextMenu {
 
     private Locator findEmbedAlbumOption() {
         return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Embed album");
+    }
+
+    private Locator findAddToPlaylistOption() {
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Add to playlist");
+    }
+
+    private Locator findCreatePlaylistOption() {
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Create playlist");
     }
 }

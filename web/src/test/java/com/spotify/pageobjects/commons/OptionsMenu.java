@@ -39,5 +39,4 @@ public class OptionsMenu {
     private Locator findEditDetailsOption() {
         return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Edit details");
     }
-
 }
