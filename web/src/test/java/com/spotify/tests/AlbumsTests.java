@@ -1,15 +1,61 @@
 package com.spotify.tests;
 
+import com.spotify.pageobjects.commons.ContextMenu;
+import com.spotify.pageobjects.commons.OptionsMenu;
+import com.spotify.pageobjects.pages.AlbumPage;
+import com.spotify.pageobjects.pages.LibraryPage;
+import com.spotify.tests.base.WebPlaywrightTestBase;
 import org.junit.jupiter.api.Test;
 
-public class AlbumsTests {
+public class AlbumsTests extends WebPlaywrightTestBase {
 
-    //@Test
-    //void albumEmbeddedLinkCanBeGenerated
+    private final AlbumPage albumPage = new AlbumPage(page);
+    private final ContextMenu contextMenu = new ContextMenu(page);
+    private final LibraryPage libraryPage = new LibraryPage(page);
 
-    //@Test
-    //void albumVersionCanBeSwitched
+    @Test
+    public void albumEmbeddedLinkCanBeGenerated() {
+        albumPage.openAlbumPage("2cWBwpqMsDJC1ZUwz813lo");
 
-    //@Test
-    //void albumCanBeAddedToPlaylist
+        contextMenu
+                .clickContextMenuButton()
+                .selectShareOption()
+                .clickEmbedAlbumOption();
+
+        albumPage
+                .verifyEmbedAlbumModalIsAvailable()
+                .clickShowCodeCheckbox()
+                .verifyIframeCodeFieldContainsAlbum("2cWBwpqMsDJC1ZUwz813lo")
+                .clickEmbedCodeCopyButton()
+                .verifyEmbedCodeCopyButtonIsClicked();
+    }
+
+    @Test
+    public void albumVersionCanBeSwitched() {
+        albumPage
+                .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")
+                .verifyAlbumPageIsAvailable()
+                .verifyExplicitTracksAreAvailable()
+                .clickAlbumTypeSwitcher()
+                .selectAlbumTypeSwitcherOption("The Eminem Show")
+                .verifyExplicitTracksAreNotAvailable();
+    }
+
+    @Test
+    public void albumCanBeAddedToPlaylist() {
+        albumPage
+                .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")
+                .verifyAlbumPageIsAvailable();
+
+        contextMenu
+                .clickContextMenuButton()
+                .selectAddToPlaylistOption()
+                .clickCreatePlaylistButton();
+
+        libraryPage
+                .clickPlaylistsFilterButton()
+                .verifyPlaylistsFilterButtonIsPressed()
+                .selectSortByOption("Recently Added")
+                .verifyCreatedPlaylistIsAvailable("The Eminem Show");
+    }
 }

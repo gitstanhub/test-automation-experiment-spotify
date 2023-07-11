@@ -29,4 +29,8 @@ public class ElementChecks {
     public void assertInputElementContainsText(String expectedText, Locator locator) {
         Assertions.assertEquals(expectedText, locator.inputValue(), "Couldn't find the expected text inside the specified element");
     }
+
+    public void assertElementContainsText(String expectedText, Locator locator) {
+        Assertions.assertEquals(expectedText, locator.innerText(), "Couldn't find the expected text inside the specified element");
+    }
 }

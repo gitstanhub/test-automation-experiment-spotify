@@ -25,8 +25,8 @@ public class WebPlaywrightTestBase {
         cookiesBanner.handleCookiesBanner();
     }
 
-//    @AfterEach
-//    public void tearDown() {
-//        playwrightDriverHandler.closeDriver();
-//    }
+    @AfterEach
+    public void tearDown() {
+        playwrightDriverHandler.closeDriver();
+    }
 }

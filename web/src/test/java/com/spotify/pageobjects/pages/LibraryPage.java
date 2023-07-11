@@ -100,6 +100,11 @@ public class LibraryPage {
         return this;
     }
 
+    public LibraryPage verifyCreatedPlaylistIsAvailable(String expectedPlaylistName) {
+        Assertions.assertTrue(elementChecks.isElementVisible(findLibraryItemByText(expectedPlaylistName).locator("nth=0")));
+        return this;
+    }
+
     private Locator findLibraryPageTitle() {
         return elementActions.findElementByExactText("Your Library");
     }
