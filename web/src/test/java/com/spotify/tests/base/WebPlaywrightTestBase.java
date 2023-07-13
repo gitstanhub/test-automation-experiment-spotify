@@ -21,8 +21,14 @@ public class WebPlaywrightTestBase {
 
     @BeforeEach
     public void setUp() {
+//        boolean RemoteRun = Boolean.parseBoolean((browserConfig.getProperty("remoteRun"))).toString();
+//        boolean headlessMode = Boolean.parseBoolean((browserConfig.getProperty("headlessMode"))).toString();
+//        boolean enableVideo = Boolean.parseBoolean((browserConfig.getProperty("enableVideo"))).toString();
+
         loginPage.handleLoginFor("", "");
         cookiesBanner.handleCookiesBanner();
+
+        // PlaywrightDriverHandler.setupDriver(abc, abc, abc);
     }
 
     @AfterEach

@@ -6,7 +6,7 @@ import com.spotify.utils.ElementActions;
 import com.spotify.utils.ElementChecks;
 
 public class HomePage {
-
+//extends PlaywrightPage
     private final BrowserActions browserActions;
     private final ElementActions elementActions;
     private final ElementChecks elementChecks;
