@@ -5,6 +5,8 @@ import lombok.Getter;
 
 import java.util.Arrays;
 
+import static com.spotify.driver.PlaywrightConstants.getAllSupportedBrowserNames;
+
 @AllArgsConstructor
 @Getter
 public enum PlaywrightBrowser {
@@ -23,7 +25,7 @@ public enum PlaywrightBrowser {
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0"
     ),
     IPHONE_13_PRO(
-            "iphone 13 pro",
+            "iphone_13_pro",
             "webkit",
             390,
             844,
@@ -31,7 +33,7 @@ public enum PlaywrightBrowser {
     );
 
     private final String name;
-    private final String image;
+    private final String browserImage;
     private final int width;
     private final int height;
     private final String userAgent;
@@ -41,6 +43,8 @@ public enum PlaywrightBrowser {
                 .filter(browser -> browser.getName().equals(browserName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(
-                        String.format("Couldn't find a browser by the provided name: [%s]", browserName)));
+                        String.format("Couldn't find a browser by the provided parameter vale: %s, " +
+                                "please use one of the following: %s", browserName, getAllSupportedBrowserNames())
+                ));
     }
 }
