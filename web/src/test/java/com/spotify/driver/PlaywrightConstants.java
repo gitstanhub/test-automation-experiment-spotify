@@ -6,9 +6,9 @@ import java.util.List;
 public class PlaywrightConstants {
 
     /**
-     * Timeout amount for the driver in milliseconds
+     * Timeout for remote browser connection in milliseconds
      */
-    public static final double CONNECTION_TIMEOUT = 600000;
+    public static final double REMOTE_CONNECTION_TIMEOUT = 600000;
 
     /**
      * Currently supported browsers that can be used for both local and remote runs

@@ -43,7 +43,8 @@ dependencies {
             "org.springframework:spring-context:5.2.24.RELEASE",
             "org.springframework:spring-test:5.2.24.RELEASE",
             "org.slf4j:slf4j-api:2.0.7",
-            "ch.qos.logback:logback-classic:1.4.8"
+            "ch.qos.logback:logback-classic:1.4.8",
+            "org.aeonbits.owner:owner:1.0.12"
     )
 }
 
