@@ -20,7 +20,11 @@ public class PlaywrightBrowserFactory {
         log.info("Preparing a {} browser", requestedBrowser);
         PlaywrightBrowser playwrightBrowser = PlaywrightBrowser.getByName(requestedBrowser);
 
-//        return remote ? getRemoteBrowser() : getLocalBrowser()
+        if (remote) {
+            return getRemoteBrowser(playwright, playwrightBrowser, testName, enableVideo, headless);
+        } else {
+            return getLocalBrowser(playwright, playwrightBrowser, headless);
+        }
     }
 
     private static Browser getLocalBrowser(Playwright playwright, PlaywrightBrowser playwrightBrowser, boolean headless) {
@@ -54,7 +58,7 @@ public class PlaywrightBrowserFactory {
         log.info("Launching a new browser remotely...");
 
         String browserVersion = getPlaywrightBrowserVersion(playwrightBrowser);
-        String moonHubUrl = "https://moonhuburl.com"; // fetch from config
+        String moonHubUrl = ConfigProviderWeb.getPlaywrightBrowserConfiguration().moonUrl();
 
         String sessionName = String.format("%s-%s", LocalDateTime.now(), testName);
         String url = String.format("%s/%s/%s?headless=%s&enableVideo=%s&name=%s",
@@ -103,7 +107,4 @@ public class PlaywrightBrowserFactory {
             }
         }
     }
-
-
-//    private static String getURL() throws ConfigurationException;
 }

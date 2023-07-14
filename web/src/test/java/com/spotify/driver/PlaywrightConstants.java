@@ -11,7 +11,7 @@ public class PlaywrightConstants {
     public static final double REMOTE_CONNECTION_TIMEOUT = 600000;
 
     /**
-     * Currently supported browsers that can be used for both local and remote runs
+     * Supported browsers that can be used for both local and remote runs
      */
     protected static final String BROWSER_NAME_CHROMIUM = "chromium";
     protected static final String BROWSER_NAME_FIREFOX = "firefox";

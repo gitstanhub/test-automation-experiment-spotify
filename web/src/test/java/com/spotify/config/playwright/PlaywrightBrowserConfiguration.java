@@ -20,4 +20,7 @@ public interface PlaywrightBrowserConfiguration extends Config {
 
     @Key("moonUrl")
     String moonUrl();
+
+    @Key("playwrightTimeout")
+    double playwrightTimeout();
 }
