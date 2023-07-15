@@ -1,24 +1,15 @@
 package com.spotify.pageobjects.commons;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
-import com.spotify.utils.BrowserActions;
-import com.spotify.utils.ElementActions;
-import com.spotify.utils.ElementChecks;
+import com.spotify.pageobjects.base.PlaywrightPage;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class ContextMenu {
-
-    private final BrowserActions browserActions;
-    private final ElementActions elementActions;
-    private final ElementChecks elementChecks;
-    private final Page page;
-
-    public ContextMenu(Page page) {
-        this.page = page;
-        this.browserActions = new BrowserActions(page);
-        this.elementActions = new ElementActions(page);
-        this.elementChecks = new ElementChecks(page);
-    }
+@Component
+@Lazy
+@Slf4j
+public class ContextMenu extends PlaywrightPage {
 
     public ContextMenu clickContextMenuButton() {
         findContextMenuButton().click();

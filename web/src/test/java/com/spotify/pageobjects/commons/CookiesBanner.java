@@ -1,29 +1,23 @@
 package com.spotify.pageobjects.commons;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
 import com.microsoft.playwright.PlaywrightException;
-import com.spotify.utils.BrowserActions;
-import com.spotify.utils.ElementActions;
+import com.spotify.pageobjects.base.PlaywrightPage;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeoutException;
+import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 
-public class CookiesBanner {
-
-    private final BrowserActions browserActions;
-    private final ElementActions elementActions;
-    private final Page page;
-
-    public CookiesBanner(Page page) {
-        this.page = page;
-        this.browserActions = new BrowserActions(page);
-        this.elementActions = new ElementActions(page);
-    }
+@Component
+@Lazy
+@Slf4j
+public class CookiesBanner extends PlaywrightPage {
 
     public CookiesBanner handleCookiesBanner() {
 
         try {
-            page.waitForSelector("#onetrust-banner-sdk");
+           getPage().waitForSelector("#onetrust-banner-sdk");
             System.out.println("Found the banner");
             clickCookiesAcceptButton();
         } catch (PlaywrightException e) {

@@ -1,28 +1,21 @@
 package com.spotify.pageobjects.commons;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
-import com.spotify.utils.BrowserActions;
-import com.spotify.utils.ElementActions;
-import com.spotify.utils.ElementChecks;
+import com.spotify.pageobjects.base.PlaywrightPage;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class OptionsMenu {
+import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 
-    private final BrowserActions browserActions;
-    private final ElementActions elementActions;
-    private final ElementChecks elementChecks;
-    private final Page page;
-
-    public OptionsMenu(Page page) {
-        this.page = page;
-        this.browserActions = new BrowserActions(page);
-        this.elementActions = new ElementActions(page);
-        this.elementChecks = new ElementChecks(page);
-    }
+@Component
+@Lazy
+@Slf4j
+public class OptionsMenu extends PlaywrightPage {
 
     public OptionsMenu verifyOptionsMenuIsAvailable() {
-        page.waitForSelector("div[id='context-menu']");
+       getPage().waitForSelector("div[id='context-menu']");
         Assertions.assertTrue(elementChecks.isElementVisible(findContextMenu()));
         return this;
     }

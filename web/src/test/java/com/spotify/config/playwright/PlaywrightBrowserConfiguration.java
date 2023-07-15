@@ -4,8 +4,9 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:configuration/playwright_browser_configuration.properties",
-        "system:properties"
+        "system:properties",
+        "classpath:configuration/${env}:local.properties",
+        "classpath:configuration/local.properties"
 })
 public interface PlaywrightBrowserConfiguration extends Config {
 
@@ -21,6 +22,25 @@ public interface PlaywrightBrowserConfiguration extends Config {
     @Key("moonUrl")
     String moonUrl();
 
-    @Key("playwrightTimeout")
-    double playwrightTimeout();
+    @Key("moonStatusUrl")
+    String moonStatusUrl();
+
+    @Key("playwrightBrowserTimeout")
+    double playwrightBrowserTimeout();
+
+    @Key("remoteEnabled")
+    boolean remoteEnabled();
+
+    @Key("headlessEnabled")
+    boolean headlessEnabled();
+
+    @Key("videoRecordingEnabled")
+    boolean videoRecordingEnabled();
+
+//    default String env() {
+//        return "local";
+//    }
+
+    @DefaultValue("chromium")
+    String browser();
 }

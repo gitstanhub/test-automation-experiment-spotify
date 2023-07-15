@@ -6,9 +6,9 @@ import com.spotify.config.ConfigProviderWeb;
 
 public class PlaywrightBrowserContextFactory {
 
-    public static BrowserContext createBrowserContext(String browserName, Browser browser) {
+    public static BrowserContext getBrowserContext(String browserName, Browser browser) {
 
-        double playwrightTimeout = ConfigProviderWeb.getPlaywrightBrowserConfiguration().playwrightTimeout();
+        double playwrightBrowserTimeout = ConfigProviderWeb.getPlaywrightBrowserConfiguration().playwrightBrowserTimeout();
 
         PlaywrightBrowser playwrightBrowser = PlaywrightBrowser.getByName(browserName);
 
@@ -19,7 +19,8 @@ public class PlaywrightBrowserContextFactory {
                 .setUserAgent(playwrightBrowser.getUserAgent());
 
         BrowserContext browserContext = browser.newContext(browserContextOptions);
-        browserContext.setDefaultTimeout(playwrightTimeout);
+        browserContext.setDefaultTimeout(playwrightBrowserTimeout);
+
         return browserContext;
     }
 }

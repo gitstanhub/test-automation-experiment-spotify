@@ -89,20 +89,19 @@ public class PlaywrightBrowserFactory {
 
         switch (browserImageName) {
             case "chromium" -> {
-                log.info("Getting browser version for Chromium");
+                log.info("Getting browser version from the config for Chromium");
                 return ConfigProviderWeb.getPlaywrightBrowserConfiguration().chromiumBrowserVersion();
             }
             case "firefox" -> {
-                log.info("Getting browser version for Firefox");
+                log.info("Getting browser version from the config for Firefox");
                 return ConfigProviderWeb.getPlaywrightBrowserConfiguration().firefoxBrowserVersion();
             }
             case "webkit" -> {
-                log.info("Getting browser version for WebKit");
+                log.info("Getting browser version from the config for WebKit");
                 return ConfigProviderWeb.getPlaywrightBrowserConfiguration().webkitBrowserVersion();
             }
             default -> {
-                String errorMessage = String.format("Couldn't find a corresponding browser version for %s in the config", browserImageName);
-                log.error(errorMessage);
+                String errorMessage = String.format("Couldn't find a corresponding browser %s in the config to fetch a version for it", browserImageName);
                 throw new ConfigurationException(errorMessage);
             }
         }

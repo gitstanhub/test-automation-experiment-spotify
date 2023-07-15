@@ -1,36 +1,28 @@
 package com.spotify.pageobjects.pages;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.MouseButton;
-import com.spotify.utils.BrowserActions;
-import com.spotify.utils.ElementActions;
-import com.spotify.utils.ElementChecks;
+import com.spotify.pageobjects.base.PlaywrightPage;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
 import static com.github.seregamorph.hamcrest.OrderMatchers.softOrdered;
+import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class LibraryPage {
-
-    private final BrowserActions browserActions;
-    private final ElementActions elementActions;
-    private final ElementChecks elementChecks;
-    private final Page page;
-
-    public LibraryPage(Page page) {
-        this.page = page;
-        this.browserActions = new BrowserActions(page);
-        this.elementActions = new ElementActions(page);
-        this.elementChecks = new ElementChecks(page);
-    }
+@Component
+@Lazy
+@Slf4j
+public class LibraryPage extends PlaywrightPage {
 
     public LibraryPage verifyLibraryButtonIsAvailable() {
-        page.waitForSelector("button[aria-label='Collapse Your Library']");
+        getPage().waitForSelector("button[aria-label='Collapse Your Library']");
         Assertions.assertTrue(elementChecks.isElementVisible(findLibraryPageTitle()));
         return this;
     }
@@ -57,7 +49,7 @@ public class LibraryPage {
     }
 
     public LibraryPage verifyPlaylistsFilterButtonIsPressed() {
-        page.waitForSelector("button[aria-label='Clear filters']");
+        getPage().waitForSelector("button[aria-label='Clear filters']");
         Assertions.assertTrue(isLibraryFilterButtonPressed(findPlaylistsFilterButton()));
         return this;
     }
@@ -69,7 +61,7 @@ public class LibraryPage {
                 .findElementBySelector("div[id = context-menu] li button span ")
                 .filter(new Locator.FilterOptions().setHasText(sortByOption)).click();
 
-        page.waitForCondition(() -> elementChecks.isElementVisibleWithText(sortByOption));
+        getPage().waitForCondition(() -> elementChecks.isElementVisibleWithText(sortByOption));
 
         return this;
     }
