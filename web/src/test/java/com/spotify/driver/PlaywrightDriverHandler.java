@@ -1,31 +1,66 @@
 package com.spotify.driver;
 
 import com.microsoft.playwright.*;
+import lombok.extern.slf4j.Slf4j;
 
+import javax.naming.ConfigurationException;
+
+@Slf4j
 public class PlaywrightDriverHandler {
-//TODO : move driver management into factory class, add SpringBoot @Lazy and @Autowired to the page object initialisation
 
-    private static Playwright playwright;
-    private static BrowserContext context;
-    private static Page page;
+    private static final ThreadLocal<Playwright> playwright = new ThreadLocal<>();
+    private static final ThreadLocal<Browser> browser = new ThreadLocal<>();
+    private static final ThreadLocal<BrowserContext> browserContext = new ThreadLocal<>();
+    private static final ThreadLocal<Page> page = new ThreadLocal<>();
 
-    private void createDriver() {
-        playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-        context = browser.newContext();
-        page = context.newPage();
-        page.setViewportSize(1280, 720);
+    public static synchronized void createDriver(String browserName, String testName, boolean enableVideo, boolean headless, boolean remote) throws ConfigurationException {
+        log.info("New Playwright driver is being created for: '{}'", browserName);
+
+        playwright.set(Playwright.create());
+        Browser browserInstance = PlaywrightBrowserFactory.getBrowser(playwright.get(), browserName, testName, enableVideo, headless, remote);
+        browser.set(browserInstance);
+
+        log.info(String.format("Browser %s with version %s has started", browser.get().browserType(), browser.get().version()));
+
+        browserContext.set(PlaywrightBrowserContextFactory.getBrowserContext(browserName, browserInstance));
+        page.set(browserContext.get().newPage());
+        listenToConsoleMessages(page.get());
     }
 
-    public void closeDriver() {
-        context.close();
-        playwright.close();
-    }
+    public static synchronized void closeDriver() {
+        try {
+            if (browserContext.get() != null) {
+                browserContext.get().close();
+                browserContext.set(null);
+            }
 
-    public Page getPage() {
-        if (page == null) {
-            new PlaywrightDriverHandler().createDriver();
+            if (playwright.get() != null) {
+                playwright.get().close();
+                playwright.set(null);
+            }
+
+            log.info("Playwright driver has been closed");
+
+        } catch (Exception e) {
+            log.warn("Couldn't close the Playwright driver due to: ", e);
         }
-        return page;
+
+        page.set(null);
+        browser.set(null);
+    }
+
+    private static void listenToConsoleMessages(Page page) {
+        page.onConsoleMessage(consoleMessage -> {
+            log.debug("Console log level: {}", consoleMessage.type());
+            log.debug("Console message: {}", consoleMessage.text());
+
+            if (consoleMessage.location() != null) {
+                log.debug("Console message location: {}", consoleMessage.location());
+            }
+        });
+    }
+
+    public static Page getPage() {
+        return page.get();
     }
 }

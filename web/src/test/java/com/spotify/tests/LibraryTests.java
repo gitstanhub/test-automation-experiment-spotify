@@ -1,22 +1,42 @@
 package com.spotify.tests;
 
+import com.spotify.pageobjects.commons.CookiesBanner;
 import com.spotify.pageobjects.commons.OptionsMenu;
 import com.spotify.pageobjects.pages.HomePage;
 import com.spotify.pageobjects.pages.LibraryPage;
+import com.spotify.pageobjects.pages.LoginPage;
 import com.spotify.pageobjects.pages.PlaylistPage;
-import com.spotify.tests.base.WebPlaywrightTestBase;
+import com.spotify.tests.base.WebTestsBase;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
-public class LibraryTests extends WebPlaywrightTestBase {
+public class LibraryTests extends WebTestsBase {
 
-    private final HomePage homePage = new HomePage(page);
-    private final LibraryPage libraryPage = new LibraryPage(page);
-    private final OptionsMenu optionsMenu = new OptionsMenu(page);
-    private final PlaylistPage playlistPage = new PlaylistPage(page);
+    @Autowired
+    HomePage homePage;
+    @Autowired
+    @Lazy
+    LibraryPage libraryPage;
+    @Autowired
+    @Lazy
+    OptionsMenu optionsMenu;
+    @Autowired
+    @Lazy
+    PlaylistPage playlistPage;
+    @Autowired
+    @Lazy
+    LoginPage loginPage;
+    @Autowired
+    @Lazy
+    CookiesBanner cookiesBanner;
 
     @Test
     public void libraryCanBeSortedAlphabetically() {
         homePage.openHomePage();
+
+        loginPage.handleLoginFor("stasdmitruk1@gmail.com", "3Dabde70!481516");
+        cookiesBanner.handleCookiesBanner();
 
         libraryPage
                 .verifyLibraryButtonIsAvailable()
@@ -28,6 +48,9 @@ public class LibraryTests extends WebPlaywrightTestBase {
     @Test
     public void playlistDetailsCanBeUpdatedFromLibrary() {
         homePage.openHomePage();
+
+        loginPage.handleLoginFor("stasdmitruk1@gmail.com", "3Dabde70!481516");
+        cookiesBanner.handleCookiesBanner();
 
         libraryPage
                 .verifyLibraryButtonIsAvailable()

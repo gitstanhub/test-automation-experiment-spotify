@@ -17,7 +17,7 @@ import static com.spotify.testdata.artist.constants.ArtistAlbums.*;
 import static com.spotify.testdata.artist.constants.ArtistEntities.*;
 
 public class ArtistDataFetchTests {
-
+//ToDo extends base class
     ArtistClient artistClient = new ArtistClient();
     ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
     ArtistProfileResponseFieldsUtil artistResponseFieldsUtil = new ArtistProfileResponseFieldsUtil();

@@ -1,17 +1,28 @@
 package com.spotify.tests;
 
 import com.spotify.pageobjects.commons.ContextMenu;
-import com.spotify.pageobjects.commons.OptionsMenu;
 import com.spotify.pageobjects.pages.AlbumPage;
 import com.spotify.pageobjects.pages.LibraryPage;
-import com.spotify.tests.base.WebPlaywrightTestBase;
+import com.spotify.tests.base.WebTestsBase;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
-public class AlbumsTests extends WebPlaywrightTestBase {
+public class AlbumsTests extends WebTestsBase {
 
-    private final AlbumPage albumPage = new AlbumPage(page);
-    private final ContextMenu contextMenu = new ContextMenu(page);
-    private final LibraryPage libraryPage = new LibraryPage(page);
+    @Autowired
+    @Lazy
+    AlbumPage albumPage;
+    @Autowired
+    @Lazy
+    ContextMenu contextMenu;
+    @Autowired
+    @Lazy
+    LibraryPage libraryPage;
+
+//    private final AlbumPage albumPage = new AlbumPage(page);
+//    private final ContextMenu contextMenu = new ContextMenu(page);
+//    private final LibraryPage libraryPage = new LibraryPage(page);
 
     @Test
     public void albumEmbeddedLinkCanBeGenerated() {

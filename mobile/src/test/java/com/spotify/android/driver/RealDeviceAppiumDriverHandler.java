@@ -51,10 +51,30 @@ public class RealDeviceAppiumDriverHandler {
         return wait;
     }
 
+
+    //ToDo update to getter of driver
     public void commonTearDown() {
         if (driver != null) {
             driver.quit();
             driver = null;
         }
     }
+
+
+    //ToDo Factory: get local / browserstack driver
+    //ToDo move all variables to Config
+
+
+    //ToDo use this method in the factory
+//    public void startService() {
+//        service = AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
+//                .usingAnyFreePort() // Use any free port, it could be different for every new server instance
+//                .withArgument(GeneralServerFlag.SESSION_OVERRIDE) // Override session if any
+//                .withLogFile(new File("path/to/log/file"))); // Specify a file to output server logs
+//                  .withIPadress("127.0.0.1")
+//        service.start();
+//    }
+
+
+    //ToDo add support for ctx and include it into before method: config/ApplicationCofniguration, depending on platorm, do ctx.register for pages and then ctx.getBean of interface class of a page
 }

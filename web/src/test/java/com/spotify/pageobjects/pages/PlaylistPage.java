@@ -1,25 +1,18 @@
 package com.spotify.pageobjects.pages;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
-import com.spotify.utils.BrowserActions;
-import com.spotify.utils.ElementActions;
-import com.spotify.utils.ElementChecks;
+import com.spotify.pageobjects.base.PlaywrightPage;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class PlaylistPage {
+import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 
-    private final BrowserActions browserActions;
-    private final ElementActions elementActions;
-    private final ElementChecks elementChecks;
-    private final Page page;
-
-    public PlaylistPage(Page page) {
-        this.page = page;
-        this.browserActions = new BrowserActions(page);
-        this.elementActions = new ElementActions(page);
-        this.elementChecks = new ElementChecks(page);
-    }
+@Component
+@Lazy
+@Slf4j
+public class PlaylistPage extends PlaywrightPage {
 
     public PlaylistPage verifyEditDetailsModalIsAvailable() {
         Assertions.assertTrue(elementChecks.isElementVisible(findEditDetailsModal()));
@@ -47,7 +40,7 @@ public class PlaylistPage {
     }
 
     public PlaylistPage verifyPlaylistSectionIsAvailable() {
-        page.waitForSelector("[data-testid='playlist-page']");
+        getPage().waitForSelector("[data-testid='playlist-page']");
         Assertions.assertTrue(elementChecks.isElementVisible(findPlaylistSection()));
         return this;
     }

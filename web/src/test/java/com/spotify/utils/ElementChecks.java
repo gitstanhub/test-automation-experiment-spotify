@@ -1,18 +1,15 @@
 package com.spotify.utils;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.stereotype.Component;
 
+@Component
+@Slf4j
 public class ElementChecks {
 
-    private final Page page;
-    private final ElementActions elementActions;
-
-    public ElementChecks(Page page) {
-        this.page = page;
-        this.elementActions = new ElementActions(page);
-    }
+    private final ElementActions elementActions = new ElementActions();
 
     public boolean isElementVisibleWithId(String elementId) {
         return elementActions.findElementById(elementId).isVisible();

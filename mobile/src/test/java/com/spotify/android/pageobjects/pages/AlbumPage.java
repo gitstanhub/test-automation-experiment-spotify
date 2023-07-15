@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AlbumPage {
-
+//ToDo add abstract class to implement to support both iOS and Android
     private final AndroidDriver driver;
     private final ElementChecks elementChecks;
     private final PageNavigationActions pageNavigationActions;
