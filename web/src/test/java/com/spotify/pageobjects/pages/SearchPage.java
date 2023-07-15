@@ -1,32 +1,24 @@
 package com.spotify.pageobjects.pages;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
 import com.microsoft.playwright.PlaywrightException;
 import com.microsoft.playwright.options.AriaRole;
-import com.spotify.utils.BrowserActions;
-import com.spotify.utils.ElementActions;
-import com.spotify.utils.ElementChecks;
-import io.qameta.allure.Step;
+import com.spotify.pageobjects.base.PlaywrightPage;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class SearchPage {
+import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 
-    private final BrowserActions browserActions;
-    private final ElementActions elementActions;
-    private final ElementChecks elementChecks;
-    private final Page page;
-
-    public SearchPage (Page page) {
-        this.page = page;
-        this.browserActions = new BrowserActions(page);
-        this.elementActions = new ElementActions(page);
-        this.elementChecks = new ElementChecks(page);
-    }
+@Component
+@Lazy
+@Slf4j
+public class SearchPage extends PlaywrightPage {
 
     public SearchPage openSearchPage() {
         browserActions.navigateToUrl("https://open.spotify.com/search");
@@ -39,7 +31,7 @@ public class SearchPage {
     }
 
     public SearchPage verifyAllFilterButtonIsAvailable() {
-        page.waitForSelector("[data-testid='grid-search-results']");
+        getPage().waitForSelector("[data-testid='grid-search-results']");
         Assertions.assertTrue(elementChecks.isElementVisible(findAllFilterButton()));
         return this;
     }
@@ -55,7 +47,7 @@ public class SearchPage {
     }
 
     public SearchPage verifySearchedSongIsReturnedInTop10Results(String expectedSongTitle, String expectedSongArtist) {
-        page.waitForSelector("[data-testid = 'tracklist-row']");
+        getPage().waitForSelector("[data-testid = 'tracklist-row']");
 
         String[][] songAndArtistArray = new String[10][2];
 
@@ -94,7 +86,7 @@ public class SearchPage {
     }
 
     public SearchPage verifySearchedPlaylistIsReturnedInTop10Results(String expectedPlaylistTitle) {
-        page.waitForSelector("[data-testid='infinite-scroll-list']");
+        getPage().waitForSelector("[data-testid='infinite-scroll-list']");
 
         String[] playlistsArray = new String[10];
 

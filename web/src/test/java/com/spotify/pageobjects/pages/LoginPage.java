@@ -1,29 +1,20 @@
 package com.spotify.pageobjects.pages;
 
-import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
-import com.spotify.utils.BrowserActions;
-import com.spotify.utils.ElementActions;
-import com.spotify.utils.ElementChecks;
+import com.spotify.pageobjects.base.PlaywrightPage;
 import io.qameta.allure.Step;
-import lombok.extern.java.Log;
-import org.junit.jupiter.api.Assertions;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class LoginPage {
+import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 
-    private final BrowserActions browserActions;
-    private final ElementActions elementActions;
-    private final ElementChecks elementChecks;
-    private final Page page;
-
-    public LoginPage (Page page) {
-        this.page = page;
-        this.browserActions = new BrowserActions(page);
-        this.elementActions = new ElementActions(page);
-        this.elementChecks = new ElementChecks(page);
-    }
+@Component
+@Lazy
+@Slf4j
+public class LoginPage extends PlaywrightPage {
 
     @Step
     public LoginPage openLoginPage() {
@@ -58,7 +49,7 @@ public class LoginPage {
             fillInUsername(username);
             fillInPassword(password);
             clickLoginButton();
-            page.waitForSelector("[data-testid = 'web-player-link']", new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
+            getPage().waitForSelector("[data-testid = 'web-player-link']", new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
             clickWebPlayerButton();
         } else if (findLoggedInStateTitle().isVisible()) {
             clickWebPlayerButton();

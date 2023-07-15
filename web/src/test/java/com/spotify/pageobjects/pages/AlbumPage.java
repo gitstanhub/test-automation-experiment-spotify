@@ -1,25 +1,18 @@
 package com.spotify.pageobjects.pages;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
-import com.spotify.utils.BrowserActions;
-import com.spotify.utils.ElementActions;
-import com.spotify.utils.ElementChecks;
+import com.spotify.pageobjects.base.PlaywrightPage;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class AlbumPage {
+import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 
-    private final BrowserActions browserActions;
-    private final ElementActions elementActions;
-    private final ElementChecks elementChecks;
-    private final Page page;
-
-    public AlbumPage(Page page) {
-        this.page = page;
-        this.browserActions = new BrowserActions(page);
-        this.elementActions = new ElementActions(page);
-        this.elementChecks = new ElementChecks(page);
-    }
+@Component
+@Lazy
+@Slf4j
+public class AlbumPage extends PlaywrightPage {
 
     public AlbumPage openAlbumPage(String albumId) {
         browserActions.navigateToUrl("https://open.spotify.com/album/" + albumId);
@@ -70,8 +63,8 @@ public class AlbumPage {
     }
 
     public AlbumPage verifyExplicitTracksAreAvailable() {
-       Assertions.assertTrue(elementChecks.isElementVisible(findExplicitIcon()));
-       return this;
+        Assertions.assertTrue(elementChecks.isElementVisible(findExplicitIcon()));
+        return this;
     }
 
     public AlbumPage verifyExplicitTracksAreNotAvailable() {
@@ -80,7 +73,7 @@ public class AlbumPage {
     }
 
     public AlbumPage verifyAlbumPageIsAvailable() {
-        page.waitForSelector("[data-testid='album-page']");
+        getPage().waitForSelector("[data-testid='album-page']");
         Assertions.assertTrue(elementChecks.isElementVisible(findAlbumPageSection()));
         return this;
     }

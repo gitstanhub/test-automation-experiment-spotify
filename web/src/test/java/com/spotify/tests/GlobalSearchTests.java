@@ -1,12 +1,18 @@
 package com.spotify.tests;
 
 import com.spotify.pageobjects.pages.SearchPage;
-import com.spotify.tests.base.WebPlaywrightTestBase;
+import com.spotify.tests.base.WebTestsBase;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
-public class GlobalSearchTests extends WebPlaywrightTestBase {
+public class GlobalSearchTests extends WebTestsBase {
 
-    private final SearchPage searchPage = new SearchPage(page);
+    @Autowired
+    @Lazy
+    SearchPage searchPage;
+
+//    private final SearchPage searchPage = new SearchPage(page);
 
     @Test
     public void songCanBeFoundInTopResults() {
