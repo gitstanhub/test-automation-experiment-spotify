@@ -1,14 +1,15 @@
 package com.spotify.tests;
 
+import com.spotify.annotations.AuthRequired;
 import com.spotify.pageobjects.commons.ContextMenu;
 import com.spotify.pageobjects.pages.AlbumPage;
 import com.spotify.pageobjects.pages.LibraryPage;
-import com.spotify.tests.base.WebTestsBase;
+import com.spotify.tests.base.WebTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
-public class AlbumsTests extends WebTestsBase {
+public class AlbumsTests extends WebTests {
 
     @Autowired
     @Lazy
@@ -20,11 +21,8 @@ public class AlbumsTests extends WebTestsBase {
     @Lazy
     LibraryPage libraryPage;
 
-//    private final AlbumPage albumPage = new AlbumPage(page);
-//    private final ContextMenu contextMenu = new ContextMenu(page);
-//    private final LibraryPage libraryPage = new LibraryPage(page);
-
     @Test
+    @AuthRequired
     public void albumEmbeddedLinkCanBeGenerated() {
         albumPage.openAlbumPage("2cWBwpqMsDJC1ZUwz813lo");
 
@@ -42,6 +40,7 @@ public class AlbumsTests extends WebTestsBase {
     }
 
     @Test
+    @AuthRequired
     public void albumVersionCanBeSwitched() {
         albumPage
                 .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")
@@ -53,6 +52,7 @@ public class AlbumsTests extends WebTestsBase {
     }
 
     @Test
+    @AuthRequired
     public void albumCanBeAddedToPlaylist() {
         albumPage
                 .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")

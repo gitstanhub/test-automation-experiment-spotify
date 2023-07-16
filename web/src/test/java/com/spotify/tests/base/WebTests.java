@@ -1,17 +1,18 @@
 package com.spotify.tests.base;
 
-import com.microsoft.playwright.Page;
+import com.spotify.annotations.AuthRequired;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.config.SpringConfigWeb;
 import com.spotify.driver.PlaywrightDriverHandler;
 import com.spotify.pageobjects.commons.CookiesBanner;
 import com.spotify.pageobjects.pages.LoginPage;
-import com.spotify.pageobjects.pages.SearchPage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -21,7 +22,14 @@ import java.lang.reflect.Method;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = SpringConfigWeb.class)
 @Slf4j
-public class WebTestsBase {
+public class WebTests {
+
+    @Autowired
+    @Lazy
+    LoginPage loginPage;
+    @Autowired
+    @Lazy
+    CookiesBanner cookiesBanner;
 
     @BeforeEach
     public void setUp(TestInfo testInfo) throws ConfigurationException {
@@ -36,14 +44,21 @@ public class WebTestsBase {
 
         PlaywrightDriverHandler.createDriver(browserName, testName, videoRecordingEnabled, headlessEnabled, remoteEnabled);
 
-//        loginPage.handleLoginFor("", "");
-//        cookiesBanner.handleCookiesBanner();
-
+        handleAuthIfNeeded(testInfo);
     }
 
     @AfterEach
     public void tearDown() {
         log.info("Closing driver after each test run");
         PlaywrightDriverHandler.closeDriver();
+    }
+
+    private void handleAuthIfNeeded(TestInfo testInfo) {
+        Method testMethod = testInfo.getTestMethod().orElseThrow();
+
+        if (testMethod.isAnnotationPresent(AuthRequired.class)) {
+            loginPage.handleLoginFor("", "");
+            cookiesBanner.handleCookiesBanner();
+        }
     }
 }

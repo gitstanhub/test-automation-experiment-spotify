@@ -1,20 +1,20 @@
 package com.spotify.tests;
 
+import com.spotify.annotations.AuthRequired;
 import com.spotify.pageobjects.pages.SearchPage;
-import com.spotify.tests.base.WebTestsBase;
+import com.spotify.tests.base.WebTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
-public class GlobalSearchTests extends WebTestsBase {
+public class GlobalSearchTests extends WebTests {
 
     @Autowired
     @Lazy
     SearchPage searchPage;
 
-//    private final SearchPage searchPage = new SearchPage(page);
-
     @Test
+    @AuthRequired
     public void songCanBeFoundInTopResults() {
         searchPage
                 .openSearchPage()
@@ -25,6 +25,7 @@ public class GlobalSearchTests extends WebTestsBase {
     }
 
     @Test
+    @AuthRequired
     public void playlistCanBeFoundInTopResults() {
         searchPage
                 .openSearchPage()

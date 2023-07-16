@@ -38,10 +38,6 @@ dependencies {
             "com.neovisionaries:nv-i18n:1.29",
             "com.google.guava:guava:32.1.1-jre",
             "com.github.seregamorph:hamcrest-more-matchers:0.1",
-
-//            "org.springframework:spring-context:5.2.24.RELEASE",
-//            "org.springframework:spring-test:5.2.24.RELEASE",
-
             "org.springframework:spring-context:5.3.23",
             "org.springframework:spring-test:5.3.23",
 
