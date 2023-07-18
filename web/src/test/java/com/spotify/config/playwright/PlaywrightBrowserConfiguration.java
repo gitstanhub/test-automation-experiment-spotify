@@ -5,7 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:configuration/${env}:local.properties",
+        "classpath:configuration/${env}.properties",
         "classpath:configuration/local.properties"
 })
 public interface PlaywrightBrowserConfiguration extends Config {
@@ -36,10 +36,6 @@ public interface PlaywrightBrowserConfiguration extends Config {
 
     @Key("videoRecordingEnabled")
     boolean videoRecordingEnabled();
-
-//    default String env() {
-//        return "local";
-//    }
 
     @DefaultValue("chromium")
     String browser();

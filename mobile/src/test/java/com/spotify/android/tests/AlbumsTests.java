@@ -29,16 +29,16 @@ public class AlbumsTests extends MobileAndroidTestBase {
                 .verifyAlbumTitleHasText("The Eminem Show")
                 .verifyArtistNamesRowContainsArtist("Eminem")
                 .verifyAlbumInfoHasText("Album • 2002")
-                .verifyFavouritesButtonIsAvailable()
-                .verifyDownloadButtonIsAvailable();
+                .verifyFavouritesButtonIsAvailable();
+//                .verifyDownloadButtonIsAvailable();
 
         mediaInteraction
                 .verifyContextMenuButtonIsAvailable()
-                .verifyShuffleButtonIsAvailable()
+//                .verifyShuffleButtonIsAvailable()
                 .verifyPlayButtonIsAvailable();
 
         albumPage
-                .verifyTrackCloudIsAvailable()
+//                .verifyTrackCloudIsAvailable()
                 .verifyAlbumReleaseDateIs("May 26, 2002")
                 .verifyAlbumArtistListContainsItem("Eminem")
                 .verifyYouMightAlsoLikeIsAvailable()

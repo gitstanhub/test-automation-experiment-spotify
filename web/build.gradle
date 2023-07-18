@@ -40,7 +40,6 @@ dependencies {
             "com.github.seregamorph:hamcrest-more-matchers:0.1",
             "org.springframework:spring-context:5.3.23",
             "org.springframework:spring-test:5.3.23",
-
             "org.slf4j:slf4j-api:2.0.7",
             "ch.qos.logback:logback-classic:1.4.8",
             "org.aeonbits.owner:owner:1.0.12"

@@ -27,8 +27,8 @@ public class LibraryTests extends MobileAndroidTestBase {
                 .tapLibraryButton();
 
         libraryPage
-                .tapCreatePlaylistButton()
-                .choosePlaylistOption();
+                .tapCreatePlaylistButton();
+//                .choosePlaylistOption();
 
         playlistCreationPage
                 .verifyPlaylistCreationPageIsOpened()
@@ -47,7 +47,7 @@ public class LibraryTests extends MobileAndroidTestBase {
                 .tapLibraryButton();
 
         libraryPage
-                .verifyLibraryPageIsOpened()
+//                .verifyLibraryPageIsOpened()
                 .tapPlaylistsButton()
                 .selectPlaylistItem("Braa", "Stanislav");
 

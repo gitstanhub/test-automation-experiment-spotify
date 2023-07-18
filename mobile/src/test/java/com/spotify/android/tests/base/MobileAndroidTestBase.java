@@ -1,6 +1,6 @@
 package com.spotify.android.tests.base;
 
-import com.spotify.android.driver.RealDeviceAppiumDriverHandler;
+import com.spotify.android.driver.AppiumDriverHandler;
 import com.spotify.android.pageobjects.commons.accessprompts.BluetoothAccessPrompt;
 import com.spotify.android.pageobjects.commons.ScreensaverAd;
 import com.spotify.android.pageobjects.pages.LoginPage;
@@ -11,9 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MobileAndroidTestBase {
 
-    private final RealDeviceAppiumDriverHandler realDeviceAppiumDriverHandler = new RealDeviceAppiumDriverHandler();
-    protected final AndroidDriver driver = RealDeviceAppiumDriverHandler.getDriver();
-    protected final WebDriverWait wait = RealDeviceAppiumDriverHandler.getWait();
+    private final AppiumDriverHandler realDeviceAppiumDriverHandler = new AppiumDriverHandler();
+    protected final AndroidDriver driver = AppiumDriverHandler.getDriver();
+    protected final WebDriverWait wait = AppiumDriverHandler.getWait();
     private final LoginPage loginPage = new LoginPage(driver, wait);
     private final BluetoothAccessPrompt bluetoothAccessPrompt = new BluetoothAccessPrompt(driver, wait);
     private final ScreensaverAd screensaverAd = new ScreensaverAd(driver, wait);

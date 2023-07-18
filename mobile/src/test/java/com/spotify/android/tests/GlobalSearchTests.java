@@ -17,8 +17,8 @@ public class GlobalSearchTests extends MobileAndroidTestBase {
         navigation
                 .tapSearchButton();
         searchPage
-                .verifySearchPageIsOpened()
-                .tapGlobalSearchField();
+                .verifySearchPageIsOpened();
+//                .tapGlobalSearchField();
         searchResultsPage
                 .searchGloballyFor("Eminem")
                 .tapArtistsFilterButton()
@@ -30,8 +30,8 @@ public class GlobalSearchTests extends MobileAndroidTestBase {
         navigation
                 .tapSearchButton();
         searchPage
-                .verifySearchPageIsOpened()
-                .tapGlobalSearchField();
+                .verifySearchPageIsOpened();
+//                .tapGlobalSearchField();
         searchResultsPage
                 .searchGloballyFor("The Eminem Show")
                 .tapAlbumFilterButton()

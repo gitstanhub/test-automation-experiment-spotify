@@ -40,8 +40,8 @@ dependencies {
             "org.seleniumhq.selenium:selenium-java:4.9.1",
             "org.aeonbits.owner:owner:1.0.12",
             "com.google.guava:guava:32.1.1-jre",
-            "org.springframework:spring-context:5.2.24.RELEASE",
-            "org.springframework:spring-test:5.2.24.RELEASE",
+            "org.springframework:spring-context:5.3.23",
+            "org.springframework:spring-test:5.3.23",
             "org.slf4j:slf4j-api:2.0.7",
             "ch.qos.logback:logback-classic:1.4.8",
             "org.aeonbits.owner:owner:1.0.12"
