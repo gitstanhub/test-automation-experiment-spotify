@@ -10,6 +10,9 @@ import org.aeonbits.owner.Config;
 })
 public interface PlaywrightBrowserConfiguration extends Config {
 
+    @DefaultValue("chromium")
+    String browser();
+
     @Key("chromiumBrowserVersion")
     String chromiumBrowserVersion();
 
@@ -36,7 +39,4 @@ public interface PlaywrightBrowserConfiguration extends Config {
 
     @Key("videoRecordingEnabled")
     boolean videoRecordingEnabled();
-
-    @DefaultValue("chromium")
-    String browser();
 }

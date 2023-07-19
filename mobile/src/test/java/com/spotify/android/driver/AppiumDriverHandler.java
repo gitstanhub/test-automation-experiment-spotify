@@ -22,12 +22,12 @@ import static io.appium.java_client.remote.MobilePlatform.ANDROID;
 public class AppiumDriverHandler {
 
     private static ThreadLocal<AppiumDriver> appiumDriver = new ThreadLocal<>();
-//    private static MobileBrowserFactory mobileBrowserFactory;
+    private static AppiumDeviceFactory appiumDeviceFactory;
     public static AppiumDriverLocalService appiumDriverLocalService;
 
     public static void createDriver(String platformName) {
         log.info("Creating a new driver for {}", platformName);
-//        appiumDriver.set(MobileBrowserFactory.getBrowser(platformName));
+//        appiumDriver.set(AppiumDeviceFactory.getBrowser(platformName));
     }
 
     public static AppiumDriver getDriver() {
@@ -103,13 +103,6 @@ public class AppiumDriverHandler {
 //    }
 
 
-    //ToDo update to getter of driver
-//    public void commonTearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//            driver = null;
-//        }
-//    }
 
 
     //ToDo Factory: get local / browserstack driver

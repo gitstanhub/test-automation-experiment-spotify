@@ -27,29 +27,6 @@ public class PlaywrightBrowserFactory {
         }
     }
 
-    private static Browser getLocalBrowser(Playwright playwright, PlaywrightBrowser playwrightBrowser, boolean headless) {
-
-        String browserImageName = playwrightBrowser.getBrowserImage();
-
-        log.info("Launching a new browser session locally");
-
-        switch (browserImageName) {
-            case "chromium" -> {
-                log.info("A Chromium engine browser is expected to be started locally now");
-                return playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless));
-            }
-            case "firefox" -> {
-                log.info("A Firefox engine browser is expected to be started locally now");
-                return playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(headless));
-            }
-            case "webkit" -> {
-                log.info("A WebKit engine browser is expected to be started locally now");
-                return playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(headless));
-            }
-        }
-        return null;
-    }
-
     private static Browser getRemoteBrowser(Playwright playwright, PlaywrightBrowser playwrightBrowser, String testName,
                                             boolean enableVideo, boolean headless) throws ConfigurationException {
 
@@ -107,5 +84,28 @@ public class PlaywrightBrowserFactory {
                 throw new ConfigurationException(errorMessage);
             }
         }
+    }
+
+    private static Browser getLocalBrowser(Playwright playwright, PlaywrightBrowser playwrightBrowser, boolean headless) {
+
+        String browserImageName = playwrightBrowser.getBrowserImage();
+
+        log.info("Launching a new browser session locally");
+
+        switch (browserImageName) {
+            case "chromium" -> {
+                log.info("A Chromium engine browser is expected to be started locally now");
+                return playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+            }
+            case "firefox" -> {
+                log.info("A Firefox engine browser is expected to be started locally now");
+                return playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+            }
+            case "webkit" -> {
+                log.info("A WebKit engine browser is expected to be started locally now");
+                return playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+            }
+        }
+        return null;
     }
 }
