@@ -1,33 +1,23 @@
 package com.spotify.android.driver;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
 
 import static com.spotify.android.driver.AppiumDriverConstants.LOCAL_SERVER_ADDRESS;
-import static io.appium.java_client.remote.AutomationName.ANDROID_UIAUTOMATOR2;
-import static io.appium.java_client.remote.MobilePlatform.ANDROID;
 
 @Slf4j
 public class AppiumDriverHandler {
 
     private static ThreadLocal<AppiumDriver> appiumDriver = new ThreadLocal<>();
-    private static AppiumDeviceFactory appiumDeviceFactory;
+    private static AppiumDeviceSessionFactory appiumDeviceFactory;
     public static AppiumDriverLocalService appiumDriverLocalService;
 
-    public static void createDriver(String platformName) {
+    public static void createDriver(String environment, String platformName, String deviceName) {
         log.info("Creating a new driver for {}", platformName);
-//        appiumDriver.set(AppiumDeviceFactory.getBrowser(platformName));
+//        appiumDriver.set(AppiumDeviceFactory.getBrowser(environment, platformName, deviceName));
     }
 
     public static AppiumDriver getDriver() {

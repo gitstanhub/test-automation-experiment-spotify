@@ -1,0 +1,18 @@
+[
+  {
+    "config_item_name": "pixel_4_xl",
+    "platformName": "android",
+    "deviceName": "Pixel 4 XL Android 13",
+    "os_version": "13.0",
+    "udid": "01021FFBA000PH",
+    "automation_name": "uiautomator2"
+  },
+  {
+    "config_item_name": "pixel_4_emulated",
+    "platformName": "android",
+    "deviceName": "Pixel 4 (Android 13) - Emulated",
+    "os_version": "13.0",
+    "udid": "emulator-5554",
+    "automation_name": "uiautomator2"
+  }
+]

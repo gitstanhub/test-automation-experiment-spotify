@@ -13,30 +13,30 @@ public interface PlaywrightBrowserConfiguration extends Config {
     @DefaultValue("chromium")
     String browser();
 
-    @Key("chromiumBrowserVersion")
+//    @Key("chromiumBrowserVersion")
     String chromiumBrowserVersion();
 
-    @Key("firefoxBrowserVersion")
+//    @Key("firefoxBrowserVersion")
     String firefoxBrowserVersion();
 
-    @Key("webkitBrowserVersion")
+//    @Key("webkitBrowserVersion")
     String webkitBrowserVersion();
 
-    @Key("moonUrl")
+//    @Key("moonUrl")
     String moonUrl();
 
-    @Key("moonStatusUrl")
+//    @Key("moonStatusUrl")
     String moonStatusUrl();
 
-    @Key("playwrightBrowserTimeout")
+//    @Key("playwrightBrowserTimeout")
     double playwrightBrowserTimeout();
 
-    @Key("remoteEnabled")
+//    @Key("remoteEnabled")
     boolean remoteEnabled();
 
-    @Key("headlessEnabled")
+//    @Key("headlessEnabled")
     boolean headlessEnabled();
 
-    @Key("videoRecordingEnabled")
+//    @Key("videoRecordingEnabled")
     boolean videoRecordingEnabled();
 }

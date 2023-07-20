@@ -8,5 +8,12 @@ import org.aeonbits.owner.Config;
 })
 public interface AppiumDriverConfiguration extends Config {
 
+    @DefaultValue("local")
+    String environment();
 
+    @DefaultValue("android")
+    String platformName();
+
+    @DefaultValue("Pixel 4 XL")
+    String deviceName();
 }
