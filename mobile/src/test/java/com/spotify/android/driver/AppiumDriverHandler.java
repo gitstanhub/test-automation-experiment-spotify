@@ -6,18 +6,22 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.naming.ConfigurationException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 import static com.spotify.android.driver.AppiumDriverConstants.LOCAL_SERVER_ADDRESS;
 
 @Slf4j
 public class AppiumDriverHandler {
 
     private static ThreadLocal<AppiumDriver> appiumDriver = new ThreadLocal<>();
-    private static AppiumDeviceSessionFactory appiumDeviceFactory;
+    private static AppiumDeviceSessionFactory appiumDeviceSessionFactory;
     public static AppiumDriverLocalService appiumDriverLocalService;
 
-    public static void createDriver(String environment, String platformName, String deviceName) {
+    public static void createDriver(String environment, String platformName, String deviceName) throws ConfigurationException, MalformedURLException, IOException {
         log.info("Creating a new driver for {}", platformName);
-//        appiumDriver.set(AppiumDeviceFactory.getBrowser(environment, platformName, deviceName));
+        appiumDriver.set(AppiumDeviceSessionFactory.getDeviceSession(environment, platformName, deviceName));
     }
 
     public static AppiumDriver getDriver() {
