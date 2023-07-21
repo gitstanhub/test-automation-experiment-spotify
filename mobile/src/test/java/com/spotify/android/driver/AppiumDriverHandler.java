@@ -15,7 +15,7 @@ import static com.spotify.android.driver.AppiumDriverConstants.LOCAL_SERVER_ADDR
 @Slf4j
 public class AppiumDriverHandler {
 
-    private static ThreadLocal<AppiumDriver> appiumDriver = new ThreadLocal<>();
+    private static final ThreadLocal<AppiumDriver> appiumDriver = new ThreadLocal<AppiumDriver>();
     private static AppiumDeviceSessionFactory appiumDeviceSessionFactory;
     public static AppiumDriverLocalService appiumDriverLocalService;
 
@@ -28,7 +28,7 @@ public class AppiumDriverHandler {
         return appiumDriver.get();
     }
 
-    static void launchAppiumServer() {
+    public static void launchAppiumServer() {
         appiumDriverLocalService = AppiumDriverLocalService
                 .buildService(new AppiumServiceBuilder()
                         .withIPAddress(LOCAL_SERVER_ADDRESS)

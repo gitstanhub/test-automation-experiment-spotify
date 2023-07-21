@@ -14,6 +14,6 @@ public interface AppiumDriverConfiguration extends Config {
     @DefaultValue("android")
     String platformName();
 
-    @DefaultValue("Pixel 4 XL")
+    @DefaultValue("pixel_4_xl")
     String deviceName();
 }

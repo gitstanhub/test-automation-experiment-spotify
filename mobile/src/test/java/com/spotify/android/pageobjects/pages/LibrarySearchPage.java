@@ -1,13 +1,11 @@
 package com.spotify.android.pageobjects.pages;
 
-import com.beust.ah.A;
 import com.spotify.android.utils.assertions.ElementChecks;
 import com.spotify.android.utils.navigation.AndroidDeviceActions;
 import com.spotify.android.utils.navigation.PageNavigationActions;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 

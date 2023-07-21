@@ -7,7 +7,9 @@ import com.spotify.android.config.appium.AppiumDriverConfiguration;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 public class ConfigProviderMobile {
@@ -22,11 +24,20 @@ public class ConfigProviderMobile {
     public static <T extends DeviceConfig> T getDeviceConfig(String deviceName, Class<T> configClass) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 
-        String fileName = appiumDriverConfiguration.environment().toLowerCase()
-                + "_" + appiumDriverConfiguration.platformName().toLowerCase()
+        String fileName = "configuration/"
+                + appiumDriverConfiguration.environment().toLowerCase()
+                + "_"
+                + appiumDriverConfiguration.platformName().toLowerCase()
                 + "_devices.json";
 
-        List<T> deviceConfigList = objectMapper.readValue(new File(fileName), objectMapper.getTypeFactory().constructCollectionType(List.class, configClass));
+        URL fileUrl = ClassLoader.getSystemResource(fileName);
+        if (fileUrl == null) {
+            throw new FileNotFoundException("File " + fileName + " was not found.");
+        }
+
+        File deviceConfigFile = new File(fileUrl.getFile());
+
+        List<T> deviceConfigList = objectMapper.readValue(deviceConfigFile, objectMapper.getTypeFactory().constructCollectionType(List.class, configClass));
 
         for (T deviceConfig : deviceConfigList) {
             if (deviceConfig.getConfigItemName().equals(deviceName)) {

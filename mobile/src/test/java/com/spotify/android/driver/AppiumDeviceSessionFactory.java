@@ -47,6 +47,7 @@ public class AppiumDeviceSessionFactory {
         capabilities.setCapability(MobileCapabilityType.NO_RESET, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).isNoReset());
         capabilities.setCapability("appPackage", "com.spotify.music");
         capabilities.setCapability("appActivity", "com.spotify.music.MainActivity");
+        AppiumDriverHandler.launchAppiumServer();
 
         return new AndroidDriver(AppiumDriverHandler.appiumDriverLocalService.getUrl(), capabilities);
     }

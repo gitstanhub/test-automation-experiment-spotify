@@ -5,7 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:configuration/${env}.properties",
+        "classpath:configuration/${environment}.properties",
         "classpath:configuration/local.properties"
 })
 public interface PlaywrightBrowserConfiguration extends Config {
