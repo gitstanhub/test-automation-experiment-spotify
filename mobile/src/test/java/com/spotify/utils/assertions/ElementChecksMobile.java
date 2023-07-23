@@ -1,22 +1,17 @@
 package com.spotify.utils.assertions;
 
-import com.spotify.utils.navigation.android.AndroidPageNavigationActions;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.stereotype.Component;
 
-public class ElementChecks {
+import static com.spotify.driver.AppiumDriverHandler.getDriver;
 
-    AndroidDriver driver;
-    WebDriverWait wait;
-
-    public ElementChecks(AndroidDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
-    }
+@Slf4j
+@Component
+public class ElementChecksMobile {
 
     public void assertElementIsVisible(WebElement element) {
         Assertions.assertTrue(element.isDisplayed(), "Element with id: " + element.getAttribute("resource-id") + " is not visible");
@@ -41,7 +36,7 @@ public class ElementChecks {
     public boolean isElementExists(String resourceId) {
         System.out.println("Checking if elements with subtitles exist");
         try {
-            driver.findElement(AppiumBy.androidUIAutomator(
+            getDriver().findElement(AppiumBy.androidUIAutomator(
                     "new UiSelector().resourceId(\"" + resourceId + "\")"
             ));
             return true;
@@ -50,3 +45,11 @@ public class ElementChecks {
         }
     }
 }
+
+//    AndroidDriver driver;
+//    WebDriverWait wait;
+//
+//    public ElementChecks(AndroidDriver driver, WebDriverWait wait) {
+//        this.driver = driver;
+//        this.wait = wait;
+//    }

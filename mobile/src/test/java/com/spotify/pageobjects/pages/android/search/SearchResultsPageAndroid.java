@@ -1,23 +1,19 @@
 package com.spotify.pageobjects.pages.android.search;
 
-import com.spotify.utils.assertions.ElementChecks;
-import com.spotify.utils.navigation.android.AndroidPageNavigationActions;
-import io.appium.java_client.android.AndroidDriver;
+import com.spotify.pageobjects.base.AppiumPageAndroid;
+import com.spotify.pageobjects.pages.interfaces.search.SearchResultsPage;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class SearchResultsPageAndroid {
+import static com.spotify.driver.AppiumDriverHandler.getDriver;
 
-    private final AndroidDriver driver;
-    private final AndroidPageNavigationActions androidPageNavigationActions;
-    private final ElementChecks elementChecks;
-
-    public SearchResultsPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.androidPageNavigationActions = new AndroidPageNavigationActions(driver, wait);
-        this.elementChecks = new ElementChecks(driver, wait);
-    }
+@Component
+@Lazy
+@Slf4j
+public class SearchResultsPageAndroid extends AppiumPageAndroid implements SearchResultsPage {
 
     public SearchResultsPageAndroid searchGloballyFor(String searchQuery) {
         getGlobalSearchField().sendKeys(searchQuery);
@@ -35,44 +31,54 @@ public class SearchResultsPageAndroid {
     }
 
     public SearchResultsPageAndroid verifySearchResultIsAvailable(String expectedSearchResult) {
-        elementChecks.assertElementIsVisible(getSearchResult(expectedSearchResult));
+        elementChecksMobile.assertElementIsVisible(getSearchResult(expectedSearchResult));
         return this;
     }
 
     private WebElement getGlobalSearchField() {
-        return driver.findElement(By.id("com.spotify.music:id/query"));
+        return getDriver().findElement(By.id("com.spotify.music:id/query"));
     }
 
     private WebElement getSearchResultsPlaceholderTitle() {
-        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text1' and @text='Play what you love']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text1' and @text='Play what you love']"));
     }
 
     private WebElement getSearchResultsPlaceholderSubtitle() {
-        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text2' and @text='Search for artists, songs, podcasts, and more.']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text2' and @text='Search for artists, songs, podcasts, and more.']"));
     }
 
     private WebElement getTopFilterButton() {
-        return driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Top']"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Top']"));
     }
 
     private WebElement getArtistFilterButton() {
-        return driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Artists']"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Artists']"));
     }
 
     private WebElement getSongsFilterButton() {
-        return driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Songs']"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Songs']"));
     }
 
     private WebElement getAlbumsFilterButton() {
-        return driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Albums']"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Albums']"));
     }
 
     private WebElement getPlaylistsFilterButton() {
-        return driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Playlists']"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='Playlists']"));
     }
 
     private WebElement getSearchResult(String title) {
         androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/title", title, 10);
-        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + title + "']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + title + "']"));
     }
 }
+
+//    private final AndroidDriver driver;
+//    private final AndroidPageNavigationActions androidPageNavigationActions;
+//    private final ElementChecks elementChecks;
+//
+//    public SearchResultsPageAndroid(AndroidDriver driver, WebDriverWait wait) {
+//        this.driver = driver;
+//        this.androidPageNavigationActions = new AndroidPageNavigationActions(driver, wait);
+//        this.elementChecks = new ElementChecks(driver, wait);
+//    }

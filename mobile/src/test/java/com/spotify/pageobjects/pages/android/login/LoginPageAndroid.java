@@ -1,22 +1,22 @@
 package com.spotify.pageobjects.pages.android.login;
 
+import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.login.LoginPage;
-import io.appium.java_client.android.AndroidDriver;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class LoginPageAndroid implements LoginPage {
+import static com.spotify.driver.AppiumDriverHandler.getDriver;
+import static com.spotify.driver.AppiumDriverHandler.getWait;
 
-    private final AndroidDriver driver;
-    protected final WebDriverWait wait;
-
-    public LoginPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
-    }
+@Component
+@Lazy
+@Slf4j
+public class LoginPageAndroid extends AppiumPageAndroid implements LoginPage {
 
     public LoginPageAndroid tapLogInButton() {
         getLogInButton().click();
@@ -40,7 +40,7 @@ public class LoginPageAndroid implements LoginPage {
 
     public void handleLoginFor(String username, String password) {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Button[contains(@text,'Log in')]")));
+            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Button[contains(@text,'Log in')]")));
             tapLogInButton();
             fillInUsernameField(username);
             fillInPasswordField(password);
@@ -52,18 +52,27 @@ public class LoginPageAndroid implements LoginPage {
 
     //ToDo: Replace xpath with UIAutomator
     private WebElement getLogInButton() {
-        return driver.findElement(By.xpath("//android.widget.Button[contains(@text,'Log in')]"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[contains(@text,'Log in')]"));
     }
 
     private WebElement getUsernameField() {
-        return driver.findElement(By.id("com.spotify.music:id/username_text"));
+        return getDriver().findElement(By.id("com.spotify.music:id/username_text"));
     }
 
     private WebElement getPasswordField() {
-        return driver.findElement(By.id("com.spotify.music:id/password_text"));
+        return getDriver().findElement(By.id("com.spotify.music:id/password_text"));
     }
 
     private WebElement getLoginSubmitButton() {
-        return driver.findElement(By.id("com.spotify.music:id/login_button"));
+        return getDriver().findElement(By.id("com.spotify.music:id/login_button"));
     }
 }
+
+//
+//    private final AndroidDriver driver;
+//    protected final WebDriverWait wait;
+//
+//    public LoginPageAndroid(AndroidDriver driver, WebDriverWait wait) {
+//        this.driver = driver;
+//        this.wait = wait;
+//    }

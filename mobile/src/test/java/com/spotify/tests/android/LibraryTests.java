@@ -1,8 +1,77 @@
 package com.spotify.tests.android;
 
-import com.spotify.tests.base.MobileAndroidTestBase;
+import com.spotify.annotations.AuthRequiredMobile;
+import com.spotify.tests.base.MobileTests;
+import org.junit.jupiter.api.Test;
 
-public class LibraryTests extends MobileAndroidTestBase {
+public class LibraryTests extends MobileTests {
+
+    //ToDo: move to PlaylistsTests
+    @Test
+    @AuthRequiredMobile
+    public void playlistCanBeCreatedFromLibrary() {
+        getNavigation()
+                .tapLibraryButton();
+
+        getLibraryPage()
+                .tapCreatePlaylistButton();
+//                .choosePlaylistOption();
+
+        getPlaylistCreationPage()
+                .verifyPlaylistCreationPageIsOpened()
+                .enterPlaylistName("Braa")
+                .tapCreateButton();
+
+        getPlaylistPage()
+                .verifyPlaylistArtworkIsAvailable()
+                .verifyPlaylistNameIsAvailable()
+                .verifyPlaylistNameIsExact("Braa");
+    }
+
+    @Test
+    @AuthRequiredMobile
+    public void playlistCanBeDeletedFromLibrary() {
+        getNavigation()
+                .tapLibraryButton();
+
+        getLibraryPage()
+//                .verifyLibraryPageIsOpened()
+                .tapPlaylistsButton()
+                .selectPlaylistItem("Braa", "Stanislav");
+
+        getPlaylistPage()
+                .verifyPlaylistNameIsExact("Braa");
+
+        getMediaInteraction()
+                .tapContextMenuButton();
+
+        getContextMenu()
+                .tapDeletePlaylistButton();
+
+        getPlaylistPage()
+                .verifyDeletePopupTitleIsAvailable()
+                .verifyDeletePopupSubtitleIsAvailable()
+                .tapPlaylistDeleteConfirmButton();
+
+        getLibraryPage()
+                .verifyLibraryPageIsOpened();
+    }
+
+    @Test
+    @AuthRequiredMobile
+    public void artistCanBeSearchedInLibrary() {
+        getNavigation()
+                .tapLibraryButton();
+
+        getLibraryPage()
+                .verifyLibraryPageIsOpened()
+                .tapSearchButton();
+
+        getLibrarySearchPage()
+                .searchLibraryFor("Oliver Tree")
+                .verifySearchResultIsAvailable("Oliver Tree", "Artist");
+    }
+}
 
 //    private final Navigation navigation = new Navigation(driver);
 //    private final LibraryPage libraryPage = new LibraryPage(driver, wait);
@@ -11,67 +80,3 @@ public class LibraryTests extends MobileAndroidTestBase {
 //    private final LibrarySearchPage librarySearchPage = new LibrarySearchPage(driver, wait);
 //    private final MediaInteraction mediaInteraction = new MediaInteraction(driver, wait);
 //    private final ContextMenu contextMenu = new ContextMenu(driver, wait);
-
-    //ToDo: move to PlaylistsTests
-//    @Test
-//    public void playlistCanBeCreatedFromLibrary() {
-//        navigation
-//                .tapLibraryButton();
-//
-//        libraryPage
-//                .tapCreatePlaylistButton();
-////                .choosePlaylistOption();
-//
-//        playlistCreationPage
-//                .verifyPlaylistCreationPageIsOpened()
-//                .enterPlaylistName("Braa")
-//                .tapCreateButton();
-//
-//        playlistPage
-//                .verifyPlaylistArtworkIsAvailable()
-//                .verifyPlaylistNameIsAvailable()
-//                .verifyPlaylistNameIsExact("Braa");
-//    }
-//
-//    @Test
-//    public void playlistCanBeDeletedFromLibrary() {
-//        navigation
-//                .tapLibraryButton();
-//
-//        libraryPage
-////                .verifyLibraryPageIsOpened()
-//                .tapPlaylistsButton()
-//                .selectPlaylistItem("Braa", "Stanislav");
-//
-//        playlistPage
-//                .verifyPlaylistNameIsExact("Braa");
-//
-//        mediaInteraction
-//                .tapContextMenuButton();
-//
-//        contextMenu
-//                .tapDeletePlaylistButton();
-//
-//        playlistPage
-//                .verifyDeletePopupTitleIsAvailable()
-//                .verifyDeletePopupSubtitleIsAvailable()
-//                .tapPlaylistDeleteConfirmButton();
-//
-//        libraryPage
-//                .verifyLibraryPageIsOpened();
-//    }
-//
-//    @Test
-//    public void artistCanBeSearchedInLibrary() {
-//        navigation
-//                .tapLibraryButton();
-//
-//        libraryPage
-//                .verifyLibraryPageIsOpened()
-//                .tapSearchButton();
-//
-//        librarySearchPage
-//                .searchLibraryFor("Oliver Tree")
-//                .verifySearchResultIsAvailable("Oliver Tree", "Artist");
-//    }
-}

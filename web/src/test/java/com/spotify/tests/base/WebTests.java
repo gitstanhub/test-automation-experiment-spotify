@@ -1,6 +1,6 @@
 package com.spotify.tests.base;
 
-import com.spotify.annotations.AuthRequired;
+import com.spotify.annotations.AuthRequiredWeb;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.config.SpringConfigWeb;
 import com.spotify.driver.PlaywrightDriverHandler;
@@ -56,7 +56,7 @@ public class WebTests {
     private void handleAuthIfNeeded(TestInfo testInfo) {
         Method testMethod = testInfo.getTestMethod().orElseThrow();
 
-        if (testMethod.isAnnotationPresent(AuthRequired.class)) {
+        if (testMethod.isAnnotationPresent(AuthRequiredWeb.class)) {
             loginPage.handleLoginFor("", "");
             cookiesBanner.handleCookiesBanner();
         }

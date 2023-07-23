@@ -1,27 +1,23 @@
 package com.spotify.pageobjects.pages.android.search;
 
+import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.search.SearchPage;
-import com.spotify.utils.assertions.ElementChecks;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class SearchPageAndroid implements SearchPage {
+import static com.spotify.driver.AppiumDriverHandler.getDriver;
 
-    private final AndroidDriver driver;
-    private final ElementChecks elementChecks;
-    private final  WebDriverWait wait;
-
-    public SearchPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
-        this.elementChecks = new ElementChecks(driver, wait);
-    }
+@Component
+@Lazy
+@Slf4j
+public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
 
     public SearchPageAndroid verifySearchPageIsOpened() {
-        elementChecks.assertElementIsVisible(getSearchPageTitle());
+        elementChecksMobile.assertElementIsVisible(getSearchPageTitle());
         return this;
     }
 
@@ -31,14 +27,24 @@ public class SearchPageAndroid implements SearchPage {
     }
 
     private WebElement getSearchPageTitle() {
-        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='Search']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='Search']"));
     }
 
     private WebElement getScanSpotifyCodeButton() {
-        return driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"Scan Spotify code\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"Scan Spotify code\")"));
     }
 
     private WebElement getSearchField() {
-        return driver.findElement(By.id("com.spotify.music:id/find_search_field"));
+        return getDriver().findElement(By.id("com.spotify.music:id/find_search_field"));
     }
 }
+
+//    private final AndroidDriver driver;
+//    private final ElementChecks elementChecks;
+//    private final  WebDriverWait wait;
+//
+//    public SearchPageAndroid(AndroidDriver driver, WebDriverWait wait) {
+//        this.driver = driver;
+//        this.wait = wait;
+//        this.elementChecks = new ElementChecks(driver, wait);
+//    }

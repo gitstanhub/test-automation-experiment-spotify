@@ -1,26 +1,23 @@
 package com.spotify.pageobjects.pages.android.playlist;
 
+import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.playlist.PlaylistCreationPage;
-import com.spotify.utils.assertions.ElementChecks;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-public class PlaylistCreationPageAndroid implements PlaylistCreationPage {
+import static com.spotify.driver.AppiumDriverHandler.getDriver;
 
-    private final AppiumDriver driver;
-    private final ElementChecks elementChecks;
-
-    public PlaylistCreationPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.elementChecks = new ElementChecks(driver, wait);
-    }
+@Component
+@Lazy
+@Slf4j
+public class PlaylistCreationPageAndroid extends AppiumPageAndroid implements PlaylistCreationPage {
 
     public PlaylistCreationPageAndroid verifyPlaylistCreationPageIsOpened() {
-        elementChecks.assertElementIsVisible(getPlayListCreationPageTitle());
+        elementChecksMobile.assertElementIsVisible(getPlayListCreationPageTitle());
         return this;
     }
 
@@ -41,18 +38,26 @@ public class PlaylistCreationPageAndroid implements PlaylistCreationPage {
     }
 
     private WebElement getPlayListCreationPageTitle() {
-        return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='Give your playlist a name']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='Give your playlist a name']"));
     }
 
     private WebElement getPlaylistNameField() {
-        return driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"Add a playlist name\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"Add a playlist name\")"));
     }
 
     private WebElement getCreateButton() {
-        return driver.findElement(By.id("com.spotify.music:id/continue_button"));
+        return getDriver().findElement(By.id("com.spotify.music:id/continue_button"));
     }
 
     private WebElement getCancelButton() {
-        return driver.findElement(By.id("com.spotify.music:id/cancel_button"));
+        return getDriver().findElement(By.id("com.spotify.music:id/cancel_button"));
     }
 }
+
+//    private final AppiumDriver driver;
+//    private final ElementChecks elementChecks;
+//
+//    public PlaylistCreationPageAndroid(AndroidDriver driver, WebDriverWait wait) {
+//        this.driver = driver;
+//        this.elementChecks = new ElementChecks(driver, wait);
+//    }

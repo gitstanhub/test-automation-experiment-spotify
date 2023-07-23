@@ -1,8 +1,6 @@
 package com.spotify.pageobjects.commons.interfaces.accessprompt;
 
-import org.openqa.selenium.WebElement;
-
-public interface PermissionAccessPrompt {
+public interface BluetoothAccessPrompt {
 
     public void handleAccessPrompt();
 }

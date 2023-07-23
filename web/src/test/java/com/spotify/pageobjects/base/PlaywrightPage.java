@@ -17,8 +17,4 @@ public class PlaywrightPage {
     public ElementActions elementActions;
     @Autowired
     public ElementChecks elementChecks;
-
-//    public BrowserActions browserActions = new BrowserActions();
-//    public ElementActions elementActions = new ElementActions();
-//    public ElementChecks elementChecks = new ElementChecks();
 }

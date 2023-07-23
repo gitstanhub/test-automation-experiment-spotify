@@ -1,6 +1,6 @@
 package com.spotify.tests;
 
-import com.spotify.annotations.AuthRequired;
+import com.spotify.annotations.AuthRequiredWeb;
 import com.spotify.pageobjects.pages.SearchPage;
 import com.spotify.tests.base.WebTests;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ public class GlobalSearchTests extends WebTests {
     SearchPage searchPage;
 
     @Test
-    @AuthRequired
+    @AuthRequiredWeb
     public void songCanBeFoundInTopResults() {
         searchPage
                 .openSearchPage()
@@ -25,7 +25,7 @@ public class GlobalSearchTests extends WebTests {
     }
 
     @Test
-    @AuthRequired
+    @AuthRequiredWeb
     public void playlistCanBeFoundInTopResults() {
         searchPage
                 .openSearchPage()

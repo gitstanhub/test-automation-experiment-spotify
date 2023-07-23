@@ -1,6 +1,6 @@
 package com.spotify.tests;
 
-import com.spotify.annotations.AuthRequired;
+import com.spotify.annotations.AuthRequiredWeb;
 import com.spotify.pageobjects.commons.OptionsMenu;
 import com.spotify.pageobjects.pages.HomePage;
 import com.spotify.pageobjects.pages.LibraryPage;
@@ -25,7 +25,7 @@ public class LibraryTests extends WebTests {
     PlaylistPage playlistPage;
 
     @Test
-    @AuthRequired
+    @AuthRequiredWeb
     public void libraryCanBeSortedAlphabetically() {
         homePage.openHomePage();
 
@@ -37,7 +37,7 @@ public class LibraryTests extends WebTests {
     }
 
     @Test
-    @AuthRequired
+    @AuthRequiredWeb
     public void playlistDetailsCanBeUpdatedFromLibrary() {
         homePage.openHomePage();
 

@@ -5,26 +5,42 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.naming.ConfigurationException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.time.Duration;
 
 import static com.spotify.driver.AppiumDriverConstants.LOCAL_SERVER_ADDRESS;
+import static com.spotify.driver.AppiumDriverConstants.WEB_DRIVER_WAIT_TIMEOUT;
 
 @Slf4j
 public class AppiumDriverHandler {
 
     private static final ThreadLocal<AppiumDriver> appiumDriver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriverWait> webDriverWait = new ThreadLocal<>();
     public static AppiumDriverLocalService appiumDriverLocalService;
 
-    public static void createDriver(String environment, String platformName, String deviceName) throws ConfigurationException, MalformedURLException, IOException {
+    public static void createDriver(String environment, String platformName, String deviceName) throws ConfigurationException, IOException {
         log.info("Creating a new driver for {}", platformName);
-        appiumDriver.set(AppiumDeviceSessionFactory.getDeviceSession(environment, platformName, deviceName));
+
+        try {
+            appiumDriver.set(AppiumDeviceSessionFactory.getDeviceSession(environment, platformName, deviceName));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static AppiumDriver getDriver() {
         return appiumDriver.get();
+    }
+
+    public static WebDriverWait getWait() {
+        if (webDriverWait.get() == null) {
+            webDriverWait.set(new WebDriverWait(getDriver(), Duration.ofMillis(WEB_DRIVER_WAIT_TIMEOUT)));
+        }
+        return webDriverWait.get();
     }
 
     public static void launchAppiumServer() {
@@ -42,6 +58,7 @@ public class AppiumDriverHandler {
             if (getDriver() != null) {
                 getDriver().quit();
                 appiumDriver.set(null);
+                webDriverWait.set(null);
             }
 
             if (appiumDriverLocalService != null && appiumDriverLocalService.isRunning()) {
@@ -55,8 +72,7 @@ public class AppiumDriverHandler {
             log.warn("Couldn't close the Appium driver due to: ", e);
         }
     }
-
-
+}
 
 //    private static AndroidDriver driver;
 //    private static WebDriverWait wait;
@@ -89,29 +105,3 @@ public class AppiumDriverHandler {
 //        }
 //        return driver;
 //    }
-//
-//    public static WebDriverWait getWait() {
-//        wait = new WebDriverWait(driver, Duration.ofMillis(4000));
-//        return wait;
-//    }
-
-
-
-
-    //ToDo Factory: get local / browserstack driver
-    //ToDo move all variables to Config
-
-
-    //ToDo use this method in the factory
-//    public void startService() {
-//        service = AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
-//                .usingAnyFreePort() // Use any free port, it could be different for every new server instance
-//                .withArgument(GeneralServerFlag.SESSION_OVERRIDE) // Override session if any
-//                .withLogFile(new File("path/to/log/file"))); // Specify a file to output server logs
-//                  .withIPadress("127.0.0.1")
-//        service.start();
-//    }
-
-
-    //ToDo add support for ctx and include it into before method: config/ApplicationCofniguration, depending on platorm, do ctx.register for pages and then ctx.getBean of interface class of a page
-}

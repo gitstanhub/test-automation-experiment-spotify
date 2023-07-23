@@ -1,42 +1,40 @@
 package com.spotify.tests.android;
 
-import com.spotify.tests.base.MobileAndroidTestBase;
+import com.spotify.annotations.AuthRequiredMobile;
+import com.spotify.tests.base.MobileTests;
 import org.junit.jupiter.api.Test;
 
-public class GlobalSearchTests extends MobileAndroidTestBase {
+public class GlobalSearchTests extends MobileTests {
+
+    @Test
+    @AuthRequiredMobile
+    public void artistCanBeFound() {
+        getNavigation()
+                .tapSearchButton();
+        getSearchPage()
+                .verifySearchPageIsOpened();
+//                .tapGlobalSearchField();
+        getSearchResultsPage()
+                .searchGloballyFor("Eminem")
+                .tapArtistsFilterButton()
+                .verifySearchResultIsAvailable("Eminem");
+    }
+
+    @Test
+    @AuthRequiredMobile
+    public void albumCanBeFound() {
+        getNavigation()
+                .tapSearchButton();
+        getSearchPage()
+                .verifySearchPageIsOpened();
+//                .tapGlobalSearchField();
+        getSearchResultsPage()
+                .searchGloballyFor("The Eminem Show")
+                .tapAlbumFilterButton()
+                .verifySearchResultIsAvailable("The Eminem Show");
+    }
+}
 
 //    private final Navigation navigation = new Navigation(driver);
 //    private final SearchPage searchPage = new SearchPage(driver, wait);
 //    private final SearchResultsPage searchResultsPage = new SearchResultsPage(driver, wait);
-
-    @Test
-    public void testCompile() {
-
-    }
-
-//    @Test
-//    public void artistCanBeFound() {
-//        navigation
-//                .tapSearchButton();
-//        searchPage
-//                .verifySearchPageIsOpened();
-////                .tapGlobalSearchField();
-//        searchResultsPage
-//                .searchGloballyFor("Eminem")
-//                .tapArtistsFilterButton()
-//                .verifySearchResultIsAvailable("Eminem");
-//    }
-//
-//    @Test
-//    public void albumCanBeFound() {
-//        navigation
-//                .tapSearchButton();
-//        searchPage
-//                .verifySearchPageIsOpened();
-////                .tapGlobalSearchField();
-//        searchResultsPage
-//                .searchGloballyFor("The Eminem Show")
-//                .tapAlbumFilterButton()
-//                .verifySearchResultIsAvailable("The Eminem Show");
-//    }
-}

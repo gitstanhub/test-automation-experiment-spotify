@@ -1,6 +1,6 @@
 package com.spotify.tests;
 
-import com.spotify.annotations.AuthRequired;
+import com.spotify.annotations.AuthRequiredWeb;
 import com.spotify.pageobjects.commons.ContextMenu;
 import com.spotify.pageobjects.pages.AlbumPage;
 import com.spotify.pageobjects.pages.LibraryPage;
@@ -22,7 +22,7 @@ public class AlbumsTests extends WebTests {
     LibraryPage libraryPage;
 
     @Test
-    @AuthRequired
+    @AuthRequiredWeb
     public void albumEmbeddedLinkCanBeGenerated() {
         albumPage.openAlbumPage("2cWBwpqMsDJC1ZUwz813lo");
 
@@ -40,7 +40,7 @@ public class AlbumsTests extends WebTests {
     }
 
     @Test
-    @AuthRequired
+    @AuthRequiredWeb
     public void albumVersionCanBeSwitched() {
         albumPage
                 .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")
@@ -52,7 +52,7 @@ public class AlbumsTests extends WebTests {
     }
 
     @Test
-    @AuthRequired
+    @AuthRequiredWeb
     public void albumCanBeAddedToPlaylist() {
         albumPage
                 .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")

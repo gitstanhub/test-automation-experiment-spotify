@@ -1,20 +1,21 @@
 package com.spotify.utils.navigation.android;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.spotify.driver.AppiumDriverHandler.getDriver;
+
+@Component
+@Slf4j
 public class AndroidDeviceActions {
-
-    private final AndroidDriver driver;
-
-    public AndroidDeviceActions(AndroidDriver driver) {
-        this.driver = driver;
-    }
 
     public void swipeUp() {
         Map<String, Object> scrollObject = new HashMap<>();
@@ -26,7 +27,7 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 650);
         scrollObject.put("speed", 3500);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+        ((JavascriptExecutor) getDriver()).executeScript("mobile: swipeGesture", scrollObject);
     }
 
     public void swipeDown() {
@@ -39,7 +40,7 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 650);
         scrollObject.put("speed", 3500);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+        ((JavascriptExecutor) getDriver()).executeScript("mobile: swipeGesture", scrollObject);
     }
 
     public void swipeLeft() {
@@ -52,7 +53,7 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 650);
         scrollObject.put("speed", 3500);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+        ((JavascriptExecutor) getDriver()).executeScript("mobile: swipeGesture", scrollObject);
     }
 
     public void swipeRight() {
@@ -65,7 +66,7 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 650);
         scrollObject.put("speed", 3500);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+        ((JavascriptExecutor) getDriver()).executeScript("mobile: swipeGesture", scrollObject);
     }
 
     public Boolean scrollDown() {
@@ -78,7 +79,7 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 1000);
         scrollObject.put("speed", 3000);
 
-        return (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", scrollObject);
+        return (Boolean) ((JavascriptExecutor) getDriver()).executeScript("mobile: scrollGesture", scrollObject);
     }
 
     public void slightlySwipeUp() {
@@ -91,7 +92,7 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 300);
         scrollObject.put("speed", 330);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+        ((JavascriptExecutor) getDriver()).executeScript("mobile: swipeGesture", scrollObject);
     }
 
     public void slightlySwipeDown() {
@@ -104,7 +105,7 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 300);
         scrollObject.put("speed", 330);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+        ((JavascriptExecutor) getDriver()).executeScript("mobile: swipeGesture", scrollObject);
     }
 
     public void slightlySwipeLeft() {
@@ -117,7 +118,7 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 300);
         scrollObject.put("speed", 330);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+        ((JavascriptExecutor) getDriver()).executeScript("mobile: swipeGesture", scrollObject);
     }
 
     public void slightlySwipeRight() {
@@ -130,10 +131,22 @@ public class AndroidDeviceActions {
         scrollObject.put("height", 300);
         scrollObject.put("speed", 330);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", scrollObject);
+        ((JavascriptExecutor) getDriver()).executeScript("mobile: swipeGesture", scrollObject);
     }
 
     public void tapKeyboardSearchButton() {
-        driver.pressKey(new KeyEvent(AndroidKey.SEARCH));
+        AppiumDriver driver = getDriver();
+
+        if (driver instanceof AndroidDriver) {
+            ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.SEARCH));
+        } else {
+            throw new IllegalStateException("Current driver is not an instance of Android Driver");
+        }
     }
 }
+
+//    private final AndroidDriver driver;
+//
+//    public AndroidDeviceActions(AndroidDriver driver) {
+//        this.driver = driver;
+//    }
