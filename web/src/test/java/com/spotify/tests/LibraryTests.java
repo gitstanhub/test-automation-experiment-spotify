@@ -1,17 +1,16 @@
 package com.spotify.tests;
 
-import com.spotify.pageobjects.commons.CookiesBanner;
+import com.spotify.annotations.AuthRequiredWeb;
 import com.spotify.pageobjects.commons.OptionsMenu;
 import com.spotify.pageobjects.pages.HomePage;
 import com.spotify.pageobjects.pages.LibraryPage;
-import com.spotify.pageobjects.pages.LoginPage;
 import com.spotify.pageobjects.pages.PlaylistPage;
-import com.spotify.tests.base.WebTestsBase;
+import com.spotify.tests.base.WebTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
-public class LibraryTests extends WebTestsBase {
+public class LibraryTests extends WebTests {
 
     @Autowired
     HomePage homePage;
@@ -24,19 +23,11 @@ public class LibraryTests extends WebTestsBase {
     @Autowired
     @Lazy
     PlaylistPage playlistPage;
-    @Autowired
-    @Lazy
-    LoginPage loginPage;
-    @Autowired
-    @Lazy
-    CookiesBanner cookiesBanner;
 
     @Test
+    @AuthRequiredWeb
     public void libraryCanBeSortedAlphabetically() {
         homePage.openHomePage();
-
-        loginPage.handleLoginFor("stasdmitruk1@gmail.com", "3Dabde70!481516");
-        cookiesBanner.handleCookiesBanner();
 
         libraryPage
                 .verifyLibraryButtonIsAvailable()
@@ -46,11 +37,9 @@ public class LibraryTests extends WebTestsBase {
     }
 
     @Test
+    @AuthRequiredWeb
     public void playlistDetailsCanBeUpdatedFromLibrary() {
         homePage.openHomePage();
-
-        loginPage.handleLoginFor("stasdmitruk1@gmail.com", "3Dabde70!481516");
-        cookiesBanner.handleCookiesBanner();
 
         libraryPage
                 .verifyLibraryButtonIsAvailable()

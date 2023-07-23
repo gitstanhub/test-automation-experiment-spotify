@@ -17,7 +17,7 @@ public class PlaywrightBrowserFactory {
     public static Browser getBrowser(Playwright playwright, String requestedBrowser, String testName, boolean enableVideo,
                                      boolean headless, boolean remote) throws ConfigurationException {
 
-        log.info("Preparing a {} browser", requestedBrowser);
+        log.info("Preparing a new '{}' browser", requestedBrowser);
         PlaywrightBrowser playwrightBrowser = PlaywrightBrowser.getByName(requestedBrowser);
 
         if (remote) {
@@ -27,35 +27,12 @@ public class PlaywrightBrowserFactory {
         }
     }
 
-    private static Browser getLocalBrowser(Playwright playwright, PlaywrightBrowser playwrightBrowser, boolean headless) {
-
-        String browserImageName = playwrightBrowser.getBrowserImage();
-
-        log.info("Launching a new browser locally...");
-
-        switch (browserImageName) {
-            case "chromium" -> {
-                log.info("A Chromium browser is being started locally now");
-                return playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless));
-            }
-            case "firefox" -> {
-                log.info("A Firefox browser is being started locally now");
-                return playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(headless));
-            }
-            case "webkit" -> {
-                log.info("A WebKit browser is being started locally now");
-                return playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(headless));
-            }
-        }
-        return null;
-    }
-
     private static Browser getRemoteBrowser(Playwright playwright, PlaywrightBrowser playwrightBrowser, String testName,
                                             boolean enableVideo, boolean headless) throws ConfigurationException {
 
         String browserImageName = playwrightBrowser.getBrowserImage();
 
-        log.info("Launching a new browser remotely...");
+        log.info("Launching a new browser session remotely");
 
         String browserVersion = getPlaywrightBrowserVersion(playwrightBrowser);
         String moonHubUrl = ConfigProviderWeb.getPlaywrightBrowserConfiguration().moonUrl();
@@ -68,15 +45,15 @@ public class PlaywrightBrowserFactory {
 
         switch (browserImageName) {
             case "chromium" -> {
-                log.info("A Chromium browser is being started remotely now");
+                log.info("A Chromium engine browser is expected to be started remotely now");
                 return playwright.chromium().connect(url, new BrowserType.ConnectOptions().setTimeout(REMOTE_CONNECTION_TIMEOUT));
             }
             case "firefox" -> {
-                log.info("A Firefox browser is being started remotely now");
+                log.info("A Firefox engine browser is expected to be started remotely now");
                 return playwright.firefox().connect(url, new BrowserType.ConnectOptions().setTimeout(REMOTE_CONNECTION_TIMEOUT));
             }
             case "webkit" -> {
-                log.info("A WebKit browser is being started remotely now");
+                log.info("A WebKit engine browser is expected to be started remotely now");
                 return playwright.webkit().connect(url, new BrowserType.ConnectOptions().setTimeout(REMOTE_CONNECTION_TIMEOUT));
             }
         }
@@ -84,26 +61,51 @@ public class PlaywrightBrowserFactory {
     }
 
     private static String getPlaywrightBrowserVersion(PlaywrightBrowser playwrightBrowser) throws ConfigurationException {
+        log.info("Trying to fetch a version info for the provided browser from the environment properties");
 
         String browserImageName = playwrightBrowser.getBrowserImage();
 
         switch (browserImageName) {
             case "chromium" -> {
-                log.info("Getting browser version from the config for Chromium");
+                log.info("Getting browser version from the environment properties for Chromium");
                 return ConfigProviderWeb.getPlaywrightBrowserConfiguration().chromiumBrowserVersion();
             }
             case "firefox" -> {
-                log.info("Getting browser version from the config for Firefox");
+                log.info("Getting browser version from the environment properties for Firefox");
                 return ConfigProviderWeb.getPlaywrightBrowserConfiguration().firefoxBrowserVersion();
             }
             case "webkit" -> {
-                log.info("Getting browser version from the config for WebKit");
+                log.info("Getting browser version from the environment properties for WebKit");
                 return ConfigProviderWeb.getPlaywrightBrowserConfiguration().webkitBrowserVersion();
             }
             default -> {
-                String errorMessage = String.format("Couldn't find a corresponding browser %s in the config to fetch a version for it", browserImageName);
+                String errorMessage = String.format("There's no data available for a browser with the image of type '%s' in the environment properties yet," +
+                        " so the browser version cannot be fetched", browserImageName);
                 throw new ConfigurationException(errorMessage);
             }
         }
+    }
+
+    private static Browser getLocalBrowser(Playwright playwright, PlaywrightBrowser playwrightBrowser, boolean headless) {
+
+        String browserImageName = playwrightBrowser.getBrowserImage();
+
+        log.info("Launching a new browser session locally");
+
+        switch (browserImageName) {
+            case "chromium" -> {
+                log.info("A Chromium engine browser is expected to be started locally now");
+                return playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+            }
+            case "firefox" -> {
+                log.info("A Firefox engine browser is expected to be started locally now");
+                return playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+            }
+            case "webkit" -> {
+                log.info("A WebKit engine browser is expected to be started locally now");
+                return playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+            }
+        }
+        return null;
     }
 }

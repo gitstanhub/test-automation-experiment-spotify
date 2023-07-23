@@ -5,12 +5,8 @@ import org.aeonbits.owner.ConfigFactory;
 
 public class ConfigProviderWeb {
 
-    private static final PlaywrightBrowserConfiguration playwrightBrowserConfiguration;
-
-    static {
-        playwrightBrowserConfiguration = ConfigFactory.create(
+    private static final PlaywrightBrowserConfiguration playwrightBrowserConfiguration = ConfigFactory.create(
                 PlaywrightBrowserConfiguration.class, System.getProperties());
-    }
 
     public static PlaywrightBrowserConfiguration getPlaywrightBrowserConfiguration() {
         return playwrightBrowserConfiguration;
