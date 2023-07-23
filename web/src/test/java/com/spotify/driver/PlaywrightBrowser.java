@@ -43,7 +43,7 @@ public enum PlaywrightBrowser {
                 .filter(browser -> browser.getName().equals(browserName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(
-                        String.format("Couldn't find a browser by the provided parameter vale: %s, " +
+                        String.format("Couldn't find a browser by the provided parameter value: %s, " +
                                 "please use one of the following: %s", browserName, getAllSupportedBrowserNames())
                 ));
     }

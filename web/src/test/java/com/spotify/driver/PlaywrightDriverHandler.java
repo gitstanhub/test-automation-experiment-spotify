@@ -14,13 +14,13 @@ public class PlaywrightDriverHandler {
     private static final ThreadLocal<Page> page = new ThreadLocal<>();
 
     public static synchronized void createDriver(String browserName, String testName, boolean enableVideo, boolean headless, boolean remote) throws ConfigurationException {
-        log.info("New Playwright driver is being created for: '{}'", browserName);
+        log.info("New Playwright driver will be created for the given browser parameter '{}' now", browserName);
 
         playwright.set(Playwright.create());
         Browser browserInstance = PlaywrightBrowserFactory.getBrowser(playwright.get(), browserName, testName, enableVideo, headless, remote);
         browser.set(browserInstance);
 
-        log.info(String.format("Browser %s with version %s has started", browser.get().browserType(), browser.get().version()));
+        log.info(String.format("Browser with %s engine and version %s has been started", browser.get().browserType().name(), browser.get().version()));
 
         browserContext.set(PlaywrightBrowserContextFactory.getBrowserContext(browserName, browserInstance));
         page.set(browserContext.get().newPage());
