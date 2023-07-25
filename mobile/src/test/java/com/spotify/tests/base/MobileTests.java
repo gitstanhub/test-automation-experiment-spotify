@@ -149,15 +149,3 @@ public class MobileTests {
         }
     }
 }
-
-//    private final AppiumDriverHandler realDeviceAppiumDriverHandler = new AppiumDriverHandler();
-//    protected final AndroidDriver driver = AppiumDriverHandler.getDriver();
-//    protected final WebDriverWait wait = AppiumDriverHandler.getWait();
-//    private final LoginPage loginPage = new LoginPage(driver, wait);
-//    private final BluetoothAccessPrompt bluetoothAccessPrompt = new BluetoothAccessPrompt(driver, wait);
-//    private final ScreensaverAd screensaverAd = new ScreensaverAd(driver, wait);
-
-//        loginPage.handleLoginFor("", "");
-//        bluetoothAccessPrompt.handleAccessPrompt();
-
-//        realDeviceAppiumDriverHandler.commonTearDown();

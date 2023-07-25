@@ -2,8 +2,10 @@ package com.spotify.pageobjects.commons.android.mediainteraction;
 
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.mediainteraction.MediaInteraction;
+import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -40,20 +42,20 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
     }
 
     private WebElement getShuffleButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/shuffle_button"));
+
+        String contentDesc = "Shuffle Play";
+
+        try {
+            return getDriver().findElement(By.id("com.spotify.music:id/shuffle_button"));
+        } catch (NoSuchElementException e) {
+            return getDriver().findElement(AppiumBy.androidUIAutomator(
+                    String.format(
+                            "new UiSelector().descriptionContains(\"%s\")",
+                            contentDesc)));
+        }
     }
 
     private WebElement getPlayPauseButton() {
         return getDriver().findElement(By.id("com.spotify.music:id/button_play_and_pause"));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final WebDriverWait wait;
-//    private final ElementChecks elementChecks;
-
-//    public MediaInteractionAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//        this.elementChecks = new ElementChecks(driver, wait);
-//    }

@@ -5,6 +5,7 @@ import com.spotify.pageobjects.pages.interfaces.album.AlbumPage;
 import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -92,7 +93,11 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
     }
 
     private WebElement getTrackCloud() {
-        return getDriver().findElement(By.id("com.spotify.music:id/track_cloud_content"));
+        try {
+            return getDriver().findElement(By.id("com.spotify.music:id/track_cloud_content"));
+        } catch (NoSuchElementException e) {
+            return getDriver().findElement(By.id("com.spotify.music:id/track_cloud"));
+        }
     }
 
     private WebElement getReleaseDateRow(String releaseDate) {
@@ -118,15 +123,3 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
                         targetResourceId, title)));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final ElementChecks elementChecks;
-//    private final AndroidPageNavigationActions androidPageNavigationActions;
-//    private final MediaInteractionAndroid mediaInteractionAndroid;
-//
-//    public AlbumPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.elementChecks = new ElementChecks(driver, wait);
-//        this.androidPageNavigationActions = new AndroidPageNavigationActions(driver, wait);
-//        this.mediaInteractionAndroid = new MediaInteractionAndroid(driver, wait);
-//    }

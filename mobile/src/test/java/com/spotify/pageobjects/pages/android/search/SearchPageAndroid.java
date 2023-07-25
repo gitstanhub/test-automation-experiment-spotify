@@ -5,6 +5,7 @@ import com.spotify.pageobjects.pages.interfaces.search.SearchPage;
 import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,21 @@ public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
     }
 
     private WebElement getSearchPageTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='Search']"));
+        String targetResourceIdFirst = "com.spotify.music:id/title";
+        String targetResourceIdSecond = "com.spotify.music:id/header_title";
+        String title = "Search";
+
+        try {
+            return getDriver().findElement(AppiumBy.androidUIAutomator(
+                    String.format(
+                            "new UiSelector().resourceId(\"%s\").text(\"%s\")",
+                            targetResourceIdFirst, title)));
+        } catch (NoSuchElementException e) {
+            return getDriver().findElement(AppiumBy.androidUIAutomator(
+                    String.format(
+                            "new UiSelector().resourceId(\"%s\").text(\"%s\")",
+                            targetResourceIdSecond, title)));
+        }
     }
 
     private WebElement getScanSpotifyCodeButton() {
@@ -38,13 +53,3 @@ public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
         return getDriver().findElement(By.id("com.spotify.music:id/find_search_field"));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final ElementChecks elementChecks;
-//    private final  WebDriverWait wait;
-//
-//    public SearchPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//        this.elementChecks = new ElementChecks(driver, wait);
-//    }
