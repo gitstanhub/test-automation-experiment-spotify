@@ -26,11 +26,11 @@ public class ArtistsTests extends MobileTests {
 
         getMediaInteraction()
                 .verifyContextMenuButtonIsAvailable()
-//                .verifyShuffleButtonIsAvailable()
+                .verifyShuffleButtonIsAvailable()
                 .verifyPlayButtonIsAvailable();
 
         getArtistProfilePage()
-//                .verifyTrackCloudContainsArtist("Oliver Tree")
+                .verifyTrackCloudContainsArtist("Oliver Tree")
                 .verifyPopularReleasesSectionIsAvailable()
                 .verifyArtistPlaylistsSectionIsAvailable()
                 .verifyFansAlsoLikeSectionIsAvailable();
@@ -81,12 +81,3 @@ public class ArtistsTests extends MobileTests {
                 .verifySpotifyCodeIsAvailable();
     }
 }
-
-//
-//    private final Navigation navigationBar = new Navigation(driver);
-//    private final LibraryPage libraryPage = new LibraryPage(driver, wait);
-//    private final ArtistProfilePage artistProfilePage = new ArtistProfilePage(driver, wait);
-//    private final MediaInteraction mediaInteraction = new MediaInteraction(driver, wait);
-//    private final ArtistDiscographyPage aristDiscographyPage = new ArtistDiscographyPage(driver, wait);
-//    private final ContextMenu contextMenu = new ContextMenu(driver, wait);
-//    private final SpotifyCode spotifyCode = new SpotifyCode(driver, wait);

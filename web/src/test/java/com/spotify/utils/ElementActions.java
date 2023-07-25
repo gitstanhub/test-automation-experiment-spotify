@@ -14,35 +14,35 @@ import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 @Slf4j
 public class ElementActions {
 
-    public Locator findElementByExactText(String elementText) {
+    public static Locator findElementByExactText(String elementText) {
         return getPage().getByText(elementText, new Page.GetByTextOptions().setExact(true));
     }
 
-    public Locator findElementByTestId(String testId) {
+    public static Locator findElementByTestId(String testId) {
         return getPage().getByTestId(testId);
     }
 
-    public Locator findElementById(String idAttribute) {
+    public static Locator findElementById(String idAttribute) {
         return getPage().locator("#" + idAttribute);
     }
 
-    public Locator findElementByRole(AriaRole role, String elementText) {
+    public static Locator findElementByRole(AriaRole role, String elementText) {
         return getPage().getByRole(role, new Page.GetByRoleOptions().setName(elementText).setExact(true));
     }
 
-    public Locator findElementBySelector(String selector) {
+    public static Locator findElementBySelector(String selector) {
         return getPage().locator(selector);
     }
 
-    public List<Locator> findAllElementsBySelector(String selector) {
+    public static List<Locator> findAllElementsBySelector(String selector) {
         return getPage().locator(selector).all();
     }
 
-    public String getElementAttributeBySelector(String selector, String attributeName) {
+    public static String getElementAttributeBySelector(String selector, String attributeName) {
         return getPage().locator(selector).getAttribute(attributeName);
     }
 
-    public Locator findElementBySelectorAndText(String selector, String elementText) {
+    public static Locator findElementBySelectorAndText(String selector, String elementText) {
         return getPage().locator(selector + ":has-text(\"" + elementText + "\")");
     }
 }

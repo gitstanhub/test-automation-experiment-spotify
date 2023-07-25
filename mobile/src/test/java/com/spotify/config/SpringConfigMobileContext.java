@@ -28,7 +28,6 @@ public class SpringConfigMobileContext {
         switch (platformName) {
             case "android" -> {
                 setContextWithAndroidPages(applicationContext);
-//                applicationContext.scan("com.spotify.pageobjects.pages.android", "com.spotify.pageobjects.commons.android", "com.spotify.pageobjects.commons.android.navigation");
             }
 
             default -> {

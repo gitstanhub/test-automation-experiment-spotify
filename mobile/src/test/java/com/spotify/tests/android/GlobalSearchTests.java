@@ -12,8 +12,8 @@ public class GlobalSearchTests extends MobileTests {
         getNavigation()
                 .tapSearchButton();
         getSearchPage()
-                .verifySearchPageIsOpened();
-//                .tapGlobalSearchField();
+                .verifySearchPageIsOpened()
+                .tapGlobalSearchField();
         getSearchResultsPage()
                 .searchGloballyFor("Eminem")
                 .tapArtistsFilterButton()
@@ -26,15 +26,11 @@ public class GlobalSearchTests extends MobileTests {
         getNavigation()
                 .tapSearchButton();
         getSearchPage()
-                .verifySearchPageIsOpened();
-//                .tapGlobalSearchField();
+                .verifySearchPageIsOpened()
+                .tapGlobalSearchField();
         getSearchResultsPage()
                 .searchGloballyFor("The Eminem Show")
                 .tapAlbumFilterButton()
                 .verifySearchResultIsAvailable("The Eminem Show");
     }
 }
-
-//    private final Navigation navigation = new Navigation(driver);
-//    private final SearchPage searchPage = new SearchPage(driver, wait);
-//    private final SearchResultsPage searchResultsPage = new SearchResultsPage(driver, wait);
