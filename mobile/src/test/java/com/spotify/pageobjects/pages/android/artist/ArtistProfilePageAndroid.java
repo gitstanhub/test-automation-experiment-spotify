@@ -2,8 +2,10 @@ package com.spotify.pageobjects.pages.android.artist;
 
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.artist.ArtistProfilePage;
+import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -72,7 +74,11 @@ public class ArtistProfilePageAndroid extends AppiumPageAndroid implements Artis
     }
 
     private WebElement getTrackCloud() {
-        return getDriver().findElement(By.id("com.spotify.music:id/track_cloud_content"));
+        try {
+            return getDriver().findElement(By.id("com.spotify.music:id/track_cloud_content"));
+        } catch (NoSuchElementException e) {
+            return getDriver().findElement(By.id("com.spotify.music:id/track_cloud"));
+        }
     }
 
     private WebElement getArtistPickTitle() {
@@ -115,13 +121,3 @@ public class ArtistProfilePageAndroid extends AppiumPageAndroid implements Artis
         return getDriver().findElement(By.id("com.spotify.music:id/biography"));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final ElementChecks elementChecks;
-//    private final AndroidPageNavigationActions androidPageNavigationActions;
-//
-//    public ArtistProfilePageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.elementChecks = new ElementChecks(driver, wait);
-//        this.androidPageNavigationActions = new AndroidPageNavigationActions(driver, wait);
-//    }

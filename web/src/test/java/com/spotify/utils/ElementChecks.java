@@ -9,25 +9,23 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ElementChecks {
 
-    private final ElementActions elementActions = new ElementActions();
-
-    public boolean isElementVisibleWithId(String elementId) {
-        return elementActions.findElementById(elementId).isVisible();
+    public static boolean isElementVisibleWithId(String elementId) {
+        return ElementActions.findElementById(elementId).isVisible();
     }
 
-    public boolean isElementVisible(Locator locator) {
+    public static boolean isElementVisible(Locator locator) {
         return locator.isVisible();
     }
 
-    public boolean isElementVisibleWithText(String elementText) {
-        return elementActions.findElementByExactText(elementText).isVisible();
+    public static boolean isElementVisibleWithText(String elementText) {
+        return ElementActions.findElementByExactText(elementText).isVisible();
     }
 
-    public void assertInputElementContainsText(String expectedText, Locator locator) {
+    public static void assertInputElementContainsText(String expectedText, Locator locator) {
         Assertions.assertEquals(expectedText, locator.inputValue(), "Couldn't find the expected text inside the specified element");
     }
 
-    public void assertElementContainsText(String expectedText, Locator locator) {
+    public static void assertElementContainsText(String expectedText, Locator locator) {
         Assertions.assertEquals(expectedText, locator.innerText(), "Couldn't find the expected text inside the specified element");
     }
 }

@@ -14,8 +14,8 @@ public class LibraryTests extends MobileTests {
                 .tapLibraryButton();
 
         getLibraryPage()
+                .tapPlaylistsButton()
                 .tapCreatePlaylistButton();
-//                .choosePlaylistOption();
 
         getPlaylistCreationPage()
                 .verifyPlaylistCreationPageIsOpened()
@@ -35,7 +35,7 @@ public class LibraryTests extends MobileTests {
                 .tapLibraryButton();
 
         getLibraryPage()
-//                .verifyLibraryPageIsOpened()
+                .verifyLibraryPageIsOpened()
                 .tapPlaylistsButton()
                 .selectPlaylistItem("Braa", "Stanislav");
 
@@ -72,11 +72,3 @@ public class LibraryTests extends MobileTests {
                 .verifySearchResultIsAvailable("Oliver Tree", "Artist");
     }
 }
-
-//    private final Navigation navigation = new Navigation(driver);
-//    private final LibraryPage libraryPage = new LibraryPage(driver, wait);
-//    private final PlaylistCreationPage playlistCreationPage = new PlaylistCreationPage(driver, wait);
-//    private final PlaylistPage playlistPage = new PlaylistPage(driver, wait);
-//    private final LibrarySearchPage librarySearchPage = new LibrarySearchPage(driver, wait);
-//    private final MediaInteraction mediaInteraction = new MediaInteraction(driver, wait);
-//    private final ContextMenu contextMenu = new ContextMenu(driver, wait);

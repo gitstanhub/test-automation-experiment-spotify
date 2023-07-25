@@ -98,7 +98,7 @@ public class AndroidDeviceActions {
     public void slightlySwipeDown() {
         Map<String, Object> scrollObject = new HashMap<>();
         scrollObject.put("direction", "up");
-        scrollObject.put("percent", 0.7);
+        scrollObject.put("percent", 0.4);
         scrollObject.put("left", 460);
         scrollObject.put("top", 1150);
         scrollObject.put("width", 300);
@@ -144,9 +144,3 @@ public class AndroidDeviceActions {
         }
     }
 }
-
-//    private final AndroidDriver driver;
-//
-//    public AndroidDeviceActions(AndroidDriver driver) {
-//        this.driver = driver;
-//    }
