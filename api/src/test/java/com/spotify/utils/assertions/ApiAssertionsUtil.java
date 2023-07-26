@@ -1,6 +1,6 @@
 package com.spotify.utils.assertions;
 
-import com.spotify.testdata.commons.AssertionData;
+import com.spotify.testdata.commons.assertions.AssertionData;
 import org.assertj.core.api.Assertions;
 
 import java.util.List;
@@ -46,8 +46,8 @@ public class ApiAssertionsUtil {
     }
 
     public ApiAssertionsUtil verifyResponseMultipleFields(AssertionData.ActualAssertionData actualData, AssertionData.ExpectedAssertionData expectedData) {
-        if(actualData.toList().size() == expectedData.toList().size()) {
-            for (int i = 0; i< actualData.toList().size(); i++) {
+        if (actualData.toList().size() == expectedData.toList().size()) {
+            for (int i = 0; i < actualData.toList().size(); i++) {
                 verifyResponseSingleField(actualData.toList().get(i), expectedData.toList().get(i));
             }
         } else {

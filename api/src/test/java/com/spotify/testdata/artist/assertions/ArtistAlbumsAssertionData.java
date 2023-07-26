@@ -1,11 +1,12 @@
 package com.spotify.testdata.artist.assertions;
 
-import com.spotify.testdata.commons.AssertionData;
+import com.spotify.testdata.commons.assertions.AssertionData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ArtistAlbumsAssertionData extends AssertionData {
@@ -24,14 +25,11 @@ public class ArtistAlbumsAssertionData extends AssertionData {
 
         @Override
         public List<Object> toList() {
-            List<Object> actualFieldList = new ArrayList<>();
-            actualFieldList.add(getActualAlbumName());
-            actualFieldList.add(getActualAlbumId());
-            actualFieldList.add(getActualAlbumArtistName());
-            actualFieldList.add(getActualAlbumType());
-            actualFieldList.add(getActualAlbumTotalTracks());
-            actualFieldList.add(getActualAlbumReleaseDate());
-            return actualFieldList;
+            return Arrays.asList(
+                    actualAlbumName,
+                    actualAlbumId,
+                    actualAlbumArtistName
+            );
         }
     }
 
@@ -49,14 +47,11 @@ public class ArtistAlbumsAssertionData extends AssertionData {
 
         @Override
         public List<Object> toList() {
-            List<Object> expectedFieldList = new ArrayList<>();
-            expectedFieldList.add(getExpectedAlbumName());
-            expectedFieldList.add(getExpectedAlbumId());
-            expectedFieldList.add(getExpectedAlbumArtistName());
-            expectedFieldList.add(getExpectedAlbumType());
-            expectedFieldList.add(getExpectedAlbumTotalTracks());
-            expectedFieldList.add(getExpectedAlbumReleaseDate());
-            return expectedFieldList;
+            return Arrays.asList(
+                    expectedAlbumName,
+                    expectedAlbumId,
+                    expectedAlbumArtistName
+            );
         }
     }
 }

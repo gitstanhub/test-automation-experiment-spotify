@@ -26,6 +26,7 @@ public enum AristTracks {
     public String getTrackName() {
         return trackName;
     }
+
     public List<String> getTrackArtists() {
         return trackArtists;
     }

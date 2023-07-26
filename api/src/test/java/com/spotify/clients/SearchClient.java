@@ -13,11 +13,6 @@ import static io.restassured.RestAssured.given;
 
 public class SearchClient {
 
-//    @Step
-//    public SearchRequestModel addSearchTypes(SearchTypes... specifiedSearchTypes) {
-//        return new SearchRequestModel(specifiedSearchTypes);
-//    }
-
     @Step
     public SearchResponseModel search(String query, List<String> types) {
         return search(query, types, null, null, null, null);

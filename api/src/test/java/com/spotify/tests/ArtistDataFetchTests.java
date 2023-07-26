@@ -6,7 +6,7 @@ import com.spotify.models.response.artist.*;
 import com.spotify.testdata.artist.assertions.*;
 import com.spotify.testdata.artist.constants.ArtistEntities;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
-import com.spotify.utils.responsefields.artist.*;
+import com.spotify.utils.responsedata.artist.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -17,14 +17,13 @@ import static com.spotify.testdata.artist.constants.ArtistAlbums.*;
 import static com.spotify.testdata.artist.constants.ArtistEntities.*;
 
 public class ArtistDataFetchTests {
-//ToDo extends base class
     ArtistClient artistClient = new ArtistClient();
     ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
-    ArtistProfileResponseFieldsUtil artistResponseFieldsUtil = new ArtistProfileResponseFieldsUtil();
-    ArtistTopTracksResponseFieldsUtil artistTopTracksFieldsUtil = new ArtistTopTracksResponseFieldsUtil();
-    ArtistAlbumResponseFieldsUtil artistAlbumFieldsUtil = new ArtistAlbumResponseFieldsUtil();
-    RelatedArtistsResponseFieldsUtil artistRelatedFieldsUtil = new RelatedArtistsResponseFieldsUtil();
-    MultipleArtistsResponseFieldsUtil artistMultipleFieldsUtil = new MultipleArtistsResponseFieldsUtil();
+    ArtistProfileResponseDataUtil artistResponseFieldsUtil = new ArtistProfileResponseDataUtil();
+    ArtistTopTracksResponseDataUtil artistTopTracksFieldsUtil = new ArtistTopTracksResponseDataUtil();
+    ArtistAlbumResponseDataUtil artistAlbumFieldsUtil = new ArtistAlbumResponseDataUtil();
+    RelatedArtistsResponseDataUtil artistRelatedFieldsUtil = new RelatedArtistsResponseDataUtil();
+    MultipleArtistsResponseDataUtil artistMultipleFieldsUtil = new MultipleArtistsResponseDataUtil();
 
     @Test
     void artistProfileIsFetched() {

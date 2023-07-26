@@ -1,4 +1,4 @@
-package com.spotify.utils.responsefields.search;
+package com.spotify.utils.responsedata.search;
 
 import com.spotify.models.response.artist.ArtistAlbumsResponseModel;
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
@@ -8,14 +8,15 @@ import com.spotify.models.response.search.SearchResponseModel;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchResponseFieldsUtil {
+public class SearchResponseDataUtil {
 
     public Integer getItemsCount(SearchResponseModel searchResponse, String objectType) {
-        return switch(objectType) {
-            case("albums") -> getAlbumsPage(searchResponse).getItems().size();
-            case("artists") -> getArtists(searchResponse).getItems().size();
-            case("playlists") -> getPlaylists(searchResponse).getItems().size();
-            default -> throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
+        return switch (objectType) {
+            case ("albums") -> getAlbumsPage(searchResponse).getItems().size();
+            case ("artists") -> getArtists(searchResponse).getItems().size();
+            case ("playlists") -> getPlaylists(searchResponse).getItems().size();
+            default ->
+                    throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
         };
     }
 
@@ -40,10 +41,11 @@ public class SearchResponseFieldsUtil {
 
     public Integer getPaginationDataOffset(SearchResponseModel searchResponse, String objectType) {
         return switch (objectType) {
-            case("albums") -> getAlbumsPage(searchResponse).getOffset();
-            case("artists") -> getArtists(searchResponse).getOffset();
-            case("playlists") -> getPlaylists(searchResponse).getOffset();
-            default -> throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
+            case ("albums") -> getAlbumsPage(searchResponse).getOffset();
+            case ("artists") -> getArtists(searchResponse).getOffset();
+            case ("playlists") -> getPlaylists(searchResponse).getOffset();
+            default ->
+                    throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
         };
     }
 
@@ -52,7 +54,8 @@ public class SearchResponseFieldsUtil {
             case ("albums") -> getAlbumsPage(searchResponseModel).getLimit();
             case ("artists") -> getArtists(searchResponseModel).getLimit();
             case ("playlists") -> getPlaylists(searchResponseModel).getLimit();
-            default -> throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
+            default ->
+                    throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
         };
     }
 

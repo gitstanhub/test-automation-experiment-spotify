@@ -21,13 +21,11 @@ public class SearchSpec {
 
     public static ResponseSpecification searchResponseSpec = new ResponseSpecBuilder()
             .log(LogDetail.STATUS)
-//            .log(LogDetail.BODY)
             .expectStatusCode(200)
             .build();
 
     public static ResponseSpecification searchErrorResponseSpec = new ResponseSpecBuilder()
             .log(LogDetail.STATUS)
-//            .log(LogDetail.BODY)
             .expectStatusCode(400)
             .build();
 }

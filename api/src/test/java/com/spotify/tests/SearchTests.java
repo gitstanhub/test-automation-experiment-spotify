@@ -7,19 +7,18 @@ import com.spotify.testdata.search.constants.SearchTypes;
 import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
 import com.spotify.utils.assertions.ApiAssertionsUtil;
-import com.spotify.utils.requestfields.search.SearchRequestFieldsUtil;
+import com.spotify.utils.requestdata.search.SearchRequestDataUtil;
 
-import com.spotify.utils.responsefields.search.SearchResponseFieldsUtil;
+import com.spotify.utils.responsedata.search.SearchResponseDataUtil;
 import org.junit.jupiter.api.Test;
 
 import static com.spotify.testdata.artist.constants.ArtistEntities.CAPITAL_BRA;
 
 public class SearchTests {
-    //TODO: Move client initialisation under @BeforeAll
     SearchClient searchClient = new SearchClient();
     ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
-    SearchRequestFieldsUtil searchRequestFieldsUtil = new SearchRequestFieldsUtil();
-    SearchResponseFieldsUtil searchResponseFieldsUtil = new SearchResponseFieldsUtil();
+    SearchRequestDataUtil searchRequestDataUtil = new SearchRequestDataUtil();
+    SearchResponseDataUtil searchResponseDataUtil = new SearchResponseDataUtil();
 
     @Test
     void artistsAndAlbumsAreFound() {
@@ -37,8 +36,8 @@ public class SearchTests {
                 .build();
 
         SearchResponseModel searchResults = searchClient.searchWithLimitOffset(
-                searchRequestFieldsUtil.getSearchQuery(searchRequest),
-                searchRequestFieldsUtil.getSearchTypes(searchRequest),
+                searchRequestDataUtil.getSearchQuery(searchRequest),
+                searchRequestDataUtil.getSearchTypes(searchRequest),
                 desiredLimit, desiredOffset
         );
 
@@ -46,22 +45,22 @@ public class SearchTests {
                 SearchResultsAssertionData.ActualSearchResultsData.builder()
                         .actualArtistsPaginationData(
                                 new SearchResultsAssertionData.PaginationData(
-                                        searchResponseFieldsUtil.getPaginationDataLimit(searchResults, "artists"),
-                                        searchResponseFieldsUtil.getPaginationDataOffset(searchResults, "artists")
+                                        searchResponseDataUtil.getPaginationDataLimit(searchResults, "artists"),
+                                        searchResponseDataUtil.getPaginationDataOffset(searchResults, "artists")
                                 )
                         )
-                        .actualArtistsTypes(searchResponseFieldsUtil.getAllArtistsTypes(searchResults))
-                        .actualArtistsItemsSize(searchResponseFieldsUtil.getItemsCount(searchResults, "artists"))
+                        .actualArtistsTypes(searchResponseDataUtil.getAllArtistsTypes(searchResults))
+                        .actualArtistsItemsSize(searchResponseDataUtil.getItemsCount(searchResults, "artists"))
 
                         .actualAlbumsPaginationData(
                                 new SearchResultsAssertionData.PaginationData(
-                                        searchResponseFieldsUtil.getPaginationDataLimit(searchResults, "albums"),
-                                        searchResponseFieldsUtil.getPaginationDataOffset(searchResults, "albums")
+                                        searchResponseDataUtil.getPaginationDataLimit(searchResults, "albums"),
+                                        searchResponseDataUtil.getPaginationDataOffset(searchResults, "albums")
                                 )
                         )
-                        .actualAlbumsTypes(searchResponseFieldsUtil.getAllAlbumsTypes(searchResults))
-                        .actualAlbumsArtistsNames(searchResponseFieldsUtil.getAllAlbumsArtistsNames(searchResults))
-                        .actualAlbumsItemsSize(searchResponseFieldsUtil.getItemsCount(searchResults, "albums"))
+                        .actualAlbumsTypes(searchResponseDataUtil.getAllAlbumsTypes(searchResults))
+                        .actualAlbumsArtistsNames(searchResponseDataUtil.getAllAlbumsArtistsNames(searchResults))
+                        .actualAlbumsItemsSize(searchResponseDataUtil.getItemsCount(searchResults, "albums"))
                         .build();
 
         apiAssertionsUtil
@@ -95,28 +94,28 @@ public class SearchTests {
                 .build();
 
         SearchResponseModel searchResults = searchClient.searchWithMarket(
-                searchRequestFieldsUtil.getSearchQuery(searchRequest),
-                searchRequestFieldsUtil.getSearchTypes(searchRequest),
-                searchRequestFieldsUtil.getSearchMarket(searchRequest)
+                searchRequestDataUtil.getSearchQuery(searchRequest),
+                searchRequestDataUtil.getSearchTypes(searchRequest),
+                searchRequestDataUtil.getSearchMarket(searchRequest)
         );
 
         SearchResultsAssertionData.ActualSearchResultsData actualSearchResults = SearchResultsAssertionData.ActualSearchResultsData.builder()
                 .actualPlaylistsPaginationData(
                         new SearchResultsAssertionData.PaginationData(
-                                searchResponseFieldsUtil.getPaginationDataLimit(searchResults, "playlists"),
-                                searchResponseFieldsUtil.getPaginationDataOffset(searchResults, "playlists")
+                                searchResponseDataUtil.getPaginationDataLimit(searchResults, "playlists"),
+                                searchResponseDataUtil.getPaginationDataOffset(searchResults, "playlists")
                         )
                 )
-                .actualPlaylistsTypes(searchResponseFieldsUtil.getAllPlaylistsTypes(searchResults))
-                .actualPlaylistsItemsSize(searchResponseFieldsUtil.getItemsCount(searchResults, "playlists"))
+                .actualPlaylistsTypes(searchResponseDataUtil.getAllPlaylistsTypes(searchResults))
+                .actualPlaylistsItemsSize(searchResponseDataUtil.getItemsCount(searchResults, "playlists"))
                 .build();
 
-                apiAssertionsUtil.verifyResponseSingleField(actualSearchResults.getActualPlaylistsPaginationData().getLimit(), 20)
-                        .verifyResponseSingleField(actualSearchResults.getActualPlaylistsPaginationData().getOffset(), 0);
+        apiAssertionsUtil.verifyResponseSingleField(actualSearchResults.getActualPlaylistsPaginationData().getLimit(), 20)
+                .verifyResponseSingleField(actualSearchResults.getActualPlaylistsPaginationData().getOffset(), 0);
 
-                apiAssertionsUtil.verifyEachResponseFieldContains(actualSearchResults.getActualPlaylistsTypes(), "playlist");
+        apiAssertionsUtil.verifyEachResponseFieldContains(actualSearchResults.getActualPlaylistsTypes(), "playlist");
 
-                apiAssertionsUtil.verifyResponseSingleField(actualSearchResults.getActualPlaylistsItemsSize(), 20);
+        apiAssertionsUtil.verifyResponseSingleField(actualSearchResults.getActualPlaylistsItemsSize(), 20);
     }
 
     @Test

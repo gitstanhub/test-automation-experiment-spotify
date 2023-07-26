@@ -26,9 +26,9 @@ public class ApiAuthUtil {
                 .log().headers()
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body(requestBody)
-        .when()
+                .when()
                 .post("https://accounts.spotify.com/api/token")
-        .then()
+                .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -37,7 +37,7 @@ public class ApiAuthUtil {
         authToken = response.path("access_token");
     }
 
-    public static String getAuthToken() {
+    public static synchronized String getAuthToken() {
 
         if (authToken == null) {
             generateAuthToken();

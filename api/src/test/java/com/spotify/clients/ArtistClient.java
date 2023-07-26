@@ -14,9 +14,9 @@ public class ArtistClient {
     @Step
     public ArtistProfileResponseModel getArtistData(String artistId) {
         return given(artistRequestSpec)
-        .when()
+                .when()
                 .get(artistId)
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistProfileResponseModel.class);
     }
@@ -25,9 +25,9 @@ public class ArtistClient {
     public ArtistTopTracksResponseModel getArtistTopTracks(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("market", country)
-        .when()
+                .when()
                 .get(artistID + "/top-tracks")
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistTopTracksResponseModel.class);
     }
@@ -37,9 +37,9 @@ public class ArtistClient {
         return given(artistRequestSpec)
                 .param("include_groups", "album")
                 .param("market", country)
-        .when()
+                .when()
                 .get(artistID + "/albums")
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistAlbumsResponseModel.class);
     }
@@ -47,9 +47,9 @@ public class ArtistClient {
     @Step
     public ArtistRelatedResponseModel getRelatedArtists(String artistID) {
         return given(artistRequestSpec)
-        .when()
+                .when()
                 .get(artistID + "/related-artists")
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistRelatedResponseModel.class);
     }
@@ -61,9 +61,9 @@ public class ArtistClient {
 
         return given(artistRequestSpec)
                 .param("ids", artistsParam)
-        .when()
+                .when()
                 .get()
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistMultipleResponseModel.class);
     }

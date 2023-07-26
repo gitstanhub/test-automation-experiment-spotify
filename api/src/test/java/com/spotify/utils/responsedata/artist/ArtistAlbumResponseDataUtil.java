@@ -1,4 +1,4 @@
-package com.spotify.utils.responsefields.artist;
+package com.spotify.utils.responsedata.artist;
 
 import com.spotify.models.response.artist.ArtistAlbumsResponseModel;
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
@@ -6,7 +6,7 @@ import com.spotify.models.response.artist.ArtistProfileResponseModel;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class ArtistAlbumResponseFieldsUtil {
+public class ArtistAlbumResponseDataUtil {
 
     public String getAlbumName(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
         return getAlbum(artistAlbumsResponse, desiredAlbumName).getName();

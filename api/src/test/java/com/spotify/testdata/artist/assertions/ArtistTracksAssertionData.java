@@ -1,11 +1,11 @@
 package com.spotify.testdata.artist.assertions;
 
-import com.spotify.testdata.commons.AssertionData;
+import com.spotify.testdata.commons.assertions.AssertionData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ArtistTracksAssertionData extends AssertionData {
@@ -23,27 +23,17 @@ public class ArtistTracksAssertionData extends AssertionData {
         private final String actualTrackArtistName;
         private final Boolean actualTrackExplicitStatus;
 
-//        public ActualTracksData(String actualTrackName, String trackId, Integer trackDuration, String trackType, String trackAlbumName, String trackArtistName, Boolean trackExplicitStatus) {
-//            this.actualTrackName = actualTrackName;
-//            this.actualTrackId = trackId;
-//            this.actualTrackDuration = trackDuration;
-//            this.actualTrackType = trackType;
-//            this.actualTrackAlbumName = trackAlbumName;
-//            this.actualTrackArtistName = trackArtistName;
-//            this.actualTrackExplicitStatus = trackExplicitStatus;
-//        }
-
         @Override
         public List<Object> toList() {
-            List<Object> actualFieldList = new ArrayList<>();
-            actualFieldList.add(this.getActualTrackName());
-            actualFieldList.add(this.getActualTrackId());
-            actualFieldList.add(this.getActualTrackDuration());
-            actualFieldList.add(this.getActualTrackType());
-            actualFieldList.add(this.getActualTrackAlbumName());
-            actualFieldList.add(this.getActualTrackArtistName());
-            actualFieldList.add(this.getActualTrackExplicitStatus());
-            return actualFieldList;
+            return Arrays.asList(
+                    actualTrackName,
+                    actualTrackId,
+                    actualTrackDuration,
+                    actualTrackType,
+                    actualTrackAlbumName,
+                    actualTrackArtistName,
+                    actualTrackExplicitStatus
+            );
         }
     }
 
@@ -60,27 +50,17 @@ public class ArtistTracksAssertionData extends AssertionData {
         private final String expectedTrackArtistName;
         private final Boolean expectedTrackExplicitStatus;
 
-//        public ExpectedTracksData(String expectedTrackName, String expectedTrackId, Integer expectedTrackDuration, String expectedTrackType, String expectedTrackAlbumName, String expectedTrackArtistName, Boolean expectedTrackExplicitStatus) {
-//            this.expectedTrackName = expectedTrackName;
-//            this.expectedTrackId = expectedTrackId;
-//            this.expectedTrackDuration = expectedTrackDuration;
-//            this.expectedTrackType = expectedTrackType;
-//            this.expectedTrackAlbumName = expectedTrackAlbumName;
-//            this.expectedTrackArtistName = expectedTrackArtistName;
-//            this.expectedTrackExplicitStatus = expectedTrackExplicitStatus;
-//        }
-
         @Override
         public List<Object> toList() {
-            List<Object> expectedFieldList = new ArrayList<>();
-            expectedFieldList.add(this.getExpectedTrackName());
-            expectedFieldList.add(this.getExpectedTrackId());
-            expectedFieldList.add(this.getExpectedTrackDuration());
-            expectedFieldList.add(this.getExpectedTrackType());
-            expectedFieldList.add(this.getExpectedTrackAlbumName());
-            expectedFieldList.add(this.getExpectedTrackArtistName());
-            expectedFieldList.add(this.getExpectedTrackExplicitStatus());
-            return expectedFieldList;
+            return Arrays.asList(
+                    expectedTrackName,
+                    expectedTrackId,
+                    expectedTrackDuration,
+                    expectedTrackType,
+                    expectedTrackAlbumName,
+                    expectedTrackArtistName,
+                    expectedTrackExplicitStatus
+            );
         }
     }
 }
