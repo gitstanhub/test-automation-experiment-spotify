@@ -72,13 +72,3 @@ public class SearchResultsPageAndroid extends AppiumPageAndroid implements Searc
         return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + title + "']"));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final AndroidPageNavigationActions androidPageNavigationActions;
-//    private final ElementChecks elementChecks;
-//
-//    public SearchResultsPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.androidPageNavigationActions = new AndroidPageNavigationActions(driver, wait);
-//        this.elementChecks = new ElementChecks(driver, wait);
-//    }

@@ -27,13 +27,3 @@ public class SpotifyCodeAndroid extends AppiumPageAndroid implements SpotifyCode
         return getDriver().findElement(By.id("com.spotify.music:id/scannable_imageview"));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final ElementChecks elementChecks;
-//    private final WebDriverWait wait;
-//
-//    public SpotifyCodeAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//        this.elementChecks = new ElementChecks(driver, wait);
-//    }

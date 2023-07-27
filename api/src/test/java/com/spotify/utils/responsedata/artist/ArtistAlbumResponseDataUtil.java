@@ -3,7 +3,6 @@ package com.spotify.utils.responsedata.artist;
 import com.spotify.models.response.artist.ArtistAlbumsResponseModel;
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class ArtistAlbumResponseDataUtil {
@@ -39,7 +38,7 @@ public class ArtistAlbumResponseDataUtil {
         if (foundAlbum.isPresent()) {
             return foundAlbum.get();
         } else {
-            throw new NoSuchElementException("Album with the provided name is not found");
+            throw new IllegalArgumentException("Album with the provided name is not found");
         }
     }
 
@@ -49,7 +48,7 @@ public class ArtistAlbumResponseDataUtil {
         if (foundArtist.isPresent()) {
             return foundArtist.get();
         } else {
-            throw new NoSuchElementException("Artist with the provided name is not found");
+            throw new IllegalArgumentException("Artist with the provided name is not found");
         }
     }
 

@@ -54,21 +54,3 @@ public class BluetoothAccessPromptAndroid extends AppiumPageAndroid implements B
         return getDriver().findElement(By.id("com.spotify.music:id/touch_outside"));
     }
 }
-
-//    public BluetoothAccessPromptAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        super(driver, wait);
-//    }
-
-//    public void handleAccessPrompt() {
-//        FluentWait<AndroidDriver> fLuentWait = new FluentWait<>(driver)
-//                .withTimeout(Duration.ofMillis(6000))
-//                .pollingEvery(Duration.ofMillis(2000))
-//                .ignoring(NoSuchElementException.class);
-//
-//        try {
-//            fLuentWait.until(driver) -> {
-//                WebElement element = driver.
-//
-//            }
-//        }
-//    }

@@ -5,9 +5,9 @@ import com.spotify.clients.ArtistClient;
 import com.spotify.models.response.artist.*;
 import com.spotify.testdata.artist.assertions.*;
 import com.spotify.testdata.artist.constants.ArtistEntities;
-import com.spotify.utils.assertions.ApiAssertionsUtil;
-import com.spotify.utils.responsedata.artist.*;
+import com.spotify.tests.base.ApiTests;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,17 +16,13 @@ import static com.spotify.testdata.artist.constants.AristTracks.*;
 import static com.spotify.testdata.artist.constants.ArtistAlbums.*;
 import static com.spotify.testdata.artist.constants.ArtistEntities.*;
 
-public class ArtistDataFetchTests {
-    ArtistClient artistClient = new ArtistClient();
-    ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
-    ArtistProfileResponseDataUtil artistResponseFieldsUtil = new ArtistProfileResponseDataUtil();
-    ArtistTopTracksResponseDataUtil artistTopTracksFieldsUtil = new ArtistTopTracksResponseDataUtil();
-    ArtistAlbumResponseDataUtil artistAlbumFieldsUtil = new ArtistAlbumResponseDataUtil();
-    RelatedArtistsResponseDataUtil artistRelatedFieldsUtil = new RelatedArtistsResponseDataUtil();
-    MultipleArtistsResponseDataUtil artistMultipleFieldsUtil = new MultipleArtistsResponseDataUtil();
+public class ArtistDataTests extends ApiTests {
+
+    @Autowired
+    ArtistClient artistClient;
 
     @Test
-    void artistProfileIsFetched() {
+    void artistProfileCanBeFetched() {
         ArtistProfileResponseModel fetchedArtistData = artistClient.getArtistData(CAPITAL_BRA.getArtistId());
 
         ArtistEntitiesAssertionData.ActualArtistData actualArtistData = new ArtistEntitiesAssertionData.ActualArtistData(
@@ -45,11 +41,11 @@ public class ArtistDataFetchTests {
                 CAPITAL_BRA.getArtistUri()
         );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualArtistData, expectedArtistData);
+        apiAssertionsUtil.assertFieldsAreEqual(actualArtistData, expectedArtistData);
     }
 
     @Test
-    void artistTopTracksAreFetched() {
+    void artistTopTracksCanBeFetched() {
         String countryCode = String.valueOf(CountryCode.DE);
 
         ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracks(countryCode, CAPITAL_BRA.getArtistId());
@@ -74,11 +70,11 @@ public class ArtistDataFetchTests {
                 NEYMAR.getTrackExplicit()
         );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualTopTracksData, expectedTopTracksData);
+        apiAssertionsUtil.assertFieldsAreEqual(actualTopTracksData, expectedTopTracksData);
     }
 
     @Test
-    void artistAlbumsAreFetched() {
+    void artistAlbumsCanBeFetched() {
         String countryCode = String.valueOf(CountryCode.DE);
 
         ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbums(countryCode, CAPITAL_BRA.getArtistId());
@@ -101,11 +97,11 @@ public class ArtistDataFetchTests {
                 BERLIN_LEBT.getAlbumReleaseDate()
         );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualAlbumsData, expectedAlbumsData);
+        apiAssertionsUtil.assertFieldsAreEqual(actualAlbumsData, expectedAlbumsData);
     }
 
     @Test
-    void relatedArtistsAreFetched() {
+    void relatedArtistsCanBeFetched() {
         ArtistRelatedResponseModel fetchedArtistRelated = artistClient.getRelatedArtists(CAPITAL_BRA.getArtistId());
 
         ArtistRelatedAssertionData.ActualRelatedArtistData actualRelatedArtistData = new ArtistRelatedAssertionData.ActualRelatedArtistData(
@@ -124,11 +120,11 @@ public class ArtistDataFetchTests {
                 AK_AUSSERKONTOLLE.getArtistUri()
         );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualRelatedArtistData, expectedAssertionData);
+        apiAssertionsUtil.assertFieldsAreEqual(actualRelatedArtistData, expectedAssertionData);
     }
 
     @Test
-    void multipleArtistsProfilesAreFetched() {
+    void multipleArtistsProfilesCanBeFetched() {
         List<ArtistEntities> inScopeArtists = Arrays.asList(
                 CAPITAL_BRA,
                 AK_AUSSERKONTOLLE,
@@ -153,6 +149,6 @@ public class ArtistDataFetchTests {
                 inScopeArtistsIds
         );
 
-        apiAssertionsUtil.verifyResponseMultipleFields(actualMultipleArtistData, expectedMultipleArtistData);
+        apiAssertionsUtil.assertFieldsAreEqual(actualMultipleArtistData, expectedMultipleArtistData);
     }
 }

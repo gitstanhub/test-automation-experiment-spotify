@@ -2,6 +2,9 @@ package com.spotify.clients;
 
 import com.spotify.models.response.artist.*;
 import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,6 +12,9 @@ import static com.spotify.specifications.ArtistSpec.artistRequestSpec;
 import static com.spotify.specifications.ArtistSpec.artistResponseSpec;
 import static io.restassured.RestAssured.given;
 
+@Component
+@Lazy
+@Slf4j
 public class ArtistClient {
 
     @Step

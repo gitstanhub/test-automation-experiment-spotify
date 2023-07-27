@@ -171,24 +171,3 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
                         targetResourceId, title)));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final AndroidPageNavigationActions androidPageNavigationActions;
-//    private final ElementChecks elementChecks;
-//
-//    public LibraryPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.androidPageNavigationActions = new AndroidPageNavigationActions(driver, wait);
-//        this.elementChecks = new ElementChecks(driver, wait);
-//    }
-
-
-//    public LibraryPage tapAddArtistButton() {
-//        getListItemByTitle("Add artists").click();
-//        return this;
-//    }
-
-//    public LibraryPage tapAddPodcastsButton() {
-//        getListItemByTitle("Add podcasts & shows").click();
-//        return this;
-//    }

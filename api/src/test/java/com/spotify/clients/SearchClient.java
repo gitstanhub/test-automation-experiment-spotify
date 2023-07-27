@@ -5,12 +5,18 @@ import com.spotify.models.response.search.SearchResponseModel;
 import com.spotify.testdata.search.constants.SearchTypes;
 import io.qameta.allure.Step;
 import io.restassured.specification.RequestSpecification;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 import static com.spotify.specifications.SearchSpec.*;
 import static io.restassured.RestAssured.given;
 
+@Component
+@Lazy
+@Slf4j
 public class SearchClient {
 
     @Step
@@ -24,12 +30,12 @@ public class SearchClient {
     }
 
     @Step
-    public SearchResponseModel searchWithMarketLimitOffset(String query, List<String> types, String market, Integer limit, Integer offset) {
+    public SearchResponseModel searchWithMarketAndLimitAndOffset(String query, List<String> types, String market, Integer limit, Integer offset) {
         return search(query, types, market, limit, offset, null);
     }
 
     @Step
-    public SearchResponseModel searchWithLimitOffset(String query, List<String> types, Integer limit, Integer offset) {
+    public SearchResponseModel searchWithLimitAndOffset(String query, List<String> types, Integer limit, Integer offset) {
         return search(query, types, null, limit, offset, null);
     }
 
