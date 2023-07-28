@@ -1,17 +1,34 @@
 package com.spotify.testdata.artist.constants;
 
+import com.neovisionaries.i18n.CountryCode;
+import com.spotify.config.ConfigProviderApi;
+import com.spotify.config.restassured.entities.AlbumConfig;
+import com.spotify.config.restassured.entities.ArtistConfig;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public enum ArtistEntities {
-
-//    ARTIST_1("","",Arrays.asList(""),""),
-//    ARTIST_2("","",Arrays.asList(""),""),
-//    ARTIST_3("","",Arrays.asList(""),""),
-    CAPITAL_BRA("Capital Bra", "4WZGDpNwrC0vNQyl9QzF7d", Arrays.asList("german hip hop"), "artist"),
-    AK_AUSSERKONTOLLE("AK AUSSERKONTROLLE", "07SFzTMeYf5P8Rd32a9Zzw", Arrays.asList("german hip hop"), "artist"),
-    YEAT("Yeat", "3qiHUAX7zY4Qnjx8TNUzVx", Arrays.asList("pluggnb", "rage rap"), "artist");
+    ARTIST_1(
+            getArtistConfig("artist_1").getArtistName(),
+            getArtistConfig("artist_1").getArtistId(),
+            getArtistConfig("artist_1").getArtistGenres(),
+            getArtistConfig("artist_1").getArtistType()
+    ),
+    ARTIST_2(
+            getArtistConfig("artist_2").getArtistName(),
+            getArtistConfig("artist_2").getArtistId(),
+            getArtistConfig("artist_2").getArtistGenres(),
+            getArtistConfig("artist_2").getArtistType()
+    ),
+    ARTIST_3(
+            getArtistConfig("artist_3").getArtistName(),
+            getArtistConfig("artist_3").getArtistId(),
+            getArtistConfig("artist_3").getArtistGenres(),
+            getArtistConfig("artist_3").getArtistType()
+    );
 
     private final String artistName;
     private final List<String> artistGenres;
@@ -23,6 +40,17 @@ public enum ArtistEntities {
         this.artistGenres = artistGenres;
         this.artistId = artistId;
         this.artistType = artistType;
+    }
+
+    private static ArtistConfig getArtistConfig(String configItemName) {
+        CountryCode countryCode = CountryCode.getByCode(ConfigProviderApi.getRestAssuredApiConfiguration().market());
+
+        try {
+            return ConfigProviderApi.getEntityConfig(countryCode, configItemName, ArtistConfig.class);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Couldn't find an artist config for the provided item name: " + configItemName
+                    + " and market: " + countryCode);
+        }
     }
 
     public String getArtistName() {

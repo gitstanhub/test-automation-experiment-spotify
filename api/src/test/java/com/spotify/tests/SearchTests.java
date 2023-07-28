@@ -1,20 +1,17 @@
 package com.spotify.tests;
 
-import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.SearchClient;
+import com.spotify.config.ConfigProviderApi;
 import com.spotify.testdata.search.assertions.SearchResultsAssertionData;
 import com.spotify.testdata.search.constants.SearchTypes;
 import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
 import com.spotify.tests.base.ApiTests;
-import com.spotify.utils.assertions.ApiAssertionsUtil;
-import com.spotify.utils.requestdata.search.SearchRequestDataUtil;
 
-import com.spotify.utils.responsedata.search.SearchResponseDataUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.spotify.testdata.artist.constants.ArtistEntities.CAPITAL_BRA;
+import static com.spotify.testdata.artist.constants.ArtistEntities.ARTIST_1;
 
 public class SearchTests extends ApiTests {
 
@@ -32,7 +29,7 @@ public class SearchTests extends ApiTests {
         int desiredOffset = 0;
 
         SearchRequestModel searchRequest = SearchRequestModel.builder()
-                .searchQuery("Capital Bra")
+                .searchQuery(ARTIST_1.getArtistName())
                 .specifiedSearchTypes(searchTypes)
                 .build();
 
@@ -71,7 +68,7 @@ public class SearchTests extends ApiTests {
 
         apiAssertionsUtil
                 .assertAllFieldsContainExpectedText(actualSearchResults.getActualArtistsTypes(), "artist")
-                .assertAnyFieldContainsExpectedText(actualSearchResults.getActualAlbumsArtistsNames(), CAPITAL_BRA.getArtistName())
+                .assertAnyFieldContainsExpectedText(actualSearchResults.getActualAlbumsArtistsNames(), ARTIST_1.getArtistName())
                 .assertAnyFieldContainsExpectedText(actualSearchResults.getActualAlbumsTypes(), "album");
     }
 
@@ -81,10 +78,10 @@ public class SearchTests extends ApiTests {
                 SearchTypes.PLAYLIST
         };
 
-        String countryCode = String.valueOf(CountryCode.DE);
+        String countryCode = ConfigProviderApi.getRestAssuredApiConfiguration().market();
 
         SearchRequestModel searchRequest = SearchRequestModel.builder()
-                .searchQuery("Capital Bra")
+                .searchQuery(ARTIST_1.getArtistName())
                 .specifiedSearchTypes(searchTypes)
                 .desiredMarket(countryCode)
                 .build();

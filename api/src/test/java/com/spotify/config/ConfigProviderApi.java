@@ -3,6 +3,7 @@ package com.spotify.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.neovisionaries.i18n.CountryCode;
+import com.spotify.config.restassured.RestAssuredApiAuthConfiguration;
 import com.spotify.config.restassured.RestAssuredApiConfiguration;
 import com.spotify.config.restassured.entities.EntityConfig;
 import org.aeonbits.owner.ConfigFactory;
@@ -18,8 +19,15 @@ public class ConfigProviderApi {
     private static final RestAssuredApiConfiguration restAssuredApiConfiguration = ConfigFactory.create(
             RestAssuredApiConfiguration.class, System.getProperties());
 
+    private static final RestAssuredApiAuthConfiguration restAssuredApiAuthConfiguration = ConfigFactory.create(
+            RestAssuredApiAuthConfiguration.class, System.getProperties());
+
     public static RestAssuredApiConfiguration getRestAssuredApiConfiguration() {
         return restAssuredApiConfiguration;
+    }
+
+    public static RestAssuredApiAuthConfiguration getRestAssuredApiAuthConfiguration() {
+        return restAssuredApiAuthConfiguration;
     }
 
     public static <T extends EntityConfig> T getEntityConfig(CountryCode market, String configItemName, Class<T> configClass) throws IOException {

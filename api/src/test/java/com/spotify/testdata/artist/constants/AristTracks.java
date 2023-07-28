@@ -20,8 +20,6 @@ public enum AristTracks {
             getTrackConfig("artist_1_track_1").getTrackExplicit()
     );
 
-//    NEYMAR("Neymar", Arrays.asList("Capital Bra", "Ufo361"), "50mQStZYV5QFgyGK9GOVZg", 263646, "track", true);
-
     private final List<String> trackArtists;
     private final String trackName;
     private final String trackId;
@@ -39,12 +37,13 @@ public enum AristTracks {
     }
 
     private static TrackConfig getTrackConfig(String configItemName) {
-        try {
-            CountryCode countryCode = CountryCode.getByCode(ConfigProviderApi.getRestAssuredApiConfiguration().market());
+        CountryCode countryCode = CountryCode.getByCode(ConfigProviderApi.getRestAssuredApiConfiguration().market());
 
+        try {
             return ConfigProviderApi.getEntityConfig(countryCode, configItemName, TrackConfig.class);
         } catch (IOException e) {
-            throw new IllegalArgumentException("Couldn't find a track config for the provided item name: " + configItemName);
+            throw new IllegalArgumentException("Couldn't find a track config for the provided item name: " + configItemName
+                    + " and market: " + countryCode);
         }
     }
 
