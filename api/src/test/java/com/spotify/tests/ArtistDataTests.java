@@ -51,23 +51,23 @@ public class ArtistDataTests extends ApiTests {
         ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracks(countryCode, CAPITAL_BRA.getArtistId());
 
         ArtistTracksAssertionData.ActualTracksData actualTopTracksData = new ArtistTracksAssertionData.ActualTracksData(
-                artistTopTracksFieldsUtil.getTrackName(fetchedArtistTopTracks, NEYMAR.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackId(fetchedArtistTopTracks, NEYMAR.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackDuration(fetchedArtistTopTracks, NEYMAR.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackType(fetchedArtistTopTracks, NEYMAR.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackAlbumName(fetchedArtistTopTracks, NEYMAR.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackArtistName(fetchedArtistTopTracks, NEYMAR.getTrackName(), 0),
-                artistTopTracksFieldsUtil.getTrackExplicitStatus(fetchedArtistTopTracks, NEYMAR.getTrackName())
+                artistTopTracksFieldsUtil.getTrackName(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackId(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackDuration(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackType(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackAlbumName(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
+                artistTopTracksFieldsUtil.getTrackArtistName(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName(), 0),
+                artistTopTracksFieldsUtil.getTrackExplicitStatus(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName())
         );
 
         ArtistTracksAssertionData.ExpectedTracksData expectedTopTracksData = new ArtistTracksAssertionData.ExpectedTracksData(
-                NEYMAR.getTrackName(),
-                NEYMAR.getTrackId(),
-                NEYMAR.getTrackDurationMs(),
-                NEYMAR.getTrackType(),
+                ARTIST1_TRACK_1.getTrackName(),
+                ARTIST1_TRACK_1.getTrackId(),
+                ARTIST1_TRACK_1.getTrackDurationMs(),
+                ARTIST1_TRACK_1.getTrackType(),
                 BERLIN_LEBT.getAlbumName(),
-                NEYMAR.getTrackArtists().get(0),
-                NEYMAR.getTrackExplicit()
+                ARTIST1_TRACK_1.getTrackArtists().get(0),
+                ARTIST1_TRACK_1.getTrackExplicit()
         );
 
         apiAssertionsUtil.assertFieldsAreEqual(actualTopTracksData, expectedTopTracksData);

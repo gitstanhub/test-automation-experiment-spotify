@@ -5,6 +5,7 @@ import java.util.List;
 
 public enum ArtistAlbums {
 
+    ARTIST_1_ALBUM_1("",Arrays.asList(""), "", 1, "", "", ""),
     BERLIN_LEBT("Berlin lebt", Arrays.asList("Capital Bra"), "2vdeSISq7TAWLDiEhFJ3nz", 40, "2018-07-06", "day", "album");
 
     private final List<String> albumArtists;
