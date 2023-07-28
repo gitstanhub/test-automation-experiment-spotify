@@ -1,5 +1,6 @@
 package com.spotify.specifications;
 
+import com.spotify.config.ConfigProviderApi;
 import com.spotify.utils.auth.ApiAuthUtil;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -17,12 +18,11 @@ public class ArtistSpec {
             .log().headers()
             .header("Content-Type", "application/json")
             .header("Authorization", "Bearer " + ApiAuthUtil.getAuthToken())
-            .baseUri("https://api.spotify.com/")
+            .baseUri(ConfigProviderApi.getRestAssuredApiConfiguration().baseUrl())
             .basePath("v1/artists/");
 
     public static ResponseSpecification artistResponseSpec = new ResponseSpecBuilder()
             .log(LogDetail.STATUS)
-//            .log(LogDetail.BODY)
             .expectStatusCode(200)
             .build();
 }

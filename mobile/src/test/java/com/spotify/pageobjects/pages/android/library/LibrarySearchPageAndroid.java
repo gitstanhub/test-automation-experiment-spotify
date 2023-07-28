@@ -52,15 +52,3 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
                         contentDesc)));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final AndroidPageNavigationActions androidPageNavigationActions;
-//    private final ElementChecks elementChecks;
-//    private final AndroidDeviceActions androidDeviceActions;
-//
-//    public LibrarySearchPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.androidPageNavigationActions = new AndroidPageNavigationActions(driver, wait);
-//        this.elementChecks = new ElementChecks(driver, wait);
-//        this.androidDeviceActions = new AndroidDeviceActions(driver);
-//    }

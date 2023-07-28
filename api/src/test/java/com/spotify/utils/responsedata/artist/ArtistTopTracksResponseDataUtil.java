@@ -1,4 +1,4 @@
-package com.spotify.utils.responsefields.artist;
+package com.spotify.utils.responsedata.artist;
 
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
 import com.spotify.models.response.artist.ArtistTopTracksResponseModel;
@@ -6,7 +6,7 @@ import com.spotify.models.response.artist.ArtistTopTracksResponseModel;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class ArtistTopTracksResponseFieldsUtil {
+public class ArtistTopTracksResponseDataUtil {
 
     public String getTrackName(ArtistTopTracksResponseModel artistTopTracksResponse, int trackPosition) {
         return getTrack(artistTopTracksResponse, trackPosition).getName();

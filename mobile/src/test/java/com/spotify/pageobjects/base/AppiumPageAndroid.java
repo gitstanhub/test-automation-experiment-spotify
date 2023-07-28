@@ -9,8 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AppiumPageAndroid {
 
-    public ElementChecksMobile elementChecksMobile = new ElementChecksMobile();
-    public AndroidDeviceActions androidDeviceActions = new AndroidDeviceActions();
-    public AndroidElementActions androidElementActions = new AndroidElementActions();
-    public AndroidPageNavigationActions androidPageNavigationActions = new AndroidPageNavigationActions();
+    public static final ElementChecksMobile elementChecksMobile = new ElementChecksMobile();
+    public static final AndroidDeviceActions androidDeviceActions = new AndroidDeviceActions();
+    public static final AndroidElementActions androidElementActions = new AndroidElementActions();
+    public static final AndroidPageNavigationActions androidPageNavigationActions = new AndroidPageNavigationActions();
 }

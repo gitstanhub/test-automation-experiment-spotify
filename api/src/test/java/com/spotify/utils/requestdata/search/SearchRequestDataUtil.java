@@ -1,10 +1,10 @@
-package com.spotify.utils.requestfields.search;
+package com.spotify.utils.requestdata.search;
 
 import com.spotify.models.request.search.SearchRequestModel;
 
 import java.util.List;
 
-public class SearchRequestFieldsUtil {
+public class SearchRequestDataUtil {
 
     public String getSearchQuery(SearchRequestModel searchRequest) {
         return searchRequest.getQ();

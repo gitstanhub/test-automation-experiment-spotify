@@ -1,6 +1,6 @@
 package com.spotify.utils.assertions;
 
-import com.spotify.testdata.commons.AssertionData;
+import com.spotify.testdata.commons.assertions.AssertionData;
 import org.assertj.core.api.Assertions;
 
 import java.util.List;
@@ -8,36 +8,36 @@ import java.util.Map;
 
 public class ApiAssertionsUtil {
 
-    public ApiAssertionsUtil verifyEachResponseFieldContains(List<String> actualResponseFieldsData, String expectedValue) {
-        for (String fieldValue : actualResponseFieldsData) {
+    public ApiAssertionsUtil assertAllFieldsContainExpectedText(List<String> actualResponseFieldsValue, String expectedValue) {
+        for (String fieldValue : actualResponseFieldsValue) {
             Assertions.assertThat(fieldValue).contains(expectedValue);
         }
         return this;
     }
 
-    public ApiAssertionsUtil verifySomeResponseFieldsContain(List<String> actualResponseFieldsData, String expectedValue) {
-        Assertions.assertThat(actualResponseFieldsData).contains(expectedValue);
+    public ApiAssertionsUtil assertAnyFieldContainsExpectedText(List<String> actualResponseFieldsValue, String expectedValue) {
+        Assertions.assertThat(actualResponseFieldsValue).contains(expectedValue);
         return this;
     }
 
-    public ApiAssertionsUtil verifyResponseSingleField(Object actualValue, Object expectedValue) {
+    public <T> ApiAssertionsUtil assertFieldEqualsTo(T actualValue, T expectedValue) {
         Assertions.assertThat(actualValue).isEqualTo(expectedValue);
         return this;
     }
 
-    public ApiAssertionsUtil verifyResponseMultipleFields(Map<Object, Object> actualAndExpectedValues) {
-        for (Map.Entry<Object, Object> entry : actualAndExpectedValues.entrySet()) {
+    public ApiAssertionsUtil assertFieldsAreEqual(Map<Object, Object> actualAndExpectedValue) {
+        for (Map.Entry<Object, Object> entry : actualAndExpectedValue.entrySet()) {
             Object actualValue = entry.getKey();
             Object expectedValue = entry.getValue();
-            verifyResponseSingleField(actualValue, expectedValue);
+            assertFieldEqualsTo(actualValue, expectedValue);
         }
         return this;
     }
 
-    public ApiAssertionsUtil verifyResponseMultipleFields(List<Object> actualData, List<Object> expectedData) {
-        if (actualData.size() == expectedData.size()) {
-            for (int i = 0; i < actualData.size(); i++) {
-                verifyResponseSingleField(actualData.get(i), expectedData.get(i));
+    public ApiAssertionsUtil assertFieldsAreEqual(List<Object> actualValue, List<Object> expectedValue) {
+        if (actualValue.size() == expectedValue.size()) {
+            for (int i = 0; i < actualValue.size(); i++) {
+                assertFieldEqualsTo(actualValue.get(i), expectedValue.get(i));
             }
         } else {
             throw new IllegalArgumentException("Amount of actual and expected elements doesn't match");
@@ -45,10 +45,10 @@ public class ApiAssertionsUtil {
         return this;
     }
 
-    public ApiAssertionsUtil verifyResponseMultipleFields(AssertionData.ActualAssertionData actualData, AssertionData.ExpectedAssertionData expectedData) {
-        if(actualData.toList().size() == expectedData.toList().size()) {
-            for (int i = 0; i< actualData.toList().size(); i++) {
-                verifyResponseSingleField(actualData.toList().get(i), expectedData.toList().get(i));
+    public ApiAssertionsUtil assertFieldsAreEqual(AssertionData.ActualAssertionData actualValue, AssertionData.ExpectedAssertionData expectedValue) {
+        if (actualValue.toList().size() == expectedValue.toList().size()) {
+            for (int i = 0; i < actualValue.toList().size(); i++) {
+                assertFieldEqualsTo(actualValue.toList().get(i), expectedValue.toList().get(i));
             }
         } else {
             throw new IllegalArgumentException("Amount of actual and expected elements doesn't match");

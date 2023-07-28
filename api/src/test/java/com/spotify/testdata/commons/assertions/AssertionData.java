@@ -1,4 +1,4 @@
-package com.spotify.testdata.commons;
+package com.spotify.testdata.commons.assertions;
 
 import java.util.List;
 

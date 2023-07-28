@@ -1,10 +1,10 @@
-package com.spotify.utils.responsefields.artist;
+package com.spotify.utils.responsedata.artist;
 
 import com.spotify.models.response.artist.*;
 
 import java.util.List;
 
-public class ArtistProfileResponseFieldsUtil {
+public class ArtistProfileResponseDataUtil {
 
     public String getArtistName(ArtistProfileResponseModel artistDataResponse) {
         return artistDataResponse.getName();

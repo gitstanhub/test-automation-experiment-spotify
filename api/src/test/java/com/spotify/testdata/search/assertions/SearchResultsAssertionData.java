@@ -1,6 +1,6 @@
 package com.spotify.testdata.search.assertions;
 
-import com.spotify.testdata.commons.AssertionData;
+import com.spotify.testdata.commons.assertions.AssertionData;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,0 +1,30 @@
+[
+  {
+    "configItemName": "artist_1",
+    "artistName": "Capital Bra",
+    "artistGenres": [
+      "german hip hop"
+    ],
+    "artistId": "4WZGDpNwrC0vNQyl9QzF7d",
+    "artistType": "artist"
+  },
+  {
+    "configItemName": "artist_2",
+    "artistName": "AK AUSSERKONTROLLE",
+    "artistGenres": [
+      "german hip hop"
+    ],
+    "artistId": "07SFzTMeYf5P8Rd32a9Zzw",
+    "artistType": "artist"
+  },
+  {
+    "configItemName": "artist_3",
+    "artistName": "Yeat",
+    "artistGenres": [
+      "pluggnb",
+      "rage rap"
+    ],
+    "artistId": "3qiHUAX7zY4Qnjx8TNUzVx",
+    "artistType": "artist"
+  }
+]
