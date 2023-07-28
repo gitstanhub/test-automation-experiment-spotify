@@ -68,13 +68,3 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
                         parentResourceId, childSiblingText1, childSiblingText2)));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final ElementChecks elementChecks;
-//    private final AndroidPageNavigationActions androidPageNavigationActions;
-//
-//    public ArtistDiscographyPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        elementChecks = new ElementChecks(driver, wait);
-//        androidPageNavigationActions = new AndroidPageNavigationActions(driver, wait);
-//    }

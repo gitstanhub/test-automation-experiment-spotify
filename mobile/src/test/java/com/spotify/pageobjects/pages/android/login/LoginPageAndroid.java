@@ -67,12 +67,3 @@ public class LoginPageAndroid extends AppiumPageAndroid implements LoginPage {
         return getDriver().findElement(By.id("com.spotify.music:id/login_button"));
     }
 }
-
-//
-//    private final AndroidDriver driver;
-//    protected final WebDriverWait wait;
-//
-//    public LoginPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//    }

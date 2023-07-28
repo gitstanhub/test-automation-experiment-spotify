@@ -3,7 +3,8 @@ package com.spotify.config.appium.device;
 import lombok.Data;
 
 @Data
-public class DeviceConfig {
+public abstract class DeviceConfig {
+
     private String configItemName;
     private String platformName;
     private String deviceName;

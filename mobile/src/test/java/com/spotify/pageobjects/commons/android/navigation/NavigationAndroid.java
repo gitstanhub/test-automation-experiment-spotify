@@ -77,9 +77,3 @@ public class NavigationAndroid extends AppiumPageAndroid implements Navigation {
         return getDriver().findElement(By.id("com.spotify.music:id/close_button"));
     }
 }
-
-//    private final AndroidDriver driver;
-//
-//    public NavigationAndroid(AndroidDriver driver) {
-//        this.driver = driver;
-//    }

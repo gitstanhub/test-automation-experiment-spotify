@@ -1,5 +1,6 @@
 package com.spotify.specifications;
 
+import com.spotify.config.ConfigProviderApi;
 import com.spotify.utils.auth.ApiAuthUtil;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -16,18 +17,16 @@ public class SearchSpec {
             .log().uri()
             .log().headers()
             .header("Authorization", "Bearer " + ApiAuthUtil.getAuthToken())
-            .baseUri("https://api.spotify.com/")
+            .baseUri(ConfigProviderApi.getRestAssuredApiConfiguration().baseUrl())
             .basePath("v1/search");
 
     public static ResponseSpecification searchResponseSpec = new ResponseSpecBuilder()
             .log(LogDetail.STATUS)
-//            .log(LogDetail.BODY)
             .expectStatusCode(200)
             .build();
 
     public static ResponseSpecification searchErrorResponseSpec = new ResponseSpecBuilder()
             .log(LogDetail.STATUS)
-//            .log(LogDetail.BODY)
             .expectStatusCode(400)
             .build();
 }

@@ -159,11 +159,3 @@ public class ContextMenuAndroid extends AppiumPageAndroid implements ContextMenu
         ));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final ElementChecks elementChecks;
-
-//    public ContextMenuAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.elementChecks = new ElementChecks(driver, wait);
-//    }

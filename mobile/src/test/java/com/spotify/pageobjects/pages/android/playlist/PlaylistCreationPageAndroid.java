@@ -53,11 +53,3 @@ public class PlaylistCreationPageAndroid extends AppiumPageAndroid implements Pl
         return getDriver().findElement(By.id("com.spotify.music:id/cancel_button"));
     }
 }
-
-//    private final AppiumDriver driver;
-//    private final ElementChecks elementChecks;
-//
-//    public PlaylistCreationPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.elementChecks = new ElementChecks(driver, wait);
-//    }

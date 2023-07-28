@@ -2,6 +2,7 @@ package com.spotify.utils.auth;
 
 import static io.restassured.RestAssured.given;
 
+import com.spotify.config.ConfigProviderApi;
 import com.spotify.models.request.auth.AuthRequestModel;
 import io.restassured.response.Response;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -16,8 +17,8 @@ public class ApiAuthUtil {
 
         AuthRequestModel authRequestBodyModel = new AuthRequestModel();
         authRequestBodyModel.setGrant_type("client_credentials");
-        authRequestBodyModel.setClient_id("client_id_key");
-        authRequestBodyModel.setClient_secret("client_secret_key");
+        authRequestBodyModel.setClient_id(ConfigProviderApi.getRestAssuredApiAuthConfiguration().clientId());
+        authRequestBodyModel.setClient_secret(ConfigProviderApi.getRestAssuredApiAuthConfiguration().clientSecret());
 
         String requestBody = URLEncodedUtils.format(authRequestBodyModel.getBodyParams(), StandardCharsets.UTF_8);
 
@@ -26,9 +27,9 @@ public class ApiAuthUtil {
                 .log().headers()
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body(requestBody)
-        .when()
+                .when()
                 .post("https://accounts.spotify.com/api/token")
-        .then()
+                .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -37,7 +38,7 @@ public class ApiAuthUtil {
         authToken = response.path("access_token");
     }
 
-    public static String getAuthToken() {
+    public static synchronized String getAuthToken() {
 
         if (authToken == null) {
             generateAuthToken();

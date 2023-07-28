@@ -1,4 +1,4 @@
-package com.spotify.utils.responsefields.artist;
+package com.spotify.utils.responsedata.artist;
 
 import com.spotify.models.response.artist.ArtistMultipleResponseModel;
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
@@ -6,7 +6,7 @@ import com.spotify.models.response.artist.ArtistProfileResponseModel;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MultipleArtistsResponseFieldsUtil {
+public class MultipleArtistsResponseDataUtil {
 
     public List<String> getMultipleArtistsNames(ArtistMultipleResponseModel artistMultipleResponse) {
         return getMultipleArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getName).collect(Collectors.toList());

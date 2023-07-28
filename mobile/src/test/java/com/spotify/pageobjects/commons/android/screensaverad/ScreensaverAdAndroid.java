@@ -49,11 +49,3 @@ public class ScreensaverAdAndroid extends AppiumPageAndroid implements Screensav
         return getDriver().findElement(By.id("com.spotify.music:id/screensaver_ad_footer"));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final WebDriverWait wait;
-//
-//    public ScreensaverAdAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//    }

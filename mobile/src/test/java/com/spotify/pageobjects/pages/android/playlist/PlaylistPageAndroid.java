@@ -76,13 +76,3 @@ public class PlaylistPageAndroid extends AppiumPageAndroid implements PlaylistPa
         return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='Cancel']"));
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final ElementChecks elementChecks;
-//    private final WebDriverWait wait;
-//
-//    public PlaylistPageAndroid(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//        this.elementChecks = new ElementChecks(driver, wait);
-//    }

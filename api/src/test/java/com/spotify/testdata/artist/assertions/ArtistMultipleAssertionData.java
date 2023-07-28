@@ -1,11 +1,12 @@
 package com.spotify.testdata.artist.assertions;
 
-import com.spotify.testdata.commons.AssertionData;
+import com.spotify.testdata.commons.assertions.AssertionData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ArtistMultipleAssertionData extends AssertionData {
@@ -19,19 +20,13 @@ public class ArtistMultipleAssertionData extends AssertionData {
         private final List<String> actualMultipleArtistGenres;
         private final List<String> actualMultipleAristIds;
 
-//        public ActualMultipleArtistData(List<String> actualMultipleArtistNames, List<String> actualMultipleArtistGenres, List<String> actualMultipleAristIds) {
-//            this.actualMultipleArtistNames = actualMultipleArtistNames;
-//            this.actualMultipleArtistGenres = actualMultipleArtistGenres;
-//            this.actualMultipleAristIds = actualMultipleAristIds;
-//        }
-
         @Override
         public List<Object> toList() {
-            List<Object> actualFieldList = new ArrayList<>();
-            actualFieldList.add(this.getActualMultipleArtistNames());
-            actualFieldList.add(this.getActualMultipleArtistGenres());
-            actualFieldList.add(this.getActualMultipleAristIds());
-            return actualFieldList;
+            return Arrays.asList(
+                    actualMultipleArtistNames,
+                    actualMultipleArtistGenres,
+                    actualMultipleAristIds
+            );
         }
     }
 
@@ -44,19 +39,13 @@ public class ArtistMultipleAssertionData extends AssertionData {
         private final List<String> expectedMultipleArtistGenres;
         private final List<String> expectedMultipleArtistIds;
 
-//        public ExpectedMultipleArtistData(List<String> expectedMultipleArtistNames, List<String> expectedMultipleArtistGenres, List<String> expectedMultipleArtistIds) {
-//            this.expectedMultipleArtistNames = expectedMultipleArtistNames;
-//            this.expectedMultipleArtistGenres = expectedMultipleArtistGenres;
-//            this.expectedMultipleArtistIds = expectedMultipleArtistIds;
-//        }
-
         @Override
         public List<Object> toList() {
-            List<Object> expectedFieldList = new ArrayList<>();
-            expectedFieldList.add(this.getExpectedMultipleArtistNames());
-            expectedFieldList.add(this.getExpectedMultipleArtistGenres());
-            expectedFieldList.add(this.getExpectedMultipleArtistIds());
-            return expectedFieldList;
+            return Arrays.asList(
+                    expectedMultipleArtistNames,
+                    expectedMultipleArtistGenres,
+                    expectedMultipleArtistIds
+            );
         }
     }
 }

@@ -45,6 +45,6 @@ public class ConfigProviderMobile {
             }
         }
 
-        throw new IllegalArgumentException("No device configuration found for the given device name: " + appiumDriverConfiguration.deviceName());
+        throw new IllegalArgumentException("No device configuration found for the given device name: " + deviceName);
     }
 }

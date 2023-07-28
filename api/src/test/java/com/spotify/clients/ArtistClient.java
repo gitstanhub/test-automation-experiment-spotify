@@ -2,6 +2,9 @@ package com.spotify.clients;
 
 import com.spotify.models.response.artist.*;
 import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,14 +12,17 @@ import static com.spotify.specifications.ArtistSpec.artistRequestSpec;
 import static com.spotify.specifications.ArtistSpec.artistResponseSpec;
 import static io.restassured.RestAssured.given;
 
+@Component
+@Lazy
+@Slf4j
 public class ArtistClient {
 
     @Step
     public ArtistProfileResponseModel getArtistData(String artistId) {
         return given(artistRequestSpec)
-        .when()
+                .when()
                 .get(artistId)
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistProfileResponseModel.class);
     }
@@ -25,9 +31,9 @@ public class ArtistClient {
     public ArtistTopTracksResponseModel getArtistTopTracks(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("market", country)
-        .when()
+                .when()
                 .get(artistID + "/top-tracks")
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistTopTracksResponseModel.class);
     }
@@ -37,9 +43,9 @@ public class ArtistClient {
         return given(artistRequestSpec)
                 .param("include_groups", "album")
                 .param("market", country)
-        .when()
+                .when()
                 .get(artistID + "/albums")
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistAlbumsResponseModel.class);
     }
@@ -47,9 +53,9 @@ public class ArtistClient {
     @Step
     public ArtistRelatedResponseModel getRelatedArtists(String artistID) {
         return given(artistRequestSpec)
-        .when()
+                .when()
                 .get(artistID + "/related-artists")
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistRelatedResponseModel.class);
     }
@@ -61,9 +67,9 @@ public class ArtistClient {
 
         return given(artistRequestSpec)
                 .param("ids", artistsParam)
-        .when()
+                .when()
                 .get()
-        .then()
+                .then()
                 .spec(artistResponseSpec)
                 .extract().as(ArtistMultipleResponseModel.class);
     }
