@@ -123,7 +123,7 @@ public class MobileTests {
         String platformName = ConfigProviderMobile.getAppiumDriverConfiguration().platformName();
         String deviceName = ConfigProviderMobile.getAppiumDriverConfiguration().deviceName();
 
-        AppiumDriverHandler.createDriver(environment, platformName, deviceName);
+        AppiumDriverHandler.createDriver(environment, platformName, deviceName, testInfo);
 
         handleAuthIfNeeded(testInfo);
     }
