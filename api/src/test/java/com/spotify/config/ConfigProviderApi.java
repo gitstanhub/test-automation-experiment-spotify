@@ -6,6 +6,7 @@ import com.neovisionaries.i18n.CountryCode;
 import com.spotify.config.restassured.RestAssuredApiAuthConfiguration;
 import com.spotify.config.restassured.RestAssuredApiConfiguration;
 import com.spotify.config.restassured.entities.EntityConfig;
+import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.io.File;
@@ -16,19 +17,21 @@ import java.util.List;
 
 public class ConfigProviderApi {
 
+    @Getter
     private static final RestAssuredApiConfiguration restAssuredApiConfiguration = ConfigFactory.create(
             RestAssuredApiConfiguration.class, System.getProperties());
 
+    @Getter
     private static final RestAssuredApiAuthConfiguration restAssuredApiAuthConfiguration = ConfigFactory.create(
             RestAssuredApiAuthConfiguration.class, System.getProperties());
 
-    public static RestAssuredApiConfiguration getRestAssuredApiConfiguration() {
-        return restAssuredApiConfiguration;
-    }
-
-    public static RestAssuredApiAuthConfiguration getRestAssuredApiAuthConfiguration() {
-        return restAssuredApiAuthConfiguration;
-    }
+//    public static RestAssuredApiConfiguration getRestAssuredApiConfiguration() {
+//        return restAssuredApiConfiguration;
+//    }
+//
+//    public static RestAssuredApiAuthConfiguration getRestAssuredApiAuthConfiguration() {
+//        return restAssuredApiAuthConfiguration;
+//    }
 
     public static <T extends EntityConfig> T getEntityConfig(CountryCode market, String configItemName, Class<T> configClass) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());

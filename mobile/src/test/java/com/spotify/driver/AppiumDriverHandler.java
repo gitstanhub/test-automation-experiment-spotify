@@ -5,10 +5,12 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.naming.ConfigurationException;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.time.Duration;
 
@@ -22,11 +24,13 @@ public class AppiumDriverHandler {
     private static final ThreadLocal<WebDriverWait> webDriverWait = new ThreadLocal<>();
     public static AppiumDriverLocalService appiumDriverLocalService;
 
-    public static void createDriver(String environment, String platformName, String deviceName) throws ConfigurationException, IOException {
+    public static void createDriver(String environment, String platformName, String deviceName, TestInfo testInfo) throws ConfigurationException, IOException {
         log.info("Creating a new driver for {}", platformName);
 
+        String testName = testInfo.getTestMethod().map(Method::getName).orElse(null);
+
         try {
-            appiumDriver.set(AppiumDeviceSessionFactory.getDeviceSession(environment, platformName, deviceName));
+            appiumDriver.set(AppiumDeviceSessionFactory.getDeviceSession(environment, platformName, deviceName, testName));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
