@@ -4,10 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.spotify.config.appium.AppiumDriverConfiguration;
 import com.spotify.config.appium.BrowserstackAuthConfiguration;
-import com.spotify.config.appium.BrowserstackAndroidConfiguration;
-import com.spotify.config.appium.device.browserstack.BrowserstackDeviceConfig;
+import com.spotify.config.appium.BrowserstackAndroidSessionConfiguration;
+import com.spotify.config.appium.app.MobileAppAuthConfiguration;
 import com.spotify.config.appium.device.commons.DeviceConfig;
-import com.spotify.config.appium.device.local.LocalDeviceConfig;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 
@@ -24,29 +23,21 @@ public class ConfigProviderMobile {
             AppiumDriverConfiguration.class, System.getProperties());
 
     @Getter
-    private static final BrowserstackAndroidConfiguration browserstackAndroidConfiguration = ConfigFactory.create(
-            BrowserstackAndroidConfiguration.class, System.getProperties());
+    private static final BrowserstackAndroidSessionConfiguration browserstackAndroidSessionConfiguration = ConfigFactory.create(
+            BrowserstackAndroidSessionConfiguration.class, System.getProperties());
 
     @Getter
     private static final BrowserstackAuthConfiguration browserstackAuthConfiguration = ConfigFactory.create(
             BrowserstackAuthConfiguration.class, System.getProperties());
 
-//    public static AppiumDriverConfiguration getAppiumDriverConfiguration() {
-//        return appiumDriverConfiguration;
-//    }
-
-//    public static BrowserstackSessionConfiguration getBrowserstackSessionConfiguration() {
-//        return browserstackSessionConfiguration;
-//    }
-
-//    public static BrowserstackAuthConfiguration getBrowserstackAuthConfiguration() {
-//        return browserstackAuthConfiguration;
-//    }
+    @Getter
+    private static final MobileAppAuthConfiguration mobileAppAuthConfiguration = ConfigFactory.create(
+            MobileAppAuthConfiguration.class, System.getProperties());
 
     public static <T extends DeviceConfig> T getDeviceConfig(String deviceName, Class<T> configClass) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 
-        String fileName = "configuration/"
+        String fileName = "configuration/devices/"
                 + appiumDriverConfiguration.environment().toLowerCase()
                 + "_"
                 + appiumDriverConfiguration.platformName().toLowerCase()

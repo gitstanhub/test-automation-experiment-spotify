@@ -57,7 +57,7 @@ public class WebTests {
         Method testMethod = testInfo.getTestMethod().orElseThrow();
 
         if (testMethod.isAnnotationPresent(AuthRequiredWeb.class)) {
-            loginPage.handleLoginFor("", "");
+            loginPage.handleLoginFor(ConfigProviderWeb.getWebAppAuthConfiguration().username(), ConfigProviderWeb.getWebAppAuthConfiguration().password());
             cookiesBanner.handleCookiesBanner();
         }
     }

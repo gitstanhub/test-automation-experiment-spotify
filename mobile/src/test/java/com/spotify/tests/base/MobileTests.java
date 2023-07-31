@@ -144,7 +144,7 @@ public class MobileTests {
         Method testMethod = testInfo.getTestMethod().orElseThrow();
 
         if (testMethod.isAnnotationPresent(AuthRequiredMobile.class)) {
-            getLoginPage().handleLoginFor("", "");
+            getLoginPage().handleLoginFor(ConfigProviderMobile.getMobileAppAuthConfiguration().username(), ConfigProviderMobile.getMobileAppAuthConfiguration().password());
             getBluetoothAccessPrompt().handleAccessPrompt();
         }
     }
