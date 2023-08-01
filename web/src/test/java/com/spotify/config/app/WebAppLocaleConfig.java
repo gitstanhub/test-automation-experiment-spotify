@@ -5,7 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "classpath:configuration/${market}_web_app_locale.properties",
-        "classpath:configuration/de_web_app_locale.properties"
+        "classpath:configuration/uk_web_app_locale.properties"
 })
 public interface WebAppLocaleConfig extends Config {
 
@@ -15,4 +15,19 @@ public interface WebAppLocaleConfig extends Config {
 
     //LibraryPage
     String libraryPageTitle();
+    String expandLibraryButtonText();
+    String sortByButtonText();
+    String libraryPlaylistsFilterButtonText();
+    String searchLibraryFieldText();
+    String libraryButtonText();
+    String clearFiltersButtonText();
+
+    //SearchPage
+    String allFilterButtonText();
+    String songsFilterButtonText();
+    String artistsFilterButtonText();
+    String albumsFilterButtonText();
+    String searchPlaylistsFilterButtonText();
+    String profilesFilterButtonText();
+    String podcastsFilterButtonText();
 }

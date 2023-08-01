@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = SpringConfigWeb.class)
 @Slf4j
-public class WebTests {
+public abstract class WebTests {
 
     @Autowired
     @Lazy

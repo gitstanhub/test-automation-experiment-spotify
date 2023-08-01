@@ -20,9 +20,6 @@ import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 public class LoginPage extends PlaywrightPage {
 
     @Autowired
-    HomePage homePage;
-
-    @Autowired
     LoginPageTexts loginPageTexts;
 
     @Step
@@ -52,7 +49,6 @@ public class LoginPage extends PlaywrightPage {
     }
 
     public LoginPage handleLoginFor(String username, String password) {
-//        homePage.openHomePage();
         openLoginPage();
 
         if (findLoggedOutStateTitle().isVisible()) {

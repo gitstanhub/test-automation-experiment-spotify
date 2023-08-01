@@ -46,6 +46,8 @@ public class LibraryTests extends WebTests {
                 .clickExpandLibraryButton()
                 .clickPlaylistsFilterButton()
                 .verifyPlaylistsFilterButtonIsPressed()
+                .clickSearchLibraryButton()
+                .fillInSearchLibraryField("Future Nostalgia")
                 .rightClickLibraryItemWithText("Future Nostalgia");
 
         optionsMenu

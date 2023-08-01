@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 public class LoginPageTexts {
 
     @Getter
-    private static String loggedInStateTitle = ConfigProviderWeb.getWebAppLocaleConfig().loggedInStateTitle();
+    private String loggedInStateTitle = ConfigProviderWeb.getWebAppLocaleConfig().loggedInStateTitle();
 
     @Getter
-    private static String loggedOutStateTitle = ConfigProviderWeb.getWebAppLocaleConfig().loggedOutStateTitle();
+    private String loggedOutStateTitle = ConfigProviderWeb.getWebAppLocaleConfig().loggedOutStateTitle();
 }
