@@ -30,4 +30,15 @@ public interface WebAppLocaleConfig extends Config {
     String searchPlaylistsFilterButtonText();
     String profilesFilterButtonText();
     String podcastsFilterButtonText();
+
+    //PlaylistPage
+    String editDetailsModalText();
+
+    //AlbumPage
+    String embedCodeCopyButtonClickedText();
+    String embedAlbumModalLabel();
+    String embedCodeCopyButtonText();
+    String albumTypeSwitcherText();
+    String explicitIconLabel();
+    String explicitIconText();
 }
