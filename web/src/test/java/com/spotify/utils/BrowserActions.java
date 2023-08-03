@@ -10,11 +10,11 @@ import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 @Slf4j
 public class BrowserActions {
 
-    public static void navigateToUrl(String url) {
+    public void navigateToUrl(String url) {
         getPage().navigate(url);
     }
 
-    public static void fillInTextField(Locator locatorElement, String fillInText) {
+    public void fillInTextField(Locator locatorElement, String fillInText) {
         locatorElement.fill(fillInText);
     }
 }

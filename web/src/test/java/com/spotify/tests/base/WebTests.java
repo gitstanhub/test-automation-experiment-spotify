@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = SpringConfigWeb.class)
 @Slf4j
-public class WebTests {
+public abstract class WebTests {
 
     @Autowired
     @Lazy
@@ -57,7 +57,7 @@ public class WebTests {
         Method testMethod = testInfo.getTestMethod().orElseThrow();
 
         if (testMethod.isAnnotationPresent(AuthRequiredWeb.class)) {
-            loginPage.handleLoginFor("", "");
+            loginPage.handleLoginFor(ConfigProviderWeb.getWebAppAuthConfiguration().username(), ConfigProviderWeb.getWebAppAuthConfiguration().password());
             cookiesBanner.handleCookiesBanner();
         }
     }

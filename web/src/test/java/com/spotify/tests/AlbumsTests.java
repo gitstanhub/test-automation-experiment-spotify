@@ -66,7 +66,7 @@ public class AlbumsTests extends WebTests {
         libraryPage
                 .clickPlaylistsFilterButton()
                 .verifyPlaylistsFilterButtonIsPressed()
-                .selectSortByOption("Recently Added")
+                .selectSortByRecentlyAddedOption()
                 .verifyCreatedPlaylistIsAvailable("The Eminem Show");
     }
 }

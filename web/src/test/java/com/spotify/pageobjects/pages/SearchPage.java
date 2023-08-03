@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.PlaywrightException;
 import com.microsoft.playwright.options.AriaRole;
+import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +22,7 @@ import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 public class SearchPage extends PlaywrightPage {
 
     public SearchPage openSearchPage() {
-        browserActions.navigateToUrl("https://open.spotify.com/search");
+        browserActions.navigateToUrl(ConfigProviderWeb.getWebAppConfiguration().baseUrl() + "/search");
         return this;
     }
 
@@ -118,31 +119,31 @@ public class SearchPage extends PlaywrightPage {
     }
 
     private Locator findAllFilterButton() {
-        return elementActions.findElementByRole(AriaRole.LINK, "All");
+        return elementActions.findElementByRole(AriaRole.LINK, ConfigProviderWeb.getWebAppLocaleConfig().allFilterButtonText());
     }
 
     private Locator findSongsFilterButton() {
-        return elementActions.findElementByRole(AriaRole.LINK, "Songs");
+        return elementActions.findElementByRole(AriaRole.LINK, ConfigProviderWeb.getWebAppLocaleConfig().songsFilterButtonText());
     }
 
     private Locator findArtistsFilterButton() {
-        return elementActions.findElementByRole(AriaRole.LINK, "Artists");
+        return elementActions.findElementByRole(AriaRole.LINK, ConfigProviderWeb.getWebAppLocaleConfig().artistsFilterButtonText());
     }
 
     private Locator findAlbumsFilterButton() {
-        return elementActions.findElementByRole(AriaRole.LINK, "Albums");
+        return elementActions.findElementByRole(AriaRole.LINK, ConfigProviderWeb.getWebAppLocaleConfig().albumsFilterButtonText());
     }
 
     private Locator findPlaylistsFilterButton() {
-        return elementActions.findElementByRole(AriaRole.LINK, "Playlists");
+        return elementActions.findElementByRole(AriaRole.LINK, ConfigProviderWeb.getWebAppLocaleConfig().searchPlaylistsFilterButtonText());
     }
 
     private Locator findProfilesFilterButton() {
-        return elementActions.findElementByRole(AriaRole.LINK, "Profiles");
+        return elementActions.findElementByRole(AriaRole.LINK, ConfigProviderWeb.getWebAppLocaleConfig().profilesFilterButtonText());
     }
 
     private Locator findPodcastsFilterButton() {
-        return elementActions.findElementByRole(AriaRole.LINK, "Podcasts & Shows");
+        return elementActions.findElementByRole(AriaRole.LINK, ConfigProviderWeb.getWebAppLocaleConfig().podcastsFilterButtonText());
     }
 
     private Locator findSongSearchResultTitle(String songElementSelector) {

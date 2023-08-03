@@ -1,6 +1,7 @@
 package com.spotify.pageobjects.commons;
 
 import com.microsoft.playwright.Locator;
+import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
@@ -41,18 +42,18 @@ public class ContextMenu extends PlaywrightPage {
     }
 
     private Locator findShareOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Share");
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().shareOptionText());
     }
 
     private Locator findEmbedAlbumOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Embed album");
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().embedAlbumOptionText());
     }
 
     private Locator findAddToPlaylistOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Add to playlist");
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().addToPlaylistOptionText());
     }
 
     private Locator findCreatePlaylistOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Create playlist");
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().createPlaylistOptionText());
     }
 }
