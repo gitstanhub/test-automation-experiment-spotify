@@ -1,6 +1,7 @@
 package com.spotify.pageobjects.commons;
 
 import com.microsoft.playwright.Locator;
+import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -30,6 +31,6 @@ public class OptionsMenu extends PlaywrightPage {
     }
 
     private Locator findEditDetailsOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", "Edit details");
+        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().editDetailsOptionText());
     }
 }

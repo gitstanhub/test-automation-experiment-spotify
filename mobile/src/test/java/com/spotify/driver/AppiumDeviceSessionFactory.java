@@ -6,12 +6,10 @@ import com.spotify.config.appium.device.local.LocalAndroidDeviceConfig;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import javax.naming.ConfigurationException;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -23,7 +21,7 @@ public class AppiumDeviceSessionFactory {
             case "local" -> {
                 return getLocalSession(deviceName, platformName);
             }
-            case "browserStack" -> {
+            case "browserstack" -> {
                 return getBrowserstackSession(deviceName, platformName, testName);
             }
             default -> {
@@ -82,12 +80,12 @@ public class AppiumDeviceSessionFactory {
         capabilities.setCapability("deviceName", ConfigProviderMobile.getDeviceConfig(deviceName, BrowserstackAndroidDeviceConfig.class).getDeviceName());
         capabilities.setCapability("platformName", ConfigProviderMobile.getDeviceConfig(deviceName, BrowserstackAndroidDeviceConfig.class).getPlatformName());
         capabilities.setCapability("platformVersion", ConfigProviderMobile.getDeviceConfig(deviceName, BrowserstackAndroidDeviceConfig.class).getPlatformVersion());
-        capabilities.setCapability("project", ConfigProviderMobile.getBrowserstackAndroidConfiguration().browserstackProjectName());
-        capabilities.setCapability("build", ConfigProviderMobile.getBrowserstackAndroidConfiguration().browserstackBuildName());
+        capabilities.setCapability("project", ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackProjectName());
+        capabilities.setCapability("build", ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackBuildName());
         capabilities.setCapability("name", testName);
-        capabilities.setCapability("browserstack.debug", ConfigProviderMobile.getBrowserstackAndroidConfiguration().browserstackDebug());
-        capabilities.setCapability("app", ConfigProviderMobile.getBrowserstackAndroidConfiguration().browserstackAppUrl());
+        capabilities.setCapability("browserstack.debug", ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackDebug());
+        capabilities.setCapability("app", ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackAppUrl());
 
-        return new AndroidDriver(new URL(String.format(ConfigProviderMobile.getBrowserstackAndroidConfiguration().browserstackRemoteUrl(), ConfigProviderMobile.getBrowserstackAuthConfiguration().browserstackUsername(), ConfigProviderMobile.getBrowserstackAuthConfiguration().browserstackAccessToken())), capabilities);
+        return new AndroidDriver(new URL(String.format(ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackRemoteUrl(), ConfigProviderMobile.getBrowserstackAuthConfiguration().browserstackUsername(), ConfigProviderMobile.getBrowserstackAuthConfiguration().browserstackAccessToken())), capabilities);
     }
 }

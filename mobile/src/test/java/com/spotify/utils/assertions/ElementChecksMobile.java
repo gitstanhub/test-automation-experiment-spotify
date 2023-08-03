@@ -45,11 +45,3 @@ public class ElementChecksMobile {
         }
     }
 }
-
-//    AndroidDriver driver;
-//    WebDriverWait wait;
-//
-//    public ElementChecks(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//    }

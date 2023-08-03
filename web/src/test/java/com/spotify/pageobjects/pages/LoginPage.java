@@ -3,9 +3,12 @@ package com.spotify.pageobjects.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
+import com.spotify.pageobjects.locators.LoginPageTexts;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +19,12 @@ import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 @Slf4j
 public class LoginPage extends PlaywrightPage {
 
+    @Autowired
+    LoginPageTexts loginPageTexts;
+
     @Step
     public LoginPage openLoginPage() {
-        browserActions.navigateToUrl("https://accounts.spotify.com/en-GB/login");
+        browserActions.navigateToUrl(ConfigProviderWeb.getWebAppConfiguration().accountsUrl() + "/login");
         return this;
     }
 
@@ -45,7 +51,7 @@ public class LoginPage extends PlaywrightPage {
     public LoginPage handleLoginFor(String username, String password) {
         openLoginPage();
 
-        if (findSignedOutStateTitle().isVisible()) {
+        if (findLoggedOutStateTitle().isVisible()) {
             fillInUsername(username);
             fillInPassword(password);
             clickLoginButton();
@@ -69,12 +75,12 @@ public class LoginPage extends PlaywrightPage {
         return elementActions.findElementByTestId("login-button");
     }
 
-    private Locator findSignedOutStateTitle() {
-        return elementActions.findElementByExactText("Log in to Spotify");
+    private Locator findLoggedOutStateTitle() {
+        return elementActions.findElementByExactText(loginPageTexts.getLoggedOutStateTitle());
     }
 
     private Locator findLoggedInStateTitle() {
-        return elementActions.findElementByExactText("Logged in as");
+        return elementActions.findElementByExactText(loginPageTexts.getLoggedInStateTitle());
     }
 
     private Locator findWebPlayerButton() {

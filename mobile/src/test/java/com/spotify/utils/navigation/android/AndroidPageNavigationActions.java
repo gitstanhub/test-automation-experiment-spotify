@@ -172,13 +172,3 @@ public class AndroidPageNavigationActions {
         public static final String DIRECTION_RIGHT = "right";
     }
 }
-
-//    private final AndroidDriver driver;
-//    private final WebDriverWait wait;
-//    private final AndroidDeviceActions androidDeviceGestures;
-//
-//    public AndroidPageNavigationActions(AndroidDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//        this.androidDeviceGestures = new AndroidDeviceActions(driver);
-//    }

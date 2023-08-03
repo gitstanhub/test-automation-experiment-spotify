@@ -4,13 +4,15 @@ import com.spotify.utils.BrowserActions;
 import com.spotify.utils.ElementActions;
 import com.spotify.utils.ElementChecks;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
-public class PlaywrightPage {
+public abstract class PlaywrightPage {
 
-    public static final BrowserActions browserActions = new BrowserActions();
-
-    public static final ElementActions elementActions = new ElementActions();
-
-    public static final ElementChecks elementChecks = new ElementChecks();
+    @Autowired
+    protected BrowserActions browserActions;
+    @Autowired
+    protected ElementActions elementActions;
+    @Autowired
+    protected ElementChecks elementChecks;
 }

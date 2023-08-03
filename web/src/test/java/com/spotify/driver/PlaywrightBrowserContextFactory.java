@@ -10,13 +10,16 @@ public class PlaywrightBrowserContextFactory {
 
         double playwrightBrowserTimeout = ConfigProviderWeb.getPlaywrightBrowserConfiguration().playwrightBrowserTimeout();
 
+        String locale = ConfigProviderWeb.getWebAppConfiguration().locale();
+
         PlaywrightBrowser playwrightBrowser = PlaywrightBrowser.getByName(browserName);
 
         Browser.NewContextOptions browserContextOptions = new Browser.NewContextOptions()
                 .setViewportSize(playwrightBrowser.getWidth(), playwrightBrowser.getHeight())
                 .setScreenSize(playwrightBrowser.getWidth(), playwrightBrowser.getHeight())
                 .setTimezoneId("Europe/Berlin")
-                .setUserAgent(playwrightBrowser.getUserAgent());
+                .setUserAgent(playwrightBrowser.getUserAgent())
+                .setLocale(locale);
 
         BrowserContext browserContext = browser.newContext(browserContextOptions);
         browserContext.setDefaultTimeout(playwrightBrowserTimeout);
