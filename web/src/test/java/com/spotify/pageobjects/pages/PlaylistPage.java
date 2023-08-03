@@ -1,6 +1,7 @@
 package com.spotify.pageobjects.pages;
 
 import com.microsoft.playwright.Locator;
+import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -60,7 +61,7 @@ public class PlaylistPage extends PlaywrightPage {
     }
 
     private Locator findEditDetailsModal() {
-        return elementActions.findElementBySelector("div[aria-label='Edit details']:has-text(\"Edit details\")");
+        return elementActions.findElementBySelector("div[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().editDetailsModalText() + "']");
     }
 
     private Locator findEditDetailsModalDescriptionField() {

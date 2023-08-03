@@ -27,7 +27,3 @@ public class AndroidElementActions {
                         targetResourceId, title)));
     }
 }
-
-//    AndroidDriver driver;
-//    WebDriverWait wait;
-//    AndroidPageNavigationActions androidPageNavigationActions;

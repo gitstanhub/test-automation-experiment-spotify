@@ -2,18 +2,13 @@ package com.spotify.pageobjects.commons.android.navigation;
 
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.navigation.Navigation;
-import com.spotify.utils.assertions.ElementChecksMobile;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import static com.spotify.driver.AppiumDriverHandler.getDriver;
-import static com.spotify.locators.commonslocators.NavBarLocators.NAVIGATION_BAR;
+import static com.spotify.pageobjects.locators.commonslocators.NavBarLocators.NAVIGATION_BAR;
 
 @Slf4j
 @Component

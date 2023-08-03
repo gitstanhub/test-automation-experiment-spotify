@@ -1,6 +1,7 @@
 package com.spotify.pageobjects.pages;
 
 import com.microsoft.playwright.Locator;
+import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +16,7 @@ import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 public class AlbumPage extends PlaywrightPage {
 
     public AlbumPage openAlbumPage(String albumId) {
-        browserActions.navigateToUrl("https://open.spotify.com/album/" + albumId);
+        browserActions.navigateToUrl(ConfigProviderWeb.getWebAppConfiguration().baseUrl() + "/album/" + albumId);
         return this;
     }
 
@@ -43,7 +44,7 @@ public class AlbumPage extends PlaywrightPage {
     }
 
     public AlbumPage verifyEmbedCodeCopyButtonIsClicked() {
-        elementChecks.assertElementContainsText("COPIED!", elementActions.findElementBySelector("label[for='ewg-showcode'] + button[data-encore-id='buttonPrimary'] span"));
+        elementChecks.assertElementContainsText(ConfigProviderWeb.getWebAppLocaleConfig().embedCodeCopyButtonClickedText(), elementActions.findElementBySelector("label[for='ewg-showcode'] + button[data-encore-id='buttonPrimary'] span"));
         return this;
     }
 
@@ -79,7 +80,7 @@ public class AlbumPage extends PlaywrightPage {
     }
 
     private Locator findEmbedAlbumModal() {
-        return elementActions.findElementBySelector("div[aria-label='Embed album']");
+        return elementActions.findElementBySelector("div[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().embedAlbumModalLabel() + "']");
     }
 
     private Locator findShowCodeCheckbox() {
@@ -91,11 +92,11 @@ public class AlbumPage extends PlaywrightPage {
     }
 
     private Locator findEmbedCodeCopyButton() {
-        return elementActions.findElementBySelectorAndText("label[for='ewg-showcode'] + button[data-encore-id='buttonPrimary'] span", "Copy");
+        return elementActions.findElementBySelectorAndText("label[for='ewg-showcode'] + button[data-encore-id='buttonPrimary'] span", ConfigProviderWeb.getWebAppLocaleConfig().embedCodeCopyButtonText());
     }
 
     private Locator findAlbumTypeSwitcher() {
-        return elementActions.findElementBySelectorAndText("button span", "1 more release");
+        return elementActions.findElementBySelectorAndText("button span", ConfigProviderWeb.getWebAppLocaleConfig().albumTypeSwitcherText());
     }
 
     private Locator findAlbumTypeSwitcherOption(String optionName) {
@@ -103,7 +104,7 @@ public class AlbumPage extends PlaywrightPage {
     }
 
     private Locator findExplicitIcon() {
-        return elementActions.findElementBySelectorAndText("span[aria-label='Explicit']", "E").locator("nth=0");
+        return elementActions.findElementBySelectorAndText("span[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().explicitIconLabel() + "']", ConfigProviderWeb.getWebAppLocaleConfig().explicitIconText()).locator("nth=0");
     }
 
     private Locator findAlbumPageSection() {
