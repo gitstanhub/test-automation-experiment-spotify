@@ -8,6 +8,8 @@ import org.aeonbits.owner.Config;
 })
 public interface WebAppAuthConfiguration extends Config {
 
+    @Key("username")
     String username();
+    @Key("password")
     String password();
 }

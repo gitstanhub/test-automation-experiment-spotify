@@ -32,7 +32,7 @@ public class LibraryTests extends WebTests {
         libraryPage
                 .verifyLibraryButtonIsAvailable()
                 .clickExpandLibraryButton()
-                .selectSortByOption("Alphabetical")
+                .selectSortByAlphabeticalOption()
                 .verifyLibraryListIsSortedAsc();
     }
 

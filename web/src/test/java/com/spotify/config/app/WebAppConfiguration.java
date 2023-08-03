@@ -10,7 +10,12 @@ import org.aeonbits.owner.Config;
 })
 public interface WebAppConfiguration extends Config {
 
+    @Key("baseUrl")
     String baseUrl();
+
+    @Key("accountsUrl")
     String accountsUrl();
+
+    @Key("locale")
     String locale();
 }

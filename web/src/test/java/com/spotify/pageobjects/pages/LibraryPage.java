@@ -67,15 +67,13 @@ public class LibraryPage extends PlaywrightPage {
         return this;
     }
 
-    public LibraryPage selectSortByOption(String sortByOption) {
-        findSortByButton().click();
+    public LibraryPage selectSortByRecentlyAddedOption() {
+        selectSortByOption("Recently Added");
+        return this;
+    }
 
-        elementActions
-                .findElementBySelector("div[id = context-menu] li button span ")
-                .filter(new Locator.FilterOptions().setHasText(sortByOption)).click();
-
-        getPage().waitForCondition(() -> elementChecks.isElementVisibleWithText(sortByOption));
-
+    public LibraryPage selectSortByAlphabeticalOption() {
+        selectSortByOption("Alphabetical");
         return this;
     }
 
@@ -107,6 +105,18 @@ public class LibraryPage extends PlaywrightPage {
 
     public LibraryPage verifyCreatedPlaylistIsAvailable(String expectedPlaylistName) {
         Assertions.assertTrue(elementChecks.isElementVisible(findLibraryItemByText(expectedPlaylistName).locator("nth=0")));
+        return this;
+    }
+
+    private LibraryPage selectSortByOption(String sortByOption) {
+        findSortByButton().click();
+
+        elementActions
+                .findElementBySelector("div[id = context-menu] li button span ")
+                .filter(new Locator.FilterOptions().setHasText(sortByOption)).click();
+
+        getPage().waitForCondition(() -> elementChecks.isElementVisibleWithText(sortByOption));
+
         return this;
     }
 

@@ -9,6 +9,10 @@ import org.aeonbits.owner.ConfigFactory;
 
 public class ConfigProviderWeb {
 
+    static {
+        System.setProperty("owner.encoding", "UTF-8");
+    }
+
     @Getter
     private static final PlaywrightBrowserConfiguration playwrightBrowserConfiguration = ConfigFactory.create(
                 PlaywrightBrowserConfiguration.class, System.getProperties());

@@ -23,15 +23,6 @@ public class CookiesBanner extends PlaywrightPage {
         } catch (PlaywrightException e) {
             System.out.println("Couldn't find a cookies banner. Proceeding further.");
         }
-
-
-//        if (findCookiesBanner().isVisible()) {
-//            System.out.println("Banner found");
-//            clickCookiesAcceptButton();
-//        } else {
-//            System.out.println("Banner not found");
-//        }
-
         return this;
     }
 

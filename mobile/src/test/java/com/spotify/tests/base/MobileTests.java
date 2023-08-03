@@ -38,7 +38,7 @@ import java.lang.reflect.Method;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = SpringConfigMobile.class)
 @Slf4j
-public class MobileTests {
+public abstract class MobileTests {
 
     protected static AnnotationConfigApplicationContext applicationContext;
 
