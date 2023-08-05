@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.library;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.library.LibraryPage;
 import com.spotify.utils.navigation.android.AndroidPageNavigationActions;
@@ -20,7 +21,7 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     public LibraryPageAndroid selectArtistItem(String artistName) {
 
         if (elementChecksMobile.isElementExists("com.spotify.music:id/subtitle")) {
-            getListItemByTitleAndSubtitle(artistName, "Artist").click();
+            getListItemByTitleAndSubtitle(artistName, ConfigProviderMobile.getMobileAppLocaleConfig().artistItemSubtitleText()).click();
         } else {
             getListItemByTitle(artistName).click();
         }
@@ -32,7 +33,7 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
         if (elementChecksMobile.isElementSelected(getAlbumsButton())) {
             getListItemByTitleAndSubtitle(albumName, artistName).click();
         } else {
-            getListItemByTitleAndSubtitle(albumName, "Album • " + artistName).click();
+            getListItemByTitleAndSubtitle(albumName, ConfigProviderMobile.getMobileAppLocaleConfig().albumItemSubtitleText() + " • " + artistName).click();
         }
         return this;
     }
@@ -42,7 +43,7 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
         if (elementChecksMobile.isElementSelected(getPlaylistsButton())) {
             getListItemByTitleAndSubtitle(playlistName, playlistAuthorName).click();
         } else {
-            getListItemByTitleAndSubtitle(playlistName, "Playlist • " + playlistAuthorName).click();
+            getListItemByTitleAndSubtitle(playlistName, ConfigProviderMobile.getMobileAppLocaleConfig().playlistItemSubtitleText() + " • " + playlistAuthorName).click();
         }
         return this;
     }
@@ -102,23 +103,23 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     }
 
     private WebElement getProfileButton() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_image\").description(\"Go to profile and settings\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_image\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().profileButtonText() + "\")"));
     }
 
     private WebElement getLibraryPageTitle() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_title\").description(\"Your Library Heading\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_title\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().libraryPageTitleText() + "\")"));
     }
 
     private WebElement getPlaylistsButton() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"Playlists\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistsButtonText() + "\")"));
     }
 
     private WebElement getAlbumsButton() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"Albums\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsButtonText() + "\")"));
     }
 
     private WebElement getArtistsButton() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"Artists\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().artistsButtonText() + "\")"));
     }
 
     private WebElement getSearchButton() {
@@ -138,7 +139,7 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     }
 
     private WebElement getCreatePlaylistMenuTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/heading' and @text='Create']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/heading' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().createPlaylistMenuTitleText() + "']"));
     }
 
     private WebElement getCreatePlaylistMenuPlaylistButton() {

@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.album;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.album.AlbumPage;
 import io.appium.java_client.AppiumBy;
@@ -60,7 +61,7 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
     }
 
     public AlbumPageAndroid verifyYouMightAlsoLikeIsAvailable() {
-        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", "You might also like", 10);
+        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText(), 10);
         elementChecksMobile.assertElementIsVisible(getYouMightAlsoLikeTitle());
         return this;
     }
@@ -105,7 +106,7 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
     }
 
     private WebElement getYouMightAlsoLikeTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='You might also like']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText() + "']"));
     }
 
     private WebElement getCopyrightRow(String copyrightText) {

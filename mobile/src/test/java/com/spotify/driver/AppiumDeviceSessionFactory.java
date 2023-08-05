@@ -15,6 +15,9 @@ import java.net.URL;
 
 public class AppiumDeviceSessionFactory {
 
+    private static final String language = ConfigProviderMobile.getMobileAppConfiguration().language();
+    private static final String locale = ConfigProviderMobile.getMobileAppConfiguration().locale();
+
     public static AppiumDriver getDeviceSession(String environment, String platformName, String deviceName, String testName) throws ConfigurationException, MalformedURLException, IOException {
 
         switch (environment) {
@@ -55,9 +58,8 @@ public class AppiumDeviceSessionFactory {
         capabilities.setCapability(MobileCapabilityType.NO_RESET, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).isNoReset());
         capabilities.setCapability("appPackage", "com.spotify.music");
         capabilities.setCapability("appActivity", "com.spotify.music.MainActivity");
-        capabilities.setCapability("language", "en");
-        capabilities.setCapability("locale", "GB");
-
+        capabilities.setCapability("language", language);
+        capabilities.setCapability("locale", locale);
 
         AppiumDriverHandler.launchAppiumServer();
 
@@ -88,6 +90,8 @@ public class AppiumDeviceSessionFactory {
         capabilities.setCapability("name", testName);
         capabilities.setCapability("browserstack.debug", ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackDebug());
         capabilities.setCapability("app", ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackAppUrl());
+        capabilities.setCapability("language", language);
+        capabilities.setCapability("locale", locale);
 
         return new AndroidDriver(new URL(String.format(ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackRemoteUrl(), ConfigProviderMobile.getBrowserstackAuthConfiguration().browserstackUsername(), ConfigProviderMobile.getBrowserstackAuthConfiguration().browserstackAccessToken())), capabilities);
     }

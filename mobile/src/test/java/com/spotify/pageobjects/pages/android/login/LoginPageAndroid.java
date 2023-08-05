@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.login;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.login.LoginPage;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ public class LoginPageAndroid extends AppiumPageAndroid implements LoginPage {
 
     public void handleLoginFor(String username, String password) {
         try {
-            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Button[contains(@text,'Log in')]")));
+            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Button[contains(@text,'" + ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText() + "')]")));
             tapLogInButton();
             fillInUsernameField(username);
             fillInPasswordField(password);
@@ -52,7 +53,7 @@ public class LoginPageAndroid extends AppiumPageAndroid implements LoginPage {
 
     //ToDo: Replace xpath with UIAutomator
     private WebElement getLogInButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[contains(@text,'Log in')]"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[contains(@text,'" + ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText() + "')]"));
     }
 
     private WebElement getUsernameField() {

@@ -6,6 +6,8 @@ import com.spotify.config.appium.AppiumDriverConfiguration;
 import com.spotify.config.appium.BrowserstackAuthConfiguration;
 import com.spotify.config.appium.BrowserstackAndroidSessionConfiguration;
 import com.spotify.config.appium.app.MobileAppAuthConfiguration;
+import com.spotify.config.appium.app.MobileAppConfiguration;
+import com.spotify.config.appium.app.MobileAppLocaleConfig;
 import com.spotify.config.appium.device.commons.DeviceConfig;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
@@ -33,6 +35,14 @@ public class ConfigProviderMobile {
     @Getter
     private static final MobileAppAuthConfiguration mobileAppAuthConfiguration = ConfigFactory.create(
             MobileAppAuthConfiguration.class, System.getProperties());
+
+    @Getter
+    private static final MobileAppConfiguration mobileAppConfiguration = ConfigFactory.create(
+            MobileAppConfiguration.class, System.getProperties());
+
+    @Getter
+    private static final MobileAppLocaleConfig mobileAppLocaleConfig = ConfigFactory.create(
+            MobileAppLocaleConfig.class, System.getProperties());
 
     public static <T extends DeviceConfig> T getDeviceConfig(String deviceName, Class<T> configClass) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());

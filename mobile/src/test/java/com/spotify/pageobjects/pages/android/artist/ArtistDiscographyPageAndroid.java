@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.artist;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.artist.ArtistDiscographyPage;
 import io.appium.java_client.AppiumBy;
@@ -32,8 +33,8 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
     }
 
     public ArtistDiscographyPageAndroid verifySinglesTitleIsAvailable() {
-        androidPageNavigationActions.swipeToElementByText("android:id/text1", "Singles", 10);
-        elementChecksMobile.assertElementIsVisible(getAlbumsTitle());
+        androidPageNavigationActions.swipeToElementByText("android:id/text1", ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText(), 10);
+        elementChecksMobile.assertElementIsVisible(getSinglesTitle());
         return this;
     }
 
@@ -45,19 +46,19 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
 
 
     private WebElement getPageTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/glue_toolbar_title' and @text='Releases']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/glue_toolbar_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistDiscographyPageTitleText() + "']"));
     }
 
     private WebElement getLatestReleaseTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='Latest release']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().latestReleaseTitleText() + "']"));
     }
 
     private WebElement getAlbumsTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='Albums']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsTitleText() + "']"));
     }
 
     private WebElement getSinglesTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='Singles']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText() + "']"));
     }
 
     //ToDo: move to other class with commons
