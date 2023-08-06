@@ -10,7 +10,7 @@ public interface PlaylistPage {
 
     public PlaylistPage verifyDeletePopupTitleIsAvailable();
 
-    public PlaylistPage verifyDeletePopupSubtitleIsAvailable();
+    public PlaylistPage verifyDeletePopupSubtitleIsAvailable(String playlistName);
 
     public PlaylistPage tapPlaylistDeleteConfirmButton();
 }

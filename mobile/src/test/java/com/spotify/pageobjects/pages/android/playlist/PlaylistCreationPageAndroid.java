@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.playlist;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.playlist.PlaylistCreationPage;
 import io.appium.java_client.AppiumBy;
@@ -38,11 +39,11 @@ public class PlaylistCreationPageAndroid extends AppiumPageAndroid implements Pl
     }
 
     private WebElement getPlayListCreationPageTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='Give your playlist a name']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playListCreationPageTitleText() + "']"));
     }
 
     private WebElement getPlaylistNameField() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"Add a playlist name\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistNameFieldText() + "\")"));
     }
 
     private WebElement getCreateButton() {

@@ -159,4 +159,24 @@ public interface MobileAppLocaleConfig extends Config {
     String emptyViewTitleText();
     @Key("emptyViewSubtitleText")
     String emptyViewSubtitleText();
+
+    //PlaylistCreationPage
+    @Key("playListCreationPageTitleText")
+    String playListCreationPageTitleText();
+
+    @Key("playlistNameFieldText")
+    String playlistNameFieldText();
+
+    //PlaylistPage
+    @Key("deletePopupTitleText")
+    String deletePopupTitleText();
+
+    @Key("deletePopupSubtitleText")
+    String deletePopupSubtitleText();
+
+    @Key("deletePopupConfirmButtonText")
+    String deletePopupConfirmButtonText();
+
+    @Key("deletePopupCancelButtonText")
+    String deletePopupCancelButtonText();
 }
