@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.search;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.search.SearchPage;
 import io.appium.java_client.AppiumBy;
@@ -30,7 +31,7 @@ public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
     private WebElement getSearchPageTitle() {
         String targetResourceIdFirst = "com.spotify.music:id/title";
         String targetResourceIdSecond = "com.spotify.music:id/header_title";
-        String title = "Search";
+        String title = ConfigProviderMobile.getMobileAppLocaleConfig().searchPageTitleText();
 
         try {
             return getDriver().findElement(AppiumBy.androidUIAutomator(
@@ -46,7 +47,7 @@ public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
     }
 
     private WebElement getScanSpotifyCodeButton() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"Scan Spotify code\")"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().scanSpotifyCodeButtonText() + "\")"));
     }
 
     private WebElement getSearchField() {

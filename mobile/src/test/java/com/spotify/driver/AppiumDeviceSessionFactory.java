@@ -50,6 +50,8 @@ public class AppiumDeviceSessionFactory {
     private static AndroidDriver getLocalAndroidSession(String deviceName) throws MalformedURLException, IOException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
+        System.out.printf(language + " " + locale + "brr");
+
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).getDeviceName());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).getPlatformName());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).getPlatformVersion());

@@ -179,4 +179,33 @@ public interface MobileAppLocaleConfig extends Config {
 
     @Key("deletePopupCancelButtonText")
     String deletePopupCancelButtonText();
+
+    //SearchPage
+    @Key("searchPageTitleText")
+    String searchPageTitleText();
+
+    @Key("scanSpotifyCodeButtonText")
+    String scanSpotifyCodeButtonText();
+
+    //SearchResultsPage
+    @Key("searchResultsPlaceholderTitleText")
+    String searchResultsPlaceholderTitleText();
+
+    @Key("searchResultsPlaceholderSubtitleText")
+    String searchResultsPlaceholderSubtitleText();
+
+    @Key("topFilterButtonText")
+    String topFilterButtonText();
+
+    @Key("artistFilterButtonText")
+    String artistFilterButtonText();
+
+    @Key("songsFilterButtonText")
+    String songsFilterButtonText();
+
+    @Key("albumsFilterButtonText")
+    String albumsFilterButtonText();
+
+    @Key("playlistsFilterButtonText")
+    String playlistsFilterButtonText();
 }

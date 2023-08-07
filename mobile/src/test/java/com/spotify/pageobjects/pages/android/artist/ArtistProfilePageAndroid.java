@@ -39,7 +39,7 @@ public class ArtistProfilePageAndroid extends AppiumPageAndroid implements Artis
     }
 
     public ArtistProfilePageAndroid verifyPopularReleasesSectionIsAvailable() {
-        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText(), 10);
+        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/title", ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText(), 10);
         elementChecksMobile.assertElementIsVisible(getPopularReleasesTitle());
         return this;
     }
@@ -87,7 +87,7 @@ public class ArtistProfilePageAndroid extends AppiumPageAndroid implements Artis
     }
 
     private WebElement getPopularReleasesTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText() + "']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText() + "']"));
     }
 
     private WebElement getSeeDiscographyButton() {

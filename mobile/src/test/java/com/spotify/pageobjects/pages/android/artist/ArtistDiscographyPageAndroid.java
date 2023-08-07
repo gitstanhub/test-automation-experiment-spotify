@@ -44,7 +44,6 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
         return this;
     }
 
-
     private WebElement getPageTitle() {
         return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/glue_toolbar_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistDiscographyPageTitleText() + "']"));
     }

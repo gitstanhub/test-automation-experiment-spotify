@@ -61,7 +61,7 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
     }
 
     public AlbumPageAndroid verifyYouMightAlsoLikeIsAvailable() {
-        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText(), 10);
+        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText(), 10);
         elementChecksMobile.assertElementIsVisible(getYouMightAlsoLikeTitle());
         return this;
     }
@@ -106,11 +106,11 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
     }
 
     private WebElement getYouMightAlsoLikeTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText() + "']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText() + "']"));
     }
 
     private WebElement getCopyrightRow(String copyrightText) {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='© ℗ 2002 Aftermath Records']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + copyrightText + "']"));
     }
 
     private WebElement getListItemByTitle(String title) {
