@@ -18,7 +18,7 @@ public class AppiumDeviceSessionFactory {
     private static final String language = ConfigProviderMobile.getMobileAppConfiguration().language();
     private static final String locale = ConfigProviderMobile.getMobileAppConfiguration().locale();
 
-    public static AppiumDriver getDeviceSession(String environment, String platformName, String deviceName, String testName) throws ConfigurationException, MalformedURLException, IOException {
+    public static AppiumDriver getDeviceSession(String environment, String platformName, String deviceName, String testName) throws IOException, ConfigurationException {
 
         switch (environment) {
             case "local" -> {
@@ -34,7 +34,7 @@ public class AppiumDeviceSessionFactory {
         }
     }
 
-    private static AppiumDriver getLocalSession(String deviceName, String platformName) throws ConfigurationException, MalformedURLException, IOException {
+    private static AppiumDriver getLocalSession(String deviceName, String platformName) throws IOException {
         switch (platformName) {
             case "android" -> {
                 return getLocalAndroidSession(deviceName);
@@ -47,10 +47,8 @@ public class AppiumDeviceSessionFactory {
         }
     }
 
-    private static AndroidDriver getLocalAndroidSession(String deviceName) throws MalformedURLException, IOException {
+    private static AndroidDriver getLocalAndroidSession(String deviceName) throws IOException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-
-        System.out.printf(language + " " + locale + "brr");
 
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).getDeviceName());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).getPlatformName());
@@ -68,7 +66,7 @@ public class AppiumDeviceSessionFactory {
         return new AndroidDriver(AppiumDriverHandler.appiumDriverLocalService.getUrl(), capabilities);
     }
 
-    private static AppiumDriver getBrowserstackSession(String deviceName, String platformName, String testName) throws ConfigurationException, MalformedURLException, IOException {
+    private static AppiumDriver getBrowserstackSession(String deviceName, String platformName, String testName) throws IOException {
         switch (platformName) {
             case "android" -> {
                 return getBrowserstackAndroidSession(deviceName, testName);
@@ -81,7 +79,7 @@ public class AppiumDeviceSessionFactory {
         }
     }
 
-    private static AndroidDriver getBrowserstackAndroidSession(String deviceName, String testName) throws ConfigurationException, MalformedURLException, IOException {
+    private static AndroidDriver getBrowserstackAndroidSession(String deviceName, String testName) throws IOException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("deviceName", ConfigProviderMobile.getDeviceConfig(deviceName, BrowserstackAndroidDeviceConfig.class).getDeviceName());

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import static com.spotify.driver.AppiumDriverHandler.getDriver;
 import static com.spotify.driver.AppiumDriverHandler.getWait;
 
@@ -19,13 +21,16 @@ import static com.spotify.driver.AppiumDriverHandler.getWait;
 public class ScreensaverAdAndroid extends AppiumPageAndroid implements ScreensaverAd {
 
     public void handleScreensaverAd() {
-        //TODO: instead of catching exceptions, try to write a method that would assert that element is not visible
-        try {
-            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/screensaver_ad_banner")));
+        if (isScreensaverAdVisible()) {
             tapOnScreensaverAdDismissButton();
-        } catch (TimeoutException e) {
+        } else {
             System.out.println("No Screensaver Ad is visible to handle. Proceeding further...");
         }
+    }
+
+    private boolean isScreensaverAdVisible() {
+        List<WebElement> screensaverAds = getDriver().findElements(By.id("com.spotify.music:id/screensaver_ad_banner"));
+        return !screensaverAds.isEmpty();
     }
 
     private ScreensaverAdAndroid tapOnScreensaverAdDismissButton() {

@@ -24,7 +24,7 @@ public class AppiumDriverHandler {
     private static final ThreadLocal<WebDriverWait> webDriverWait = new ThreadLocal<>();
     public static AppiumDriverLocalService appiumDriverLocalService;
 
-    public static void createDriver(String environment, String platformName, String deviceName, TestInfo testInfo) throws ConfigurationException, IOException {
+    public static void createDriver(String environment, String platformName, String deviceName, TestInfo testInfo) throws IOException, ConfigurationException {
         log.info("Creating a new driver for {}", platformName);
 
         String testName = testInfo.getTestMethod().map(Method::getName).orElse(null);
