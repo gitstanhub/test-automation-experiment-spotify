@@ -37,7 +37,7 @@ public class SearchResultsPageAndroid extends AppiumPageAndroid implements Searc
     }
 
     private WebElement getGlobalSearchField() {
-        return getDriver().findElement(By.id("com.spotify.music:id/query"));
+        return androidElementActions.getElementById("com.spotify.music:id/query");
     }
 
     private WebElement getSearchResultsPlaceholderTitle() {

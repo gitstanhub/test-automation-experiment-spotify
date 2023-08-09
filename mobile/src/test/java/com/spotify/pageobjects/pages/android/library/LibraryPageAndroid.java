@@ -123,19 +123,19 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     }
 
     private WebElement getSearchButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/icon_search"));
+        return androidElementActions.getElementById("com.spotify.music:id/icon_search");
     }
 
     private WebElement getCreatePlaylistButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/icon_create"));
+        return androidElementActions.getElementById("com.spotify.music:id/icon_create");
     }
 
     private WebElement getSortButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/sort"));
+        return androidElementActions.getElementById("com.spotify.music:id/sort");
     }
 
     private WebElement getChangeLayoutButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/icon_grid_list"));
+        return androidElementActions.getElementById("com.spotify.music:id/icon_grid_list");
     }
 
     private WebElement getCreatePlaylistMenuTitle() {
@@ -143,10 +143,10 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     }
 
     private WebElement getCreatePlaylistMenuPlaylistButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/create_playlist_row"));
+        return androidElementActions.getElementById("com.spotify.music:id/create_playlist_row");
     }
 
     private WebElement getCreatePlaylistMenuBlendButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/title"));
+        return androidElementActions.getElementById("com.spotify.music:id/title");
     }
 }

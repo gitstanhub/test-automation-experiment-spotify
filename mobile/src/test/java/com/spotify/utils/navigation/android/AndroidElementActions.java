@@ -9,16 +9,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import static com.spotify.driver.AppiumDriverHandler.getDriver;
 
 @Component
 @Slf4j
 public class AndroidElementActions {
 
-    private final AndroidPageNavigationActions androidPageNavigationActions = new AndroidPageNavigationActions();
+    @Autowired
+    private AndroidPageNavigationActions androidPageNavigationActions;
 
     public WebElement getElementById(String idLocator) {
         return getDriver().findElement(By.id(idLocator));
+    }
+
+    public List<WebElement> getAllElementsById(String idLocator) {
+        return getDriver().findElements(By.id(idLocator));
     }
 
     public WebElement getElementByXpath(String xpathLocator) {

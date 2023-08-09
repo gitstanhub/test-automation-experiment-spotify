@@ -39,7 +39,7 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
     }
 
     private WebElement getContextMenuButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/context_menu_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/context_menu_button");
     }
 
     private WebElement getShuffleButton() {
@@ -47,7 +47,7 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
         String contentDesc = ConfigProviderMobile.getMobileAppLocaleConfig().shuffleButtonContentDescriptionText();
 
         try {
-            return getDriver().findElement(By.id("com.spotify.music:id/shuffle_button"));
+            return androidElementActions.getElementById("com.spotify.music:id/shuffle_button");
         } catch (NoSuchElementException e) {
             return getDriver().findElement(AppiumBy.androidUIAutomator(
                     String.format(
@@ -57,6 +57,6 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
     }
 
     private WebElement getPlayPauseButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/button_play_and_pause"));
+        return androidElementActions.getElementById("com.spotify.music:id/button_play_and_pause");
     }
 }

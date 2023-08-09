@@ -14,7 +14,11 @@ import static com.spotify.driver.AppiumDriverHandler.getDriver;
 @Slf4j
 public class AndroidPageNavigationActions {
 
-    private final AndroidDeviceActions androidDeviceActions = new AndroidDeviceActions();
+    @Autowired
+    private AndroidDeviceActions androidDeviceActions;
+
+    @Autowired
+    private AndroidElementActions androidElementActions;
 
     public void scrollIntoElementByText(String scrollableElementResourceId, String targetResourceId, String targetText) {
         getDriver().findElement(AppiumBy.androidUIAutomator(
@@ -143,7 +147,7 @@ public class AndroidPageNavigationActions {
 
         while (attempts < maxSwipes) {
             try {
-                WebElement element = getDriver().findElement(By.id(targetId));
+                WebElement element = androidElementActions.getElementById(targetId);
 
                 if (element != null) {
                     return;

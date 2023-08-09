@@ -47,10 +47,10 @@ public class PlaylistCreationPageAndroid extends AppiumPageAndroid implements Pl
     }
 
     private WebElement getCreateButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/continue_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/continue_button");
     }
 
     private WebElement getCancelButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/cancel_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/cancel_button");
     }
 }

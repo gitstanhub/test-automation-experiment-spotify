@@ -24,6 +24,6 @@ public class SpotifyCodeAndroid extends AppiumPageAndroid implements SpotifyCode
     }
 
     private WebElement getSpotifyCodeImage() {
-        return getDriver().findElement(By.id("com.spotify.music:id/scannable_imageview"));
+        return androidElementActions.getElementById("com.spotify.music:id/scannable_imageview");
     }
 }

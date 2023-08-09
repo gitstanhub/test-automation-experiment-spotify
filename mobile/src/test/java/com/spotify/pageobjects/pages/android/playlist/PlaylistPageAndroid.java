@@ -50,7 +50,7 @@ public class PlaylistPageAndroid extends AppiumPageAndroid implements PlaylistPa
     }
 
     private WebElement getPlaylistArtwork() {
-        return getDriver().findElement(By.id("com.spotify.music:id/artwork"));
+        return androidElementActions.getElementById("com.spotify.music:id/artwork");
     }
 
     private WebElement getPlaylistName() {

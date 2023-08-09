@@ -3,7 +3,6 @@ package com.spotify.pageobjects.pages.android.artist;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.artist.ArtistProfilePage;
-import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -63,22 +62,22 @@ public class ArtistProfilePageAndroid extends AppiumPageAndroid implements Artis
     }
 
     private WebElement getTitle() {
-        return getDriver().findElement(By.id("com.spotify.music:id/title"));
+        return androidElementActions.getElementById("com.spotify.music:id/title");
     }
 
     private WebElement getMetaData() {
-        return getDriver().findElement(By.id("com.spotify.music:id/metadata"));
+        return androidElementActions.getElementById("com.spotify.music:id/metadata");
     }
 
     private WebElement getFollowButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/follow_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/follow_button");
     }
 
     private WebElement getTrackCloud() {
         try {
-            return getDriver().findElement(By.id("com.spotify.music:id/track_cloud_content"));
+            return androidElementActions.getElementById("com.spotify.music:id/track_cloud_content");
         } catch (NoSuchElementException e) {
-            return getDriver().findElement(By.id("com.spotify.music:id/track_cloud"));
+            return androidElementActions.getElementById("com.spotify.music:id/track_cloud");
         }
     }
 
@@ -119,6 +118,6 @@ public class ArtistProfilePageAndroid extends AppiumPageAndroid implements Artis
     }
 
     private WebElement getArtistBiography() {
-        return getDriver().findElement(By.id("com.spotify.music:id/biography"));
+        return androidElementActions.getElementById("com.spotify.music:id/biography");
     }
 }

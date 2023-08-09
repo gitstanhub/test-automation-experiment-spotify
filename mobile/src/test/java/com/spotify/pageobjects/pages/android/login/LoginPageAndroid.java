@@ -57,14 +57,14 @@ public class LoginPageAndroid extends AppiumPageAndroid implements LoginPage {
     }
 
     private WebElement getUsernameField() {
-        return getDriver().findElement(By.id("com.spotify.music:id/username_text"));
+        return androidElementActions.getElementById("com.spotify.music:id/username_text");
     }
 
     private WebElement getPasswordField() {
-        return getDriver().findElement(By.id("com.spotify.music:id/password_text"));
+        return androidElementActions.getElementById("com.spotify.music:id/password_text");
     }
 
     private WebElement getLoginSubmitButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/login_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/login_button");
     }
 }

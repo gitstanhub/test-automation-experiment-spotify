@@ -52,6 +52,6 @@ public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
     }
 
     private WebElement getSearchField() {
-        return getDriver().findElement(By.id("com.spotify.music:id/find_search_field"));
+        return androidElementActions.getElementById("com.spotify.music:id/find_search_field");
     }
 }

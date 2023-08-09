@@ -3,7 +3,6 @@ package com.spotify.pageobjects.pages.android.album;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.album.AlbumPage;
-import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -73,31 +72,31 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
     }
 
     private WebElement getTitle() {
-        return getDriver().findElement(By.id("com.spotify.music:id/title"));
+        return androidElementActions.getElementById("com.spotify.music:id/title");
     }
 
     //ToDo: move findElement pieces into separate methods as utility class
     private WebElement getCreatorNamesRow() {
-        return getDriver().findElement(By.id("com.spotify.music:id/creator_names"));
+        return androidElementActions.getElementById("com.spotify.music:id/creator_names");
     }
 
     private WebElement getMetaData() {
-        return getDriver().findElement(By.id("com.spotify.music:id/metadata"));
+        return androidElementActions.getElementById("com.spotify.music:id/metadata");
     }
 
     private WebElement getHeartButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/heart_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/heart_button");
     }
 
     private WebElement getDownloadButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/download_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/download_button");
     }
 
     private WebElement getTrackCloud() {
         try {
-            return getDriver().findElement(By.id("com.spotify.music:id/track_cloud_content"));
+            return androidElementActions.getElementById("com.spotify.music:id/track_cloud_content");
         } catch (NoSuchElementException e) {
-            return getDriver().findElement(By.id("com.spotify.music:id/track_cloud"));
+            return androidElementActions.getElementById("com.spotify.music:id/track_cloud");
         }
     }
 

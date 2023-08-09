@@ -28,11 +28,11 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
     }
 
     private WebElement getLibrarySearchField() {
-        return getDriver().findElement(By.id("com.spotify.music:id/edit_text"));
+        return androidElementActions.getElementById("com.spotify.music:id/edit_text");
     }
 
     private WebElement getSearchFieldClearButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/icon_clear_search"));
+        return androidElementActions.getElementById("com.spotify.music:id/icon_clear_search");
     }
 
     private WebElement getEmptyViewTitle() {
