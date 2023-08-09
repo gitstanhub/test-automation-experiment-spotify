@@ -50,7 +50,7 @@ public class LibraryTests extends MobileTests {
 
         getPlaylistPage()
                 .verifyDeletePopupTitleIsAvailable()
-                .verifyDeletePopupSubtitleIsAvailable()
+                .verifyDeletePopupSubtitleIsAvailable("Braa")
                 .tapPlaylistDeleteConfirmButton();
 
         getLibraryPage()

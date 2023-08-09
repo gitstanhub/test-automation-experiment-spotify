@@ -1,9 +1,7 @@
 package com.spotify.config;
 
-import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.android.accessprompt.BluetoothAccessPromptAndroid;
 import com.spotify.pageobjects.commons.android.contextmenu.ContextMenuAndroid;
-import com.spotify.pageobjects.commons.android.elementslist.ElementsListAndroid;
 import com.spotify.pageobjects.commons.android.mediainteraction.MediaInteractionAndroid;
 import com.spotify.pageobjects.commons.android.navigation.NavigationAndroid;
 import com.spotify.pageobjects.commons.android.screensaverad.ScreensaverAdAndroid;
@@ -18,6 +16,10 @@ import com.spotify.pageobjects.pages.android.playlist.PlaylistCreationPageAndroi
 import com.spotify.pageobjects.pages.android.playlist.PlaylistPageAndroid;
 import com.spotify.pageobjects.pages.android.search.SearchPageAndroid;
 import com.spotify.pageobjects.pages.android.search.SearchResultsPageAndroid;
+import com.spotify.utils.assertions.ElementChecksMobile;
+import com.spotify.utils.navigation.android.AndroidDeviceActions;
+import com.spotify.utils.navigation.android.AndroidElementActions;
+import com.spotify.utils.navigation.android.AndroidPageNavigationActions;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringConfigMobileContext {
@@ -43,11 +45,13 @@ public class SpringConfigMobileContext {
 
     private static void setContextWithAndroidPages(AnnotationConfigApplicationContext applicationContext) {
 
-        applicationContext.register(AppiumPageAndroid.class);
+        applicationContext.register(ElementChecksMobile.class);
+        applicationContext.register(AndroidDeviceActions.class);
+        applicationContext.register(AndroidElementActions.class);
+        applicationContext.register(AndroidPageNavigationActions.class);
 
         applicationContext.register(BluetoothAccessPromptAndroid.class);
         applicationContext.register(ContextMenuAndroid.class);
-        applicationContext.register(ElementsListAndroid.class);
         applicationContext.register(MediaInteractionAndroid.class);
         applicationContext.register(NavigationAndroid.class);
         applicationContext.register(ScreensaverAdAndroid.class);
