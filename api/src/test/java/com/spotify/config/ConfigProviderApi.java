@@ -25,14 +25,6 @@ public class ConfigProviderApi {
     private static final RestAssuredApiAuthConfiguration restAssuredApiAuthConfiguration = ConfigFactory.create(
             RestAssuredApiAuthConfiguration.class, System.getProperties());
 
-//    public static RestAssuredApiConfiguration getRestAssuredApiConfiguration() {
-//        return restAssuredApiConfiguration;
-//    }
-//
-//    public static RestAssuredApiAuthConfiguration getRestAssuredApiAuthConfiguration() {
-//        return restAssuredApiAuthConfiguration;
-//    }
-
     public static <T extends EntityConfig> T getEntityConfig(CountryCode market, String configItemName, Class<T> configClass) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 

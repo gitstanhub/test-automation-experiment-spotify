@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.library;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.library.LibrarySearchPage;
 import io.appium.java_client.AppiumBy;
@@ -35,11 +36,11 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
     }
 
     private WebElement getEmptyViewTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_title' and @text='Find your favorites']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewTitleText() + "']"));
     }
 
     private WebElement getEmptyViewSubtitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_subtitle' and @text='Search everything you've liked, followed, or created.']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_subtitle' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewSubtitleText() + "']"));
     }
 
     private WebElement getSearchResult(String title, String subtitle) {

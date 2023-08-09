@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.commons.android.mediainteraction;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.mediainteraction.MediaInteraction;
 import io.appium.java_client.AppiumBy;
@@ -43,7 +44,7 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
 
     private WebElement getShuffleButton() {
 
-        String contentDesc = "Shuffle Play";
+        String contentDesc = ConfigProviderMobile.getMobileAppLocaleConfig().shuffleButtonContentDescriptionText();
 
         try {
             return getDriver().findElement(By.id("com.spotify.music:id/shuffle_button"));

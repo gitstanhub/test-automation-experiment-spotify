@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.playlist;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.playlist.PlaylistPage;
 import lombok.extern.slf4j.Slf4j;
@@ -38,8 +39,8 @@ public class PlaylistPageAndroid extends AppiumPageAndroid implements PlaylistPa
         return this;
     }
 
-    public PlaylistPageAndroid verifyDeletePopupSubtitleIsAvailable() {
-        elementChecksMobile.assertElementIsVisible(getDeletePopupSubtitle());
+    public PlaylistPageAndroid verifyDeletePopupSubtitleIsAvailable(String playlistName) {
+        elementChecksMobile.assertElementIsVisible(getDeletePopupSubtitle(playlistName));
         return this;
     }
 
@@ -60,19 +61,18 @@ public class PlaylistPageAndroid extends AppiumPageAndroid implements PlaylistPa
     }
 
     private WebElement getDeletePopupTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='Delete playlist']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupTitleText() + "']"));
     }
 
-    //ToDo: Adjust to support playlist name as an argument
-    private WebElement getDeletePopupSubtitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/body' and @text='Are you sure you want to delete Braa?']"));
+    private WebElement getDeletePopupSubtitle(String playlistName) {
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/body' and contains(@text, '" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupSubtitleText() + "') and contains(@text, '" + playlistName + "')]"));
     }
 
     private WebElement getDeletePopupConfirmButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='Delete']"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupConfirmButtonText() + "']"));
     }
 
     private WebElement getDeletePopupCancelButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='Cancel']"));
+        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupCancelButtonText() + "']"));
     }
 }

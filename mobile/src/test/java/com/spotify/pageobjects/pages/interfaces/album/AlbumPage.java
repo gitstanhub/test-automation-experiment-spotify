@@ -2,23 +2,23 @@ package com.spotify.pageobjects.pages.interfaces.album;
 
 public interface AlbumPage {
 
-    public AlbumPage verifyAlbumTitleHasText(String albumTitle);
+    AlbumPage verifyAlbumTitleHasText(String albumTitle);
 
-    public AlbumPage verifyArtistNamesRowContainsArtist(String artistName);
+    AlbumPage verifyArtistNamesRowContainsArtist(String artistName);
 
-    public AlbumPage verifyAlbumInfoHasText(String albumInfo);
+    AlbumPage verifyAlbumInfoHasText(String albumInfo);
 
-    public AlbumPage verifyFavouritesButtonIsAvailable();
+    AlbumPage verifyFavouritesButtonIsAvailable();
 
-    public AlbumPage verifyDownloadButtonIsAvailable();
+    AlbumPage verifyDownloadButtonIsAvailable();
 
-    public AlbumPage verifyTrackCloudIsAvailable();
+    AlbumPage verifyTrackCloudIsAvailable();
 
-    public AlbumPage verifyAlbumReleaseDateIs(String releaseDate);
+    AlbumPage verifyAlbumReleaseDateIs(String releaseDate);
 
-    public AlbumPage verifyAlbumArtistListContainsItem(String artistName);
+    AlbumPage verifyAlbumArtistListContainsItem(String artistName);
 
-    public AlbumPage verifyYouMightAlsoLikeIsAvailable();
+    AlbumPage verifyYouMightAlsoLikeIsAvailable();
 
-    public AlbumPage verifyCopyRightRowMatches(String copyrightText);
+    AlbumPage verifyCopyRightRowMatches(String copyrightText);
 }

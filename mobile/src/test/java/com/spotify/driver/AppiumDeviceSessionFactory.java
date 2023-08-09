@@ -15,7 +15,10 @@ import java.net.URL;
 
 public class AppiumDeviceSessionFactory {
 
-    public static AppiumDriver getDeviceSession(String environment, String platformName, String deviceName, String testName) throws ConfigurationException, MalformedURLException, IOException {
+    private static final String language = ConfigProviderMobile.getMobileAppConfiguration().language();
+    private static final String locale = ConfigProviderMobile.getMobileAppConfiguration().locale();
+
+    public static AppiumDriver getDeviceSession(String environment, String platformName, String deviceName, String testName) throws IOException, ConfigurationException {
 
         switch (environment) {
             case "local" -> {
@@ -31,7 +34,7 @@ public class AppiumDeviceSessionFactory {
         }
     }
 
-    private static AppiumDriver getLocalSession(String deviceName, String platformName) throws ConfigurationException, MalformedURLException, IOException {
+    private static AppiumDriver getLocalSession(String deviceName, String platformName) throws IOException {
         switch (platformName) {
             case "android" -> {
                 return getLocalAndroidSession(deviceName);
@@ -44,7 +47,7 @@ public class AppiumDeviceSessionFactory {
         }
     }
 
-    private static AndroidDriver getLocalAndroidSession(String deviceName) throws MalformedURLException, IOException {
+    private static AndroidDriver getLocalAndroidSession(String deviceName) throws IOException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).getDeviceName());
@@ -55,13 +58,15 @@ public class AppiumDeviceSessionFactory {
         capabilities.setCapability(MobileCapabilityType.NO_RESET, ConfigProviderMobile.getDeviceConfig(deviceName, LocalAndroidDeviceConfig.class).isNoReset());
         capabilities.setCapability("appPackage", "com.spotify.music");
         capabilities.setCapability("appActivity", "com.spotify.music.MainActivity");
+        capabilities.setCapability("language", language);
+        capabilities.setCapability("locale", locale);
 
         AppiumDriverHandler.launchAppiumServer();
 
         return new AndroidDriver(AppiumDriverHandler.appiumDriverLocalService.getUrl(), capabilities);
     }
 
-    private static AppiumDriver getBrowserstackSession(String deviceName, String platformName, String testName) throws ConfigurationException, MalformedURLException, IOException {
+    private static AppiumDriver getBrowserstackSession(String deviceName, String platformName, String testName) throws IOException {
         switch (platformName) {
             case "android" -> {
                 return getBrowserstackAndroidSession(deviceName, testName);
@@ -74,7 +79,7 @@ public class AppiumDeviceSessionFactory {
         }
     }
 
-    private static AndroidDriver getBrowserstackAndroidSession(String deviceName, String testName) throws ConfigurationException, MalformedURLException, IOException {
+    private static AndroidDriver getBrowserstackAndroidSession(String deviceName, String testName) throws IOException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("deviceName", ConfigProviderMobile.getDeviceConfig(deviceName, BrowserstackAndroidDeviceConfig.class).getDeviceName());
@@ -85,6 +90,8 @@ public class AppiumDeviceSessionFactory {
         capabilities.setCapability("name", testName);
         capabilities.setCapability("browserstack.debug", ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackDebug());
         capabilities.setCapability("app", ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackAppUrl());
+        capabilities.setCapability("language", language);
+        capabilities.setCapability("locale", locale);
 
         return new AndroidDriver(new URL(String.format(ConfigProviderMobile.getBrowserstackAndroidSessionConfiguration().browserstackRemoteUrl(), ConfigProviderMobile.getBrowserstackAuthConfiguration().browserstackUsername(), ConfigProviderMobile.getBrowserstackAuthConfiguration().browserstackAccessToken())), capabilities);
     }
