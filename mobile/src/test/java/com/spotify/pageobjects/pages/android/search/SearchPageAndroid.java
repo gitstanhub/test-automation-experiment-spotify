@@ -31,18 +31,19 @@ public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
     private WebElement getSearchPageTitle() {
         String targetResourceIdFirst = "com.spotify.music:id/title";
         String targetResourceIdSecond = "com.spotify.music:id/header_title";
-        String title = ConfigProviderMobile.getMobileAppLocaleConfig().searchPageTitleText();
+        String titleFirst = ConfigProviderMobile.getMobileAppLocaleConfig().searchPageTitleTextFirst();
+        String titleSecond = ConfigProviderMobile.getMobileAppLocaleConfig().searchPageTitleTextSecond();
 
         try {
             return getDriver().findElement(AppiumBy.androidUIAutomator(
                     String.format(
                             "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-                            targetResourceIdFirst, title)));
+                            targetResourceIdFirst, titleFirst)));
         } catch (NoSuchElementException e) {
             return getDriver().findElement(AppiumBy.androidUIAutomator(
                     String.format(
                             "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-                            targetResourceIdSecond, title)));
+                            targetResourceIdSecond, titleSecond)));
         }
     }
 

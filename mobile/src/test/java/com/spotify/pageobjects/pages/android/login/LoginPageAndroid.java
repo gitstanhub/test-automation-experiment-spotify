@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages.android.login;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.login.LoginPage;
+import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -51,9 +52,8 @@ public class LoginPageAndroid extends AppiumPageAndroid implements LoginPage {
         }
     }
 
-    //ToDo: Replace xpath with UIAutomator
     private WebElement getLogInButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[contains(@text,'" + ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText() + "')]"));
+        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText() + "\")"));
     }
 
     private WebElement getUsernameField() {

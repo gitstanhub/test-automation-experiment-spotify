@@ -56,7 +56,7 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
 
     public AlbumPageAndroid verifyAlbumArtistListContainsItem(String artistName) {
         androidPageNavigationActions.swipeToElementByText("android:id/text1", artistName, 10);
-        elementChecksMobile.assertElementIsVisible(getListItemByTitle(artistName));
+        elementChecksMobile.assertElementIsVisible(getArtistItemFromList(artistName));
         return this;
     }
 
@@ -113,14 +113,7 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
         return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + copyrightText + "']"));
     }
 
-    private WebElement getListItemByTitle(String title) {
-        System.out.println("Getting item from the list by title");
-        String targetResourceId = "android:id/text1";
-
-        androidPageNavigationActions.swipeToElementByText(targetResourceId, title, 10);
-        return getDriver().findElement(AppiumBy.androidUIAutomator(
-                String.format(
-                        "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-                        targetResourceId, title)));
+    private WebElement getArtistItemFromList(String artistName) {
+        return androidElementActions.getListItemByTitleAndResourceId(artistName, "android:id/text1");
     }
 }

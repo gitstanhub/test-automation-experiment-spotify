@@ -181,8 +181,11 @@ public interface MobileAppLocaleConfig extends Config {
     String deletePopupCancelButtonText();
 
     //SearchPage
-    @Key("searchPageTitleText")
-    String searchPageTitleText();
+    @Key("searchPageTitleTextFirst")
+    String searchPageTitleTextFirst();
+
+    @Key("searchPageTitleTextSecond")
+    String searchPageTitleTextSecond();
 
     @Key("scanSpotifyCodeButtonText")
     String scanSpotifyCodeButtonText();

@@ -2,7 +2,6 @@ package com.spotify.config;
 
 import com.spotify.pageobjects.commons.android.accessprompt.BluetoothAccessPromptAndroid;
 import com.spotify.pageobjects.commons.android.contextmenu.ContextMenuAndroid;
-import com.spotify.pageobjects.commons.android.elementslist.ElementsListAndroid;
 import com.spotify.pageobjects.commons.android.mediainteraction.MediaInteractionAndroid;
 import com.spotify.pageobjects.commons.android.navigation.NavigationAndroid;
 import com.spotify.pageobjects.commons.android.screensaverad.ScreensaverAdAndroid;
@@ -53,7 +52,6 @@ public class SpringConfigMobileContext {
 
         applicationContext.register(BluetoothAccessPromptAndroid.class);
         applicationContext.register(ContextMenuAndroid.class);
-        applicationContext.register(ElementsListAndroid.class);
         applicationContext.register(MediaInteractionAndroid.class);
         applicationContext.register(NavigationAndroid.class);
         applicationContext.register(ScreensaverAdAndroid.class);

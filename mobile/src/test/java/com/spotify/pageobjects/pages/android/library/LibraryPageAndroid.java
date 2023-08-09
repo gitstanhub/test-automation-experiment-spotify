@@ -21,9 +21,9 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     public LibraryPageAndroid selectArtistItem(String artistName) {
 
         if (elementChecksMobile.isElementExists("com.spotify.music:id/subtitle")) {
-            getListItemByTitleAndSubtitle(artistName, ConfigProviderMobile.getMobileAppLocaleConfig().artistItemSubtitleText()).click();
+            androidElementActions.getListItemByTitleAndSubtitle(artistName, ConfigProviderMobile.getMobileAppLocaleConfig().artistItemSubtitleText()).click();
         } else {
-            getListItemByTitle(artistName).click();
+            androidElementActions.getListItemByTitleAndResourceId(artistName, "com.spotify.music:id/title").click();
         }
         return this;
     }
@@ -31,9 +31,9 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     public LibraryPageAndroid selectAlbumItem(String albumName, String artistName) {
 
         if (elementChecksMobile.isElementSelected(getAlbumsButton())) {
-            getListItemByTitleAndSubtitle(albumName, artistName).click();
+            androidElementActions.getListItemByTitleAndSubtitle(albumName, artistName).click();
         } else {
-            getListItemByTitleAndSubtitle(albumName, ConfigProviderMobile.getMobileAppLocaleConfig().albumItemSubtitleText() + " • " + artistName).click();
+            androidElementActions.getListItemByTitleAndSubtitle(albumName, ConfigProviderMobile.getMobileAppLocaleConfig().albumItemSubtitleText() + " • " + artistName).click();
         }
         return this;
     }
@@ -41,9 +41,9 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     public LibraryPageAndroid selectPlaylistItem(String playlistName, String playlistAuthorName) {
 
         if (elementChecksMobile.isElementSelected(getPlaylistsButton())) {
-            getListItemByTitleAndSubtitle(playlistName, playlistAuthorName).click();
+            androidElementActions.getListItemByTitleAndSubtitle(playlistName, playlistAuthorName).click();
         } else {
-            getListItemByTitleAndSubtitle(playlistName, ConfigProviderMobile.getMobileAppLocaleConfig().playlistItemSubtitleText() + " • " + playlistAuthorName).click();
+            androidElementActions.getListItemByTitleAndSubtitle(playlistName, ConfigProviderMobile.getMobileAppLocaleConfig().playlistItemSubtitleText() + " • " + playlistAuthorName).click();
         }
         return this;
     }
@@ -148,27 +148,5 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
 
     private WebElement getCreatePlaylistMenuBlendButton() {
         return getDriver().findElement(By.id("com.spotify.music:id/title"));
-    }
-
-    private WebElement getListItemByTitleAndSubtitle(String title, String subtitle) {
-        System.out.println("Getting item from the list by title and subtitle");
-        String contentDesc = String.format("%s, %s, ", title, subtitle);
-
-        androidPageNavigationActions.swipeToElementByDescription(contentDesc, 10);
-        return getDriver().findElement(AppiumBy.androidUIAutomator(
-                String.format(
-                        "new UiSelector().description(\"%s\")",
-                        contentDesc)));
-    }
-
-    private WebElement getListItemByTitle(String title) {
-        System.out.println("Getting item from the list by title");
-        String targetResourceId = "com.spotify.music:id/title";
-
-        androidPageNavigationActions.swipeToElementByText(targetResourceId, title, 10);
-        return getDriver().findElement(AppiumBy.androidUIAutomator(
-                String.format(
-                        "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-                        targetResourceId, title)));
     }
 }
