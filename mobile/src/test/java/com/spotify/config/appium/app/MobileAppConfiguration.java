@@ -5,10 +5,13 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:configuration/mobile_app_auth.properties"
+        "classpath:configuration/${market}_mobile_app.properties",
+        "classpath:configuration/uk_mobile_app.properties"
 })
 public interface MobileAppConfiguration extends Config {
 
-    @Config.DefaultValue("DE")
-    String market();
+    @Key("language")
+    String language();
+    @Key("locale")
+    String locale();
 }

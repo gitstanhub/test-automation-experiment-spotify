@@ -24,7 +24,7 @@ public class AppiumDriverHandler {
     private static final ThreadLocal<WebDriverWait> webDriverWait = new ThreadLocal<>();
     public static AppiumDriverLocalService appiumDriverLocalService;
 
-    public static void createDriver(String environment, String platformName, String deviceName, TestInfo testInfo) throws ConfigurationException, IOException {
+    public static void createDriver(String environment, String platformName, String deviceName, TestInfo testInfo) throws IOException, ConfigurationException {
         log.info("Creating a new driver for {}", platformName);
 
         String testName = testInfo.getTestMethod().map(Method::getName).orElse(null);
@@ -77,35 +77,3 @@ public class AppiumDriverHandler {
         }
     }
 }
-
-//    private static AndroidDriver driver;
-//    private static WebDriverWait wait;
-//
-//    private void setUp() throws MalformedURLException {
-//        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-//
-//        desiredCapabilities.setCapability("appPackage", "com.spotify.music");
-//        desiredCapabilities.setCapability("appActivity", "com.spotify.music.MainActivity");
-//        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, ANDROID);
-//        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, ANDROID_UIAUTOMATOR2);
-//        desiredCapabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
-//        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 4 (Android 13) - Emulated");
-//        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.0");
-//        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, false);
-//
-//        driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), desiredCapabilities);
-//
-//        System.out.println("Real-device driver is selected");
-//    }
-//
-//    public static AndroidDriver getDriver() {
-//        if (driver == null) {
-//            AppiumDriverHandler realDeviceAppiumDriverHandler = new AppiumDriverHandler();
-//            try {
-//                realDeviceAppiumDriverHandler.setUp();
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return driver;
-//    }

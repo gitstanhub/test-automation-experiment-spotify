@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.pages.android.album;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.album.AlbumPage;
 import io.appium.java_client.AppiumBy;
@@ -55,12 +56,12 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
 
     public AlbumPageAndroid verifyAlbumArtistListContainsItem(String artistName) {
         androidPageNavigationActions.swipeToElementByText("android:id/text1", artistName, 10);
-        elementChecksMobile.assertElementIsVisible(getListItemByTitle(artistName));
+        elementChecksMobile.assertElementIsVisible(getArtistItemFromList(artistName));
         return this;
     }
 
     public AlbumPageAndroid verifyYouMightAlsoLikeIsAvailable() {
-        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", "You might also like", 10);
+        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText(), 10);
         elementChecksMobile.assertElementIsVisible(getYouMightAlsoLikeTitle());
         return this;
     }
@@ -105,21 +106,14 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
     }
 
     private WebElement getYouMightAlsoLikeTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='You might also like']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText() + "']"));
     }
 
     private WebElement getCopyrightRow(String copyrightText) {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='© ℗ 2002 Aftermath Records']"));
+        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + copyrightText + "']"));
     }
 
-    private WebElement getListItemByTitle(String title) {
-        System.out.println("Getting item from the list by title");
-        String targetResourceId = "android:id/text1";
-
-        androidPageNavigationActions.swipeToElementByText(targetResourceId, title, 10);
-        return getDriver().findElement(AppiumBy.androidUIAutomator(
-                String.format(
-                        "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-                        targetResourceId, title)));
+    private WebElement getArtistItemFromList(String artistName) {
+        return androidElementActions.getListItemByTitleAndResourceId(artistName, "android:id/text1");
     }
 }

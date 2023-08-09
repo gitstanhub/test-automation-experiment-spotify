@@ -13,8 +13,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = SpringConfigApi.class)
 @Slf4j
-public class ApiTests {
-
+public abstract class ApiTests {
+//ToDo: initiate with @Autowired
     public static final ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
     public static final ArtistProfileResponseDataUtil artistResponseFieldsUtil = new ArtistProfileResponseDataUtil();
     public static final ArtistTopTracksResponseDataUtil artistTopTracksFieldsUtil = new ArtistTopTracksResponseDataUtil();

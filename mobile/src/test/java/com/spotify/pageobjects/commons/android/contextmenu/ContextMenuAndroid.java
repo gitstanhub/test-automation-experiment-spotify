@@ -1,5 +1,6 @@
 package com.spotify.pageobjects.commons.android.contextmenu;
 
+import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.contextmenu.ContextMenu;
 import io.appium.java_client.AppiumBy;
@@ -41,121 +42,121 @@ public class ContextMenuAndroid extends AppiumPageAndroid implements ContextMenu
 
     private WebElement getListenToMusicAdFreeButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Listen to music ad-free\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().listenToMusicAdFreeButtonText() + "\"))"
         ));
     }
 
     private WebElement getFollowButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Follow\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().followButtonText() + "\"))"
         ));
     }
 
     private WebElement getStopFollowingButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Stop Following\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().stopFollowingButtonText() + "\"))"
         ));
     }
 
     private WebElement getDoNotPlayThisArtistButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Don't play this artist\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().doNotPlayThisArtistButtonText() + "\"))"
         ));
     }
 
     private WebElement getShareButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Share\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().shareButtonText() + "\"))"
         ));
     }
 
     private WebElement getShowSpotifyCodeButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Show Spotify Code\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().showSpotifyCodeButtonText() + "\"))"
         ));
     }
 
     private WebElement getLikeButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Like\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().likeButtonText() + "\"))"
         ));
     }
 
     private WebElement getRemoveLikeButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Liked\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().removeLikeButtonText() + "\"))"
         ));
     }
 
     private WebElement getAddToPlaylistButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Add to playlist\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().addToPlaylistButtonText() + "\"))"
         ));
     }
 
     private WebElement getAddToQueueButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Add to queue\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().addToQueueButtonText() + "\"))"
         ));
     }
 
     private WebElement getDownloadButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Download\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().downloadButtonText() + "\"))"
         ));
     }
 
     private WebElement getViewArtistButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"View artist\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().viewArtistButtonText() + "\"))"
         ));
     }
 
     private WebElement getViewAlbumButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"View album\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().viewAlbumButtonText() + "\"))"
         ));
     }
 
     private WebElement getViewArtistsButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"View artists\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().viewArtistsButtonText() + "\"))"
         ));
     }
 
     private WebElement getLikeAllSongsButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Like all songs\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().likeAllSongsButtonText() + "\"))"
         ));
     }
 
     private WebElement getEditPlaylistButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Edit playlist\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().editPlaylistButtonText() + "\"))"
         ));
     }
 
     private WebElement getDeletePlaylistButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Delete Playlist\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePlaylistButtonText() + "\"))"
         ));
     }
 
     private WebElement getInviteCollaboratorsButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Delete Playlist\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().inviteCollaboratorsButtonText() + "\"))"
         ));
     }
 
     private WebElement getRemoveFromProfileButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Remove from profile\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().removeFromProfileButtonText() + "\"))"
         ));
     }
 
     private WebElement getMakePrivateButton() {
         return getDriver().findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"Make private\"))"
+                "new UiSelector().className(\"android.view.ViewGroup\").childSelector(new UiSelector().resourceId(\"com.spotify.music:id/title\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().makePrivateButtonText() + "\"))"
         ));
     }
 }
