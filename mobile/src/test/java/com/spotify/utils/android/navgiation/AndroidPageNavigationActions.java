@@ -21,19 +21,31 @@ public class AndroidPageNavigationActions {
     private AndroidElementActions androidElementActions;
 
     public void scrollIntoElementByText(String scrollableElementResourceId, String targetResourceId, String targetText) {
-        getDriver().findElement(AppiumBy.androidUIAutomator(
+        androidElementActions.getElementByAndroidUiAutomator(
                 String.format(
                         "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
                                 ".scrollIntoView(new UiSelector().resourceId(\"%s\").text(\"%s\"))",
-                        scrollableElementResourceId, targetResourceId, targetText)));
+                        scrollableElementResourceId, targetResourceId, targetText));
+
+//        getDriver().findElement(AppiumBy.androidUIAutomator(
+//                String.format(
+//                        "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
+//                                ".scrollIntoView(new UiSelector().resourceId(\"%s\").text(\"%s\"))",
+//                        scrollableElementResourceId, targetResourceId, targetText)));
     }
 
     public void scrollIntoElementByDescription(String scrollableElementResourceId, String targetDescription) {
-        getDriver().findElement(AppiumBy.androidUIAutomator(
+        androidElementActions.getElementByAndroidUiAutomator(
                 String.format(
                         "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
                                 ".scrollIntoView(new UiSelector().description(\"%s\"))",
-                        scrollableElementResourceId, targetDescription)));
+                        scrollableElementResourceId, targetDescription));
+
+//        getDriver().findElement(AppiumBy.androidUIAutomator(
+//                String.format(
+//                        "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
+//                                ".scrollIntoView(new UiSelector().description(\"%s\"))",
+//                        scrollableElementResourceId, targetDescription)));
     }
 
     public void swipeToElementByText(String targetResourceId, String targetText, int maxSwipes) {
@@ -43,10 +55,15 @@ public class AndroidPageNavigationActions {
 
         while (attempts < maxSwipes) {
             try {
-                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
+                WebElement element = androidElementActions.getElementByAndroidUiAutomator(
                         String.format(
                                 "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-                                targetResourceId, targetText)));
+                                targetResourceId, targetText));
+
+//                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
+//                        String.format(
+//                                "new UiSelector().resourceId(\"%s\").text(\"%s\")",
+//                                targetResourceId, targetText)));
 
                 if (element != null) {
                     return;
@@ -67,10 +84,15 @@ public class AndroidPageNavigationActions {
 
         while (attempts < maxSwipes) {
             try {
-                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
+                WebElement element = androidElementActions.getElementByAndroidUiAutomator(
                         String.format(
                                 "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
-                                parentResourceId, childSiblingText1, childSiblingText2)));
+                                parentResourceId, childSiblingText1, childSiblingText2));
+
+//                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
+//                        String.format(
+//                                "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
+//                                parentResourceId, childSiblingText1, childSiblingText2)));
 
                 if (element != null) {
                     return;
@@ -92,10 +114,15 @@ public class AndroidPageNavigationActions {
 
         while (attempts < maxSwipes) {
             try {
-                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
+                WebElement element = androidElementActions.getElementByAndroidUiAutomator(
                         String.format(
                                 "new UiSelector().text(\"%s\")",
-                                targetText)));
+                                targetText));
+
+//                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
+//                        String.format(
+//                                "new UiSelector().text(\"%s\")",
+//                                targetText)));
 
                 if (element != null) {
                     return;
@@ -116,10 +143,15 @@ public class AndroidPageNavigationActions {
 
         while (attempts < maxSwipes) {
             try {
-                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
+                WebElement element = androidElementActions.getElementByAndroidUiAutomator(
                         String.format(
                                 "new UiSelector().description(\"%s\")",
-                                targetDescriptionAttribute)));
+                                targetDescriptionAttribute));
+
+//                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
+//                        String.format(
+//                                "new UiSelector().description(\"%s\")",
+//                                targetDescriptionAttribute)));
 
                 if (element != null) {
                     return;
