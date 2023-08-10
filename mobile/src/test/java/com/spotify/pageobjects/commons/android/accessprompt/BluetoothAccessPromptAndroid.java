@@ -31,26 +31,26 @@ public class BluetoothAccessPromptAndroid extends AppiumPageAndroid implements B
     }
 
     protected WebElement getAccessWidget() {
-        return getDriver().findElement(By.id("com.spotify.music:id/design_bottom_sheet"));
+        return androidElementActions.getElementById("com.spotify.music:id/design_bottom_sheet");
     }
 
     protected WebElement getAccessWidgetTitle() {
-        return getDriver().findElement(By.id("com.spotify.music:id/title"));
+        return androidElementActions.getElementById("com.spotify.music:id/title");
     }
 
     protected WebElement getAccessWidgetDescription() {
-        return getDriver().findElement(By.id("com.spotify.music:id/description"));
+        return androidElementActions.getElementById("com.spotify.music:id/description");
     }
 
     protected WebElement getAccessWidgetAcceptButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/proceed_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/proceed_button");
     }
 
     protected WebElement getAccessWidgetLaterButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/later_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/later_button");
     }
 
     protected WebElement getTouchOutsideArea() {
-        return getDriver().findElement(By.id("com.spotify.music:id/touch_outside"));
+        return androidElementActions.getElementById("com.spotify.music:id/touch_outside");
     }
 }
