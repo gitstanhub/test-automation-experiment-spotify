@@ -16,10 +16,10 @@ import com.spotify.pageobjects.pages.android.playlist.PlaylistCreationPageAndroi
 import com.spotify.pageobjects.pages.android.playlist.PlaylistPageAndroid;
 import com.spotify.pageobjects.pages.android.search.SearchPageAndroid;
 import com.spotify.pageobjects.pages.android.search.SearchResultsPageAndroid;
-import com.spotify.utils.assertions.ElementChecksMobile;
-import com.spotify.utils.navigation.android.AndroidDeviceActions;
-import com.spotify.utils.navigation.android.AndroidElementActions;
-import com.spotify.utils.navigation.android.AndroidPageNavigationActions;
+import com.spotify.utils.android.assertions.AndroidElementChecks;
+import com.spotify.utils.android.navgiation.AndroidDeviceActions;
+import com.spotify.utils.android.elementactions.AndroidElementActions;
+import com.spotify.utils.android.navgiation.AndroidPageNavigationActions;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringConfigMobileContext {
@@ -45,7 +45,7 @@ public class SpringConfigMobileContext {
 
     private static void setContextWithAndroidPages(AnnotationConfigApplicationContext applicationContext) {
 
-        applicationContext.register(ElementChecksMobile.class);
+        applicationContext.register(AndroidElementChecks.class);
         applicationContext.register(AndroidDeviceActions.class);
         applicationContext.register(AndroidElementActions.class);
         applicationContext.register(AndroidPageNavigationActions.class);
