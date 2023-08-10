@@ -5,7 +5,6 @@ import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.mediainteraction.MediaInteraction;
 import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
@@ -24,17 +23,17 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
     }
 
     public MediaInteractionAndroid verifyContextMenuButtonIsAvailable() {
-        elementChecksMobile.assertElementIsVisible(getContextMenuButton());
+        androidElementChecks.assertElementIsVisible(getContextMenuButton());
         return this;
     }
 
     public MediaInteractionAndroid verifyShuffleButtonIsAvailable() {
-        elementChecksMobile.assertElementIsVisible(getShuffleButton());
+        androidElementChecks.assertElementIsVisible(getShuffleButton());
         return this;
     }
 
     public MediaInteractionAndroid verifyPlayButtonIsAvailable() {
-        elementChecksMobile.assertElementIsVisible(getPlayPauseButton());
+        androidElementChecks.assertElementIsVisible(getPlayPauseButton());
         return this;
     }
 
@@ -49,10 +48,15 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
         try {
             return androidElementActions.getElementById("com.spotify.music:id/shuffle_button");
         } catch (NoSuchElementException e) {
-            return getDriver().findElement(AppiumBy.androidUIAutomator(
+            return androidElementActions.getElementByAndroidUiAutomator(
                     String.format(
                             "new UiSelector().descriptionContains(\"%s\")",
-                            contentDesc)));
+                            contentDesc));
+
+//            return getDriver().findElement(AppiumBy.androidUIAutomator(
+//                    String.format(
+//                            "new UiSelector().descriptionContains(\"%s\")",
+//                            contentDesc)));
         }
     }
 

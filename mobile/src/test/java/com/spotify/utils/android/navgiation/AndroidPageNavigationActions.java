@@ -1,10 +1,10 @@
-package com.spotify.utils.navigation.android;
+package com.spotify.utils.android.navgiation;
 
+import com.spotify.utils.android.elementactions.AndroidElementActions;
+import com.spotify.utils.android.navgiation.AndroidDeviceActions;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

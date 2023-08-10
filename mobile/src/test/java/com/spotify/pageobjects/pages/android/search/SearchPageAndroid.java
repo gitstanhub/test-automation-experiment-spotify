@@ -5,7 +5,6 @@ import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.search.SearchPage;
 import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
@@ -19,7 +18,7 @@ import static com.spotify.driver.AppiumDriverHandler.getDriver;
 public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
 
     public SearchPageAndroid verifySearchPageIsOpened() {
-        elementChecksMobile.assertElementIsVisible(getSearchPageTitle());
+        androidElementChecks.assertElementIsVisible(getSearchPageTitle());
         return this;
     }
 
@@ -35,20 +34,32 @@ public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
         String titleSecond = ConfigProviderMobile.getMobileAppLocaleConfig().searchPageTitleTextSecond();
 
         try {
-            return getDriver().findElement(AppiumBy.androidUIAutomator(
+            return androidElementActions.getElementByAndroidUiAutomator(
                     String.format(
                             "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-                            targetResourceIdFirst, titleFirst)));
+                            targetResourceIdFirst, titleFirst));
+
+//            return getDriver().findElement(AppiumBy.androidUIAutomator(
+//                    String.format(
+//                            "new UiSelector().resourceId(\"%s\").text(\"%s\")",
+//                            targetResourceIdFirst, titleFirst)));
+
         } catch (NoSuchElementException e) {
-            return getDriver().findElement(AppiumBy.androidUIAutomator(
+            return androidElementActions.getElementByAndroidUiAutomator(
                     String.format(
                             "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-                            targetResourceIdSecond, titleSecond)));
+                            targetResourceIdSecond, titleSecond));
+
+//            return getDriver().findElement(AppiumBy.androidUIAutomator(
+//                    String.format(
+//                            "new UiSelector().resourceId(\"%s\").text(\"%s\")",
+//                            targetResourceIdSecond, titleSecond)));
         }
     }
 
     private WebElement getScanSpotifyCodeButton() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().scanSpotifyCodeButtonText() + "\")"));
+        return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().scanSpotifyCodeButtonText() + "\")");
+//        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().scanSpotifyCodeButtonText() + "\")"));
     }
 
     private WebElement getSearchField() {

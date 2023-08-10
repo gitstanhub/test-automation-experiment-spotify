@@ -18,40 +18,40 @@ import static com.spotify.driver.AppiumDriverHandler.getDriver;
 public class ArtistProfilePageAndroid extends AppiumPageAndroid implements ArtistProfilePage {
 
     public ArtistProfilePageAndroid verifyProfileTitleHasText(String artistName) {
-        elementChecksMobile.assertElementHasExactText(getTitle(), artistName);
+        androidElementChecks.assertElementHasExactText(getTitle(), artistName);
         return this;
     }
 
     public ArtistProfilePageAndroid verifyFollowButtonIsAvailable() {
-        elementChecksMobile.assertElementIsVisible(getFollowButton());
+        androidElementChecks.assertElementIsVisible(getFollowButton());
         return this;
     }
 
     public ArtistProfilePageAndroid verifyMonthlyListenersCountIsAvailable() {
-        elementChecksMobile.assertElementIsVisible(getMetaData());
+        androidElementChecks.assertElementIsVisible(getMetaData());
         return this;
     }
 
     public ArtistProfilePageAndroid verifyTrackCloudContainsArtist(String artistName) {
-        elementChecksMobile.assertElementContainsText(getTrackCloud(), artistName);
+        androidElementChecks.assertElementContainsText(getTrackCloud(), artistName);
         return this;
     }
 
     public ArtistProfilePageAndroid verifyPopularReleasesSectionIsAvailable() {
         androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/title", ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText(), 10);
-        elementChecksMobile.assertElementIsVisible(getPopularReleasesTitle());
+        androidElementChecks.assertElementIsVisible(getPopularReleasesTitle());
         return this;
     }
 
     public ArtistProfilePageAndroid verifyArtistPlaylistsSectionIsAvailable() {
         androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", ConfigProviderMobile.getMobileAppLocaleConfig().artistPlaylistsTitleText(), 10);
-        elementChecksMobile.assertElementIsVisible(getArtistPlaylistTitle());
+        androidElementChecks.assertElementIsVisible(getArtistPlaylistTitle());
         return this;
     }
 
     public ArtistProfilePageAndroid verifyFansAlsoLikeSectionIsAvailable() {
         androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", ConfigProviderMobile.getMobileAppLocaleConfig().fansAlsoLikeSectionText(), 10);
-        elementChecksMobile.assertElementIsVisible(getFansAlsoLikeTitle());
+        androidElementChecks.assertElementIsVisible(getFansAlsoLikeTitle());
         return this;
     }
 
@@ -82,39 +82,48 @@ public class ArtistProfilePageAndroid extends AppiumPageAndroid implements Artis
     }
 
     private WebElement getArtistPickTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistPickTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistPickTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistPickTitleText() + "']"));
     }
 
     private WebElement getPopularReleasesTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText() + "']"));
     }
 
     private WebElement getSeeDiscographyButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[contains(@text,'" + ConfigProviderMobile.getMobileAppLocaleConfig().seeDiscographyButtonText() + "')]"));
+        return androidElementActions.getElementByXpath("//android.widget.Button[contains(@text,'" + ConfigProviderMobile.getMobileAppLocaleConfig().seeDiscographyButtonText() + "')]");
+//        return getDriver().findElement(By.xpath("//android.widget.Button[contains(@text,'" + ConfigProviderMobile.getMobileAppLocaleConfig().seeDiscographyButtonText() + "')]"));
     }
 
     private WebElement getFeaturingArtistTitle(String artistName) {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().featuringArtistTitleText() + " " + artistName + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().featuringArtistTitleText() + " " + artistName + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().featuringArtistTitleText() + " " + artistName + "']"));
     }
 
     private WebElement getLiveEventsTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().liveEventsTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().liveEventsTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().liveEventsTitleText() + "']"));
     }
 
     private WebElement getMerchTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().merchTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().merchTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().merchTitleText() + "']"));
     }
 
     private WebElement getAboutTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().aboutTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().aboutTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().aboutTitleText() + "']"));
     }
 
     private WebElement getArtistPlaylistTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistPlaylistsTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistPlaylistsTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistPlaylistsTitleText() + "']"));
     }
 
     private WebElement getFansAlsoLikeTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().fansAlsoLikeTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().fansAlsoLikeTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().fansAlsoLikeTitleText() + "']"));
     }
 
     private WebElement getArtistBiography() {

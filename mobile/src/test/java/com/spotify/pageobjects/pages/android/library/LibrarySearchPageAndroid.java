@@ -23,7 +23,7 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
     }
 
     public LibrarySearchPageAndroid verifySearchResultIsAvailable(String expectedSearchResult, String searchResultType) {
-        elementChecksMobile.assertElementIsVisible(getSearchResult(expectedSearchResult, searchResultType));
+        androidElementChecks.assertElementIsVisible(getSearchResult(expectedSearchResult, searchResultType));
         return this;
     }
 
@@ -36,20 +36,28 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
     }
 
     private WebElement getEmptyViewTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewTitleText() + "']"));
     }
 
     private WebElement getEmptyViewSubtitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_subtitle' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewSubtitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_subtitle' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewSubtitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_subtitle' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewSubtitleText() + "']"));
     }
 
     private WebElement getSearchResult(String title, String subtitle) {
         String contentDesc = String.format("%s, %s, ", title, subtitle);
 
         androidPageNavigationActions.swipeToElementByDescription(contentDesc, 10);
-        return getDriver().findElement(AppiumBy.androidUIAutomator(
+
+        return androidElementActions.getElementByAndroidUiAutomator(
                 String.format(
                         "new UiSelector().description(\"%s\")",
-                        contentDesc)));
+                        contentDesc));
+
+//        return getDriver().findElement(AppiumBy.androidUIAutomator(
+//                String.format(
+//                        "new UiSelector().description(\"%s\")",
+//                        contentDesc)));
     }
 }
