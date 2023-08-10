@@ -1,4 +1,4 @@
-package com.spotify.utils.navigation.android;
+package com.spotify.utils.android.navgiation;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;

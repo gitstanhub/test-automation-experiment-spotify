@@ -45,30 +45,30 @@ public class NavigationAndroid extends AppiumPageAndroid implements Navigation {
     }
 
     private WebElement getNavBar() {
-        return getDriver().findElement(By.id(NAVIGATION_BAR));
+        return androidElementActions.getElementById(NAVIGATION_BAR);
     }
 
     private WebElement getHomeButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/home_tab"));
+        return androidElementActions.getElementById("com.spotify.music:id/home_tab");
     }
 
     private WebElement getSearchButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/search_tab"));
+        return androidElementActions.getElementById("com.spotify.music:id/search_tab");
     }
 
     private WebElement getLibraryButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/your_library_tab"));
+        return androidElementActions.getElementById("com.spotify.music:id/your_library_tab");
     }
 
     private WebElement getPremiumButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/premium_tab"));
+        return androidElementActions.getElementById("com.spotify.music:id/premium_tab");
     }
 
     private WebElement getBackButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/back_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/back_button");
     }
 
     private WebElement getCloseButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/close_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/close_button");
     }
 }

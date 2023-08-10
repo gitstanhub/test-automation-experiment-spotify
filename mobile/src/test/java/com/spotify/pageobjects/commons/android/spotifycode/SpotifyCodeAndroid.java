@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
 import static com.spotify.driver.AppiumDriverHandler.getWait;
 
 @Component
@@ -19,11 +18,11 @@ public class SpotifyCodeAndroid extends AppiumPageAndroid implements SpotifyCode
 
     public SpotifyCodeAndroid verifySpotifyCodeIsAvailable() {
         getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/scannable_imageview")));
-        elementChecksMobile.assertElementIsVisible(getSpotifyCodeImage());
+        androidElementChecks.assertElementIsVisible(getSpotifyCodeImage());
         return this;
     }
 
     private WebElement getSpotifyCodeImage() {
-        return getDriver().findElement(By.id("com.spotify.music:id/scannable_imageview"));
+        return androidElementActions.getElementById("com.spotify.music:id/scannable_imageview");
     }
 }

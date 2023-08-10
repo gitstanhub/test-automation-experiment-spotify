@@ -18,7 +18,7 @@ import static com.spotify.driver.AppiumDriverHandler.getDriver;
 public class PlaylistCreationPageAndroid extends AppiumPageAndroid implements PlaylistCreationPage {
 
     public PlaylistCreationPageAndroid verifyPlaylistCreationPageIsOpened() {
-        elementChecksMobile.assertElementIsVisible(getPlayListCreationPageTitle());
+        androidElementChecks.assertElementIsVisible(getPlayListCreationPageTitle());
         return this;
     }
 
@@ -39,18 +39,20 @@ public class PlaylistCreationPageAndroid extends AppiumPageAndroid implements Pl
     }
 
     private WebElement getPlayListCreationPageTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playListCreationPageTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playListCreationPageTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playListCreationPageTitleText() + "']"));
     }
 
     private WebElement getPlaylistNameField() {
-        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistNameFieldText() + "\")"));
+        return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistNameFieldText() + "\")");
+//        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistNameFieldText() + "\")"));
     }
 
     private WebElement getCreateButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/continue_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/continue_button");
     }
 
     private WebElement getCancelButton() {
-        return getDriver().findElement(By.id("com.spotify.music:id/cancel_button"));
+        return androidElementActions.getElementById("com.spotify.music:id/cancel_button");
     }
 }

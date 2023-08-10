@@ -32,44 +32,54 @@ public class SearchResultsPageAndroid extends AppiumPageAndroid implements Searc
     }
 
     public SearchResultsPageAndroid verifySearchResultIsAvailable(String expectedSearchResult) {
-        elementChecksMobile.assertElementIsVisible(getSearchResult(expectedSearchResult));
+        androidElementChecks.assertElementIsVisible(getSearchResult(expectedSearchResult));
         return this;
     }
 
     private WebElement getGlobalSearchField() {
-        return getDriver().findElement(By.id("com.spotify.music:id/query"));
+        return androidElementActions.getElementById("com.spotify.music:id/query");
     }
 
     private WebElement getSearchResultsPlaceholderTitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().searchResultsPlaceholderTitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().searchResultsPlaceholderTitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().searchResultsPlaceholderTitleText() + "']"));
     }
 
     private WebElement getSearchResultsPlaceholderSubtitle() {
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text2' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().searchResultsPlaceholderSubtitleText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text2' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().searchResultsPlaceholderSubtitleText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/text2' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().searchResultsPlaceholderSubtitleText() + "']"));
     }
 
     private WebElement getTopFilterButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().topFilterButtonText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().topFilterButtonText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().topFilterButtonText() + "']"));
     }
 
     private WebElement getArtistFilterButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistFilterButtonText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistFilterButtonText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistFilterButtonText() + "']"));
     }
 
     private WebElement getSongsFilterButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().songsFilterButtonText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().songsFilterButtonText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().songsFilterButtonText() + "']"));
     }
 
     private WebElement getAlbumsFilterButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsFilterButtonText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsFilterButtonText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsFilterButtonText() + "']"));
     }
 
     private WebElement getPlaylistsFilterButton() {
-        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistsFilterButtonText() + "']"));
+        return androidElementActions.getElementByXpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistsFilterButtonText() + "']");
+//        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/chip_button' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistsFilterButtonText() + "']"));
     }
 
     private WebElement getSearchResult(String title) {
         androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/title", title, 10);
-        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + title + "']"));
+
+        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + title + "']");
+
+//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + title + "']"));
     }
 }
