@@ -54,7 +54,6 @@ public class LoginPageAndroid extends AppiumPageAndroid implements LoginPage {
 
     private WebElement getLogInButton() {
         return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().className(\"android.widget.Button\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText() + "\")");
-//        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText() + "\")"));
     }
 
     private WebElement getUsernameField() {

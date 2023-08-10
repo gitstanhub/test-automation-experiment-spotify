@@ -75,7 +75,6 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
         return androidElementActions.getElementById("com.spotify.music:id/title");
     }
 
-    //ToDo: move findElement pieces into separate methods as utility class
     private WebElement getCreatorNamesRow() {
         return androidElementActions.getElementById("com.spotify.music:id/creator_names");
     }
@@ -102,17 +101,14 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
 
     private WebElement getReleaseDateRow(String releaseDate) {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + releaseDate + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + releaseDate + "']"));
     }
 
     private WebElement getYouMightAlsoLikeTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText() + "']"));
     }
 
     private WebElement getCopyrightRow(String copyrightText) {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + copyrightText + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + copyrightText + "']"));
     }
 
     private WebElement getArtistItemFromList(String artistName) {

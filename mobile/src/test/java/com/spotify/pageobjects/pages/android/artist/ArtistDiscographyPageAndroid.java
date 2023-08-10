@@ -46,22 +46,18 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
 
     private WebElement getPageTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/glue_toolbar_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistDiscographyPageTitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/glue_toolbar_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistDiscographyPageTitleText() + "']"));
     }
 
     private WebElement getLatestReleaseTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().latestReleaseTitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().latestReleaseTitleText() + "']"));
     }
 
     private WebElement getAlbumsTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsTitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsTitleText() + "']"));
     }
 
     private WebElement getSinglesTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText() + "']"));
     }
 
     //ToDo: move to other class with commons
@@ -70,10 +66,5 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
                 String.format(
                         "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
                         parentResourceId, childSiblingText1, childSiblingText2));
-
-//        return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                String.format(
-//                        "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
-//                        parentResourceId, childSiblingText1, childSiblingText2)));
     }
 }

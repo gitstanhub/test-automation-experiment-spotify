@@ -44,11 +44,6 @@ public class AndroidElementActions {
                 String.format(
                         "new UiSelector().resourceId(\"%s\").text(\"%s\")",
                         targetResourceId, title));
-
-//        return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                String.format(
-//                        "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-//                        targetResourceId, title)));
     }
 
     public WebElement getListItemByTitleAndSubtitle(String title, String subtitle) {
@@ -61,11 +56,5 @@ public class AndroidElementActions {
                 String.format(
                         "new UiSelector().description(\"%s\")",
                         contentDesc));
-
-//
-//        return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                String.format(
-//                        "new UiSelector().description(\"%s\")",
-//                        contentDesc)));
     }
 }

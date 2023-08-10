@@ -26,12 +26,6 @@ public class AndroidPageNavigationActions {
                         "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
                                 ".scrollIntoView(new UiSelector().resourceId(\"%s\").text(\"%s\"))",
                         scrollableElementResourceId, targetResourceId, targetText));
-
-//        getDriver().findElement(AppiumBy.androidUIAutomator(
-//                String.format(
-//                        "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
-//                                ".scrollIntoView(new UiSelector().resourceId(\"%s\").text(\"%s\"))",
-//                        scrollableElementResourceId, targetResourceId, targetText)));
     }
 
     public void scrollIntoElementByDescription(String scrollableElementResourceId, String targetDescription) {
@@ -40,12 +34,6 @@ public class AndroidPageNavigationActions {
                         "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
                                 ".scrollIntoView(new UiSelector().description(\"%s\"))",
                         scrollableElementResourceId, targetDescription));
-
-//        getDriver().findElement(AppiumBy.androidUIAutomator(
-//                String.format(
-//                        "new UiScrollable(new UiSelector().resourceId(\"%s\"))" +
-//                                ".scrollIntoView(new UiSelector().description(\"%s\"))",
-//                        scrollableElementResourceId, targetDescription)));
     }
 
     public void swipeToElementByText(String targetResourceId, String targetText, int maxSwipes) {
@@ -59,12 +47,6 @@ public class AndroidPageNavigationActions {
                         String.format(
                                 "new UiSelector().resourceId(\"%s\").text(\"%s\")",
                                 targetResourceId, targetText));
-
-//                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
-//                        String.format(
-//                                "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-//                                targetResourceId, targetText)));
-
                 if (element != null) {
                     return;
                 }
@@ -88,12 +70,6 @@ public class AndroidPageNavigationActions {
                         String.format(
                                 "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
                                 parentResourceId, childSiblingText1, childSiblingText2));
-
-//                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
-//                        String.format(
-//                                "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
-//                                parentResourceId, childSiblingText1, childSiblingText2)));
-
                 if (element != null) {
                     return;
                 }
@@ -118,12 +94,6 @@ public class AndroidPageNavigationActions {
                         String.format(
                                 "new UiSelector().text(\"%s\")",
                                 targetText));
-
-//                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
-//                        String.format(
-//                                "new UiSelector().text(\"%s\")",
-//                                targetText)));
-
                 if (element != null) {
                     return;
                 }
@@ -147,12 +117,6 @@ public class AndroidPageNavigationActions {
                         String.format(
                                 "new UiSelector().description(\"%s\")",
                                 targetDescriptionAttribute));
-
-//                WebElement element = getDriver().findElement(AppiumBy.androidUIAutomator(
-//                        String.format(
-//                                "new UiSelector().description(\"%s\")",
-//                                targetDescriptionAttribute)));
-
                 if (element != null) {
                     return;
                 }
