@@ -35,6 +35,13 @@ public class AndroidElementActions {
         return getDriver().findElement(AppiumBy.androidUIAutomator(androidUiAutomatorText));
     }
 
+    public WebElement getItemByChildSiblings(String parentResourceId, String childSiblingText1, String childSiblingText2) {
+        return getElementByAndroidUiAutomator(
+                String.format(
+                        "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
+                        parentResourceId, childSiblingText1, childSiblingText2));
+    }
+
     public WebElement getListItemByTitleAndResourceId(String title, String targetResourceId) {
         System.out.println("Getting item from the list by title");
 

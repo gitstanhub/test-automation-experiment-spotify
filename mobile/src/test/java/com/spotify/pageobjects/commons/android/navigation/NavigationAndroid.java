@@ -3,12 +3,10 @@ package com.spotify.pageobjects.commons.android.navigation;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.navigation.Navigation;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.springframework.stereotype.Component;
 
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
-import static com.spotify.pageobjects.locators.commonslocators.NavBarLocators.NAVIGATION_BAR;
+import static com.spotify.locators.commons.NavBarLocators.NAVIGATION_BAR;
 
 @Slf4j
 @Component

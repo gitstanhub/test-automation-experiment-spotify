@@ -40,7 +40,7 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
 
     public ArtistDiscographyPageAndroid verifyDiscographyItemIsAvailable(String itemTitle, Integer itemReleaseYear) {
         androidPageNavigationActions.swipeToElementWithSiblingByText("com.spotify.music:id/labels", itemTitle, itemReleaseYear.toString(), 10);
-        androidElementChecks.assertElementIsVisible(getItemByChildSiblings("com.spotify.music:id/labels", itemTitle, itemReleaseYear.toString()));
+        androidElementChecks.assertElementIsVisible(androidElementActions.getItemByChildSiblings("com.spotify.music:id/labels", itemTitle, itemReleaseYear.toString()));
         return this;
     }
 
@@ -58,13 +58,5 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
 
     private WebElement getSinglesTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText() + "']");
-    }
-
-    //ToDo: move to other class with commons
-    private WebElement getItemByChildSiblings(String parentResourceId, String childSiblingText1, String childSiblingText2) {
-        return androidElementActions.getElementByAndroidUiAutomator(
-                String.format(
-                        "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
-                        parentResourceId, childSiblingText1, childSiblingText2));
     }
 }

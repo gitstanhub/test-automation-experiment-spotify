@@ -1,4 +1,4 @@
-package com.spotify.pageobjects.locators.commonslocators;
+package com.spotify.locators.commons;
 
 public class NavBarLocators {
 

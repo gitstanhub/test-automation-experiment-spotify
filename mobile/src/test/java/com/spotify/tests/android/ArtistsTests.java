@@ -10,39 +10,6 @@ import static com.spotify.testdata.artist.constants.ArtistEntities.ARTIST_2;
 
 public class ArtistsTests extends MobileTests {
 
-    //ToDo: move to LibraryTests
-    @Test
-    @AuthRequiredMobile
-    public void artistProfileCanBeOpenedFromLibrary() {
-
-        String artistName = ARTIST_2.getArtistName();
-
-        getNavigation()
-                .tapLibraryButton();
-
-        getLibraryPage()
-                .verifyLibraryPageIsOpened()
-                .tapArtistsButton()
-                .verifyArtistButtonIsSelected()
-                .selectArtistItem(artistName);
-
-        getArtistProfilePage()
-                .verifyProfileTitleHasText(artistName)
-                .verifyMonthlyListenersCountIsAvailable()
-                .verifyFollowButtonIsAvailable();
-
-        getMediaInteraction()
-                .verifyContextMenuButtonIsAvailable()
-                .verifyShuffleButtonIsAvailable()
-                .verifyPlayButtonIsAvailable();
-
-        getArtistProfilePage()
-                .verifyTrackCloudContainsArtist(artistName)
-                .verifyPopularReleasesSectionIsAvailable()
-                .verifyArtistPlaylistsSectionIsAvailable()
-                .verifyFansAlsoLikeSectionIsAvailable();
-    }
-
     @Test
     @AuthRequiredMobile
     public void artistDiscographyCanBeOpenedFromProfile() {
