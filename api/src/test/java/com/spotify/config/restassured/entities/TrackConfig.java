@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class TrackConfig extends EntityConfig{
+public class TrackConfig extends EntityConfig {
 
     private List<String> trackArtists;
     private String trackName;

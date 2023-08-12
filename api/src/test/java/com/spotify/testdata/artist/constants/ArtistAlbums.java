@@ -11,8 +11,8 @@ import java.util.List;
 
 public enum ArtistAlbums {
     ARTIST_1_ALBUM_1(
-            getAlbumConfig("artist_1_album_1").getAlbumName(),
             getAlbumConfig("artist_1_album_1").getAlbumArtists(),
+            getAlbumConfig("artist_1_album_1").getAlbumName(),
             getAlbumConfig("artist_1_album_1").getAlbumId(),
             getAlbumConfig("artist_1_album_1").getAlbumTotalTracks(),
             getAlbumConfig("artist_1_album_1").getAlbumReleaseDate(),
@@ -27,9 +27,9 @@ public enum ArtistAlbums {
     private final String albumReleaseDatePrecision;
     private final String albumType;
 
-    ArtistAlbums(String albumName, List<String> albumArtists, String albumId, Integer albumTotalTracks, String albumReleaseDate, String albumReleaseDatePrecision, String albumType) {
-        this.albumName = albumName;
+    ArtistAlbums(List<String> albumArtists, String albumName, String albumId, Integer albumTotalTracks, String albumReleaseDate, String albumReleaseDatePrecision, String albumType) {
         this.albumArtists = albumArtists;
+        this.albumName = albumName;
         this.albumId = albumId;
         this.albumTotalTracks = albumTotalTracks;
         this.albumReleaseDate = albumReleaseDate;
@@ -48,12 +48,12 @@ public enum ArtistAlbums {
         }
     }
 
-    public String getAlbumName() {
-        return albumName;
-    }
-
     public List<String> getAlbumArtists() {
         return albumArtists;
+    }
+
+    public String getAlbumName() {
+        return albumName;
     }
 
     public String getAlbumId() {

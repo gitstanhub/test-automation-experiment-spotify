@@ -4,12 +4,19 @@ import com.spotify.annotations.AuthRequiredMobile;
 import com.spotify.tests.base.MobileTests;
 import org.junit.jupiter.api.Test;
 
+import static com.spotify.testdata.artist.constants.ArtistAlbums.ARTIST_2_ALBUM_1;
+import static com.spotify.testdata.artist.constants.ArtistAlbums.ARTIST_2_ALBUM_2;
+import static com.spotify.testdata.artist.constants.ArtistEntities.ARTIST_2;
+
 public class ArtistsTests extends MobileTests {
 
     //ToDo: move to LibraryTests
     @Test
     @AuthRequiredMobile
     public void artistProfileCanBeOpenedFromLibrary() {
+
+        String artistName = ARTIST_2.getArtistName();
+
         getNavigation()
                 .tapLibraryButton();
 
@@ -17,10 +24,10 @@ public class ArtistsTests extends MobileTests {
                 .verifyLibraryPageIsOpened()
                 .tapArtistsButton()
                 .verifyArtistButtonIsSelected()
-                .selectArtistItem("Oliver Tree");
+                .selectArtistItem(artistName);
 
         getArtistProfilePage()
-                .verifyProfileTitleHasText("Oliver Tree")
+                .verifyProfileTitleHasText(artistName)
                 .verifyMonthlyListenersCountIsAvailable()
                 .verifyFollowButtonIsAvailable();
 
@@ -30,7 +37,7 @@ public class ArtistsTests extends MobileTests {
                 .verifyPlayButtonIsAvailable();
 
         getArtistProfilePage()
-                .verifyTrackCloudContainsArtist("Oliver Tree")
+                .verifyTrackCloudContainsArtist(artistName)
                 .verifyPopularReleasesSectionIsAvailable()
                 .verifyArtistPlaylistsSectionIsAvailable()
                 .verifyFansAlsoLikeSectionIsAvailable();
@@ -39,6 +46,15 @@ public class ArtistsTests extends MobileTests {
     @Test
     @AuthRequiredMobile
     public void artistDiscographyCanBeOpenedFromProfile() {
+
+        String artistName = ARTIST_2.getArtistName();
+
+        String firstAlbumName = ARTIST_2_ALBUM_1.getAlbumName();
+        Integer firstAlbumReleaseYear = ARTIST_2_ALBUM_1.getAlbumReleaseYear();
+
+        String secondAlbumName = ARTIST_2_ALBUM_2.getAlbumName();
+        Integer secondAlbumReleaseYear = ARTIST_2_ALBUM_2.getAlbumReleaseYear();
+
         getNavigation()
                 .tapLibraryButton();
 
@@ -46,7 +62,7 @@ public class ArtistsTests extends MobileTests {
                 .verifyLibraryPageIsOpened()
                 .tapArtistsButton()
                 .verifyArtistButtonIsSelected()
-                .selectArtistItem("Oliver Tree");
+                .selectArtistItem(artistName);
 
         getArtistProfilePage()
                 .tapSeeDiscographyButton();
@@ -55,26 +71,29 @@ public class ArtistsTests extends MobileTests {
                 .verifyDiscographyTitleIsAvailable()
                 .verifyLatestReleaseTitleIsAvailable()
                 .verifyAlbumsTitleIsAvailable()
-                .verifyDiscographyItemIsAvailable("Cowboy Tears", 2022)
+                .verifyDiscographyItemIsAvailable(firstAlbumName, firstAlbumReleaseYear)
                 .verifySinglesTitleIsAvailable()
-                .verifyDiscographyItemIsAvailable("Miss You (Remix)", 2022);
+                .verifyDiscographyItemIsAvailable(secondAlbumName, secondAlbumReleaseYear);
     }
 
     @Test
     @AuthRequiredMobile
     public void artistSpotifyCodeCanBeOpenedFromProfile() {
+
+        String artistName = ARTIST_2.getArtistName();
+
         getNavigation()
                 .tapLibraryButton();
 
         getLibraryPage()
                 .verifyLibraryPageIsOpened()
-                .selectArtistItem("Oliver Tree");
+                .selectArtistItem(artistName);
 
         getMediaInteraction()
                 .tapContextMenuButton();
 
         getContextMenu()
-                .verifyContextMenuTitleIsAvailable("Oliver Tree")
+                .verifyContextMenuTitleIsAvailable(artistName)
                 .tapShowSpotifyCodeButton();
 
         getSpotifyCode()

@@ -27,8 +27,9 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
         return this;
     }
 
-    public AlbumPageAndroid verifyAlbumInfoHasText(String albumInfo) {
-        androidElementChecks.assertElementHasExactText(getMetaData(), albumInfo);
+    public AlbumPageAndroid verifyAlbumInfoHasText(String albumType, Integer albumReleaseYear) {
+        androidElementChecks.assertElementContainsText(getMetaData(), albumType);
+        androidElementChecks.assertElementContainsText(getMetaData(), albumReleaseYear.toString());
         return this;
     }
 

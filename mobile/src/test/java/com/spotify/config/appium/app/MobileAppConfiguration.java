@@ -10,8 +10,12 @@ import org.aeonbits.owner.Config;
 })
 public interface MobileAppConfiguration extends Config {
 
+    @Key("country")
+    String country();
+
     @Key("language")
     String language();
+
     @Key("locale")
     String locale();
 }

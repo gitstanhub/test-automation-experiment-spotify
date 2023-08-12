@@ -46,7 +46,7 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
     private WebElement getSearchResult(String title, String subtitle) {
         String contentDesc = String.format("%s, %s, ", title, subtitle);
 
-        androidPageNavigationActions.swipeToElementByDescription(contentDesc, 10);
+        androidPageNavigationActions.swipeToElementByDescription(contentDesc, 15);
 
         return androidElementActions.getElementByAndroidUiAutomator(
                 String.format(

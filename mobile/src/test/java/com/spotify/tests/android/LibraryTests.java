@@ -4,6 +4,8 @@ import com.spotify.annotations.AuthRequiredMobile;
 import com.spotify.tests.base.MobileTests;
 import org.junit.jupiter.api.Test;
 
+import static com.spotify.testdata.artist.constants.ArtistEntities.ARTIST_2;
+
 public class LibraryTests extends MobileTests {
 
     //ToDo: move to PlaylistsTests
@@ -68,7 +70,7 @@ public class LibraryTests extends MobileTests {
                 .tapSearchButton();
 
         getLibrarySearchPage()
-                .searchLibraryFor("Oliver Tree")
-                .verifySearchResultIsAvailable("Oliver Tree", "Artist");
+                .searchLibraryFor(ARTIST_2.getArtistName())
+                .verifySearchResultIsAvailable(ARTIST_2.getArtistName(), "Artist");
     }
 }

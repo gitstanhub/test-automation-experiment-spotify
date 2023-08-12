@@ -1,4 +1,4 @@
-package com.spotify.config.restassured.entities;
+package com.spotify.config.appium.entities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,9 +11,8 @@ public class AlbumConfig extends EntityConfig {
 
     private List<String> albumArtists;
     private String albumName;
-    private String albumId;
-    private Integer albumTotalTracks;
-    private String albumReleaseDate;
-    private String albumReleaseDatePrecision;
+    private Integer albumReleaseYear;
+    private String albumFullReleaseDate;
     private String albumType;
+    private String albumCopyrightText;
 }

@@ -34,8 +34,6 @@ public class ConfigProviderApi {
                 + configClass.getSimpleName().toLowerCase()
                 + ".json";
 
-        System.out.println(fileName + " heeey");
-
         URL fileUrl = ClassLoader.getSystemResource(fileName);
         if (fileUrl == null) {
             throw new FileNotFoundException("File " + fileName + " was not found.");

@@ -11,6 +11,7 @@ public interface RestAssuredApiConfiguration extends Config {
 
     String baseUrl();
 
+    //ToDo: check if market property needs to be adjusted
     @DefaultValue("DE")
     String market();
 }
