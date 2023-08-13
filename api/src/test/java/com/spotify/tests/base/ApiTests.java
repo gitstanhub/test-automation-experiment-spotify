@@ -16,11 +16,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 public abstract class ApiTests {
 //ToDo: initiate with @Autowired
     public static final ApiAssertionsUtil apiAssertionsUtil = new ApiAssertionsUtil();
-    public static final ArtistProfileResponseDataUtil artistResponseFieldsUtil = new ArtistProfileResponseDataUtil();
-    public static final ArtistTopTracksResponseDataUtil artistTopTracksFieldsUtil = new ArtistTopTracksResponseDataUtil();
-    public static final ArtistAlbumResponseDataUtil artistAlbumFieldsUtil = new ArtistAlbumResponseDataUtil();
-    public static final RelatedArtistsResponseDataUtil artistRelatedFieldsUtil = new RelatedArtistsResponseDataUtil();
-    public static final MultipleArtistsResponseDataUtil artistMultipleFieldsUtil = new MultipleArtistsResponseDataUtil();
+    public static final ArtistProfileResponseDataUtil artistProfileResponseFieldsUtil = new ArtistProfileResponseDataUtil();
+    public static final ArtistTopTracksResponseDataUtil artistTopTracksResponseDataUtil = new ArtistTopTracksResponseDataUtil();
+    public static final ArtistAlbumResponseDataUtil artistAlbumResponseDataUtil = new ArtistAlbumResponseDataUtil();
+    public static final RelatedArtistsResponseDataUtil relatedArtistsResponseDataUtil = new RelatedArtistsResponseDataUtil();
+    public static final MultipleArtistsResponseDataUtil multipleArtistsResponseDataUtil = new MultipleArtistsResponseDataUtil();
     public static final SearchRequestDataUtil searchRequestDataUtil = new SearchRequestDataUtil();
     public static final SearchResponseDataUtil searchResponseDataUtil = new SearchResponseDataUtil();
 }

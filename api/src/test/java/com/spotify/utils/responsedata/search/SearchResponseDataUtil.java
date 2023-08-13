@@ -10,64 +10,64 @@ import java.util.stream.Collectors;
 
 public class SearchResponseDataUtil {
 
-    public Integer getItemsCount(SearchResponseModel searchResponse, String objectType) {
+    public Integer getItemsCountFrom(SearchResponseModel searchResponse, String objectType) {
         return switch (objectType) {
-            case ("albums") -> getAlbumsPage(searchResponse).getItems().size();
-            case ("artists") -> getArtists(searchResponse).getItems().size();
-            case ("playlists") -> getPlaylists(searchResponse).getItems().size();
+            case ("albums") -> getAlbumsPageFrom(searchResponse).getItems().size();
+            case ("artists") -> getArtistsFrom(searchResponse).getItems().size();
+            case ("playlists") -> getPlaylistsFrom(searchResponse).getItems().size();
             default ->
                     throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
         };
     }
 
-    public List<String> getAllPlaylistsTypes(SearchResponseModel searchResponse) {
-        return getPlaylists(searchResponse).getItems().stream().map(PlaylistResponseModel::getType).collect(Collectors.toList());
+    public List<String> getAllPlaylistsTypesFrom(SearchResponseModel searchResponse) {
+        return getPlaylistsFrom(searchResponse).getItems().stream().map(PlaylistResponseModel::getType).collect(Collectors.toList());
     }
 
-    public List<String> getAllArtistsTypes(SearchResponseModel searchResponse) {
-        return getArtists(searchResponse).getItems().stream().map(ArtistProfileResponseModel::getType).collect(Collectors.toList());
+    public List<String> getAllArtistsTypesFrom(SearchResponseModel searchResponse) {
+        return getArtistsFrom(searchResponse).getItems().stream().map(ArtistProfileResponseModel::getType).collect(Collectors.toList());
     }
 
-    public List<String> getAllAlbumsArtistsNames(SearchResponseModel searchResponse) {
-        return getAlbumsPage(searchResponse).getItems().stream()
+    public List<String> getAllAlbumsArtistsNamesFrom(SearchResponseModel searchResponse) {
+        return getAlbumsPageFrom(searchResponse).getItems().stream()
                 .flatMap(item -> item.getArtists().stream())
                 .map(ArtistProfileResponseModel::getName)
                 .collect(Collectors.toList());
     }
 
-    public List<String> getAllAlbumsTypes(SearchResponseModel searchResponse) {
-        return getAlbumsPage(searchResponse).getItems().stream().map(ArtistAlbumsResponseModel.Item::getAlbumType).collect(Collectors.toList());
+    public List<String> getAllAlbumsTypesFrom(SearchResponseModel searchResponse) {
+        return getAlbumsPageFrom(searchResponse).getItems().stream().map(ArtistAlbumsResponseModel.Item::getAlbumType).collect(Collectors.toList());
     }
 
-    public Integer getPaginationDataOffset(SearchResponseModel searchResponse, String objectType) {
+    public Integer getPaginationDataOffsetFrom(SearchResponseModel searchResponse, String objectType) {
         return switch (objectType) {
-            case ("albums") -> getAlbumsPage(searchResponse).getOffset();
-            case ("artists") -> getArtists(searchResponse).getOffset();
-            case ("playlists") -> getPlaylists(searchResponse).getOffset();
+            case ("albums") -> getAlbumsPageFrom(searchResponse).getOffset();
+            case ("artists") -> getArtistsFrom(searchResponse).getOffset();
+            case ("playlists") -> getPlaylistsFrom(searchResponse).getOffset();
             default ->
                     throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
         };
     }
 
-    public Integer getPaginationDataLimit(SearchResponseModel searchResponseModel, String objectType) {
+    public Integer getPaginationDataLimitFrom(SearchResponseModel searchResponseModel, String objectType) {
         return switch (objectType) {
-            case ("albums") -> getAlbumsPage(searchResponseModel).getLimit();
-            case ("artists") -> getArtists(searchResponseModel).getLimit();
-            case ("playlists") -> getPlaylists(searchResponseModel).getLimit();
+            case ("albums") -> getAlbumsPageFrom(searchResponseModel).getLimit();
+            case ("artists") -> getArtistsFrom(searchResponseModel).getLimit();
+            case ("playlists") -> getPlaylistsFrom(searchResponseModel).getLimit();
             default ->
                     throw new IllegalArgumentException("Wrong type of response JSON object is specified. Please choose between: albums, artists, playlists");
         };
     }
 
-    private SearchResponseModel.Playlists getPlaylists(SearchResponseModel searchResponse) {
+    private SearchResponseModel.Playlists getPlaylistsFrom(SearchResponseModel searchResponse) {
         return searchResponse.getPlaylists();
     }
 
-    private SearchResponseModel.Artists getArtists(SearchResponseModel searchResponse) {
+    private SearchResponseModel.Artists getArtistsFrom(SearchResponseModel searchResponse) {
         return searchResponse.getArtists();
     }
 
-    private SearchResponseModel.Albums getAlbumsPage(SearchResponseModel searchResponse) {
+    private SearchResponseModel.Albums getAlbumsPageFrom(SearchResponseModel searchResponse) {
         return searchResponse.getAlbums();
     }
 }

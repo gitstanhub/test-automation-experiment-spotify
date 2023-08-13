@@ -6,14 +6,14 @@ import java.util.List;
 
 public class SearchRequestDataUtil {
 
-    public String getSearchQuery(SearchRequestModel searchRequest) {
+    public String getSearchQueryFrom(SearchRequestModel searchRequest) {
         return searchRequest.getQ();
     }
-    public List<String> getSearchTypes(SearchRequestModel searchRequest) {
+    public List<String> getSearchTypesFrom(SearchRequestModel searchRequest) {
         return searchRequest.getType();
     }
 
-    public String getSearchMarket(SearchRequestModel searchRequest) {
+    public String getSearchMarketFrom(SearchRequestModel searchRequest) {
         return searchRequest.getMarket();
     }
 }

@@ -8,19 +8,19 @@ import java.util.stream.Collectors;
 
 public class MultipleArtistsResponseDataUtil {
 
-    public List<String> getMultipleArtistsNames(ArtistMultipleResponseModel artistMultipleResponse) {
-        return getMultipleArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getName).collect(Collectors.toList());
+    public List<String> getMultipleArtistsNamesFrom(ArtistMultipleResponseModel artistMultipleResponse) {
+        return getMultipleArtistsFrom(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getName).collect(Collectors.toList());
     }
 
-    public List<String> getMultipleArtistGenres(ArtistMultipleResponseModel artistMultipleResponse) {
-        return getMultipleArtists(artistMultipleResponse).stream().map(artist -> String.join(",", artist.getGenres())).collect(Collectors.toList());
+    public List<String> getMultipleArtistGenresFrom(ArtistMultipleResponseModel artistMultipleResponse) {
+        return getMultipleArtistsFrom(artistMultipleResponse).stream().map(artist -> String.join(",", artist.getGenres())).collect(Collectors.toList());
     }
 
-    public List<String> getMultipleArtistIds(ArtistMultipleResponseModel artistMultipleResponse) {
-        return getMultipleArtists(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getId).collect(Collectors.toList());
+    public List<String> getMultipleArtistIdsFrom(ArtistMultipleResponseModel artistMultipleResponse) {
+        return getMultipleArtistsFrom(artistMultipleResponse).stream().map(ArtistProfileResponseModel::getId).collect(Collectors.toList());
     }
 
-    private List<ArtistProfileResponseModel> getMultipleArtists(ArtistMultipleResponseModel artistMultipleResponse) {
+    private List<ArtistProfileResponseModel> getMultipleArtistsFrom(ArtistMultipleResponseModel artistMultipleResponse) {
         return artistMultipleResponse.getArtists();
     }
 

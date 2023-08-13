@@ -7,32 +7,32 @@ import java.util.Optional;
 
 public class ArtistAlbumResponseDataUtil {
 
-    public String getAlbumName(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
-        return getAlbum(artistAlbumsResponse, desiredAlbumName).getName();
+    public String getAlbumNameFrom(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
+        return getAlbumFrom(artistAlbumsResponse, desiredAlbumName).getName();
     }
 
-    public String getAlbumId(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
-        return getAlbum(artistAlbumsResponse, desiredAlbumName).getId();
+    public String getAlbumIdFrom(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
+        return getAlbumFrom(artistAlbumsResponse, desiredAlbumName).getId();
     }
 
-    public String getAlbumArtistName(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName, int desiredArtistPosition) {
-        ArtistAlbumsResponseModel.Item desiredAlbum = getAlbum(artistAlbumsResponse, desiredAlbumName);
-        return getAlbumArtist(desiredAlbum, desiredArtistPosition).getName();
+    public String getAlbumArtistNameFrom(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName, int desiredArtistPosition) {
+        ArtistAlbumsResponseModel.Item desiredAlbum = getAlbumFrom(artistAlbumsResponse, desiredAlbumName);
+        return getAlbumArtistFrom(desiredAlbum, desiredArtistPosition).getName();
     }
 
-    public String getAlbumType(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
-        return getAlbum(artistAlbumsResponse, desiredAlbumName).getAlbumType();
+    public String getAlbumTypeFrom(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
+        return getAlbumFrom(artistAlbumsResponse, desiredAlbumName).getAlbumType();
     }
 
-    public Integer getAlbumTotalTracks(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
-        return getAlbum(artistAlbumsResponse, desiredAlbumName).getTotalTracks();
+    public Integer getAlbumTotalTracksFrom(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
+        return getAlbumFrom(artistAlbumsResponse, desiredAlbumName).getTotalTracks();
     }
 
-    public String getAlbumReleaseDate(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
-        return getAlbum(artistAlbumsResponse, desiredAlbumName).getReleaseDate();
+    public String getAlbumReleaseDateFrom(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
+        return getAlbumFrom(artistAlbumsResponse, desiredAlbumName).getReleaseDate();
     }
 
-    private ArtistAlbumsResponseModel.Item getAlbum(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
+    private ArtistAlbumsResponseModel.Item getAlbumFrom(ArtistAlbumsResponseModel artistAlbumsResponse, String desiredAlbumName) {
         Optional<ArtistAlbumsResponseModel.Item> foundAlbum = artistAlbumsResponse.getItems().stream().filter(
                 item -> desiredAlbumName.equals(item.getName())).findFirst();
         if (foundAlbum.isPresent()) {
@@ -42,7 +42,7 @@ public class ArtistAlbumResponseDataUtil {
         }
     }
 
-    private ArtistProfileResponseModel getAlbumArtist(ArtistAlbumsResponseModel.Item album, String desiredArtistName) {
+    private ArtistProfileResponseModel getAlbumArtistFrom(ArtistAlbumsResponseModel.Item album, String desiredArtistName) {
         Optional<ArtistProfileResponseModel> foundArtist = album.getArtists().stream().filter(
                 artist -> desiredArtistName.equals(artist.getName())).findFirst();
         if (foundArtist.isPresent()) {
@@ -52,7 +52,7 @@ public class ArtistAlbumResponseDataUtil {
         }
     }
 
-    private ArtistProfileResponseModel getAlbumArtist(ArtistAlbumsResponseModel.Item album, int desiredArtisPosition) {
+    private ArtistProfileResponseModel getAlbumArtistFrom(ArtistAlbumsResponseModel.Item album, int desiredArtisPosition) {
         if (desiredArtisPosition < 0 || desiredArtisPosition >= album.getArtists().size()) {
             throw new IndexOutOfBoundsException("Artist position is out of bounds. Please provide an artist position between 0 and "
                     + album.getArtists().size() + ".");

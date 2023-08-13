@@ -11,7 +11,9 @@ import com.spotify.tests.base.ApiTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static com.spotify.testdata.artist.constants.ArtistAlbums.ARTIST_1_ALBUM_1;
 import static com.spotify.testdata.artist.constants.ArtistEntities.ARTIST_1;
+import static com.spotify.testdata.artist.constants.SearchResultsTypes.*;
 
 public class SearchTests extends ApiTests {
 
@@ -20,6 +22,7 @@ public class SearchTests extends ApiTests {
 
     @Test
     void artistsAndAlbumsCanBeFound() {
+
         SearchTypes[] searchTypes = new SearchTypes[]{
                 SearchTypes.ALBUM,
                 SearchTypes.ARTIST
@@ -28,32 +31,39 @@ public class SearchTests extends ApiTests {
         int desiredLimit = 5;
         int desiredOffset = 0;
 
+        String expectedArtistName = ARTIST_1.getArtistName();
+        String expectedArtistType = SearchTypes.ARTIST.getValue();
+        String expectedAlbumType = SearchTypes.ALBUM.getValue();
+
         SearchRequestModel searchRequest = SearchRequestModel.builder()
-                .searchQuery(ARTIST_1.getArtistName())
+                .searchQuery(expectedArtistName)
                 .specifiedSearchTypes(searchTypes)
                 .build();
 
-        SearchResponseModel searchResults = searchClient.searchWithLimitAndOffset(searchRequestDataUtil.getSearchQuery(searchRequest),
-                searchRequestDataUtil.getSearchTypes(searchRequest), desiredLimit, desiredOffset);
+        SearchResponseModel searchResults = searchClient.searchWithLimitAndOffset(
+                searchRequestDataUtil.getSearchQueryFrom(searchRequest),
+                searchRequestDataUtil.getSearchTypesFrom(searchRequest),
+                desiredLimit, desiredOffset
+        );
 
         SearchResultsAssertionData.ActualSearchResultsData actualSearchResults = SearchResultsAssertionData.ActualSearchResultsData
                 .builder()
                 .actualArtistsPaginationData(new SearchResultsAssertionData.PaginationData(
-                        searchResponseDataUtil.getPaginationDataLimit(searchResults, "artists"),
-                        searchResponseDataUtil.getPaginationDataOffset(searchResults, "artists")))
+                        searchResponseDataUtil.getPaginationDataLimitFrom(searchResults, ARTISTS_SEARCH_RESULTS_TYPE),
+                        searchResponseDataUtil.getPaginationDataOffsetFrom(searchResults, ARTISTS_SEARCH_RESULTS_TYPE)))
                 .actualArtistsTypes(
-                        searchResponseDataUtil.getAllArtistsTypes(searchResults))
+                        searchResponseDataUtil.getAllArtistsTypesFrom(searchResults))
                 .actualArtistsItemsSize(
-                        searchResponseDataUtil.getItemsCount(searchResults, "artists"))
+                        searchResponseDataUtil.getItemsCountFrom(searchResults, ARTISTS_SEARCH_RESULTS_TYPE))
                 .actualAlbumsPaginationData(new SearchResultsAssertionData.PaginationData(
-                        searchResponseDataUtil.getPaginationDataLimit(searchResults, "albums"),
-                        searchResponseDataUtil.getPaginationDataOffset(searchResults, "albums")))
+                        searchResponseDataUtil.getPaginationDataLimitFrom(searchResults, ALBUM_SEARCH_RESULTS_TYPE),
+                        searchResponseDataUtil.getPaginationDataOffsetFrom(searchResults, ALBUM_SEARCH_RESULTS_TYPE)))
                 .actualAlbumsTypes(
-                        searchResponseDataUtil.getAllAlbumsTypes(searchResults))
+                        searchResponseDataUtil.getAllAlbumsTypesFrom(searchResults))
                 .actualAlbumsArtistsNames(
-                        searchResponseDataUtil.getAllAlbumsArtistsNames(searchResults))
+                        searchResponseDataUtil.getAllAlbumsArtistsNamesFrom(searchResults))
                 .actualAlbumsItemsSize(
-                        searchResponseDataUtil.getItemsCount(searchResults, "albums"))
+                        searchResponseDataUtil.getItemsCountFrom(searchResults, ALBUM_SEARCH_RESULTS_TYPE))
                 .build();
 
         apiAssertionsUtil
@@ -67,50 +77,57 @@ public class SearchTests extends ApiTests {
                 .assertFieldEqualsTo(actualSearchResults.getActualAlbumsItemsSize(), desiredLimit);
 
         apiAssertionsUtil
-                .assertAllFieldsContainExpectedText(actualSearchResults.getActualArtistsTypes(), "artist")
-                .assertAnyFieldContainsExpectedText(actualSearchResults.getActualAlbumsArtistsNames(), ARTIST_1.getArtistName())
-                .assertAnyFieldContainsExpectedText(actualSearchResults.getActualAlbumsTypes(), "album");
+                .assertAllFieldsContainExpectedText(actualSearchResults.getActualArtistsTypes(), expectedArtistType)
+                .assertAnyFieldContainsExpectedText(actualSearchResults.getActualAlbumsArtistsNames(), expectedArtistName)
+                .assertAnyFieldContainsExpectedText(actualSearchResults.getActualAlbumsTypes(), expectedAlbumType);
     }
 
     @Test
     void playlistsCanBeFoundByCountry() {
+
         SearchTypes[] searchTypes = new SearchTypes[]{
                 SearchTypes.PLAYLIST
         };
 
+        String expectedArtistName = ARTIST_1.getArtistName();
+        String expectedPlaylistType = SearchTypes.PLAYLIST.getValue();
         String countryCode = ConfigProviderApi.getRestAssuredApiConfiguration().market();
 
         SearchRequestModel searchRequest = SearchRequestModel.builder()
-                .searchQuery(ARTIST_1.getArtistName())
+                .searchQuery(expectedArtistName)
                 .specifiedSearchTypes(searchTypes)
                 .desiredMarket(countryCode)
                 .build();
 
-        SearchResponseModel searchResults = searchClient.searchWithMarket(searchRequestDataUtil.getSearchQuery(searchRequest),
-                searchRequestDataUtil.getSearchTypes(searchRequest), searchRequestDataUtil.getSearchMarket(searchRequest));
+        SearchResponseModel searchResults = searchClient.searchWithMarket(
+                searchRequestDataUtil.getSearchQueryFrom(searchRequest),
+                searchRequestDataUtil.getSearchTypesFrom(searchRequest),
+                searchRequestDataUtil.getSearchMarketFrom(searchRequest)
+        );
 
         SearchResultsAssertionData.ActualSearchResultsData actualSearchResults = SearchResultsAssertionData.ActualSearchResultsData
                 .builder()
                 .actualPlaylistsPaginationData(new SearchResultsAssertionData.PaginationData(
-                        searchResponseDataUtil.getPaginationDataLimit(searchResults, "playlists"),
-                        searchResponseDataUtil.getPaginationDataOffset(searchResults, "playlists")))
+                        searchResponseDataUtil.getPaginationDataLimitFrom(searchResults, PLAYLISTS_SEARCH_RESULTS_TYPE),
+                        searchResponseDataUtil.getPaginationDataOffsetFrom(searchResults, PLAYLISTS_SEARCH_RESULTS_TYPE)))
                 .actualPlaylistsTypes(
-                        searchResponseDataUtil.getAllPlaylistsTypes(searchResults))
+                        searchResponseDataUtil.getAllPlaylistsTypesFrom(searchResults))
                 .actualPlaylistsItemsSize(
-                        searchResponseDataUtil.getItemsCount(searchResults, "playlists"))
+                        searchResponseDataUtil.getItemsCountFrom(searchResults, PLAYLISTS_SEARCH_RESULTS_TYPE))
                 .build();
 
         apiAssertionsUtil
                 .assertFieldEqualsTo(actualSearchResults.getActualPlaylistsPaginationData().getLimit(), 20)
                 .assertFieldEqualsTo(actualSearchResults.getActualPlaylistsPaginationData().getOffset(), 0);
 
-        apiAssertionsUtil.assertAllFieldsContainExpectedText(actualSearchResults.getActualPlaylistsTypes(), "playlist");
+        apiAssertionsUtil.assertAllFieldsContainExpectedText(actualSearchResults.getActualPlaylistsTypes(), expectedPlaylistType);
 
         apiAssertionsUtil.assertFieldEqualsTo(actualSearchResults.getActualPlaylistsItemsSize(), 20);
     }
 
     @Test
     void searchWithoutRequiredParamsReturnsNoResults() {
+
         SearchResponseModel searchResults = searchClient.search(null, null);
 
         apiAssertionsUtil.assertFieldEqualsTo(
