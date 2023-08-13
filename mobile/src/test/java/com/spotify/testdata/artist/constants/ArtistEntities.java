@@ -25,13 +25,13 @@ public enum ArtistEntities {
     }
 
     private static ArtistConfig getArtistConfig(String configItemName) {
-        CountryCode countryCode = CountryCode.getByCode(ConfigProviderMobile.getMobileAppConfiguration().country());
+        CountryCode countryCode = CountryCode.getByCode(ConfigProviderMobile.getMobileAppConfiguration().countryCode());
 
         try {
             return ConfigProviderMobile.getEntityConfig(countryCode, configItemName, ArtistConfig.class);
         } catch (IOException e) {
             throw new IllegalArgumentException("Couldn't find an artist config for the provided item name: " + configItemName
-                    + " and market: " + countryCode);
+                    + " and country: " + countryCode);
         }
     }
 

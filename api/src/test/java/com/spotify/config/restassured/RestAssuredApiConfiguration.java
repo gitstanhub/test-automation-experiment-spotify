@@ -5,13 +5,17 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:configuration/api.properties"
+        "classpath:configuration/${country}_api.properties",
+        "classpath:configuration/de_api.properties",
 })
 public interface RestAssuredApiConfiguration extends Config {
 
+    @Key("baseUrl")
     String baseUrl();
 
-    //ToDo: check if market property needs to be adjusted
-    @DefaultValue("DE")
-    String market();
+    @Key("countryCode")
+    String countryCode();
+
+    @Key("marketCode")
+    String marketCode();
 }

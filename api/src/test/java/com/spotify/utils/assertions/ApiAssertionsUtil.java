@@ -1,11 +1,15 @@
 package com.spotify.utils.assertions;
 
 import com.spotify.testdata.commons.assertions.AssertionData;
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
+@Component
 public class ApiAssertionsUtil {
 
     public ApiAssertionsUtil assertAllFieldsContainExpectedText(List<String> actualResponseFieldsValue, String expectedValue) {

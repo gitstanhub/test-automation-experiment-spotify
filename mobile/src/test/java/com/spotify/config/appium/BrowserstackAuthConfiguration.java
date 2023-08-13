@@ -8,7 +8,9 @@ import org.aeonbits.owner.Config;
 })
 public interface BrowserstackAuthConfiguration extends Config {
 
+    @Key("browserstackUsername")
     String browserstackUsername();
 
+    @Key("browserstackAccessToken")
     String browserstackAccessToken();
 }

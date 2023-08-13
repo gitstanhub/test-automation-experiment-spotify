@@ -2,10 +2,14 @@ package com.spotify.utils.responsedata.artist;
 
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
 import com.spotify.models.response.artist.ArtistTopTracksResponseModel;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Slf4j
+@Component
 public class ArtistTopTracksResponseDataUtil {
 
     public String getTrackNameFrom(ArtistTopTracksResponseModel artistTopTracksResponse, int trackPosition) {

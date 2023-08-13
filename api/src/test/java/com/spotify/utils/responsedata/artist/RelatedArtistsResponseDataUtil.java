@@ -2,11 +2,15 @@ package com.spotify.utils.responsedata.artist;
 
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
 import com.spotify.models.response.artist.ArtistRelatedResponseModel;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Slf4j
+@Component
 public class RelatedArtistsResponseDataUtil {
 
     public String getRelatedArtistNameFrom(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {

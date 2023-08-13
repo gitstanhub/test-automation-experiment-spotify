@@ -6,7 +6,6 @@ import com.spotify.config.restassured.entities.TrackConfig;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -37,13 +36,13 @@ public enum AristTracks {
     }
 
     private static TrackConfig getTrackConfig(String configItemName) {
-        CountryCode countryCode = CountryCode.getByCode(ConfigProviderApi.getRestAssuredApiConfiguration().market());
+        CountryCode countryCode = CountryCode.getByCode(ConfigProviderApi.getRestAssuredApiConfiguration().countryCode());
 
         try {
             return ConfigProviderApi.getEntityConfig(countryCode, configItemName, TrackConfig.class);
         } catch (IOException e) {
             throw new IllegalArgumentException("Couldn't find a track config for the provided item name: " + configItemName
-                    + " and market: " + countryCode);
+                    + " and country: " + countryCode);
         }
     }
 

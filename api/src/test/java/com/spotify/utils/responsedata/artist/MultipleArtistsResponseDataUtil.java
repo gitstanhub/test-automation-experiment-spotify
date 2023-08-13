@@ -2,10 +2,14 @@ package com.spotify.utils.responsedata.artist;
 
 import com.spotify.models.response.artist.ArtistMultipleResponseModel;
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
+@Component
 public class MultipleArtistsResponseDataUtil {
 
     public List<String> getMultipleArtistsNamesFrom(ArtistMultipleResponseModel artistMultipleResponse) {

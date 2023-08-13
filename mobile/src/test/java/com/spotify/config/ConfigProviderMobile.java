@@ -73,11 +73,11 @@ public class ConfigProviderMobile {
         throw new IllegalArgumentException("No device configuration found for the given device name: " + deviceName);
     }
 
-    public static <T extends EntityConfig> T getEntityConfig(CountryCode market, String configItemName, Class<T> configClass) throws IOException {
+    public static <T extends EntityConfig> T getEntityConfig(CountryCode countryCode, String configItemName, Class<T> configClass) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 
         String fileName = "configuration/entities/"
-                + market.toString().toLowerCase()
+                + countryCode.toString().toLowerCase()
                 + "_"
                 + configClass.getSimpleName().toLowerCase()
                 + ".json";

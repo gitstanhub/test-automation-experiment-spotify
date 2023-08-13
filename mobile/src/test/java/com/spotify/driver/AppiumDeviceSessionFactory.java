@@ -10,13 +10,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import javax.naming.ConfigurationException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class AppiumDeviceSessionFactory {
 
-    private static final String language = ConfigProviderMobile.getMobileAppConfiguration().language();
-    private static final String locale = ConfigProviderMobile.getMobileAppConfiguration().locale();
+    private static final String language = ConfigProviderMobile.getMobileAppConfiguration().languageCode();
+    private static final String locale = ConfigProviderMobile.getMobileAppConfiguration().localeCode();
 
     public static AppiumDriver getDeviceSession(String environment, String platformName, String deviceName, String testName) throws IOException, ConfigurationException {
 

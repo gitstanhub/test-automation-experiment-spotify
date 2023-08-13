@@ -25,13 +25,13 @@ public enum PlaylistEntities {
     }
 
     private static PlaylistConfig getPlaylistConfig(String configItemName) {
-        CountryCode countryCode = CountryCode.getByCode(ConfigProviderMobile.getMobileAppConfiguration().country());
+        CountryCode countryCode = CountryCode.getByCode(ConfigProviderMobile.getMobileAppConfiguration().countryCode());
 
         try {
             return ConfigProviderMobile.getEntityConfig(countryCode, configItemName, PlaylistConfig.class);
         } catch (IOException e) {
             throw new IllegalArgumentException("Couldn't find a playlist config for the provided item name: " + configItemName
-                    + " and market: " + countryCode);
+                    + " and country: " + countryCode);
         }
     }
 

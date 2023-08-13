@@ -51,13 +51,13 @@ public enum ArtistAlbums {
     }
 
     private static AlbumConfig getAlbumConfig(String configItemName) {
-        CountryCode countryCode = CountryCode.getByCode(ConfigProviderMobile.getMobileAppConfiguration().country());
+        CountryCode countryCode = CountryCode.getByCode(ConfigProviderMobile.getMobileAppConfiguration().countryCode());
 
         try {
             return ConfigProviderMobile.getEntityConfig(countryCode, configItemName, AlbumConfig.class);
         } catch (IOException e) {
             throw new IllegalArgumentException("Couldn't find an album config for the provided item name: " + configItemName
-                    + " and market: " + countryCode);
+                    + " and country: " + countryCode);
         }
     }
 

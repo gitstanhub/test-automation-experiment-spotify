@@ -1,6 +1,5 @@
 package com.spotify.tests;
 
-import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.ArtistClient;
 import com.spotify.config.ConfigProviderApi;
 import com.spotify.models.response.artist.*;
@@ -38,11 +37,11 @@ public class ArtistDataTests extends ApiTests {
         ArtistProfileResponseModel fetchedArtistProfile = artistClient.getArtistDataBy(expectedArtistId);
 
         ArtistEntitiesAssertionData.ActualArtistData actualArtistData = new ArtistEntitiesAssertionData.ActualArtistData(
-                artistProfileResponseFieldsUtil.getArtistNameFrom(fetchedArtistProfile),
-                artistProfileResponseFieldsUtil.getArtistGenresFrom(fetchedArtistProfile),
-                artistProfileResponseFieldsUtil.getArtistIdFrom(fetchedArtistProfile),
-                artistProfileResponseFieldsUtil.getArtistTypeFrom(fetchedArtistProfile),
-                artistProfileResponseFieldsUtil.getArtistUriFrom(fetchedArtistProfile)
+                artistProfileResponseDataUtil.getArtistNameFrom(fetchedArtistProfile),
+                artistProfileResponseDataUtil.getArtistGenresFrom(fetchedArtistProfile),
+                artistProfileResponseDataUtil.getArtistIdFrom(fetchedArtistProfile),
+                artistProfileResponseDataUtil.getArtistTypeFrom(fetchedArtistProfile),
+                artistProfileResponseDataUtil.getArtistUriFrom(fetchedArtistProfile)
         );
 
         apiAssertionsUtil.assertFieldsAreEqual(actualArtistData, expectedArtistData);
@@ -63,9 +62,9 @@ public class ArtistDataTests extends ApiTests {
 
         String expectedArtistId = ARTIST_1.getArtistId();
         String expectedTrackName = expectedTopTracksData.getExpectedTrackName();
-        String countryCode = ConfigProviderApi.getRestAssuredApiConfiguration().market();
+        String marketCode = ConfigProviderApi.getRestAssuredApiConfiguration().marketCode();
 
-        ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracksBy(countryCode, expectedArtistId);
+        ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracksBy(marketCode, expectedArtistId);
 
         ArtistTracksAssertionData.ActualTracksData actualTopTracksData = new ArtistTracksAssertionData.ActualTracksData(
                 artistTopTracksResponseDataUtil.getTrackNameFrom(fetchedArtistTopTracks, expectedTrackName),
@@ -94,9 +93,9 @@ public class ArtistDataTests extends ApiTests {
 
         String expectedArtistId = ARTIST_1.getArtistId();
         String expectedAlbumName = expectedAlbumsData.getExpectedAlbumName();
-        String countryCode = ConfigProviderApi.getRestAssuredApiConfiguration().market();
+        String marketCode = ConfigProviderApi.getRestAssuredApiConfiguration().marketCode();
 
-        ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbumsBy(countryCode, expectedArtistId);
+        ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbumsBy(marketCode, expectedArtistId);
 
         ArtistAlbumsAssertionData.ActualAlbumData actualAlbumsData = new ArtistAlbumsAssertionData.ActualAlbumData(
                 artistAlbumResponseDataUtil.getAlbumNameFrom(fetchedArtistAlbums, expectedAlbumName),

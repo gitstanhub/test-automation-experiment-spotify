@@ -3,10 +3,8 @@ package com.spotify.testdata.artist.constants;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotify.config.ConfigProviderApi;
 import com.spotify.config.restassured.entities.AlbumConfig;
-import com.spotify.config.restassured.entities.TrackConfig;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public enum ArtistAlbums {
@@ -38,13 +36,13 @@ public enum ArtistAlbums {
     }
 
     private static AlbumConfig getAlbumConfig(String configItemName) {
-        CountryCode countryCode = CountryCode.getByCode(ConfigProviderApi.getRestAssuredApiConfiguration().market());
+        CountryCode countryCode = CountryCode.getByCode(ConfigProviderApi.getRestAssuredApiConfiguration().countryCode());
 
         try {
             return ConfigProviderApi.getEntityConfig(countryCode, configItemName, AlbumConfig.class);
         } catch (IOException e) {
             throw new IllegalArgumentException("Couldn't find an album config for the provided item name: " + configItemName
-                    + " and market: " + countryCode);
+                    + " and country: " + countryCode);
         }
     }
 

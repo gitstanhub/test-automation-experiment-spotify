@@ -11,7 +11,6 @@ import com.spotify.tests.base.ApiTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.spotify.testdata.artist.constants.ArtistAlbums.ARTIST_1_ALBUM_1;
 import static com.spotify.testdata.artist.constants.ArtistEntities.ARTIST_1;
 import static com.spotify.testdata.artist.constants.SearchResultsTypes.*;
 
@@ -91,12 +90,12 @@ public class SearchTests extends ApiTests {
 
         String expectedArtistName = ARTIST_1.getArtistName();
         String expectedPlaylistType = SearchTypes.PLAYLIST.getValue();
-        String countryCode = ConfigProviderApi.getRestAssuredApiConfiguration().market();
+        String marketCode = ConfigProviderApi.getRestAssuredApiConfiguration().marketCode();
 
         SearchRequestModel searchRequest = SearchRequestModel.builder()
                 .searchQuery(expectedArtistName)
                 .specifiedSearchTypes(searchTypes)
-                .desiredMarket(countryCode)
+                .desiredMarket(marketCode)
                 .build();
 
         SearchResponseModel searchResults = searchClient.searchWithMarket(

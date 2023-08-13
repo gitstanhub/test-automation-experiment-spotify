@@ -9,7 +9,9 @@ import org.aeonbits.owner.Config;
 })
 public interface RestAssuredApiAuthConfiguration extends Config {
 
+    @Key("clientId")
     String clientId();
 
+    @Key("clientSecret")
     String clientSecret();
 }
