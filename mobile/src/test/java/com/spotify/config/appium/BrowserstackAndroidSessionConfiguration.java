@@ -8,13 +8,18 @@ import org.aeonbits.owner.Config;
 })
 public interface BrowserstackAndroidSessionConfiguration extends Config {
 
+    @Key("browserstackRemoteUrl")
     String browserstackRemoteUrl();
 
+    @Key("browserstackProjectName")
     String browserstackProjectName();
 
+    @Key("browserstackDebug")
     boolean browserstackDebug();
 
+    @Key("browserstackBuildName")
     String browserstackBuildName();
 
+    @Key("browserstackAppUrl")
     String browserstackAppUrl();
 }

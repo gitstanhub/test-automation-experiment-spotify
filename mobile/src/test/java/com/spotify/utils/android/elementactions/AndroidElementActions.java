@@ -35,37 +35,33 @@ public class AndroidElementActions {
         return getDriver().findElement(AppiumBy.androidUIAutomator(androidUiAutomatorText));
     }
 
+    public WebElement getItemByChildSiblings(String parentResourceId, String childSiblingText1, String childSiblingText2) {
+        return getElementByAndroidUiAutomator(
+                String.format(
+                        "new UiSelector().resourceId(\"%s\").childSelector(new UiSelector().text(\"%s\")).fromParent(new UiSelector().text(\"%s\"))",
+                        parentResourceId, childSiblingText1, childSiblingText2));
+    }
+
     public WebElement getListItemByTitleAndResourceId(String title, String targetResourceId) {
         System.out.println("Getting item from the list by title");
 
-        androidPageNavigationActions.swipeToElementByText(targetResourceId, title, 10);
+        androidPageNavigationActions.swipeToElementByText(targetResourceId, title, 15);
 
         return getElementByAndroidUiAutomator(
                 String.format(
                         "new UiSelector().resourceId(\"%s\").text(\"%s\")",
                         targetResourceId, title));
-
-//        return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                String.format(
-//                        "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-//                        targetResourceId, title)));
     }
 
     public WebElement getListItemByTitleAndSubtitle(String title, String subtitle) {
         System.out.println("Getting item from the list by title and subtitle");
         String contentDesc = String.format("%s, %s, ", title, subtitle);
 
-        androidPageNavigationActions.swipeToElementByDescription(contentDesc, 10);
+        androidPageNavigationActions.swipeToElementByDescription(contentDesc, 15);
 
         return getElementByAndroidUiAutomator(
                 String.format(
                         "new UiSelector().description(\"%s\")",
                         contentDesc));
-
-//
-//        return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                String.format(
-//                        "new UiSelector().description(\"%s\")",
-//                        contentDesc)));
     }
 }

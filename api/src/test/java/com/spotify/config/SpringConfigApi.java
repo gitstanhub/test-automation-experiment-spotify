@@ -7,11 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = {"com.spotify.clients"})
+@ComponentScan(basePackages = {"com.spotify.clients", "com.spotify.utils", "com.spotify.config"})
 public class SpringConfigApi {
-
-    @Bean
-    public RestAssuredApiConfiguration restAssuredApiConfiguration() {
-        return ConfigFactory.create(RestAssuredApiConfiguration.class, System.getProperties());
-    }
 }

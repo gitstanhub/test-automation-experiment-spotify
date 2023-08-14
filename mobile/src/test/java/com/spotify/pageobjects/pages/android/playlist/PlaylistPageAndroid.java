@@ -57,30 +57,21 @@ public class PlaylistPageAndroid extends AppiumPageAndroid implements PlaylistPa
         return androidElementActions.getElementByXpath("//*[@resource-id='com.spotify.music:id/content_container']" +
                 "//*[@resource-id='com.spotify.music:id/artwork']" +
                 "/following-sibling::*[@resource-id='com.spotify.music:id/title']");
-
-//        return getDriver().findElement(By.xpath("//*[@resource-id='com.spotify.music:id/content_container']" +
-//                "//*[@resource-id='com.spotify.music:id/artwork']" +
-//                "/following-sibling::*[@resource-id='com.spotify.music:id/title']"
-//        ));
     }
 
     private WebElement getDeletePopupTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupTitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupTitleText() + "']"));
     }
 
     private WebElement getDeletePopupSubtitle(String playlistName) {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/body' and contains(@text, '" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupSubtitleText() + "') and contains(@text, '" + playlistName + "')]");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/body' and contains(@text, '" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupSubtitleText() + "') and contains(@text, '" + playlistName + "')]"));
     }
 
     private WebElement getDeletePopupConfirmButton() {
         return androidElementActions.getElementByXpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupConfirmButtonText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupConfirmButtonText() + "']"));
     }
 
     private WebElement getDeletePopupCancelButton() {
         return androidElementActions.getElementByXpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupCancelButtonText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.Button[@resource-id='com.spotify.music:id/button_positive' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().deletePopupCancelButtonText() + "']"));
     }
 }

@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
+import static com.spotify.testdata.playlists.constants.Playlists.PLAYLIST_1;
+
 public class LibraryTests extends WebTests {
 
     @Autowired
@@ -27,6 +29,7 @@ public class LibraryTests extends WebTests {
     @Test
     @AuthRequiredWeb
     public void libraryCanBeSortedAlphabetically() {
+
         homePage.openHomePage();
 
         libraryPage
@@ -39,6 +42,10 @@ public class LibraryTests extends WebTests {
     @Test
     @AuthRequiredWeb
     public void playlistDetailsCanBeUpdatedFromLibrary() {
+
+        String playlistName = PLAYLIST_1.getPlaylistName();
+        String playlistDescription = PLAYLIST_1.getPlaylistDescription();
+
         homePage.openHomePage();
 
         libraryPage
@@ -47,8 +54,8 @@ public class LibraryTests extends WebTests {
                 .clickPlaylistsFilterButton()
                 .verifyPlaylistsFilterButtonIsPressed()
                 .clickSearchLibraryButton()
-                .fillInSearchLibraryField("Future Nostalgia")
-                .rightClickLibraryItemWithText("Future Nostalgia");
+                .fillInSearchLibraryField(playlistName)
+                .rightClickLibraryItemWithText(playlistName);
 
         optionsMenu
                 .verifyOptionsMenuIsAvailable()
@@ -57,15 +64,15 @@ public class LibraryTests extends WebTests {
         playlistPage
                 .verifyEditDetailsModalIsAvailable()
                 .clearEditDetailsModalDescriptionField()
-                .fillInEditDetailsModalDescriptionField("HAHAHA")
+                .fillInEditDetailsModalDescriptionField(playlistDescription)
                 .clickEditDetailsModalSaveButton();
 
         libraryPage
-                .clickLibraryItemWithText("Future Nostalgia");
+                .clickLibraryItemWithText(playlistName);
 
         playlistPage
                 .verifyPlaylistSectionIsAvailable()
-                .verifyPlaylistTitleIsAvailableWithText("Future Nostalgia")
-                .verifyPlaylistDescriptionIsAvailableWithText("HAHAHA");
+                .verifyPlaylistTitleIsAvailableWithText(playlistName)
+                .verifyPlaylistDescriptionIsAvailableWithText(playlistDescription);
     }
 }

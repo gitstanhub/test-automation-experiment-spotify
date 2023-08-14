@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotify.config.restassured.RestAssuredApiAuthConfiguration;
 import com.spotify.config.restassured.RestAssuredApiConfiguration;
-import com.spotify.config.restassured.entities.EntityConfig;
+import com.spotify.config.entities.EntityConfig;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 
@@ -25,16 +25,14 @@ public class ConfigProviderApi {
     private static final RestAssuredApiAuthConfiguration restAssuredApiAuthConfiguration = ConfigFactory.create(
             RestAssuredApiAuthConfiguration.class, System.getProperties());
 
-    public static <T extends EntityConfig> T getEntityConfig(CountryCode market, String configItemName, Class<T> configClass) throws IOException {
+    public static <T extends EntityConfig> T getEntityConfig(CountryCode countryCode, String configItemName, Class<T> configClass) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 
         String fileName = "configuration/entities/"
-                + market.toString().toLowerCase()
+                + countryCode.toString().toLowerCase()
                 + "_"
                 + configClass.getSimpleName().toLowerCase()
                 + ".json";
-
-        System.out.println(fileName + " heeey");
 
         URL fileUrl = ClassLoader.getSystemResource(fileName);
         if (fileUrl == null) {

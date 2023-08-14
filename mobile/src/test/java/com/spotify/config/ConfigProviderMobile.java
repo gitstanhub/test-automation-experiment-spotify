@@ -2,6 +2,7 @@ package com.spotify.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.neovisionaries.i18n.CountryCode;
 import com.spotify.config.appium.AppiumDriverConfiguration;
 import com.spotify.config.appium.BrowserstackAuthConfiguration;
 import com.spotify.config.appium.BrowserstackAndroidSessionConfiguration;
@@ -9,6 +10,7 @@ import com.spotify.config.appium.app.MobileAppAuthConfiguration;
 import com.spotify.config.appium.app.MobileAppConfiguration;
 import com.spotify.config.appium.app.MobileAppLocaleConfig;
 import com.spotify.config.appium.device.commons.DeviceConfig;
+import com.spotify.config.entities.EntityConfig;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 
@@ -69,5 +71,32 @@ public class ConfigProviderMobile {
         }
 
         throw new IllegalArgumentException("No device configuration found for the given device name: " + deviceName);
+    }
+
+    public static <T extends EntityConfig> T getEntityConfig(CountryCode countryCode, String configItemName, Class<T> configClass) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+
+        String fileName = "configuration/entities/"
+                + countryCode.toString().toLowerCase()
+                + "_"
+                + configClass.getSimpleName().toLowerCase()
+                + ".json";
+
+        URL fileUrl = ClassLoader.getSystemResource(fileName);
+        if (fileUrl == null) {
+            throw new FileNotFoundException("File " + fileName + " was not found.");
+        }
+
+        File entityConfigFile = new File(fileUrl.getFile());
+
+        List<T> entityConfigList = objectMapper.readValue(entityConfigFile, objectMapper.getTypeFactory().constructCollectionType(List.class, configClass));
+
+        for (T entityConfig : entityConfigList) {
+            if (entityConfig.getConfigItemName().equals(configItemName)) {
+                return entityConfig;
+            }
+        }
+
+        throw new IllegalArgumentException("No entity configuration found for the given entity item name: " + configItemName);
     }
 }
