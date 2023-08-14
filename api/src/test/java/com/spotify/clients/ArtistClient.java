@@ -18,7 +18,7 @@ import static io.restassured.RestAssured.given;
 public class ArtistClient {
 
     @Step
-    public ArtistProfileResponseModel getArtistData(String artistId) {
+    public ArtistProfileResponseModel getArtistDataBy(String artistId) {
         return given(artistRequestSpec)
                 .when()
                 .get(artistId)
@@ -28,7 +28,7 @@ public class ArtistClient {
     }
 
     @Step
-    public ArtistTopTracksResponseModel getArtistTopTracks(String country, String artistID) {
+    public ArtistTopTracksResponseModel getArtistTopTracksBy(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("market", country)
                 .when()
@@ -39,7 +39,7 @@ public class ArtistClient {
     }
 
     @Step
-    public ArtistAlbumsResponseModel getArtistAlbums(String country, String artistID) {
+    public ArtistAlbumsResponseModel getArtistAlbumsBy(String country, String artistID) {
         return given(artistRequestSpec)
                 .param("include_groups", "album")
                 .param("market", country)
@@ -51,7 +51,7 @@ public class ArtistClient {
     }
 
     @Step
-    public ArtistRelatedResponseModel getRelatedArtists(String artistID) {
+    public ArtistRelatedResponseModel getRelatedArtistsBy(String artistID) {
         return given(artistRequestSpec)
                 .when()
                 .get(artistID + "/related-artists")
@@ -61,7 +61,7 @@ public class ArtistClient {
     }
 
     @Step
-    public ArtistMultipleResponseModel getMultipleArtistsData(List<String> artists) {
+    public ArtistMultipleResponseModel getMultipleArtistsDataBy(List<String> artists) {
 
         String artistsParam = String.join(",", artists);
 

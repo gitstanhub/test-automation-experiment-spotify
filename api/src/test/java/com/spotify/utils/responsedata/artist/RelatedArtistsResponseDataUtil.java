@@ -2,38 +2,42 @@ package com.spotify.utils.responsedata.artist;
 
 import com.spotify.models.response.artist.ArtistProfileResponseModel;
 import com.spotify.models.response.artist.ArtistRelatedResponseModel;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Slf4j
+@Component
 public class RelatedArtistsResponseDataUtil {
 
-    public String getRelatedArtistName(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
-        return getRelatedArtist(artistRelatedResponse, desiredArtistName).getName();
+    public String getRelatedArtistNameFrom(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
+        return getRelatedArtistFrom(artistRelatedResponse, desiredArtistName).getName();
     }
 
-    public String getRelatedArtistName(ArtistRelatedResponseModel artistRelatedResponse, int desiredArtistPosition) {
-        return getRelatedArtist(artistRelatedResponse, desiredArtistPosition).getName();
+    public String getRelatedArtistNameFrom(ArtistRelatedResponseModel artistRelatedResponse, int desiredArtistPosition) {
+        return getRelatedArtistFrom(artistRelatedResponse, desiredArtistPosition).getName();
     }
 
-    public List<String> getRelatedArtistGenres(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
-        return getRelatedArtist(artistRelatedResponse, desiredArtistName).getGenres();
+    public List<String> getRelatedArtistGenresFrom(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
+        return getRelatedArtistFrom(artistRelatedResponse, desiredArtistName).getGenres();
     }
 
-    public String getRelatedArtistId(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
-        return getRelatedArtist(artistRelatedResponse, desiredArtistName).getId();
+    public String getRelatedArtistIdFrom(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
+        return getRelatedArtistFrom(artistRelatedResponse, desiredArtistName).getId();
     }
 
-    public String getRelatedArtistType(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
-        return getRelatedArtist(artistRelatedResponse, desiredArtistName).getType();
+    public String getRelatedArtistTypeFrom(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
+        return getRelatedArtistFrom(artistRelatedResponse, desiredArtistName).getType();
     }
 
-    public String getRelatedArtistUri(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
-        return getRelatedArtist(artistRelatedResponse, desiredArtistName).getUri();
+    public String getRelatedArtistUriFrom(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
+        return getRelatedArtistFrom(artistRelatedResponse, desiredArtistName).getUri();
     }
 
-    private ArtistProfileResponseModel getRelatedArtist(ArtistRelatedResponseModel artistRelatedResponse, int desiredArtistPosition) {
+    private ArtistProfileResponseModel getRelatedArtistFrom(ArtistRelatedResponseModel artistRelatedResponse, int desiredArtistPosition) {
         if (desiredArtistPosition < 0 || desiredArtistPosition >= artistRelatedResponse.getArtists().size()) {
             throw new IndexOutOfBoundsException("Related artist position is out of bounds. Please provide a position between 0 and "
                     + artistRelatedResponse.getArtists().size() + ".");
@@ -41,7 +45,7 @@ public class RelatedArtistsResponseDataUtil {
         return artistRelatedResponse.getArtists().get(desiredArtistPosition);
     }
 
-    private ArtistProfileResponseModel getRelatedArtist(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
+    private ArtistProfileResponseModel getRelatedArtistFrom(ArtistRelatedResponseModel artistRelatedResponse, String desiredArtistName) {
         Optional<ArtistProfileResponseModel> foundRelatedArtist = artistRelatedResponse.getArtists().stream().filter(
                 relatedArtist -> desiredArtistName.equals(relatedArtist.getName())).findFirst();
         if (foundRelatedArtist.isPresent()) {

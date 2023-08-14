@@ -1,9 +1,8 @@
 package com.spotify.models.request.search;
 
-import com.spotify.testdata.search.constants.SearchTypes;
+import com.spotify.testdata.search.constants.SearchRequestTypes;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,10 +18,10 @@ public class SearchRequestModel {
     private String includeExternal;
 
     @Builder
-    public SearchRequestModel(String searchQuery, String desiredMarket, Integer desiredLimit, Integer desiredOffset, String desiredIncludeExternal, SearchTypes... specifiedSearchTypes) {
+    public SearchRequestModel(String searchQuery, String desiredMarket, Integer desiredLimit, Integer desiredOffset, String desiredIncludeExternal, SearchRequestTypes... specifiedSearchRequestTypes) {
         this.q = searchQuery;
-        this.type = Arrays.stream(specifiedSearchTypes)
-                .map(SearchTypes::getValue)
+        this.type = Arrays.stream(specifiedSearchRequestTypes)
+                .map(SearchRequestTypes::getValue)
                 .collect(Collectors.toList());
         this.market = desiredMarket;
         this.limit = desiredLimit;

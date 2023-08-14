@@ -6,7 +6,7 @@ public interface AlbumPage {
 
     AlbumPage verifyArtistNamesRowContainsArtist(String artistName);
 
-    AlbumPage verifyAlbumInfoHasText(String albumInfo);
+    AlbumPage verifyAlbumInfoHasText(String albumType, Integer albumReleaseYear);
 
     AlbumPage verifyFavouritesButtonIsAvailable();
 

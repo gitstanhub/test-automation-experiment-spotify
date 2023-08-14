@@ -37,27 +37,20 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
 
     private WebElement getEmptyViewTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewTitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewTitleText() + "']"));
     }
 
     private WebElement getEmptyViewSubtitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_subtitle' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewSubtitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_subtitle' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewSubtitleText() + "']"));
     }
 
     private WebElement getSearchResult(String title, String subtitle) {
         String contentDesc = String.format("%s, %s, ", title, subtitle);
 
-        androidPageNavigationActions.swipeToElementByDescription(contentDesc, 10);
+        androidPageNavigationActions.swipeToElementByDescription(contentDesc, 15);
 
         return androidElementActions.getElementByAndroidUiAutomator(
                 String.format(
                         "new UiSelector().description(\"%s\")",
                         contentDesc));
-
-//        return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                String.format(
-//                        "new UiSelector().description(\"%s\")",
-//                        contentDesc)));
     }
 }

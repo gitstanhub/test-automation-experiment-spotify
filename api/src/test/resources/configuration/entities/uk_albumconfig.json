@@ -1,0 +1,14 @@
+[
+  {
+    "configItemName": "artist_1_album_1",
+    "albumName": "Berlin lebt",
+    "albumArtists": [
+      "Capital Bra"
+    ],
+    "albumId": "2vdeSISq7TAWLDiEhFJ3nz",
+    "albumTotalTracks": 40,
+    "albumReleaseDate": "2018-07-06",
+    "albumReleaseDatePrecision": "day",
+    "albumType": "album"
+  }
+]

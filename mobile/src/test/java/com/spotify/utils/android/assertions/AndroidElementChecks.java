@@ -44,11 +44,6 @@ public class AndroidElementChecks {
             androidElementActions.getElementByAndroidUiAutomator(
                     "new UiSelector().resourceId(\"" + resourceId + "\")"
             );
-
-//            getDriver().findElement(AppiumBy.androidUIAutomator(
-//                    "new UiSelector().resourceId(\"" + resourceId + "\")"
-//            ));
-
             return true;
         } catch (NoSuchElementException e) {
             return false;

@@ -1,8 +1,6 @@
 package com.spotify.clients;
 
-import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
-import com.spotify.testdata.search.constants.SearchTypes;
 import io.qameta.allure.Step;
 import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;

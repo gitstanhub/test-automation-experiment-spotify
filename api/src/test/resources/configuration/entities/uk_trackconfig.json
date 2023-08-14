@@ -1,0 +1,14 @@
+[
+  {
+    "configItemName": "artist_1_track_1",
+    "trackArtists": [
+      "Capital Bra",
+      "Ufo361"
+    ],
+    "trackName": "Neymar",
+    "trackId": "50mQStZYV5QFgyGK9GOVZg",
+    "trackDurationMs": 263646,
+    "trackType": "track",
+    "trackExplicit": true
+  }
+]

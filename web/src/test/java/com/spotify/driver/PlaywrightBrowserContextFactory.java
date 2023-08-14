@@ -10,7 +10,7 @@ public class PlaywrightBrowserContextFactory {
 
         double playwrightBrowserTimeout = ConfigProviderWeb.getPlaywrightBrowserConfiguration().playwrightBrowserTimeout();
 
-        String locale = ConfigProviderWeb.getWebAppConfiguration().locale();
+        String locale = ConfigProviderWeb.getWebAppConfiguration().localeCode();
 
         PlaywrightBrowser playwrightBrowser = PlaywrightBrowser.getByName(browserName);
 

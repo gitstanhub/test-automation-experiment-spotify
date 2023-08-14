@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import static com.spotify.driver.AppiumDriverHandler.getDriver;
 import static com.spotify.driver.AppiumDriverHandler.getWait;
+import static com.spotify.locators.commons.BluetoothAccessPromptLocators.*;
 
 @Component
 @Lazy
@@ -20,37 +21,38 @@ public class BluetoothAccessPromptAndroid extends AppiumPageAndroid implements B
 
     public void handleAccessPrompt() {
         try {
-            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/touch_outside")));
-            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/design_bottom_sheet")));
+            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(ACCESS_WIDGET_TOUCH_OUTSIDE_AREA)));
+            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(ACCESS_WIDGET)));
             if (getAccessWidgetDescription().getText().contains("Bluetooth")) {
                 getAccessWidgetLaterButton().click();
             }
         } catch (TimeoutException e) {
-            System.out.println("No Bluetooth Access Prompt is visible to handle. Proceeding further...");
+            log.info("No Bluetooth Access Prompt is visible to handle. Proceeding further...");
+//            System.out.println("No Bluetooth Access Prompt is visible to handle. Proceeding further...");
         }
     }
 
     protected WebElement getAccessWidget() {
-        return androidElementActions.getElementById("com.spotify.music:id/design_bottom_sheet");
+        return androidElementActions.getElementById(ACCESS_WIDGET);
     }
 
     protected WebElement getAccessWidgetTitle() {
-        return androidElementActions.getElementById("com.spotify.music:id/title");
+        return androidElementActions.getElementById(ACCESS_WIDGET_TITLE);
     }
 
     protected WebElement getAccessWidgetDescription() {
-        return androidElementActions.getElementById("com.spotify.music:id/description");
+        return androidElementActions.getElementById(ACCESS_WIDGET_DESCRIPTION);
     }
 
     protected WebElement getAccessWidgetAcceptButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/proceed_button");
+        return androidElementActions.getElementById(ACCESS_WIDGET_ACCEPT_BUTTON);
     }
 
     protected WebElement getAccessWidgetLaterButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/later_button");
+        return androidElementActions.getElementById(ACCESS_WIDGET_LATER_BUTTON);
     }
 
     protected WebElement getTouchOutsideArea() {
-        return androidElementActions.getElementById("com.spotify.music:id/touch_outside");
+        return androidElementActions.getElementById(ACCESS_WIDGET_TOUCH_OUTSIDE_AREA);
     }
 }

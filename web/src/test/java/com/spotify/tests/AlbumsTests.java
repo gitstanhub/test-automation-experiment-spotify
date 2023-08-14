@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
+import static com.spotify.testdata.albums.constants.Albums.ARTIST_1_ALBUM_1;
+
 public class AlbumsTests extends WebTests {
 
     @Autowired
@@ -24,7 +26,10 @@ public class AlbumsTests extends WebTests {
     @Test
     @AuthRequiredWeb
     public void albumEmbeddedLinkCanBeGenerated() {
-        albumPage.openAlbumPage("2cWBwpqMsDJC1ZUwz813lo");
+
+        String albumId = ARTIST_1_ALBUM_1.getAlbumId();
+
+        albumPage.openAlbumPage(albumId);
 
         contextMenu
                 .clickContextMenuButton()
@@ -34,7 +39,7 @@ public class AlbumsTests extends WebTests {
         albumPage
                 .verifyEmbedAlbumModalIsAvailable()
                 .clickShowCodeCheckbox()
-                .verifyIframeCodeFieldContainsAlbum("2cWBwpqMsDJC1ZUwz813lo")
+                .verifyIframeCodeFieldContainsAlbum(albumId)
                 .clickEmbedCodeCopyButton()
                 .verifyEmbedCodeCopyButtonIsClicked();
     }
@@ -42,20 +47,28 @@ public class AlbumsTests extends WebTests {
     @Test
     @AuthRequiredWeb
     public void albumVersionCanBeSwitched() {
+
+        String albumId = ARTIST_1_ALBUM_1.getAlbumId();
+        String albumName = ARTIST_1_ALBUM_1.getAlbumName();
+
         albumPage
-                .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")
+                .openAlbumPage(albumId)
                 .verifyAlbumPageIsAvailable()
                 .verifyExplicitTracksAreAvailable()
                 .clickAlbumTypeSwitcher()
-                .selectAlbumTypeSwitcherOption("The Eminem Show")
+                .selectAlbumTypeSwitcherOption(albumName)
                 .verifyExplicitTracksAreNotAvailable();
     }
 
     @Test
     @AuthRequiredWeb
     public void albumCanBeAddedToPlaylist() {
+
+        String albumId = ARTIST_1_ALBUM_1.getAlbumId();
+        String albumName = ARTIST_1_ALBUM_1.getAlbumName();
+
         albumPage
-                .openAlbumPage("2cWBwpqMsDJC1ZUwz813lo")
+                .openAlbumPage(albumId)
                 .verifyAlbumPageIsAvailable();
 
         contextMenu
@@ -67,6 +80,6 @@ public class AlbumsTests extends WebTests {
                 .clickPlaylistsFilterButton()
                 .verifyPlaylistsFilterButtonIsPressed()
                 .selectSortByRecentlyAddedOption()
-                .verifyCreatedPlaylistIsAvailable("The Eminem Show");
+                .verifyCreatedPlaylistIsAvailable(albumName);
     }
 }
