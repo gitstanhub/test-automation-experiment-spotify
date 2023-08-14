@@ -10,7 +10,7 @@ import com.spotify.config.appium.app.MobileAppAuthConfiguration;
 import com.spotify.config.appium.app.MobileAppConfiguration;
 import com.spotify.config.appium.app.MobileAppLocaleConfig;
 import com.spotify.config.appium.device.commons.DeviceConfig;
-import com.spotify.config.appium.entities.EntityConfig;
+import com.spotify.config.entities.EntityConfig;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 

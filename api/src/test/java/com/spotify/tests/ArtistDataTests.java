@@ -3,8 +3,10 @@ package com.spotify.tests;
 import com.spotify.clients.ArtistClient;
 import com.spotify.config.ConfigProviderApi;
 import com.spotify.models.response.artist.*;
-import com.spotify.testdata.artist.assertions.*;
-import com.spotify.testdata.artist.constants.ArtistEntities;
+import com.spotify.testdata.albums.assertions.AlbumsAssertionData;
+import com.spotify.testdata.artists.assertions.*;
+import com.spotify.testdata.artists.constants.Artists;
+import com.spotify.testdata.tracks.assertions.TracksAssertionData;
 import com.spotify.tests.base.ApiTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.spotify.testdata.artist.constants.AristTracks.*;
-import static com.spotify.testdata.artist.constants.ArtistAlbums.*;
-import static com.spotify.testdata.artist.constants.ArtistEntities.*;
+import static com.spotify.testdata.tracks.constants.Tracks.*;
+import static com.spotify.testdata.albums.constants.Albums.*;
+import static com.spotify.testdata.artists.constants.Artists.*;
 
 public class ArtistDataTests extends ApiTests {
 
@@ -50,7 +52,7 @@ public class ArtistDataTests extends ApiTests {
     @Test
     void artistTopTracksCanBeFetched() {
 
-        ArtistTracksAssertionData.ExpectedTracksData expectedTopTracksData = new ArtistTracksAssertionData.ExpectedTracksData(
+        TracksAssertionData.ExpectedTracksData expectedTopTracksData = new TracksAssertionData.ExpectedTracksData(
                 ARTIST1_TRACK_1.getTrackName(),
                 ARTIST1_TRACK_1.getTrackId(),
                 ARTIST1_TRACK_1.getTrackDurationMs(),
@@ -66,7 +68,7 @@ public class ArtistDataTests extends ApiTests {
 
         ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracksBy(marketCode, expectedArtistId);
 
-        ArtistTracksAssertionData.ActualTracksData actualTopTracksData = new ArtistTracksAssertionData.ActualTracksData(
+        TracksAssertionData.ActualTracksData actualTopTracksData = new TracksAssertionData.ActualTracksData(
                 artistTopTracksResponseDataUtil.getTrackNameFrom(fetchedArtistTopTracks, expectedTrackName),
                 artistTopTracksResponseDataUtil.getTrackIdFrom(fetchedArtistTopTracks, expectedTrackName),
                 artistTopTracksResponseDataUtil.getTrackDurationFrom(fetchedArtistTopTracks, expectedTrackName),
@@ -82,7 +84,7 @@ public class ArtistDataTests extends ApiTests {
     @Test
     void artistAlbumsCanBeFetched() {
 
-        ArtistAlbumsAssertionData.ExpectedAlbumData expectedAlbumsData = new ArtistAlbumsAssertionData.ExpectedAlbumData(
+        AlbumsAssertionData.ExpectedAlbumData expectedAlbumsData = new AlbumsAssertionData.ExpectedAlbumData(
                 ARTIST_1_ALBUM_1.getAlbumName(),
                 ARTIST_1_ALBUM_1.getAlbumId(),
                 ARTIST_1_ALBUM_1.getAlbumArtists().get(0),
@@ -97,7 +99,7 @@ public class ArtistDataTests extends ApiTests {
 
         ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbumsBy(marketCode, expectedArtistId);
 
-        ArtistAlbumsAssertionData.ActualAlbumData actualAlbumsData = new ArtistAlbumsAssertionData.ActualAlbumData(
+        AlbumsAssertionData.ActualAlbumData actualAlbumsData = new AlbumsAssertionData.ActualAlbumData(
                 artistAlbumResponseDataUtil.getAlbumNameFrom(fetchedArtistAlbums, expectedAlbumName),
                 artistAlbumResponseDataUtil.getAlbumIdFrom(fetchedArtistAlbums, expectedAlbumName),
                 artistAlbumResponseDataUtil.getAlbumArtistNameFrom(fetchedArtistAlbums, expectedAlbumName, 0),
@@ -139,15 +141,15 @@ public class ArtistDataTests extends ApiTests {
     @Test
     void multipleArtistsProfilesCanBeFetched() {
 
-        List<ArtistEntities> inScopeArtists = Arrays.asList(
+        List<Artists> inScopeArtists = Arrays.asList(
                 ARTIST_1,
                 ARTIST_2,
                 ARTIST_3
         );
 
-        List<String> inScopeArtistsIds = ArtistEntities.getMultipleArtistIds(inScopeArtists);
-        List<String> inScopeArtistsNames = ArtistEntities.getMultipleArtistNames(inScopeArtists);
-        List<String> inScopeArtistsGenres = ArtistEntities.getMultipleArtistGenres(inScopeArtists);
+        List<String> inScopeArtistsIds = Artists.getMultipleArtistIds(inScopeArtists);
+        List<String> inScopeArtistsNames = Artists.getMultipleArtistNames(inScopeArtists);
+        List<String> inScopeArtistsGenres = Artists.getMultipleArtistGenres(inScopeArtists);
 
         ArtistMultipleAssertionData.ExpectedMultipleArtistData expectedMultipleArtistData = new ArtistMultipleAssertionData.ExpectedMultipleArtistData(
                 inScopeArtistsNames,

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotify.config.restassured.RestAssuredApiAuthConfiguration;
 import com.spotify.config.restassured.RestAssuredApiConfiguration;
-import com.spotify.config.restassured.entities.EntityConfig;
+import com.spotify.config.entities.EntityConfig;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 

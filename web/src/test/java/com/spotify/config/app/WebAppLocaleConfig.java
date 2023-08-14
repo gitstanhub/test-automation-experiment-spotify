@@ -4,7 +4,7 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:configuration/${market}_web_app_locale.properties",
+        "classpath:configuration/${country}_web_app_locale.properties",
         "classpath:configuration/uk_web_app_locale.properties"
 })
 public interface WebAppLocaleConfig extends Config {

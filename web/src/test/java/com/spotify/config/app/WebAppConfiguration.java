@@ -5,7 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:configuration/${market}_web_app.properties",
+        "classpath:configuration/${country}_web_app.properties",
         "classpath:configuration/uk_web_app.properties"
 })
 public interface WebAppConfiguration extends Config {
@@ -16,6 +16,11 @@ public interface WebAppConfiguration extends Config {
     @Key("accountsUrl")
     String accountsUrl();
 
-    @Key("locale")
-    String locale();
+    @Key("countryCode")
+    String countryCode();
+
+    @Key("localeCode")
+    String localeCode();
+
+
 }

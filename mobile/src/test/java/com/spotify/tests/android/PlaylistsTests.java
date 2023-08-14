@@ -4,7 +4,7 @@ import com.spotify.annotations.AuthRequiredMobile;
 import com.spotify.tests.base.MobileTests;
 import org.junit.jupiter.api.Test;
 
-import static com.spotify.testdata.playlist.constants.PlaylistEntities.PLAYLIST_1;
+import static com.spotify.testdata.playlists.constants.Playlists.PLAYLIST_1;
 
 public class PlaylistsTests extends MobileTests {
 

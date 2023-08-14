@@ -3,7 +3,7 @@ package com.spotify.tests;
 import com.spotify.clients.SearchClient;
 import com.spotify.config.ConfigProviderApi;
 import com.spotify.testdata.search.assertions.SearchResultsAssertionData;
-import com.spotify.testdata.search.constants.SearchTypes;
+import com.spotify.testdata.search.constants.SearchRequestTypes;
 import com.spotify.models.request.search.SearchRequestModel;
 import com.spotify.models.response.search.SearchResponseModel;
 import com.spotify.tests.base.ApiTests;
@@ -11,8 +11,8 @@ import com.spotify.tests.base.ApiTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.spotify.testdata.artist.constants.ArtistEntities.ARTIST_1;
-import static com.spotify.testdata.artist.constants.SearchResultsTypes.*;
+import static com.spotify.testdata.artists.constants.Artists.ARTIST_1;
+import static com.spotify.testdata.search.constants.SearchResultsTypes.*;
 
 public class SearchTests extends ApiTests {
 
@@ -22,21 +22,21 @@ public class SearchTests extends ApiTests {
     @Test
     void artistsAndAlbumsCanBeFound() {
 
-        SearchTypes[] searchTypes = new SearchTypes[]{
-                SearchTypes.ALBUM,
-                SearchTypes.ARTIST
+        SearchRequestTypes[] searchRequestTypes = new SearchRequestTypes[]{
+                SearchRequestTypes.ALBUM,
+                SearchRequestTypes.ARTIST
         };
 
         int desiredLimit = 5;
         int desiredOffset = 0;
 
         String expectedArtistName = ARTIST_1.getArtistName();
-        String expectedArtistType = SearchTypes.ARTIST.getValue();
-        String expectedAlbumType = SearchTypes.ALBUM.getValue();
+        String expectedArtistType = SearchRequestTypes.ARTIST.getValue();
+        String expectedAlbumType = SearchRequestTypes.ALBUM.getValue();
 
         SearchRequestModel searchRequest = SearchRequestModel.builder()
                 .searchQuery(expectedArtistName)
-                .specifiedSearchTypes(searchTypes)
+                .specifiedSearchRequestTypes(searchRequestTypes)
                 .build();
 
         SearchResponseModel searchResults = searchClient.searchWithLimitAndOffset(
@@ -84,17 +84,20 @@ public class SearchTests extends ApiTests {
     @Test
     void playlistsCanBeFoundByCountry() {
 
-        SearchTypes[] searchTypes = new SearchTypes[]{
-                SearchTypes.PLAYLIST
+        SearchRequestTypes[] searchRequestTypes = new SearchRequestTypes[]{
+                SearchRequestTypes.PLAYLIST
         };
 
         String expectedArtistName = ARTIST_1.getArtistName();
-        String expectedPlaylistType = SearchTypes.PLAYLIST.getValue();
+        String expectedPlaylistType = SearchRequestTypes.PLAYLIST.getValue();
         String marketCode = ConfigProviderApi.getRestAssuredApiConfiguration().marketCode();
+
+        int desiredLimit = 20;
+        int desiredOffset = 0;
 
         SearchRequestModel searchRequest = SearchRequestModel.builder()
                 .searchQuery(expectedArtistName)
-                .specifiedSearchTypes(searchTypes)
+                .specifiedSearchRequestTypes(searchRequestTypes)
                 .desiredMarket(marketCode)
                 .build();
 
@@ -116,20 +119,22 @@ public class SearchTests extends ApiTests {
                 .build();
 
         apiAssertionsUtil
-                .assertFieldEqualsTo(actualSearchResults.getActualPlaylistsPaginationData().getLimit(), 20)
-                .assertFieldEqualsTo(actualSearchResults.getActualPlaylistsPaginationData().getOffset(), 0);
+                .assertFieldEqualsTo(actualSearchResults.getActualPlaylistsPaginationData().getLimit(), desiredLimit)
+                .assertFieldEqualsTo(actualSearchResults.getActualPlaylistsPaginationData().getOffset(), desiredOffset);
 
         apiAssertionsUtil.assertAllFieldsContainExpectedText(actualSearchResults.getActualPlaylistsTypes(), expectedPlaylistType);
 
-        apiAssertionsUtil.assertFieldEqualsTo(actualSearchResults.getActualPlaylistsItemsSize(), 20);
+        apiAssertionsUtil.assertFieldEqualsTo(actualSearchResults.getActualPlaylistsItemsSize(), desiredLimit);
     }
 
     @Test
     void searchWithoutRequiredParamsReturnsNoResults() {
 
+        String expectedErrorMessage = "No search query";
+
         SearchResponseModel searchResults = searchClient.search(null, null);
 
         apiAssertionsUtil.assertFieldEqualsTo(
-                searchResults.getError().getMessage(), "No search query");
+                searchResults.getError().getMessage(), expectedErrorMessage);
     }
 }
