@@ -49,5 +49,4 @@ public class PlaylistResponseModel {
         private String href;
         private Integer total;
     }
-
 }

@@ -1,0 +1,35 @@
+[
+  {
+    "configItemName": "artist_1_album_1",
+    "albumArtists": [
+      "Eminem"
+    ],
+    "albumName": "The Eminem Show",
+    "albumReleaseYear": "2002",
+    "albumFullReleaseDate": "26 May 2002",
+    "albumType": "Album",
+    "albumCopyrightText": "© ℗ 2002 Aftermath Records"
+  },
+  {
+    "configItemName": "artist_2_album_1",
+    "albumArtists": [
+      "Oliver Tree"
+    ],
+    "albumName": "Cowboy Tears",
+    "albumReleaseYear": "2022",
+    "albumFullReleaseDate": "18 February 2022",
+    "albumType": "Album",
+    "albumCopyrightText": "© ℗ 2022 Atlantic Recording Corporation"
+  },
+  {
+    "configItemName": "artist_2_album_2",
+    "albumArtists": [
+      "Oliver Tree"
+    ],
+    "albumName": "Miss You (Remix)",
+    "albumReleaseYear": "2022",
+    "albumFullReleaseDate": "11 November 2022",
+    "albumType": "Single",
+    "albumCopyrightText": "© ℗ 2022 Atlantic Recording Corporation"
+  }
+]

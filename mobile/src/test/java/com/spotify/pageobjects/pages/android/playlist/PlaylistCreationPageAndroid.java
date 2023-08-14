@@ -40,12 +40,10 @@ public class PlaylistCreationPageAndroid extends AppiumPageAndroid implements Pl
 
     private WebElement getPlayListCreationPageTitle() {
         return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playListCreationPageTitleText() + "']");
-//        return getDriver().findElement(By.xpath("//android.widget.TextView[@resource-id='com.spotify.music:id/naming_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().playListCreationPageTitleText() + "']"));
     }
 
     private WebElement getPlaylistNameField() {
         return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistNameFieldText() + "\")");
-//        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/edit_text\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistNameFieldText() + "\")"));
     }
 
     private WebElement getCreateButton() {

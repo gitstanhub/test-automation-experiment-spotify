@@ -38,28 +38,16 @@ public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
                     String.format(
                             "new UiSelector().resourceId(\"%s\").text(\"%s\")",
                             targetResourceIdFirst, titleFirst));
-
-//            return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                    String.format(
-//                            "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-//                            targetResourceIdFirst, titleFirst)));
-
         } catch (NoSuchElementException e) {
             return androidElementActions.getElementByAndroidUiAutomator(
                     String.format(
                             "new UiSelector().resourceId(\"%s\").text(\"%s\")",
                             targetResourceIdSecond, titleSecond));
-
-//            return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                    String.format(
-//                            "new UiSelector().resourceId(\"%s\").text(\"%s\")",
-//                            targetResourceIdSecond, titleSecond)));
         }
     }
 
     private WebElement getScanSpotifyCodeButton() {
         return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().scanSpotifyCodeButtonText() + "\")");
-//        return getDriver().findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.spotify.music:id/camera_button\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().scanSpotifyCodeButtonText() + "\")"));
     }
 
     private WebElement getSearchField() {

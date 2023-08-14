@@ -1,10 +1,12 @@
 package com.spotify.tests;
 
-import com.neovisionaries.i18n.CountryCode;
 import com.spotify.clients.ArtistClient;
+import com.spotify.config.ConfigProviderApi;
 import com.spotify.models.response.artist.*;
-import com.spotify.testdata.artist.assertions.*;
-import com.spotify.testdata.artist.constants.ArtistEntities;
+import com.spotify.testdata.albums.assertions.AlbumsAssertionData;
+import com.spotify.testdata.artists.assertions.*;
+import com.spotify.testdata.artists.constants.Artists;
+import com.spotify.testdata.tracks.assertions.TracksAssertionData;
 import com.spotify.tests.base.ApiTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.spotify.testdata.artist.constants.AristTracks.*;
-import static com.spotify.testdata.artist.constants.ArtistAlbums.*;
-import static com.spotify.testdata.artist.constants.ArtistEntities.*;
+import static com.spotify.testdata.tracks.constants.Tracks.*;
+import static com.spotify.testdata.albums.constants.Albums.*;
+import static com.spotify.testdata.artists.constants.Artists.*;
 
 public class ArtistDataTests extends ApiTests {
 
@@ -23,15 +25,6 @@ public class ArtistDataTests extends ApiTests {
 
     @Test
     void artistProfileCanBeFetched() {
-        ArtistProfileResponseModel fetchedArtistData = artistClient.getArtistData(ARTIST_1.getArtistId());
-
-        ArtistEntitiesAssertionData.ActualArtistData actualArtistData = new ArtistEntitiesAssertionData.ActualArtistData(
-                artistResponseFieldsUtil.getArtistName(fetchedArtistData),
-                artistResponseFieldsUtil.getArtistGenres(fetchedArtistData),
-                artistResponseFieldsUtil.getArtistId(fetchedArtistData),
-                artistResponseFieldsUtil.getArtistType(fetchedArtistData),
-                artistResponseFieldsUtil.getArtistUri(fetchedArtistData)
-        );
 
         ArtistEntitiesAssertionData.ExpectedArtistData expectedArtistData = new ArtistEntitiesAssertionData.ExpectedArtistData(
                 ARTIST_1.getArtistName(),
@@ -41,26 +34,25 @@ public class ArtistDataTests extends ApiTests {
                 ARTIST_1.getArtistUri()
         );
 
+        String expectedArtistId = expectedArtistData.getExpectedArtistId();
+
+        ArtistProfileResponseModel fetchedArtistProfile = artistClient.getArtistDataBy(expectedArtistId);
+
+        ArtistEntitiesAssertionData.ActualArtistData actualArtistData = new ArtistEntitiesAssertionData.ActualArtistData(
+                artistProfileResponseDataUtil.getArtistNameFrom(fetchedArtistProfile),
+                artistProfileResponseDataUtil.getArtistGenresFrom(fetchedArtistProfile),
+                artistProfileResponseDataUtil.getArtistIdFrom(fetchedArtistProfile),
+                artistProfileResponseDataUtil.getArtistTypeFrom(fetchedArtistProfile),
+                artistProfileResponseDataUtil.getArtistUriFrom(fetchedArtistProfile)
+        );
+
         apiAssertionsUtil.assertFieldsAreEqual(actualArtistData, expectedArtistData);
     }
 
     @Test
     void artistTopTracksCanBeFetched() {
-        String countryCode = String.valueOf(CountryCode.DE);
 
-        ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracks(countryCode, ARTIST_1.getArtistId());
-
-        ArtistTracksAssertionData.ActualTracksData actualTopTracksData = new ArtistTracksAssertionData.ActualTracksData(
-                artistTopTracksFieldsUtil.getTrackName(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackId(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackDuration(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackType(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackAlbumName(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName()),
-                artistTopTracksFieldsUtil.getTrackArtistName(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName(), 0),
-                artistTopTracksFieldsUtil.getTrackExplicitStatus(fetchedArtistTopTracks, ARTIST1_TRACK_1.getTrackName())
-        );
-
-        ArtistTracksAssertionData.ExpectedTracksData expectedTopTracksData = new ArtistTracksAssertionData.ExpectedTracksData(
+        TracksAssertionData.ExpectedTracksData expectedTopTracksData = new TracksAssertionData.ExpectedTracksData(
                 ARTIST1_TRACK_1.getTrackName(),
                 ARTIST1_TRACK_1.getTrackId(),
                 ARTIST1_TRACK_1.getTrackDurationMs(),
@@ -70,25 +62,29 @@ public class ArtistDataTests extends ApiTests {
                 ARTIST1_TRACK_1.getTrackExplicit()
         );
 
+        String expectedArtistId = ARTIST_1.getArtistId();
+        String expectedTrackName = expectedTopTracksData.getExpectedTrackName();
+        String marketCode = ConfigProviderApi.getRestAssuredApiConfiguration().marketCode();
+
+        ArtistTopTracksResponseModel fetchedArtistTopTracks = artistClient.getArtistTopTracksBy(marketCode, expectedArtistId);
+
+        TracksAssertionData.ActualTracksData actualTopTracksData = new TracksAssertionData.ActualTracksData(
+                artistTopTracksResponseDataUtil.getTrackNameFrom(fetchedArtistTopTracks, expectedTrackName),
+                artistTopTracksResponseDataUtil.getTrackIdFrom(fetchedArtistTopTracks, expectedTrackName),
+                artistTopTracksResponseDataUtil.getTrackDurationFrom(fetchedArtistTopTracks, expectedTrackName),
+                artistTopTracksResponseDataUtil.getTrackTypeFrom(fetchedArtistTopTracks, expectedTrackName),
+                artistTopTracksResponseDataUtil.getTrackAlbumNameFrom(fetchedArtistTopTracks, expectedTrackName),
+                artistTopTracksResponseDataUtil.getTrackArtistNameFrom(fetchedArtistTopTracks, expectedTrackName, 0),
+                artistTopTracksResponseDataUtil.getTrackExplicitStatusFrom(fetchedArtistTopTracks, expectedTrackName)
+        );
+
         apiAssertionsUtil.assertFieldsAreEqual(actualTopTracksData, expectedTopTracksData);
     }
 
     @Test
     void artistAlbumsCanBeFetched() {
-        String countryCode = String.valueOf(CountryCode.DE);
 
-        ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbums(countryCode, ARTIST_1.getArtistId());
-
-        ArtistAlbumsAssertionData.ActualAlbumData actualAlbumsData = new ArtistAlbumsAssertionData.ActualAlbumData(
-                artistAlbumFieldsUtil.getAlbumName(fetchedArtistAlbums, ARTIST_1_ALBUM_1.getAlbumName()),
-                artistAlbumFieldsUtil.getAlbumId(fetchedArtistAlbums, ARTIST_1_ALBUM_1.getAlbumName()),
-                artistAlbumFieldsUtil.getAlbumArtistName(fetchedArtistAlbums, ARTIST_1_ALBUM_1.getAlbumName(), 0),
-                artistAlbumFieldsUtil.getAlbumType(fetchedArtistAlbums, ARTIST_1_ALBUM_1.getAlbumName()),
-                artistAlbumFieldsUtil.getAlbumTotalTracks(fetchedArtistAlbums, ARTIST_1_ALBUM_1.getAlbumName()),
-                artistAlbumFieldsUtil.getAlbumReleaseDate(fetchedArtistAlbums, ARTIST_1_ALBUM_1.getAlbumName())
-        );
-
-        ArtistAlbumsAssertionData.ExpectedAlbumData expectedAlbumsData = new ArtistAlbumsAssertionData.ExpectedAlbumData(
+        AlbumsAssertionData.ExpectedAlbumData expectedAlbumsData = new AlbumsAssertionData.ExpectedAlbumData(
                 ARTIST_1_ALBUM_1.getAlbumName(),
                 ARTIST_1_ALBUM_1.getAlbumId(),
                 ARTIST_1_ALBUM_1.getAlbumArtists().get(0),
@@ -97,20 +93,26 @@ public class ArtistDataTests extends ApiTests {
                 ARTIST_1_ALBUM_1.getAlbumReleaseDate()
         );
 
+        String expectedArtistId = ARTIST_1.getArtistId();
+        String expectedAlbumName = expectedAlbumsData.getExpectedAlbumName();
+        String marketCode = ConfigProviderApi.getRestAssuredApiConfiguration().marketCode();
+
+        ArtistAlbumsResponseModel fetchedArtistAlbums = artistClient.getArtistAlbumsBy(marketCode, expectedArtistId);
+
+        AlbumsAssertionData.ActualAlbumData actualAlbumsData = new AlbumsAssertionData.ActualAlbumData(
+                artistAlbumResponseDataUtil.getAlbumNameFrom(fetchedArtistAlbums, expectedAlbumName),
+                artistAlbumResponseDataUtil.getAlbumIdFrom(fetchedArtistAlbums, expectedAlbumName),
+                artistAlbumResponseDataUtil.getAlbumArtistNameFrom(fetchedArtistAlbums, expectedAlbumName, 0),
+                artistAlbumResponseDataUtil.getAlbumTypeFrom(fetchedArtistAlbums, expectedAlbumName),
+                artistAlbumResponseDataUtil.getAlbumTotalTracksFrom(fetchedArtistAlbums, expectedAlbumName),
+                artistAlbumResponseDataUtil.getAlbumReleaseDateFrom(fetchedArtistAlbums, expectedAlbumName)
+        );
+
         apiAssertionsUtil.assertFieldsAreEqual(actualAlbumsData, expectedAlbumsData);
     }
 
     @Test
     void relatedArtistsCanBeFetched() {
-        ArtistRelatedResponseModel fetchedArtistRelated = artistClient.getRelatedArtists(ARTIST_1.getArtistId());
-
-        ArtistRelatedAssertionData.ActualRelatedArtistData actualRelatedArtistData = new ArtistRelatedAssertionData.ActualRelatedArtistData(
-                artistRelatedFieldsUtil.getRelatedArtistName(fetchedArtistRelated, ARTIST_2.getArtistName()),
-                artistRelatedFieldsUtil.getRelatedArtistGenres(fetchedArtistRelated, ARTIST_2.getArtistName()),
-                artistRelatedFieldsUtil.getRelatedArtistId(fetchedArtistRelated, ARTIST_2.getArtistName()),
-                artistRelatedFieldsUtil.getRelatedArtistType(fetchedArtistRelated, ARTIST_2.getArtistName()),
-                artistRelatedFieldsUtil.getRelatedArtistUri(fetchedArtistRelated, ARTIST_2.getArtistName())
-        );
 
         ArtistRelatedAssertionData.ExpectedRelatedArtistData expectedAssertionData = new ArtistRelatedAssertionData.ExpectedRelatedArtistData(
                 ARTIST_2.getArtistName(),
@@ -120,33 +122,47 @@ public class ArtistDataTests extends ApiTests {
                 ARTIST_2.getArtistUri()
         );
 
+        String expectedFirstArtistId = ARTIST_1.getArtistId();
+        String expectedRelatedArtistName = ARTIST_2.getArtistName();
+
+        ArtistRelatedResponseModel fetchedArtistRelated = artistClient.getRelatedArtistsBy(expectedFirstArtistId);
+
+        ArtistRelatedAssertionData.ActualRelatedArtistData actualRelatedArtistData = new ArtistRelatedAssertionData.ActualRelatedArtistData(
+                relatedArtistsResponseDataUtil.getRelatedArtistNameFrom(fetchedArtistRelated, expectedRelatedArtistName),
+                relatedArtistsResponseDataUtil.getRelatedArtistGenresFrom(fetchedArtistRelated, expectedRelatedArtistName),
+                relatedArtistsResponseDataUtil.getRelatedArtistIdFrom(fetchedArtistRelated, expectedRelatedArtistName),
+                relatedArtistsResponseDataUtil.getRelatedArtistTypeFrom(fetchedArtistRelated, expectedRelatedArtistName),
+                relatedArtistsResponseDataUtil.getRelatedArtistUriFrom(fetchedArtistRelated, expectedRelatedArtistName)
+        );
+
         apiAssertionsUtil.assertFieldsAreEqual(actualRelatedArtistData, expectedAssertionData);
     }
 
     @Test
     void multipleArtistsProfilesCanBeFetched() {
-        List<ArtistEntities> inScopeArtists = Arrays.asList(
+
+        List<Artists> inScopeArtists = Arrays.asList(
                 ARTIST_1,
                 ARTIST_2,
                 ARTIST_3
         );
 
-        List<String> inScopeArtistsIds = ArtistEntities.getMultipleArtistIds(inScopeArtists);
-        List<String> inScopeArtistsNames = ArtistEntities.getMultipleArtistNames(inScopeArtists);
-        List<String> inScopeArtistsGenres = ArtistEntities.getMultipleArtistGenres(inScopeArtists);
-
-        ArtistMultipleResponseModel fetchedArtistMultiple = artistClient.getMultipleArtistsData(inScopeArtistsIds);
-
-        ArtistMultipleAssertionData.ActualMultipleArtistData actualMultipleArtistData = new ArtistMultipleAssertionData.ActualMultipleArtistData(
-                artistMultipleFieldsUtil.getMultipleArtistsNames(fetchedArtistMultiple),
-                artistMultipleFieldsUtil.getMultipleArtistGenres(fetchedArtistMultiple),
-                artistMultipleFieldsUtil.getMultipleArtistIds(fetchedArtistMultiple)
-        );
+        List<String> inScopeArtistsIds = Artists.getMultipleArtistIds(inScopeArtists);
+        List<String> inScopeArtistsNames = Artists.getMultipleArtistNames(inScopeArtists);
+        List<String> inScopeArtistsGenres = Artists.getMultipleArtistGenres(inScopeArtists);
 
         ArtistMultipleAssertionData.ExpectedMultipleArtistData expectedMultipleArtistData = new ArtistMultipleAssertionData.ExpectedMultipleArtistData(
                 inScopeArtistsNames,
                 inScopeArtistsGenres,
                 inScopeArtistsIds
+        );
+
+        ArtistMultipleResponseModel fetchedArtistMultiple = artistClient.getMultipleArtistsDataBy(inScopeArtistsIds);
+
+        ArtistMultipleAssertionData.ActualMultipleArtistData actualMultipleArtistData = new ArtistMultipleAssertionData.ActualMultipleArtistData(
+                multipleArtistsResponseDataUtil.getMultipleArtistsNamesFrom(fetchedArtistMultiple),
+                multipleArtistsResponseDataUtil.getMultipleArtistGenresFrom(fetchedArtistMultiple),
+                multipleArtistsResponseDataUtil.getMultipleArtistIdsFrom(fetchedArtistMultiple)
         );
 
         apiAssertionsUtil.assertFieldsAreEqual(actualMultipleArtistData, expectedMultipleArtistData);

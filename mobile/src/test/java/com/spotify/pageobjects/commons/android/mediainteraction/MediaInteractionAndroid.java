@@ -52,11 +52,6 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
                     String.format(
                             "new UiSelector().descriptionContains(\"%s\")",
                             contentDesc));
-
-//            return getDriver().findElement(AppiumBy.androidUIAutomator(
-//                    String.format(
-//                            "new UiSelector().descriptionContains(\"%s\")",
-//                            contentDesc)));
         }
     }
 

@@ -8,6 +8,9 @@ import org.aeonbits.owner.Config;
 })
 public interface MobileAppAuthConfiguration extends Config {
 
+    @Key("username")
     String username();
+
+    @Key("password")
     String password();
 }

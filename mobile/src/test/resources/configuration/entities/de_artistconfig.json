@@ -1,0 +1,12 @@
+[
+  {
+    "configItemName": "artist_1",
+    "artistName": "Eminem",
+    "artistType": "Artist"
+  },
+  {
+    "configItemName": "artist_2",
+    "artistName": "Oliver Tree",
+    "artistType": "Artist"
+  }
+]
