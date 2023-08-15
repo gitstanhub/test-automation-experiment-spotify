@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import static com.spotify.driver.PlaywrightDriverHandler.getPage;
+import static com.spotify.locators.pages.AlbumPageLocators.*;
 
 @Component
 @Lazy
@@ -44,7 +45,7 @@ public class AlbumPage extends PlaywrightPage {
     }
 
     public AlbumPage verifyEmbedCodeCopyButtonIsClicked() {
-        elementChecks.assertElementContainsText(ConfigProviderWeb.getWebAppLocaleConfig().embedCodeCopyButtonClickedText(), elementActions.findElementBySelector("label[for='ewg-showcode'] + button[data-encore-id='buttonPrimary'] span"));
+        elementChecks.assertElementContainsText(ConfigProviderWeb.getWebAppLocaleConfig().embedCodeCopyButtonClickedText(), elementActions.findElementBySelector(EMBED_CODE_COPY_BUTTON));
         return this;
     }
 
@@ -74,40 +75,40 @@ public class AlbumPage extends PlaywrightPage {
     }
 
     public AlbumPage verifyAlbumPageIsAvailable() {
-        getPage().waitForSelector("[data-testid='album-page']");
+        getPage().waitForSelector(ALBUM_PAGE_SELECTOR);
         Assertions.assertTrue(elementChecks.isElementVisible(findAlbumPageSection()));
         return this;
     }
 
     private Locator findEmbedAlbumModal() {
-        return elementActions.findElementBySelector("div[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().embedAlbumModalLabel() + "']");
+        return elementActions.findElementBySelector(String.format(EMBED_ALBUM_MODAL, ConfigProviderWeb.getWebAppLocaleConfig().embedAlbumModalLabel()));
     }
 
     private Locator findShowCodeCheckbox() {
-        return elementActions.findElementBySelector("div[data-encore-id='formCheckbox'] label[for='ewg-showcode']");
+        return elementActions.findElementBySelector(SHOW_CODE_CHECKBOX);
     }
 
     private Locator findIframeCodeField() {
-        return elementActions.findElementByTestId("iframe-code");
+        return elementActions.findElementByTestId(IFRAME_CODE_FIELD);
     }
 
     private Locator findEmbedCodeCopyButton() {
-        return elementActions.findElementBySelectorAndText("label[for='ewg-showcode'] + button[data-encore-id='buttonPrimary'] span", ConfigProviderWeb.getWebAppLocaleConfig().embedCodeCopyButtonText());
+        return elementActions.findElementBySelectorAndText(EMBED_CODE_COPY_BUTTON, ConfigProviderWeb.getWebAppLocaleConfig().embedCodeCopyButtonText());
     }
 
     private Locator findAlbumTypeSwitcher() {
-        return elementActions.findElementBySelectorAndText("button span", ConfigProviderWeb.getWebAppLocaleConfig().albumTypeSwitcherText());
+        return elementActions.findElementBySelectorAndText(ALBUM_TYPE_SWITCHER, ConfigProviderWeb.getWebAppLocaleConfig().albumTypeSwitcherText());
     }
 
     private Locator findAlbumTypeSwitcherOption(String optionName) {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] ul[tabindex] a", optionName);
+        return elementActions.findElementBySelectorAndText(ALBUM_TYPE_SWITCHER_OPTION, optionName);
     }
 
     private Locator findExplicitIcon() {
-        return elementActions.findElementBySelectorAndText("span[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().explicitIconLabel() + "']", ConfigProviderWeb.getWebAppLocaleConfig().explicitIconText()).locator("nth=0");
+        return elementActions.findElementBySelectorAndText(String.format(EXPLICIT_ICON, ConfigProviderWeb.getWebAppLocaleConfig().explicitIconLabel()), ConfigProviderWeb.getWebAppLocaleConfig().explicitIconText()).locator("nth=0");
     }
 
     private Locator findAlbumPageSection() {
-        return elementActions.findElementByTestId("album-page");
+        return elementActions.findElementByTestId(ALBUM_PAGE_SECTION_ID);
     }
 }

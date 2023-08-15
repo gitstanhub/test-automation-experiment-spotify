@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import static com.spotify.driver.PlaywrightDriverHandler.getPage;
+import static com.spotify.locators.pages.PlaylistPageLocators.*;
 
 @Component
 @Lazy
@@ -41,42 +42,42 @@ public class PlaylistPage extends PlaywrightPage {
     }
 
     public PlaylistPage verifyPlaylistSectionIsAvailable() {
-        getPage().waitForSelector("[data-testid='playlist-page']");
+        getPage().waitForSelector(PLAYLIST_SECTION_SELECTOR);
         Assertions.assertTrue(elementChecks.isElementVisible(findPlaylistSection()));
         return this;
     }
 
     public PlaylistPage verifyPlaylistTitleIsAvailableWithText(String expectedPlaylistTitle) {
-        Assertions.assertTrue(elementChecks.isElementVisible(elementActions.findElementBySelectorAndText("[data-testid='playlist-page'] [data-testid='entityTitle']", expectedPlaylistTitle)));
+        Assertions.assertTrue(elementChecks.isElementVisible(elementActions.findElementBySelectorAndText(PLAYLIST_TITLE, expectedPlaylistTitle)));
         return this;
     }
 
     public PlaylistPage verifyPlaylistDescriptionIsAvailableWithText(String expectedPlaylistDescription) {
-        Assertions.assertTrue(elementChecks.isElementVisible(elementActions.findElementBySelectorAndText("[data-testid='playlist-page'] span[data-encore-id='type'] div", expectedPlaylistDescription)));
+        Assertions.assertTrue(elementChecks.isElementVisible(elementActions.findElementBySelectorAndText(PLAYLIST_DESCRIPTION, expectedPlaylistDescription)));
         return this;
     }
 
     private Locator findPlaylistSection() {
-        return elementActions.findElementByTestId("playlist-page");
+        return elementActions.findElementByTestId(PLAYLIST_SECTION_ID);
     }
 
     private Locator findEditDetailsModal() {
-        return elementActions.findElementBySelector("div[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().editDetailsModalText() + "']");
+        return elementActions.findElementBySelector(String.format(EDIT_DETAILS_MODAL, ConfigProviderWeb.getWebAppLocaleConfig().editDetailsModalText()));
     }
 
     private Locator findEditDetailsModalDescriptionField() {
-        return elementActions.findElementByTestId("playlist-edit-details-description-input");
+        return elementActions.findElementByTestId(EDIT_DETAILS_MODAL_DESCRIPTION);
     }
 
     private Locator findEditDetailsModalSaveButton() {
-        return elementActions.findElementByTestId("playlist-edit-details-save-button");
+        return elementActions.findElementByTestId(EDIT_DETAILS_MODAL_SAVE_BUTTON);
     }
 
     private Locator findPlaylistTitle() {
-        return elementActions.findElementBySelector("[data-testid='playlist-page'] [data-testid='entityTitle']");
+        return elementActions.findElementBySelector(PLAYLIST_TITLE);
     }
 
     private Locator findPlaylistDescription() {
-        return elementActions.findElementBySelector("[data-testid='playlist-page'] span[data-encore-id='type'] div");
+        return elementActions.findElementBySelector(PLAYLIST_DESCRIPTION);
     }
 }

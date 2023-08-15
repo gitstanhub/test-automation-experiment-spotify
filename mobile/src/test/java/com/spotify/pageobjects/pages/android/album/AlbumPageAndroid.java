@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import static com.spotify.driver.AppiumDriverHandler.getDriver;
+import static com.spotify.locators.pages.AlbumPageLocators.*;
 
 @Component
 @Lazy
@@ -49,70 +50,70 @@ public class AlbumPageAndroid extends AppiumPageAndroid implements AlbumPage {
     }
 
     public AlbumPageAndroid verifyAlbumReleaseDateIs(String releaseDate) {
-        androidPageNavigationActions.swipeToElementByText("android:id/text1", releaseDate, 10);
+        androidPageNavigationActions.swipeToElementByText(RELEASE_DATE_ROW_ID, releaseDate, 10);
         androidElementChecks.assertElementIsVisible(getReleaseDateRow(releaseDate));
         return this;
     }
 
     public AlbumPageAndroid verifyAlbumArtistListContainsItem(String artistName) {
-        androidPageNavigationActions.swipeToElementByText("android:id/text1", artistName, 10);
+        androidPageNavigationActions.swipeToElementByText(ALBUM_ARTIST_LIST_ID, artistName, 10);
         androidElementChecks.assertElementIsVisible(getArtistItemFromList(artistName));
         return this;
     }
 
     public AlbumPageAndroid verifyYouMightAlsoLikeIsAvailable() {
-        androidPageNavigationActions.swipeToElementByText("com.spotify.music:id/section_heading2_title", ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText(), 10);
+        androidPageNavigationActions.swipeToElementByText(YOU_MIGHT_ALSO_LIKE_TITLE_ID, ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText(), 10);
         androidElementChecks.assertElementIsVisible(getYouMightAlsoLikeTitle());
         return this;
     }
 
     public AlbumPageAndroid verifyCopyRightRowMatches(String copyrightText) {
-        androidPageNavigationActions.swipeToElementByText("android:id/text1", copyrightText, 10);
+        androidPageNavigationActions.swipeToElementByText(COPYRIGHT_ROW_ID, copyrightText, 10);
         androidElementChecks.assertElementIsVisible(getCopyrightRow(copyrightText));
         return this;
     }
 
     private WebElement getTitle() {
-        return androidElementActions.getElementById("com.spotify.music:id/title");
+        return androidElementActions.getElementById(TITLE);
     }
 
     private WebElement getCreatorNamesRow() {
-        return androidElementActions.getElementById("com.spotify.music:id/creator_names");
+        return androidElementActions.getElementById(CREATORS_NAME_ROW);
     }
 
     private WebElement getMetaData() {
-        return androidElementActions.getElementById("com.spotify.music:id/metadata");
+        return androidElementActions.getElementById(META_DATA);
     }
 
     private WebElement getHeartButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/heart_button");
+        return androidElementActions.getElementById(HEART_BUTTON);
     }
 
     private WebElement getDownloadButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/download_button");
+        return androidElementActions.getElementById(DOWNLOAD_BUTTON);
     }
 
     private WebElement getTrackCloud() {
         try {
-            return androidElementActions.getElementById("com.spotify.music:id/track_cloud_content");
+            return androidElementActions.getElementById(TRACK_CLOUD_ID_FIRST);
         } catch (NoSuchElementException e) {
-            return androidElementActions.getElementById("com.spotify.music:id/track_cloud");
+            return androidElementActions.getElementById(TRACK_CLOUD_ID_SECOND);
         }
     }
 
     private WebElement getReleaseDateRow(String releaseDate) {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + releaseDate + "']");
+        return androidElementActions.getElementByXpath(String.format(RELEASE_DATE_ROW, releaseDate));
     }
 
     private WebElement getYouMightAlsoLikeTitle() {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/section_heading2_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText() + "']");
+        return androidElementActions.getElementByXpath(String.format(YOU_MIGHT_ALSO_LIKE, ConfigProviderMobile.getMobileAppLocaleConfig().youMightAlsoLikeTitleText()));
     }
 
     private WebElement getCopyrightRow(String copyrightText) {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + copyrightText + "']");
+        return androidElementActions.getElementByXpath(String.format(COPYRIGHT_ROW, copyrightText));
     }
 
     private WebElement getArtistItemFromList(String artistName) {
-        return androidElementActions.getListItemByTitleAndResourceId(artistName, "android:id/text1");
+        return androidElementActions.getListItemByTitleAndResourceId(artistName, ARTIST_LIST_ITEM_ID);
     }
 }

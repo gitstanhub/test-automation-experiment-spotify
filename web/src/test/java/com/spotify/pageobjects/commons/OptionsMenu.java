@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import static com.spotify.driver.PlaywrightDriverHandler.getPage;
+import static com.spotify.locators.commons.OptionsMenuLocators.CONTEXT_MENU;
+import static com.spotify.locators.commons.OptionsMenuLocators.EDIT_DETAILS_OPTION;
 
 @Component
 @Lazy
@@ -16,7 +18,7 @@ import static com.spotify.driver.PlaywrightDriverHandler.getPage;
 public class OptionsMenu extends PlaywrightPage {
 
     public OptionsMenu verifyOptionsMenuIsAvailable() {
-       getPage().waitForSelector("div[id='context-menu']");
+        getPage().waitForSelector("div[id='context-menu']");
         Assertions.assertTrue(elementChecks.isElementVisible(findContextMenu()));
         return this;
     }
@@ -27,10 +29,10 @@ public class OptionsMenu extends PlaywrightPage {
     }
 
     private Locator findContextMenu() {
-        return elementActions.findElementBySelector("div[id='context-menu']");
+        return elementActions.findElementBySelector(CONTEXT_MENU);
     }
 
     private Locator findEditDetailsOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().editDetailsOptionText());
+        return elementActions.findElementBySelectorAndText(EDIT_DETAILS_OPTION, ConfigProviderWeb.getWebAppLocaleConfig().editDetailsOptionText());
     }
 }

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.springframework.stereotype.Component;
 
-import static com.spotify.locators.commons.NavBarLocators.NAVIGATION_BAR;
+import static com.spotify.locators.commons.NavigationLocators.*;
 
 @Slf4j
 @Component
@@ -47,26 +47,26 @@ public class NavigationAndroid extends AppiumPageAndroid implements Navigation {
     }
 
     private WebElement getHomeButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/home_tab");
+        return androidElementActions.getElementById(HOME_BUTTON);
     }
 
     private WebElement getSearchButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/search_tab");
+        return androidElementActions.getElementById(SEARCH_BUTTON);
     }
 
     private WebElement getLibraryButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/your_library_tab");
+        return androidElementActions.getElementById(LIBRARY_BUTTON);
     }
 
     private WebElement getPremiumButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/premium_tab");
+        return androidElementActions.getElementById(PREMIUM_BUTTON);
     }
 
     private WebElement getBackButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/back_button");
+        return androidElementActions.getElementById(BACK_BUTTON);
     }
 
     private WebElement getCloseButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/close_button");
+        return androidElementActions.getElementById(CLOSE_BUTTON);
     }
 }

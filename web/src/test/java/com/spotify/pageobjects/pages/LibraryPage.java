@@ -1,13 +1,11 @@
 package com.spotify.pageobjects.pages;
 
-import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.MouseButton;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +15,7 @@ import java.util.function.Function;
 
 import static com.github.seregamorph.hamcrest.OrderMatchers.softOrdered;
 import static com.spotify.driver.PlaywrightDriverHandler.getPage;
+import static com.spotify.locators.pages.LibraryPageLocators.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @Component
@@ -25,7 +24,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class LibraryPage extends PlaywrightPage {
 
     public LibraryPage verifyLibraryButtonIsAvailable() {
-        getPage().waitForSelector("button[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().libraryButtonText() + "']");
+        getPage().waitForSelector(String.format(LIBRARY_BUTTON, ConfigProviderWeb.getWebAppLocaleConfig().libraryButtonText()));
         Assertions.assertTrue(elementChecks.isElementVisible(findLibraryPageTitle()));
         return this;
     }
@@ -62,11 +61,12 @@ public class LibraryPage extends PlaywrightPage {
     }
 
     public LibraryPage verifyPlaylistsFilterButtonIsPressed() {
-        getPage().waitForSelector("button[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().clearFiltersButtonText() + "']");
+        getPage().waitForSelector(String.format(CLEAR_FILTERS_BUTTON, ConfigProviderWeb.getWebAppLocaleConfig().clearFiltersButtonText()));
         Assertions.assertTrue(isLibraryFilterButtonPressed(findPlaylistsFilterButton()));
         return this;
     }
 
+    //ToDo: replace with config variable
     public LibraryPage selectSortByRecentlyAddedOption() {
         selectSortByOption("Recently Added");
         return this;
@@ -85,26 +85,25 @@ public class LibraryPage extends PlaywrightPage {
         Function<String, String> removeThePrefix = (String s) -> s != null && s.toLowerCase().startsWith("the ") ? s.substring(4) : s;
 
         int libraryItemsTotal = Integer.parseInt(elementActions.getElementAttributeBySelector(
-                "div[role=presentation] li[aria-posinset] >> nth=1",
-                "aria-setsize"));
+                LIBRARY_ITEMS_TOTAL,
+                LIBRARY_ITEMS_TOTAL_ATTRIBUTE));
 
         for (int i = 0; i < MAX_ELEMENTS && i < libraryItemsTotal; i++) {
-            String libraryItemSelector = "div[role=presentation] li[aria-posinset='" + (1 + i) + "'] div[data-encore-id='listRow'] p[id^='listrow-title-spotify'] span";
 
-            Locator libraryItem = elementActions.findElementBySelector(libraryItemSelector);
+            Locator libraryItem = elementActions.findElementBySelector(String.format(LIBRARY_ITEM_SELECTOR, (1 + i)));
             libraryItem.scrollIntoViewIfNeeded();
             String libraryItemText = libraryItem.innerText();
             libraryItemsList.add(removeThePrefix.apply(libraryItemText));
         }
 
-        System.out.println("AHAHAHA here's the collected list: " + "with size: " + libraryItemsList.size() + ", so: " + libraryItemsList);
+        log.info("Here's the collected list: " + "with size: " + libraryItemsList.size() + ", so: " + libraryItemsList);
         assertThat(libraryItemsList, softOrdered(String.CASE_INSENSITIVE_ORDER));
 
         return this;
     }
 
     public LibraryPage verifyCreatedPlaylistIsAvailable(String expectedPlaylistName) {
-        Assertions.assertTrue(elementChecks.isElementVisible(findLibraryItemByText(expectedPlaylistName).locator("nth=0")));
+        Assertions.assertTrue(elementChecks.isElementVisible(findLibraryItemByText(expectedPlaylistName).locator(CREATED_PLAYLIST_ITEM)));
         return this;
     }
 
@@ -112,7 +111,7 @@ public class LibraryPage extends PlaywrightPage {
         findSortByButton().click();
 
         elementActions
-                .findElementBySelector("div[id = context-menu] li button span ")
+                .findElementBySelector(SORT_BY_OPTION)
                 .filter(new Locator.FilterOptions().setHasText(sortByOption)).click();
 
         getPage().waitForCondition(() -> elementChecks.isElementVisibleWithText(sortByOption));
@@ -125,30 +124,30 @@ public class LibraryPage extends PlaywrightPage {
     }
 
     private Locator findExpandLibraryButton() {
-        return elementActions.findElementBySelector("button[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().expandLibraryButtonText() + "']");
+        return elementActions.findElementBySelector(String.format(EXPAND_LIBRARY_BUTTON, ConfigProviderWeb.getWebAppLocaleConfig().expandLibraryButtonText()));
     }
 
     private Locator findSortByButton() {
-        return elementActions.findElementBySelector("button[aria-label='" + ConfigProviderWeb.getWebAppLocaleConfig().sortByButtonText() + "']");
+        return elementActions.findElementBySelector(String.format(SORT_BY_BUTTON, ConfigProviderWeb.getWebAppLocaleConfig().sortByButtonText()));
     }
 
     private Locator findPlaylistsFilterButton() {
-        return elementActions.findElementBySelectorAndText("button[role='checkbox']", ConfigProviderWeb.getWebAppLocaleConfig().libraryPlaylistsFilterButtonText());
+        return elementActions.findElementBySelectorAndText(PLAYLISTS_FILTER_BUTTON, ConfigProviderWeb.getWebAppLocaleConfig().libraryPlaylistsFilterButtonText());
     }
 
     private Locator findLibraryItemByText(String libraryItemText) {
-        return elementActions.findElementBySelectorAndText("li[role='listitem'][aria-posinset]:nth-of-type(1)", libraryItemText);
+        return elementActions.findElementBySelectorAndText(LIBRARY_ITEM, libraryItemText);
     }
 
     private Boolean isLibraryFilterButtonPressed(Locator locator) {
-        return locator.getAttribute("aria-checked").equals("true");
+        return locator.getAttribute(LIBRARY_FILTER_BUTTON_PRESSED).equals("true");
     }
 
     private Locator findSearchLibraryButton() {
-        return elementActions.findElementByTestId("expand-button");
+        return elementActions.findElementByTestId(SEARCH_LIBRARY_BUTTON);
     }
 
     private Locator findSearchLibraryField() {
-        return elementActions.findElementBySelector("input[placeholder='" + ConfigProviderWeb.getWebAppLocaleConfig().searchLibraryFieldText() + "']");
+        return elementActions.findElementBySelector(String.format(SEARCH_LIBRARY_FIELD, ConfigProviderWeb.getWebAppLocaleConfig().searchLibraryFieldText()));
     }
 }
