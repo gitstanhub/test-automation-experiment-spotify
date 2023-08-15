@@ -3,14 +3,13 @@ package com.spotify.pageobjects.commons.android.mediainteraction;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.mediainteraction.MediaInteraction;
-import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
+import static com.spotify.locators.commons.MediaInteractionLocators.*;
 
 @Component
 @Lazy
@@ -38,7 +37,7 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
     }
 
     private WebElement getContextMenuButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/context_menu_button");
+        return androidElementActions.getElementById(CONTEXT_MENU_BUTTON);
     }
 
     private WebElement getShuffleButton() {
@@ -46,16 +45,16 @@ public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaI
         String contentDesc = ConfigProviderMobile.getMobileAppLocaleConfig().shuffleButtonContentDescriptionText();
 
         try {
-            return androidElementActions.getElementById("com.spotify.music:id/shuffle_button");
+            return androidElementActions.getElementById(SHUFFLE_BUTTON_ID);
         } catch (NoSuchElementException e) {
             return androidElementActions.getElementByAndroidUiAutomator(
                     String.format(
-                            "new UiSelector().descriptionContains(\"%s\")",
+                            SHUFFLE_BUTTON_UIAUTOMATOR,
                             contentDesc));
         }
     }
 
     private WebElement getPlayPauseButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/button_play_and_pause");
+        return androidElementActions.getElementById(PLAY_PAUSE_BUTTON);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static com.spotify.locators.commons.ScreensaverAdLocators.*;
+
 @Component
 @Lazy
 @Slf4j
@@ -23,7 +25,7 @@ public class ScreensaverAdAndroid extends AppiumPageAndroid implements Screensav
     }
 
     private boolean isScreensaverAdVisible() {
-        List<WebElement> screensaverAds = androidElementActions.getAllElementsById("com.spotify.music:id/screensaver_ad_banner");
+        List<WebElement> screensaverAds = androidElementActions.getAllElementsById(SCREENSAVER_AD_BANNER);
         return !screensaverAds.isEmpty();
     }
 
@@ -33,18 +35,18 @@ public class ScreensaverAdAndroid extends AppiumPageAndroid implements Screensav
     }
 
     private WebElement getScreensaverAdHeader() {
-        return androidElementActions.getElementById("com.spotify.music:id/screensaver_ad_header");
+        return androidElementActions.getElementById(SCREENSAVER_AD_HEADER);
     }
 
     private WebElement getScreensaverAdBanner() {
-        return androidElementActions.getElementById("com.spotify.music:id/screensaver_ad_banner");
+        return androidElementActions.getElementById(SCREENSAVER_AD_BANNER);
     }
 
     private WebElement getScreensaverAdActionButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/screensaver_ad_banner_cta");
+        return androidElementActions.getElementById(SCREENSAVER_AD_ACTION_BUTTON);
     }
 
     private WebElement getScreensaverAdDismissButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/screensaver_ad_footer");
+        return androidElementActions.getElementById(SCREENSAVER_AD_DISMISS_BUTTON);
     }
 }

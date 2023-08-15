@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import static com.spotify.driver.AppiumDriverHandler.getWait;
+import static com.spotify.locators.commons.SpotifyCodeLocators.SPOTIFY_CODE_IMAGE;
 
 @Component
 @Lazy
@@ -17,12 +18,12 @@ import static com.spotify.driver.AppiumDriverHandler.getWait;
 public class SpotifyCodeAndroid extends AppiumPageAndroid implements SpotifyCode {
 
     public SpotifyCodeAndroid verifySpotifyCodeIsAvailable() {
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("com.spotify.music:id/scannable_imageview")));
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(SPOTIFY_CODE_IMAGE)));
         androidElementChecks.assertElementIsVisible(getSpotifyCodeImage());
         return this;
     }
 
     private WebElement getSpotifyCodeImage() {
-        return androidElementActions.getElementById("com.spotify.music:id/scannable_imageview");
+        return androidElementActions.getElementById(SPOTIFY_CODE_IMAGE);
     }
 }
