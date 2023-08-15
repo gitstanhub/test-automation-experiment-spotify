@@ -5,22 +5,18 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
-import com.spotify.pageobjects.locators.LoginPageTexts;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import static com.spotify.driver.PlaywrightDriverHandler.getPage;
+import static com.spotify.locators.pages.LoginPageLocators.*;
 
 @Component
 @Lazy
 @Slf4j
 public class LoginPage extends PlaywrightPage {
-
-    @Autowired
-    LoginPageTexts loginPageTexts;
 
     @Step
     public LoginPage openLoginPage() {
@@ -55,7 +51,7 @@ public class LoginPage extends PlaywrightPage {
             fillInUsername(username);
             fillInPassword(password);
             clickLoginButton();
-            getPage().waitForSelector("[data-testid = 'web-player-link']", new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
+            getPage().waitForSelector(WEB_PLAYER_BUTTON, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
             clickWebPlayerButton();
         } else if (findLoggedInStateTitle().isVisible()) {
             clickWebPlayerButton();
@@ -64,26 +60,26 @@ public class LoginPage extends PlaywrightPage {
     }
 
     private Locator findLoginField() {
-        return elementActions.findElementByTestId("login-username");
+        return elementActions.findElementByTestId(LOGIN_FIELD);
     }
 
     private Locator findPasswordField() {
-        return elementActions.findElementByTestId("login-password");
+        return elementActions.findElementByTestId(PASSWORD_FIELD);
     }
 
     private Locator findLoginButton() {
-        return elementActions.findElementByTestId("login-button");
+        return elementActions.findElementByTestId(LOGIN_BUTTON);
     }
 
     private Locator findLoggedOutStateTitle() {
-        return elementActions.findElementByExactText(loginPageTexts.getLoggedOutStateTitle());
+        return elementActions.findElementByExactText(ConfigProviderWeb.getWebAppLocaleConfig().loggedOutStateTitle());
     }
 
     private Locator findLoggedInStateTitle() {
-        return elementActions.findElementByExactText(loginPageTexts.getLoggedInStateTitle());
+        return elementActions.findElementByExactText(ConfigProviderWeb.getWebAppLocaleConfig().loggedInStateTitle());
     }
 
     private Locator findWebPlayerButton() {
-        return elementActions.findElementByTestId("web-player-link");
+        return elementActions.findElementByTestId(WEB_PLAYER_BUTTON_ID);
     }
 }
