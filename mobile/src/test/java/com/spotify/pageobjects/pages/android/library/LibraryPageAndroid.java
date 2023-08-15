@@ -4,14 +4,12 @@ import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.library.LibraryPage;
 import com.spotify.utils.android.navgiation.AndroidPageNavigationActions;
-import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
+import static com.spotify.locators.pages.LibraryPageLocators.*;
 
 @Component
 @Lazy
@@ -20,10 +18,10 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
 
     public LibraryPageAndroid selectArtistItem(String artistName) {
 
-        if (androidElementChecks.isElementExists("com.spotify.music:id/subtitle")) {
+        if (androidElementChecks.isElementExists(ARTIST_ITEM_SUBTITLE_ID)) {
             androidElementActions.getListItemByTitleAndSubtitle(artistName, ConfigProviderMobile.getMobileAppLocaleConfig().artistItemSubtitleText()).click();
         } else {
-            androidElementActions.getListItemByTitleAndResourceId(artistName, "com.spotify.music:id/title").click();
+            androidElementActions.getListItemByTitleAndResourceId(artistName, ARTIST_ITEM_TITLE_ID).click();
         }
         return this;
     }
@@ -79,9 +77,7 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     }
 
     public LibraryPageAndroid tapSortButton() {
-        String resourceId = "com.spotify.music:id/sort";
-
-        androidPageNavigationActions.swipeToElementById(resourceId, AndroidPageNavigationActions.Direction.DIRECTION_UP, 10);
+        androidPageNavigationActions.swipeToElementById(SORT_BUTTON, AndroidPageNavigationActions.Direction.DIRECTION_UP, 10);
         getSortButton().click();
 
         return this;
@@ -98,55 +94,51 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
     }
 
     public LibraryPageAndroid choosePlaylistOption() {
-        getCreatePlaylistMenuPlaylistButton().click();
+        getCreatePlaylistMenuButton().click();
         return this;
     }
 
     private WebElement getProfileButton() {
-        return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_image\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().profileButtonText() + "\")");
+        return androidElementActions.getElementByAndroidUiAutomator(String.format(PROFILE_BUTTON, ConfigProviderMobile.getMobileAppLocaleConfig().profileButtonText()));
     }
 
     private WebElement getLibraryPageTitle() {
-        return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().resourceId(\"com.spotify.music:id/faceheader_title\").description(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().libraryPageTitleText() + "\")");
+        return androidElementActions.getElementByAndroidUiAutomator(String.format(LIBRARY_PAGE_TITLE, ConfigProviderMobile.getMobileAppLocaleConfig().libraryPageTitleText()));
     }
 
     private WebElement getPlaylistsButton() {
-        return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().playlistsButtonText() + "\")");
+        return androidElementActions.getElementByAndroidUiAutomator(String.format(PLAYLISTS_BUTTON, ConfigProviderMobile.getMobileAppLocaleConfig().playlistsButtonText()));
     }
 
     private WebElement getAlbumsButton() {
-        return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsButtonText() + "\")");
+        return androidElementActions.getElementByAndroidUiAutomator(String.format(ALBUMS_BUTTON, ConfigProviderMobile.getMobileAppLocaleConfig().albumsButtonText()));
     }
 
     private WebElement getArtistsButton() {
-        return androidElementActions.getElementByAndroidUiAutomator("new UiSelector().className(\"android.widget.TextView\").text(\"" + ConfigProviderMobile.getMobileAppLocaleConfig().artistsButtonText() + "\")");
+        return androidElementActions.getElementByAndroidUiAutomator(String.format(ARTISTS_BUTTON, ConfigProviderMobile.getMobileAppLocaleConfig().artistsButtonText()));
     }
 
     private WebElement getSearchButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/icon_search");
+        return androidElementActions.getElementById(SEARCH_BUTTON);
     }
 
     private WebElement getCreatePlaylistButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/icon_create");
+        return androidElementActions.getElementById(CREATE_PLAYLIST_BUTTON);
     }
 
     private WebElement getSortButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/sort");
+        return androidElementActions.getElementById(SORT_BUTTON);
     }
 
     private WebElement getChangeLayoutButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/icon_grid_list");
+        return androidElementActions.getElementById(CHANGE_LAYOUT_BUTTON);
     }
 
     private WebElement getCreatePlaylistMenuTitle() {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/heading' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().createPlaylistMenuTitleText() + "']");
+        return androidElementActions.getElementByXpath(String.format(CREATE_PLAYLIST_MENU_TITLE, ConfigProviderMobile.getMobileAppLocaleConfig().createPlaylistMenuTitleText()));
     }
 
-    private WebElement getCreatePlaylistMenuPlaylistButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/create_playlist_row");
-    }
-
-    private WebElement getCreatePlaylistMenuBlendButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/title");
+    private WebElement getCreatePlaylistMenuButton() {
+        return androidElementActions.getElementById(CREATE_PLAYLIST_MENU_BUTTON);
     }
 }

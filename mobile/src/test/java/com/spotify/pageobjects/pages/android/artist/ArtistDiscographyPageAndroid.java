@@ -3,14 +3,12 @@ package com.spotify.pageobjects.pages.android.artist;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.artist.ArtistDiscographyPage;
-import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
+import static com.spotify.locators.pages.ArtistDiscographyPageLocators.*;
 
 @Component
 @Lazy
@@ -33,30 +31,30 @@ public class ArtistDiscographyPageAndroid extends AppiumPageAndroid implements A
     }
 
     public ArtistDiscographyPageAndroid verifySinglesTitleIsAvailable() {
-        androidPageNavigationActions.swipeToElementByText("android:id/text1", ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText(), 10);
+        androidPageNavigationActions.swipeToElementByText(SINGLES_TITLE_ID, ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText(), 10);
         androidElementChecks.assertElementIsVisible(getSinglesTitle());
         return this;
     }
 
     public ArtistDiscographyPageAndroid verifyDiscographyItemIsAvailable(String itemTitle, Integer itemReleaseYear) {
-        androidPageNavigationActions.swipeToElementWithSiblingByText("com.spotify.music:id/labels", itemTitle, itemReleaseYear.toString(), 10);
-        androidElementChecks.assertElementIsVisible(androidElementActions.getItemByChildSiblings("com.spotify.music:id/labels", itemTitle, itemReleaseYear.toString()));
+        androidPageNavigationActions.swipeToElementWithSiblingByText(DISCOGRAPHY_ITEM_ID, itemTitle, itemReleaseYear.toString(), 10);
+        androidElementChecks.assertElementIsVisible(androidElementActions.getItemByChildSiblings(DISCOGRAPHY_ITEM_ID, itemTitle, itemReleaseYear.toString()));
         return this;
     }
 
     private WebElement getPageTitle() {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/glue_toolbar_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().artistDiscographyPageTitleText() + "']");
+        return androidElementActions.getElementByXpath(String.format(PAGE_TITLE, ConfigProviderMobile.getMobileAppLocaleConfig().artistDiscographyPageTitleText()));
     }
 
     private WebElement getLatestReleaseTitle() {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().latestReleaseTitleText() + "']");
+        return androidElementActions.getElementByXpath(String.format(LATEST_RELEASE_TITLE, ConfigProviderMobile.getMobileAppLocaleConfig().latestReleaseTitleText()));
     }
 
     private WebElement getAlbumsTitle() {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().albumsTitleText() + "']");
+        return androidElementActions.getElementByXpath(String.format(ALBUMS_TITLE, ConfigProviderMobile.getMobileAppLocaleConfig().albumsTitleText()));
     }
 
     private WebElement getSinglesTitle() {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText() + "']");
+        return androidElementActions.getElementByXpath(String.format(SINGLES_TITLE, ConfigProviderMobile.getMobileAppLocaleConfig().singlesTitleText()));
     }
 }

@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import static com.spotify.locators.commons.ContextMenuLocators.*;
+
 @Component
 @Lazy
 @Slf4j
@@ -38,22 +40,22 @@ public class ContextMenu extends PlaywrightPage {
     }
 
     private Locator findContextMenuButton() {
-        return elementActions.findElementBySelector("button[data-testid='add-button'] + button[data-testid='more-button']");
+        return elementActions.findElementBySelector(CONTEXT_MENU_BUTTON);
     }
 
     private Locator findShareOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().shareOptionText());
+        return elementActions.findElementBySelectorAndText(SHARE_OPTION, ConfigProviderWeb.getWebAppLocaleConfig().shareOptionText());
     }
 
     private Locator findEmbedAlbumOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().embedAlbumOptionText());
+        return elementActions.findElementBySelectorAndText(EMBED_ALBUM, ConfigProviderWeb.getWebAppLocaleConfig().embedAlbumOptionText());
     }
 
     private Locator findAddToPlaylistOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().addToPlaylistOptionText());
+        return elementActions.findElementBySelectorAndText(ADD_TO_PLAYLIST_OPTION, ConfigProviderWeb.getWebAppLocaleConfig().addToPlaylistOptionText());
     }
 
     private Locator findCreatePlaylistOption() {
-        return elementActions.findElementBySelectorAndText("div[id='context-menu'] button[role='menuitem']", ConfigProviderWeb.getWebAppLocaleConfig().createPlaylistOptionText());
+        return elementActions.findElementBySelectorAndText(CREATE_PLAYLIST_OPTION, ConfigProviderWeb.getWebAppLocaleConfig().createPlaylistOptionText());
     }
 }
