@@ -3,14 +3,12 @@ package com.spotify.pageobjects.pages.android.library;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.library.LibrarySearchPage;
-import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
+import static com.spotify.locators.pages.LibrarySearchPageLocators.*;
 
 @Component
 @Lazy
@@ -28,19 +26,19 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
     }
 
     private WebElement getLibrarySearchField() {
-        return androidElementActions.getElementById("com.spotify.music:id/edit_text");
+        return androidElementActions.getElementById(LIBRARY_SEARCH_FIELD);
     }
 
     private WebElement getSearchFieldClearButton() {
-        return androidElementActions.getElementById("com.spotify.music:id/icon_clear_search");
+        return androidElementActions.getElementById(SEARCH_FIELD_CLEAR_BUTTON);
     }
 
     private WebElement getEmptyViewTitle() {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_title' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewTitleText() + "']");
+        return androidElementActions.getElementByXpath(String.format(EMPTY_VIEW_TITLE, ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewTitleText()));
     }
 
     private WebElement getEmptyViewSubtitle() {
-        return androidElementActions.getElementByXpath("//android.widget.TextView[@resource-id='com.spotify.music:id/search_empty_view_subtitle' and @text='" + ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewSubtitleText() + "']");
+        return androidElementActions.getElementByXpath(String.format(EMPTY_VIEW_SUBTITLE, ConfigProviderMobile.getMobileAppLocaleConfig().emptyViewSubtitleText()));
     }
 
     private WebElement getSearchResult(String title, String subtitle) {
@@ -50,7 +48,7 @@ public class LibrarySearchPageAndroid extends AppiumPageAndroid implements Libra
 
         return androidElementActions.getElementByAndroidUiAutomator(
                 String.format(
-                        "new UiSelector().description(\"%s\")",
+                        SEARCH_RESULT_UIAUTOMATOR,
                         contentDesc));
     }
 }
