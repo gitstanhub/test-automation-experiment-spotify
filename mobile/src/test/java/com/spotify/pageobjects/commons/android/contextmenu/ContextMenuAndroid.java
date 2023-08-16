@@ -3,6 +3,7 @@ package com.spotify.pageobjects.commons.android.contextmenu;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.contextmenu.ContextMenu;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
@@ -15,16 +16,19 @@ import static com.spotify.locators.commons.ContextMenuLocators.*;
 @Slf4j
 public class ContextMenuAndroid extends AppiumPageAndroid implements ContextMenu {
 
+    @Step
     public ContextMenuAndroid verifyContextMenuTitleIsAvailable(String expectedTitleText) {
         androidElementChecks.assertElementIsVisible(getContextMenuTitle(expectedTitleText));
         return this;
     }
 
+    @Step
     public ContextMenuAndroid tapShowSpotifyCodeButton() {
         getShowSpotifyCodeButton().click();
         return this;
     }
 
+    @Step
     public ContextMenuAndroid tapDeletePlaylistButton() {
         getDeletePlaylistButton().click();
         return this;

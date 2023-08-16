@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages.android.artist;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.artist.ArtistProfilePage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -16,44 +17,52 @@ import static com.spotify.locators.pages.ArtistProfilePageLocators.*;
 @Slf4j
 public class ArtistProfilePageAndroid extends AppiumPageAndroid implements ArtistProfilePage {
 
+    @Step
     public ArtistProfilePageAndroid verifyProfileTitleHasText(String artistName) {
         androidElementChecks.assertElementHasExactText(getTitle(), artistName);
         return this;
     }
 
+    @Step
     public ArtistProfilePageAndroid verifyFollowButtonIsAvailable() {
         androidElementChecks.assertElementIsVisible(getFollowButton());
         return this;
     }
 
+    @Step
     public ArtistProfilePageAndroid verifyMonthlyListenersCountIsAvailable() {
         androidElementChecks.assertElementIsVisible(getMetaData());
         return this;
     }
 
+    @Step
     public ArtistProfilePageAndroid verifyTrackCloudContainsArtist(String artistName) {
         androidElementChecks.assertElementContainsText(getTrackCloud(), artistName);
         return this;
     }
 
+    @Step
     public ArtistProfilePageAndroid verifyPopularReleasesSectionIsAvailable() {
         androidPageNavigationActions.swipeToElementByText(POPULAR_RELEASES_SECTION_ID, ConfigProviderMobile.getMobileAppLocaleConfig().popularReleasesTitleText(), 10);
         androidElementChecks.assertElementIsVisible(getPopularReleasesTitle());
         return this;
     }
 
+    @Step
     public ArtistProfilePageAndroid verifyArtistPlaylistsSectionIsAvailable() {
         androidPageNavigationActions.swipeToElementByText(ARTIST_PLAYLISTS_SECTION_ID, ConfigProviderMobile.getMobileAppLocaleConfig().artistPlaylistsTitleText(), 10);
         androidElementChecks.assertElementIsVisible(getArtistPlaylistTitle());
         return this;
     }
 
+    @Step
     public ArtistProfilePageAndroid verifyFansAlsoLikeSectionIsAvailable() {
         androidPageNavigationActions.swipeToElementByText(FANS_ALSO_LIKE_SECTION_ID, ConfigProviderMobile.getMobileAppLocaleConfig().fansAlsoLikeSectionText(), 10);
         androidElementChecks.assertElementIsVisible(getFansAlsoLikeTitle());
         return this;
     }
 
+    @Step
     public ArtistProfilePageAndroid tapSeeDiscographyButton() {
         androidPageNavigationActions.swipeToElementByText(ConfigProviderMobile.getMobileAppLocaleConfig().seeDiscographyButtonText(), 10);
         getSeeDiscographyButton().click();

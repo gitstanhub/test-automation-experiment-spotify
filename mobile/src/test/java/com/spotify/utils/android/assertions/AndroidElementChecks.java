@@ -1,15 +1,12 @@
 package com.spotify.utils.android.assertions;
 
 import com.spotify.utils.android.elementactions.AndroidElementActions;
-import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
 
 @Slf4j
 @Component
@@ -39,7 +36,7 @@ public class AndroidElementChecks {
     }
 
     public boolean isElementExists(String resourceId) {
-        System.out.println("Checking if elements with subtitles exist");
+        log.info("Checking if elements with subtitles exist");
         try {
             androidElementActions.getElementByAndroidUiAutomator(
                     "new UiSelector().resourceId(\"" + resourceId + "\")"

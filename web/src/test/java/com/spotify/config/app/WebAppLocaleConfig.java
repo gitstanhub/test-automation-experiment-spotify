@@ -38,6 +38,12 @@ public interface WebAppLocaleConfig extends Config {
     @Key("clearFiltersButtonText")
     String clearFiltersButtonText();
 
+    @Key("sortByRecentOption")
+    String sortByRecentOption();
+
+    @Key("sortByAlphabeticalOption")
+    String sortByAlphabeticalOption();
+
     //SearchPage
     @Key("allFilterButtonText")
     String allFilterButtonText();
