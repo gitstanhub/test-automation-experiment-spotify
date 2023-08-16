@@ -3,6 +3,7 @@ package com.spotify.pageobjects.commons.android.mediainteraction;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.mediainteraction.MediaInteraction;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -16,21 +17,25 @@ import static com.spotify.locators.commons.MediaInteractionLocators.*;
 @Slf4j
 public class MediaInteractionAndroid extends AppiumPageAndroid implements MediaInteraction {
 
+    @Step
     public MediaInteractionAndroid tapContextMenuButton() {
         getContextMenuButton().click();
         return this;
     }
 
+    @Step
     public MediaInteractionAndroid verifyContextMenuButtonIsAvailable() {
         androidElementChecks.assertElementIsVisible(getContextMenuButton());
         return this;
     }
 
+    @Step
     public MediaInteractionAndroid verifyShuffleButtonIsAvailable() {
         androidElementChecks.assertElementIsVisible(getShuffleButton());
         return this;
     }
 
+    @Step
     public MediaInteractionAndroid verifyPlayButtonIsAvailable() {
         androidElementChecks.assertElementIsVisible(getPlayPauseButton());
         return this;

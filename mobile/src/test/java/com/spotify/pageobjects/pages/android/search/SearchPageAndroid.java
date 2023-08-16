@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages.android.search;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.search.SearchPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -16,11 +17,13 @@ import static com.spotify.locators.pages.SearchPageLocators.*;
 @Slf4j
 public class SearchPageAndroid extends AppiumPageAndroid implements SearchPage {
 
+    @Step
     public SearchPageAndroid verifySearchPageIsOpened() {
         androidElementChecks.assertElementIsVisible(getSearchPageTitle());
         return this;
     }
 
+    @Step
     public SearchPageAndroid tapGlobalSearchField() {
         getSearchField().click();
         return this;

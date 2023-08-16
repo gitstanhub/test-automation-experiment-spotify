@@ -43,7 +43,7 @@ public class AndroidElementActions {
     }
 
     public WebElement getListItemByTitleAndResourceId(String title, String targetResourceId) {
-        System.out.println("Getting item from the list by title");
+        log.info("Getting item from the list by title");
 
         androidPageNavigationActions.swipeToElementByText(targetResourceId, title, 15);
 
@@ -54,7 +54,7 @@ public class AndroidElementActions {
     }
 
     public WebElement getListItemByTitleAndSubtitle(String title, String subtitle) {
-        System.out.println("Getting item from the list by title and subtitle");
+        log.info("Getting item from the list by title and subtitle");
         String contentDesc = String.format("%s, %s, ", title, subtitle);
 
         androidPageNavigationActions.swipeToElementByDescription(contentDesc, 15);

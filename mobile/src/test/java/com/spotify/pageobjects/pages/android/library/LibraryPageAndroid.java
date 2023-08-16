@@ -4,6 +4,7 @@ import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.library.LibraryPage;
 import com.spotify.utils.android.navgiation.AndroidPageNavigationActions;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
@@ -16,6 +17,7 @@ import static com.spotify.locators.pages.LibraryPageLocators.*;
 @Slf4j
 public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage {
 
+    @Step
     public LibraryPageAndroid selectArtistItem(String artistName) {
 
         if (androidElementChecks.isElementExists(ARTIST_ITEM_SUBTITLE_ID)) {
@@ -26,6 +28,7 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
         return this;
     }
 
+    @Step
     public LibraryPageAndroid selectAlbumItem(String albumName, String artistName) {
 
         if (androidElementChecks.isElementSelected(getAlbumsButton())) {
@@ -36,6 +39,7 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
         return this;
     }
 
+    @Step
     public LibraryPageAndroid selectPlaylistItem(String playlistName, String playlistAuthorName) {
 
         if (androidElementChecks.isElementSelected(getPlaylistsButton())) {
@@ -46,36 +50,43 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
         return this;
     }
 
+    @Step
     public LibraryPageAndroid verifyLibraryPageIsOpened() {
         androidElementChecks.assertElementIsVisible(getLibraryPageTitle());
         return this;
     }
 
+    @Step
     public LibraryPageAndroid verifyArtistButtonIsSelected() {
         androidElementChecks.assertElementSelected(getArtistsButton());
         return this;
     }
 
+    @Step
     public LibraryPageAndroid verifyAlbumsButtonIsSelected() {
         androidElementChecks.assertElementSelected(getAlbumsButton());
         return this;
     }
 
+    @Step
     public LibraryPageAndroid tapArtistsButton() {
         getArtistsButton().click();
         return this;
     }
 
+    @Step
     public LibraryPageAndroid tapAlbumsButton() {
         getAlbumsButton().click();
         return this;
     }
 
+    @Step
     public LibraryPageAndroid tapPlaylistsButton() {
         getPlaylistsButton().click();
         return this;
     }
 
+    @Step
     public LibraryPageAndroid tapSortButton() {
         androidPageNavigationActions.swipeToElementById(SORT_BUTTON, AndroidPageNavigationActions.Direction.DIRECTION_UP, 10);
         getSortButton().click();
@@ -83,16 +94,19 @@ public class LibraryPageAndroid extends AppiumPageAndroid implements LibraryPage
         return this;
     }
 
+    @Step
     public LibraryPageAndroid tapSearchButton() {
         getSearchButton().click();
         return this;
     }
 
+    @Step
     public LibraryPageAndroid tapCreatePlaylistButton() {
         getCreatePlaylistButton().click();
         return this;
     }
 
+    @Step
     public LibraryPageAndroid choosePlaylistOption() {
         getCreatePlaylistMenuButton().click();
         return this;

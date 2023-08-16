@@ -3,6 +3,7 @@ package com.spotify.pageobjects.commons;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.PlaywrightException;
 import com.spotify.pageobjects.base.PlaywrightPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import static com.spotify.locators.commons.CookiesBanner.*;
 @Slf4j
 public class CookiesBanner extends PlaywrightPage {
 
+    @Step
     public CookiesBanner handleCookiesBanner() {
 
         try {
@@ -27,8 +29,9 @@ public class CookiesBanner extends PlaywrightPage {
         return this;
     }
 
+    @Step
     public CookiesBanner clickCookiesAcceptButton() {
-        System.out.println("Trying to click on the accept button");
+        log.info("Trying to click on the accept button");
         findCookiesAcceptButton().click();
         return this;
     }

@@ -2,6 +2,7 @@ package com.spotify.pageobjects.commons.android.accessprompt;
 
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.accessprompt.BluetoothAccessPrompt;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -10,7 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
 import static com.spotify.driver.AppiumDriverHandler.getWait;
 import static com.spotify.locators.commons.BluetoothAccessPromptLocators.*;
 
@@ -19,6 +19,7 @@ import static com.spotify.locators.commons.BluetoothAccessPromptLocators.*;
 @Slf4j
 public class BluetoothAccessPromptAndroid extends AppiumPageAndroid implements BluetoothAccessPrompt {
 
+    @Step
     public void handleAccessPrompt() {
         try {
             getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(ACCESS_WIDGET_TOUCH_OUTSIDE_AREA)));
@@ -28,7 +29,6 @@ public class BluetoothAccessPromptAndroid extends AppiumPageAndroid implements B
             }
         } catch (TimeoutException e) {
             log.info("No Bluetooth Access Prompt is visible to handle. Proceeding further...");
-//            System.out.println("No Bluetooth Access Prompt is visible to handle. Proceeding further...");
         }
     }
 
