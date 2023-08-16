@@ -1,14 +1,10 @@
 package com.spotify.utils.android.navgiation;
 
 import com.spotify.utils.android.elementactions.AndroidElementActions;
-import com.spotify.utils.android.navgiation.AndroidDeviceActions;
-import io.appium.java_client.AppiumBy;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static com.spotify.driver.AppiumDriverHandler.getDriver;
 
 @Component
 @Slf4j
@@ -51,7 +47,7 @@ public class AndroidPageNavigationActions {
                     return;
                 }
             } catch (NoSuchElementException e) {
-                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+                log.info("Couldn't find the desired element within the focused area. Trying to swipe further...");
                 androidDeviceActions.swipeDown();
             }
             attempts++;
@@ -74,7 +70,7 @@ public class AndroidPageNavigationActions {
                     return;
                 }
             } catch (NoSuchElementException e) {
-                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+                log.info("Couldn't find the desired element within the focused area. Trying to swipe further...");
                 androidDeviceActions.swipeDown();
             }
             attempts++;
@@ -98,7 +94,7 @@ public class AndroidPageNavigationActions {
                     return;
                 }
             } catch (NoSuchElementException e) {
-                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+                log.info("Couldn't find the desired element within the focused area. Trying to swipe further...");
                 androidDeviceActions.swipeDown();
             }
             attempts++;
@@ -121,7 +117,7 @@ public class AndroidPageNavigationActions {
                     return;
                 }
             } catch (NoSuchElementException e) {
-                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+                log.info("Couldn't find the desired element within the focused area. Trying to swipe further...");
                 androidDeviceActions.swipeDown();
             }
             attempts++;
@@ -149,7 +145,7 @@ public class AndroidPageNavigationActions {
                     return;
                 }
             } catch (NoSuchElementException e) {
-                System.out.println("Couldn't find the desired element within the focused area. Trying to swipe further...");
+                log.info("Couldn't find the desired element within the focused area. Trying to swipe further...");
 
                 switch (direction) {
                     case (Direction.DIRECTION_UP) -> androidDeviceActions.swipeUp();

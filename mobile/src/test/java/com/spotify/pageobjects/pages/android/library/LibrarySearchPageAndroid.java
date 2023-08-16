@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages.android.library;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.library.LibrarySearchPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
@@ -15,11 +16,13 @@ import static com.spotify.locators.pages.LibrarySearchPageLocators.*;
 @Slf4j
 public class LibrarySearchPageAndroid extends AppiumPageAndroid implements LibrarySearchPage {
 
+    @Step
     public LibrarySearchPageAndroid searchLibraryFor(String searchQuery) {
         getLibrarySearchField().sendKeys(searchQuery);
         return this;
     }
 
+    @Step
     public LibrarySearchPageAndroid verifySearchResultIsAvailable(String expectedSearchResult, String searchResultType) {
         androidElementChecks.assertElementIsVisible(getSearchResult(expectedSearchResult, searchResultType));
         return this;

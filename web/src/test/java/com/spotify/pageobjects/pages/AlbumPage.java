@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages;
 import com.microsoft.playwright.Locator;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.context.annotation.Lazy;
@@ -16,21 +17,25 @@ import static com.spotify.locators.pages.AlbumPageLocators.*;
 @Slf4j
 public class AlbumPage extends PlaywrightPage {
 
+    @Step
     public AlbumPage openAlbumPage(String albumId) {
         browserActions.navigateToUrl(ConfigProviderWeb.getWebAppConfiguration().baseUrl() + "/album/" + albumId);
         return this;
     }
 
+    @Step
     public AlbumPage verifyEmbedAlbumModalIsAvailable() {
         Assertions.assertTrue(elementChecks.isElementVisible(findEmbedAlbumModal()));
         return this;
     }
 
+    @Step
     public AlbumPage clickShowCodeCheckbox() {
         findShowCodeCheckbox().click();
         return this;
     }
 
+    @Step
     public AlbumPage verifyIframeCodeFieldContainsAlbum(String albumId) {
         String expectedText = "<iframe style=\"border-radius:12px\"" +
                 " src=\"https://open.spotify.com/embed/album/" + albumId + "?utm_source=generator\"" +
@@ -44,36 +49,43 @@ public class AlbumPage extends PlaywrightPage {
         return this;
     }
 
+    @Step
     public AlbumPage verifyEmbedCodeCopyButtonIsClicked() {
         elementChecks.assertElementContainsText(ConfigProviderWeb.getWebAppLocaleConfig().embedCodeCopyButtonClickedText(), elementActions.findElementBySelector(EMBED_CODE_COPY_BUTTON));
         return this;
     }
 
+    @Step
     public AlbumPage clickEmbedCodeCopyButton() {
         findEmbedCodeCopyButton().click();
         return this;
     }
 
+    @Step
     public AlbumPage clickAlbumTypeSwitcher() {
         findAlbumTypeSwitcher().click();
         return this;
     }
 
+    @Step
     public AlbumPage selectAlbumTypeSwitcherOption(String optionName) {
         findAlbumTypeSwitcherOption(optionName).click();
         return this;
     }
 
+    @Step
     public AlbumPage verifyExplicitTracksAreAvailable() {
         Assertions.assertTrue(elementChecks.isElementVisible(findExplicitIcon()));
         return this;
     }
 
+    @Step
     public AlbumPage verifyExplicitTracksAreNotAvailable() {
         Assertions.assertFalse(elementChecks.isElementVisible(findExplicitIcon()));
         return this;
     }
 
+    @Step
     public AlbumPage verifyAlbumPageIsAvailable() {
         getPage().waitForSelector(ALBUM_PAGE_SELECTOR);
         Assertions.assertTrue(elementChecks.isElementVisible(findAlbumPageSection()));

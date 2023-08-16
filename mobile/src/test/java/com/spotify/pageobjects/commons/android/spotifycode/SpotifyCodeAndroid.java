@@ -2,6 +2,7 @@ package com.spotify.pageobjects.commons.android.spotifycode;
 
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.commons.interfaces.spotifycode.SpotifyCode;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ import static com.spotify.locators.commons.SpotifyCodeLocators.SPOTIFY_CODE_IMAG
 @Slf4j
 public class SpotifyCodeAndroid extends AppiumPageAndroid implements SpotifyCode {
 
+    @Step
     public SpotifyCodeAndroid verifySpotifyCodeIsAvailable() {
         getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(SPOTIFY_CODE_IMAGE)));
         androidElementChecks.assertElementIsVisible(getSpotifyCodeImage());
