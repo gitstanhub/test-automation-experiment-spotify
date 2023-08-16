@@ -4,6 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.MouseButton;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.context.annotation.Lazy;
@@ -23,60 +24,81 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class LibraryPage extends PlaywrightPage {
 
+
+    @Step
     public LibraryPage verifyLibraryButtonIsAvailable() {
         getPage().waitForSelector(String.format(LIBRARY_BUTTON, ConfigProviderWeb.getWebAppLocaleConfig().libraryButtonText()));
         Assertions.assertTrue(elementChecks.isElementVisible(findLibraryPageTitle()));
         return this;
     }
 
+
+    @Step
     public LibraryPage clickExpandLibraryButton() {
         findExpandLibraryButton().click();
         return this;
     }
 
+
+    @Step
     public LibraryPage clickPlaylistsFilterButton() {
         findPlaylistsFilterButton().click();
         return this;
     }
 
+
+    @Step
     public LibraryPage clickSearchLibraryButton() {
         findSearchLibraryButton().click();
         return this;
     }
 
+
+    @Step
     public LibraryPage fillInSearchLibraryField(String searchQuery) {
         findSearchLibraryField().fill(searchQuery);
         return this;
     }
 
+
+    @Step
     public LibraryPage clickLibraryItemWithText(String itemText) {
         findLibraryItemByText(itemText).click();
         return this;
     }
 
+
+    @Step
     public LibraryPage rightClickLibraryItemWithText(String itemText) {
         findLibraryItemByText(itemText).click(new Locator.ClickOptions()
                 .setButton(MouseButton.RIGHT));
         return this;
     }
 
+
+    @Step
     public LibraryPage verifyPlaylistsFilterButtonIsPressed() {
         getPage().waitForSelector(String.format(CLEAR_FILTERS_BUTTON, ConfigProviderWeb.getWebAppLocaleConfig().clearFiltersButtonText()));
         Assertions.assertTrue(isLibraryFilterButtonPressed(findPlaylistsFilterButton()));
         return this;
     }
 
-    //ToDo: replace with config variable
+
+    @Step
     public LibraryPage selectSortByRecentlyAddedOption() {
-        selectSortByOption("Recently Added");
+        selectSortByOption(ConfigProviderWeb.getWebAppLocaleConfig().sortByRecentOption());
         return this;
     }
 
+
+    @Step
     public LibraryPage selectSortByAlphabeticalOption() {
-        selectSortByOption("Alphabetical");
+        selectSortByOption(ConfigProviderWeb.getWebAppLocaleConfig().sortByAlphabeticalOption());
         return this;
     }
 
+
+    @Step
     public LibraryPage verifyLibraryListIsSortedAsc() {
         final int MAX_ELEMENTS = 30;
 
@@ -102,6 +124,8 @@ public class LibraryPage extends PlaywrightPage {
         return this;
     }
 
+
+    @Step
     public LibraryPage verifyCreatedPlaylistIsAvailable(String expectedPlaylistName) {
         Assertions.assertTrue(elementChecks.isElementVisible(findLibraryItemByText(expectedPlaylistName).locator(CREATED_PLAYLIST_ITEM)));
         return this;

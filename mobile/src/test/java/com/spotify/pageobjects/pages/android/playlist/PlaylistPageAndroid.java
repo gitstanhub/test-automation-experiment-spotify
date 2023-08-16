@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages.android.playlist;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.playlist.PlaylistPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -18,32 +19,38 @@ import static com.spotify.locators.pages.PlaylistPageLocators.*;
 @Slf4j
 public class PlaylistPageAndroid extends AppiumPageAndroid implements PlaylistPage {
 
+    @Step
     public PlaylistPageAndroid verifyPlaylistArtworkIsAvailable() {
         getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(PLAYLIST_ARTWORK)));
         androidElementChecks.assertElementIsVisible(getPlaylistArtwork());
         return this;
     }
 
+    @Step
     public PlaylistPageAndroid verifyPlaylistNameIsAvailable() {
         androidElementChecks.assertElementIsVisible(getPlaylistName());
         return this;
     }
 
+    @Step
     public PlaylistPageAndroid verifyPlaylistNameIsExact(String expectedPlaylistTitle) {
         androidElementChecks.assertElementHasExactText(getPlaylistName(), expectedPlaylistTitle);
         return this;
     }
 
+    @Step
     public PlaylistPageAndroid verifyDeletePopupTitleIsAvailable() {
         androidElementChecks.assertElementIsVisible(getDeletePopupTitle());
         return this;
     }
 
+    @Step
     public PlaylistPageAndroid verifyDeletePopupSubtitleIsAvailable(String playlistName) {
         androidElementChecks.assertElementIsVisible(getDeletePopupSubtitle(playlistName));
         return this;
     }
 
+    @Step
     public PlaylistPageAndroid tapPlaylistDeleteConfirmButton() {
         getDeletePopupConfirmButton().click();
         return this;

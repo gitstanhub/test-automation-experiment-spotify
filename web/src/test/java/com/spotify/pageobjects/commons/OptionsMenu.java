@@ -3,6 +3,7 @@ package com.spotify.pageobjects.commons;
 import com.microsoft.playwright.Locator;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.context.annotation.Lazy;
@@ -17,12 +18,14 @@ import static com.spotify.locators.commons.OptionsMenuLocators.EDIT_DETAILS_OPTI
 @Slf4j
 public class OptionsMenu extends PlaywrightPage {
 
+    @Step
     public OptionsMenu verifyOptionsMenuIsAvailable() {
         getPage().waitForSelector("div[id='context-menu']");
         Assertions.assertTrue(elementChecks.isElementVisible(findContextMenu()));
         return this;
     }
 
+    @Step
     public OptionsMenu clickEditDetailsOption() {
         findEditDetailsOption().click();
         return this;

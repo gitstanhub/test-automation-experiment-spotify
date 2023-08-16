@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages.android.login;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.login.LoginPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -19,26 +20,31 @@ import static com.spotify.locators.pages.LoginPageLocators.*;
 @Slf4j
 public class LoginPageAndroid extends AppiumPageAndroid implements LoginPage {
 
+    @Step
     public LoginPageAndroid tapLogInButton() {
         getLogInButton().click();
         return this;
     }
 
+    @Step
     public LoginPageAndroid fillInUsernameField(String username) {
         getUsernameField().sendKeys(username);
         return this;
     }
 
+    @Step
     public LoginPageAndroid fillInPasswordField(String password) {
         getPasswordField().sendKeys(password);
         return this;
     }
 
+    @Step
     public LoginPageAndroid tapLoginSubmitButton() {
         getLoginSubmitButton().click();
         return this;
     }
 
+    @Step
     public void handleLoginFor(String username, String password) {
         try {
             getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(LOGIN_BUTTON, ConfigProviderMobile.getMobileAppLocaleConfig().logInButtonText()))));

@@ -3,6 +3,7 @@ package com.spotify.pageobjects.commons;
 import com.microsoft.playwright.Locator;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -14,26 +15,31 @@ import static com.spotify.locators.commons.ContextMenuLocators.*;
 @Slf4j
 public class ContextMenu extends PlaywrightPage {
 
+    @Step
     public ContextMenu clickContextMenuButton() {
         findContextMenuButton().click();
         return this;
     }
 
+    @Step
     public ContextMenu selectShareOption() {
         findShareOption().hover();
         return this;
     }
 
+    @Step
     public ContextMenu clickEmbedAlbumOption() {
         findEmbedAlbumOption().click();
         return this;
     }
 
+    @Step
     public ContextMenu selectAddToPlaylistOption() {
         findAddToPlaylistOption().hover();
         return this;
     }
 
+    @Step
     public ContextMenu clickCreatePlaylistButton() {
         findCreatePlaylistOption().click();
         return this;

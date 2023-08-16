@@ -5,6 +5,7 @@ import com.microsoft.playwright.PlaywrightException;
 import com.microsoft.playwright.options.AriaRole;
 import com.spotify.config.ConfigProviderWeb;
 import com.spotify.pageobjects.base.PlaywrightPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.context.annotation.Lazy;
@@ -22,32 +23,44 @@ import static com.spotify.locators.pages.SearchPageLocators.*;
 @Slf4j
 public class SearchPage extends PlaywrightPage {
 
+
+    @Step
     public SearchPage openSearchPage() {
         browserActions.navigateToUrl(ConfigProviderWeb.getWebAppConfiguration().baseUrl() + "/search");
         return this;
     }
 
+
+    @Step
     public SearchPage fillInSearchField(String searchQuery) {
         browserActions.fillInTextField(findSearchField(), searchQuery);
         return this;
     }
 
+
+    @Step
     public SearchPage verifyAllFilterButtonIsAvailable() {
         getPage().waitForSelector(FILTER_ALL_BUTTON_SELECTOR);
         Assertions.assertTrue(elementChecks.isElementVisible(findAllFilterButton()));
         return this;
     }
 
+
+    @Step
     public SearchPage clickSongsFilterButton() {
         findSongsFilterButton().click();
         return this;
     }
 
+
+    @Step
     public SearchPage clickPlaylistsFilterButton() {
         findPlaylistsFilterButton().click();
         return this;
     }
 
+
+    @Step
     public SearchPage verifySearchedSongIsReturnedInTop10Results(String expectedSongTitle, String expectedSongArtist) {
         getPage().waitForSelector(SEARCH_RESULT_TRACK_ROW);
 
@@ -80,11 +93,13 @@ public class SearchPage extends PlaywrightPage {
 
         Assertions.assertTrue(isExpectedSongReturned);
 
-        System.out.println(Arrays.deepToString(songAndArtistArray));
+        log.info(Arrays.deepToString(songAndArtistArray));
 
         return this;
     }
 
+
+    @Step
     public SearchPage verifySearchedPlaylistIsReturnedInTop10Results(String expectedPlaylistTitle) {
         getPage().waitForSelector(SEARCH_RESULTS_LIST);
 
@@ -107,7 +122,7 @@ public class SearchPage extends PlaywrightPage {
 
         Assertions.assertTrue(isExpectedPlaylistReturned);
 
-        System.out.println(Arrays.toString(playlistsArray));
+        log.info(Arrays.toString(playlistsArray));
 
         return this;
     }

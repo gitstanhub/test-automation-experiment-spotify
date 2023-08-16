@@ -3,6 +3,7 @@ package com.spotify.pageobjects.pages.android.search;
 import com.spotify.config.ConfigProviderMobile;
 import com.spotify.pageobjects.base.AppiumPageAndroid;
 import com.spotify.pageobjects.pages.interfaces.search.SearchResultsPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.springframework.context.annotation.Lazy;
@@ -15,21 +16,25 @@ import static com.spotify.locators.pages.SearchResultsPageLocators.*;
 @Slf4j
 public class SearchResultsPageAndroid extends AppiumPageAndroid implements SearchResultsPage {
 
+    @Step
     public SearchResultsPageAndroid searchGloballyFor(String searchQuery) {
         getGlobalSearchField().sendKeys(searchQuery);
         return this;
     }
 
+    @Step
     public SearchResultsPageAndroid tapArtistsFilterButton() {
         getArtistFilterButton().click();
         return this;
     }
 
+    @Step
     public SearchResultsPageAndroid tapAlbumFilterButton() {
         getAlbumsFilterButton().click();
         return this;
     }
 
+    @Step
     public SearchResultsPageAndroid verifySearchResultIsAvailable(String expectedSearchResult) {
         androidElementChecks.assertElementIsVisible(getSearchResult(expectedSearchResult));
         return this;
