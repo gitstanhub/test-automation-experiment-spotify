@@ -21,6 +21,4 @@ public interface WebAppConfiguration extends Config {
 
     @Key("localeCode")
     String localeCode();
-
-
 }
