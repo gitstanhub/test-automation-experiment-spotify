@@ -2,12 +2,11 @@
   {
     "configItemName": "artist_1_track_1",
     "trackArtists": [
-      "Capital Bra",
-      "Ufo361"
+      "Oliver Tree"
     ],
-    "trackName": "Neymar",
-    "trackId": "50mQStZYV5QFgyGK9GOVZg",
-    "trackDurationMs": 263646,
+    "trackName": "Hurt",
+    "trackId": "6Ph8QwsRfZunN5e1GGBIqa",
+    "trackDurationMs": 145147,
     "trackType": "track",
     "trackExplicit": true
   }
