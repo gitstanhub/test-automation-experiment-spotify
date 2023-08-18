@@ -19,7 +19,8 @@ public class PlaylistsTests extends MobileTests {
 
         getLibraryPage()
                 .tapPlaylistsButton()
-                .tapCreatePlaylistButton();
+                .tapCreatePlaylistButton()
+                .choosePlaylistOption();
 
         getPlaylistCreationPage()
                 .verifyPlaylistCreationPageIsOpened()

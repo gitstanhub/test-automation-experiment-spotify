@@ -115,15 +115,15 @@ public class ArtistDataTests extends ApiTests {
     void relatedArtistsCanBeFetched() {
 
         ArtistRelatedAssertionData.ExpectedRelatedArtistData expectedAssertionData = new ArtistRelatedAssertionData.ExpectedRelatedArtistData(
-                ARTIST_2.getArtistName(),
-                ARTIST_2.getArtistGenres(),
-                ARTIST_2.getArtistId(),
-                ARTIST_2.getArtistType(),
-                ARTIST_2.getArtistUri()
+                ARTIST_3.getArtistName(),
+                ARTIST_3.getArtistGenres(),
+                ARTIST_3.getArtistId(),
+                ARTIST_3.getArtistType(),
+                ARTIST_3.getArtistUri()
         );
 
-        String expectedFirstArtistId = ARTIST_1.getArtistId();
-        String expectedRelatedArtistName = ARTIST_2.getArtistName();
+        String expectedFirstArtistId = ARTIST_2.getArtistId();
+        String expectedRelatedArtistName = ARTIST_3.getArtistName();
 
         ArtistRelatedResponseModel fetchedArtistRelated = artistClient.getRelatedArtistsBy(expectedFirstArtistId);
 
