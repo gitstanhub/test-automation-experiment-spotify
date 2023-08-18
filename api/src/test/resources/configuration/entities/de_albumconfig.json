@@ -1,13 +1,13 @@
 [
   {
     "configItemName": "artist_1_album_1",
+    "albumName": "Ugly is Beautiful",
     "albumArtists": [
-      "Capital Bra"
+      "Oliver Tree"
     ],
-    "albumName": "Berlin lebt",
-    "albumId": "2vdeSISq7TAWLDiEhFJ3nz",
-    "albumTotalTracks": 40,
-    "albumReleaseDate": "2018-07-06",
+    "albumId": "1HmWQo43Gt8BR2dylfv3o4",
+    "albumTotalTracks": 14,
+    "albumReleaseDate": "2020-07-17",
     "albumReleaseDatePrecision": "day",
     "albumType": "album"
   }

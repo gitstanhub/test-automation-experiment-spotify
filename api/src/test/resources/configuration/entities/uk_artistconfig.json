@@ -1,30 +1,35 @@
 [
   {
     "configItemName": "artist_1",
-    "artistName": "Capital Bra",
+    "artistName": "Oliver Tree",
     "artistGenres": [
-      "german hip hop"
+      "alternative hip hop"
     ],
-    "artistId": "4WZGDpNwrC0vNQyl9QzF7d",
+    "artistId": "0TnOYISbd1XYRBk9myaseg",
     "artistType": "artist"
   },
   {
     "configItemName": "artist_2",
-    "artistName": "AK AUSSERKONTROLLE",
+    "artistName": "Tame Impala",
     "artistGenres": [
-      "german hip hop"
+      "australian psych",
+      "modern rock",
+      "neo-psychedelic",
+      "rock"
     ],
-    "artistId": "07SFzTMeYf5P8Rd32a9Zzw",
+    "artistId": "5INjqkS1o8h1imAzPqGZBb",
     "artistType": "artist"
   },
   {
     "configItemName": "artist_3",
-    "artistName": "Yeat",
+    "artistName": "Toro y Moi",
     "artistGenres": [
-      "pluggnb",
-      "rage rap"
+      "chillwave",
+      "hypnagogic pop",
+      "indie soul",
+      "indietronica"
     ],
-    "artistId": "3qiHUAX7zY4Qnjx8TNUzVx",
+    "artistId": "6O4EGCCb6DoIiR6B1QCQgp",
     "artistType": "artist"
   }
 ]
