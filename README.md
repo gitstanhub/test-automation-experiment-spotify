@@ -12,9 +12,9 @@
 - [License](#license)
 
 ## Overview
-Whether you're looking for a built-from-scratch test automation project example, curious to see how patterns like Page Object Model, Singleton, Factory Method and Dependency Injection can be applied in the same scope or just wonder if Spring Framework might be helpful in managing test utilities - this repository would be a great thing to explore and play around! 
+Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Page Object Model, Singleton, Factory Method and Dependency Injection can be applied in the same scope or just wonder if **Spring Framework** might be helpful in managing test utilities - this repository would be a great thing to explore and play around! 
 
-For this project I've used the latest public version of Spotify app to cover it with a few automation tests on API, Mobile (Android) and Web layers.
+For this project I've used the latest public version of **Spotify app** to cover it with a few automation tests on **API**, **Mobile (Android)** and **Web** layers.
 
 Take a look at the supported technology stack:
 
