@@ -18,7 +18,7 @@ For this project I've used the latest public version of Spotify app to cover it 
 
 Take a look at the supported technology stack:
 
-<img src="media/icons/allure.png" alt="allure-logo" width="100"><img src="media/icons/appium.png" alt="appium-logo" width="100"><img src="media/icons/docker.png" alt="docker-logo" width="100"><img src="media/icons/gradle.png" alt="gradle-logo" width="100">
+<img src="media/icons/allure.png" alt="allure-logo" width="50"><img src="media/icons/appium.png" alt="appium-logo" width="50"><img src="media/icons/docker.png" alt="docker-logo" width="50"><img src="media/icons/gradle.png" alt="gradle-logo" width="50">
 
 
 ## Disclaimer
