@@ -1,7 +1,7 @@
 ## Test automation project for Spotify app
 
 <p align="center">
-  <img src="media/Spotify_Logo_RGB_Green.png" alt="spotify-logo" width="400">
+  <img src="media/logo/Spotify_Logo_RGB_Green.png" alt="spotify-logo" width="400">
 </p>
 
 ## Table of Contents
@@ -18,7 +18,7 @@ For this project I've used the latest public version of **Spotify app** to cover
 
 Take a look at the supported technology stack:
 
-<img src="media/icons/allure.png" alt="allure-logo" width="55"><img src="media/icons/appium.png" alt="appium-logo" width="55"><img src="media/icons/docker.png" alt="docker-logo" width="55"><img src="media/icons/gradle.png" alt="gradle-logo" width="55">
+<img src="media/icons/appium.png" alt="appium-logo" width="55"><img src="media/icons/docker.png" alt="docker-logo" width="55"><img src="media/icons/allure.png" alt="allure-logo" width="55"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"><img src="media/icons/java.png" alt="java-logo" width="55"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"><img src="media/icons/spring.png" alt="spring-logo" width="55">
 
 
 ## Disclaimer
