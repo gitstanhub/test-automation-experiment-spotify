@@ -1,7 +1,7 @@
 ## Test automation project for Spotify app
 
 <p align="center">
-  <img src="media/Spotify_Logo_RGB_Green.png" alt="spotify-logo" width="550">
+  <img src="media/Spotify_Logo_RGB_Green.png" alt="spotify-logo" width="400">
 </p>
 
 ## Table of Contents
