@@ -16,12 +16,12 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 
 For this project I've used the latest public version of **Spotify app** to cover it with a few automation tests on **API**, **Mobile (Android)** and **Web** layers.
 
-Take a look at the supported technology stack:
+### Supported technology stack
 <p align="center">
 <img src="media/icons/appium.png" alt="appium-logo" width="55"><img src="media/icons/docker.png" alt="docker-logo" width="55"><img src="media/icons/allure.png" alt="allure-logo" width="55"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"><img src="media/icons/java.png" alt="java-logo" width="55"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"><img src="media/icons/spring.png" alt="spring-logo" width="55"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55">
 </p>
 
-... and a few test run examples:
+### Automated test run showcase
 
 <details>
   <summary>Click to see the Mobile test run example</summary>
@@ -40,6 +40,17 @@ Take a look at the supported technology stack:
 <i>Web test run</i>
 </p>
 </details>
+
+<details>
+  <summary>Click to see the API test run example</summary>
+<p align="center">
+<img src="media/gifs/api_test_run.gif" alt="api-test-run">
+<br>
+<i>API test run</i>
+</p>
+</details>
+
+
 
 
 
