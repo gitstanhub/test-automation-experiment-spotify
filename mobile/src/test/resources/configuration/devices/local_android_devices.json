@@ -2,7 +2,7 @@
   {
     "configItemName": "pixel_4_xl",
     "platformName": "android",
-    "deviceName": "Pixel 4 XL Android 13",
+    "deviceName": "pixel_4_xl",
     "platformVersion": "13.0",
     "udid": "01021FFBA000PH",
     "automationName": "uiautomator2",
@@ -11,7 +11,7 @@
   {
     "configItemName": "pixel_4_emulated",
     "platformName": "android",
-    "deviceName": "Pixel 4 (Android 13) - Emulated",
+    "deviceName": "pixel_4_emulated",
     "platformVersion": "13.0",
     "udid": "emulator-5554",
     "automationName": "uiautomator2",
