@@ -24,9 +24,15 @@ Take a look at the supported technology stack:
 ... and a few test run examples:
 
 <p align="center">
-<img src="media/gifs/mobile_test_run.gif" alt="appium-logo" width="400">
+<img src="media/gifs/mobile_test_run.gif" alt="mobile-test-run" width="400">
 <br>
 <i>Mobile test run</i>
+</p>
+
+<p align="center">
+<img src="media/gifs/web_test_run.gif" alt="web-test-run">
+<br>
+<i>Web test run</i>
 </p>
 
 
