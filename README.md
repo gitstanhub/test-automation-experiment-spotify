@@ -21,12 +21,12 @@ Take a look at the supported technology stack:
 <img src="media/icons/appium.png" alt="appium-logo" width="55"><img src="media/icons/docker.png" alt="docker-logo" width="55"><img src="media/icons/allure.png" alt="allure-logo" width="55"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"><img src="media/icons/java.png" alt="java-logo" width="55"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"><img src="media/icons/spring.png" alt="spring-logo" width="55"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55">
 </p>
 
-You can also check a few test run examples:
+... and a few test run examples:
 
 <p align="center">
 <img src="media/gifs/mobile_test_run.gif" alt="appium-logo" width="400">
 <br>
-Mobile test run
+<i>Mobile test run</i>
 </p>
 
 
