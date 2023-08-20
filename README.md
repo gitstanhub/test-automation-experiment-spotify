@@ -23,17 +23,24 @@ Take a look at the supported technology stack:
 
 ... and a few test run examples:
 
+<details>
+  <summary>Click to see the Mobile test run example</summary>
 <p align="center">
 <img src="media/gifs/mobile_test_run.gif" alt="mobile-test-run" width="400">
 <br>
 <i>Mobile test run</i>
 </p>
+</details>
 
+<details>
+  <summary>Click to see the Web test run example</summary>
 <p align="center">
 <img src="media/gifs/web_test_run.gif" alt="web-test-run">
 <br>
 <i>Web test run</i>
 </p>
+</details>
+
 
 
 
