@@ -60,7 +60,7 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 <img src="media/screenshots/allure_screenshot.png" alt="allure-screenshot">
 </p>
 
-* Web module tests can be launched remotely on a Moon instance:
+* Web tests can be launched remotely on a Moon instance:
 <p align="center">
 <img src="media/screenshots/selenoid_screenshot.png" alt="selenoid-screenshot">
 </p>
