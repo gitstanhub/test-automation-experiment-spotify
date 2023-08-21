@@ -17,13 +17,13 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 
 For this project I've used the latest public version of **Spotify app** to cover it with a few automation tests on **API**, **Mobile (Android)** and **Web** layers.
 
-### Supported technology stack
+### Technology stack:
 
 <p align="center">
 <a href="https://appium.io/"><img src="media/icons/appium.png" alt="appium-logo" width="55"></a><a href="https://www.docker.com/"><img src="media/icons/docker.png" alt="docker-logo" width="55"></a><a href="https://github.com/allure-framework"><img src="media/icons/allure.png" alt="allure-logo" width="55"></a><a href="https://gradle.org/"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"></a><a href="https://rest-assured.io/"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"></a><a href="https://www.java.com/en/"><img src="media/icons/java.png" alt="java-logo" width="55"></a><a href="https://junit.org/junit5/"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"></a><a href="https://aerokube.com/moon/"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"></a><a href="https://spring.io/projects/spring-framework"><img src="media/icons/spring.png" alt="spring-logo" width="55"></a><a href="https://playwright.dev/java/"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"></a><a href="https://www.jenkins.io/"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55"></a>
 </p>
 
-### Automated test run showcase
+### Showcase:
 
 [//]: # (<details>)
 
@@ -32,7 +32,7 @@ For this project I've used the latest public version of **Spotify app** to cover
 <br>
 <img src="media/gifs/mobile_test_run.gif" alt="mobile-test-run" width="400">
 <br>
-<i>Mobile test run</i>
+<i>Automated Mobile test run</i>
 </p>
 
 [//]: # (</details>)
@@ -58,7 +58,7 @@ For this project I've used the latest public version of **Spotify app** to cover
 </details>
 <br>
 
-### Reporting Results, Remote Run and Continuous Integration
+### Reporting Results, Remote Run and Continuous Integration:
 * For each module you can generate Allure reports:
 <p align="center">
 <img src="media/screenshots/allure_screenshot.png" alt="allure-screenshot">
