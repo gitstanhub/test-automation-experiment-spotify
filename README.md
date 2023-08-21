@@ -1,6 +1,7 @@
 ## Test automation project for Spotify app
 
 <p align="center">
+<br>
   <img src="media/logo/Spotify_Logo_RGB_Green.png" alt="spotify-logo" width="400">
 </p>
 
@@ -17,6 +18,7 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 For this project I've used the latest public version of **Spotify app** to cover it with a few automation tests on **API**, **Mobile (Android)** and **Web** layers.
 
 ### Supported technology stack
+
 <p align="center">
 <img src="media/icons/appium.png" alt="appium-logo" width="55"><img src="media/icons/docker.png" alt="docker-logo" width="55"><img src="media/icons/allure.png" alt="allure-logo" width="55"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"><img src="media/icons/java.png" alt="java-logo" width="55"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"><img src="media/icons/spring.png" alt="spring-logo" width="55"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55">
 </p>
@@ -52,17 +54,20 @@ For this project I've used the latest public version of **Spotify app** to cover
 <br>
 
 ### Reporting Results, Remote Run and Continuous Integration
-For each module you can generate Allure reports:
+* For each module you can generate Allure reports:
 <p align="center">
 <img src="media/screenshots/allure_screenshot.png" alt="allure-screenshot">
 </p>
 
-Web module tests can be launched remotely on a Moon instance:
+* Web module tests can be launched remotely on a Moon instance:
 <p align="center">
 <img src="media/screenshots/selenoid_screenshot.png" alt="selenoid-screenshot">
 </p>
 
-All modules contain parametrised tests well suited for CI flow that you can maintain with Jenkins. Give it a try with a separate Freestlye Project per each module:
+* All modules contain parametrised tests well suited for CI flow that you can maintain with Jenkins. Give it a try with a separate Freestlye Project per each module:
+<p align="center">
+<img src="media/screenshots/jenkins_screenshot.png" alt="jenkins-screenshot">
+</p>
 
 ## Installation and Setup
 * Clone the repo to a local directory: <br>
