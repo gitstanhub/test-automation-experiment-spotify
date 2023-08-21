@@ -71,27 +71,19 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 </p>
 
 ## Installation and Setup
-General
-
-API
-
-Mobile 
-
-Web
+### General:
 * Clone the repo to a local directory: <br>
-```git clone https://github.com/gitstanhub/test-automation-experiment-spotify.git```
-
-
-* Install <a href="https://appium.io/docs/en/2.1/quickstart/install/">Appium</a> and <a href="https://appium.io/docs/en/2.1/quickstart/uiauto2-driver/">UiAutomator2 Driver</a> before running mobile tests as well as other essentials for the mentioned stack
-
+  ```git clone https://github.com/gitstanhub/test-automation-experiment-spotify.git```
 
 * A <a href="https://www.spotify.com/us/signup">Spotify account</a> signed up for <a href="https://developer.spotify.com/">developers program</a> is required to generate access token for API tests and provide user credentials for Web and Mobile tests
 
+* After creating a Spotify user, make sure to update your account Library with the Artist, Albums and Tracks from the test data properties or replace it with your own set 
 
-* After creating a Spotify user, make sure to add the Artists, Albums and Tracks mentioned in the test data properties in each module to your Library
+* For with remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
 
+### Mobile:
 
-* For practicing with remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
+* Install <a href="https://appium.io/docs/en/2.1/quickstart/install/">Appium</a> and <a href="https://appium.io/docs/en/2.1/quickstart/uiauto2-driver/">UiAutomator2 Driver</a> before running mobile tests as well as other essentials for the mentioned stack
 
 ## Usage
 * Run a test with default parameters:<br>
@@ -100,7 +92,7 @@ Web
 
 ```gradle :mobile:test```<br>
 
-```gradle clean :web:test```<br>
+```gradle :web:test```<br>
 
 * Run a test with specifying exact parameter values:<br>
 
