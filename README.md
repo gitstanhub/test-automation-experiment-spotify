@@ -13,15 +13,17 @@
 - [License](#license)
 
 ## Overview
-For this project I've used the latest public version of **Spotify app** and covered it with a few automation tests on **API**, **Mobile (Android)** and **Web** layers.
+For this project I've used the latest public version of **Spotify app** and covered it with a few automation tests in **API**, **Mobile (Android)** and **Web** modules.
 
-Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Page Object Model, Singleton, Factory Method and Dependency Injection can be applied within the same scope or just wonder if **Spring Framework** might be helpful in managing test utilities - this repository could be a great thing to explore and play around! 
+Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Page Object Model, Singleton, Factory Method and Dependency Injection can be applied within the same scope or just wonder if **Spring Framework** might be useful in managing test components - this repository could be a great thing to explore and play around! 
+<br><br>
 
-### Technology stack:
+### Technology stack
 
 <p align="center">
 <a href="https://appium.io/"><img src="media/icons/appium.png" alt="appium-logo" width="55"></a><a href="https://www.docker.com/"><img src="media/icons/docker.png" alt="docker-logo" width="55"></a><a href="https://github.com/allure-framework"><img src="media/icons/allure.png" alt="allure-logo" width="55"></a><a href="https://gradle.org/"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"></a><a href="https://rest-assured.io/"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"></a><a href="https://www.java.com/en/"><img src="media/icons/java.png" alt="java-logo" width="55"></a><a href="https://junit.org/junit5/"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"></a><a href="https://aerokube.com/moon/"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"></a><a href="https://spring.io/projects/spring-framework"><img src="media/icons/spring.png" alt="spring-logo" width="55"></a><a href="https://playwright.dev/java/"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"></a><a href="https://www.jenkins.io/"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55"></a>
 </p>
+<br>
 
 ### Showcase:
 
@@ -39,7 +41,7 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 <br>
 <img src="media/gifs/web_test_run.gif" alt="web-test-run">
 <br>
-<i>Web test run</i>
+<i>Automated Web test run</i>
 </p>
 </details>
 <br>
@@ -49,13 +51,13 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 <br>
 <img src="media/gifs/api_test_run.gif" alt="api-test-run">
 <br>
-<i>API test run</i>
+<i>Automated API test run</i>
 </p>
 </details>
-<br>
+
 
 ### Reporting Results, Remote Run and Continuous Integration:
-* For each module you can generate Allure reports:
+* You can generate a new Allure report for each module:
 <p align="center">
 <img src="media/screenshots/allure_screenshot.png" alt="allure-screenshot">
 </p>
@@ -65,12 +67,19 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 <img src="media/screenshots/selenoid_screenshot.png" alt="selenoid-screenshot">
 </p>
 
-* All modules contain parametrised tests well suited for CI flow that you can maintain with Jenkins. Give it a try with a separate Freestlye Project per each module:
+* All the tests are parametrised and well suited for CI flow that you can maintain with Jenkins. Give it a try with a separate Freestlye Project per each module:
 <p align="center">
 <img src="media/screenshots/jenkins_screenshot.png" alt="jenkins-screenshot">
 </p>
 
 ## Installation and Setup
+General
+
+API
+
+Mobile 
+
+Web
 * Clone the repo to a local directory: <br>
 ```git clone https://github.com/gitstanhub/test-automation-experiment-spotify.git```
 
@@ -87,26 +96,21 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 * For practicing with remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
 
 ## Usage
-* Run API tests with parameters:<br>
+Run a test with default parameters:<br>
 
-```gradle clean :api:test -Dcountry=de```
+```gradle :api:test```<br>
 
-* Run Mobile tests with parameters:<br>
+```gradle :mobile:test```<br>
 
-```gradle clean :mobile:test -Dcountry=de -Denvironment=local -DplatformName=android -DdeviceName=pixel_4_emulated```
+```gradle clean :web:test```<br>
 
-* Run Web tests with parameters:<br>
+Run a test with specifying exact parameter values:<br>
 
-```gradle clean :web:test -Dcountry=uk -Denvironment=remote -Dbrowser=chromium```
+```gradle :api:test -Dcountry=de```<br>
 
-* You can also run tests without specifying any parameters. In that case the default parameters will be used:<br>
+```gradle :mobile:test -Dcountry=de -Denvironment=local -DplatformName=android -DdeviceName=pixel_4_emulated```<br>
 
-```gradle clean :api:test```<br>
-
-```gradle clean :mobile:test```<br>
-
-```gradle clean :web:test```
-
+```gradle :web:test -Dcountry=uk -Denvironment=remote -Dbrowser=chromium```<br>
 
 ## Disclaimer
 
