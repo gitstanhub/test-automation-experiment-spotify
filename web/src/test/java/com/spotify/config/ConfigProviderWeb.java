@@ -21,7 +21,7 @@ public class ConfigProviderWeb {
 
     @Getter
     private static final PlaywrightBrowserConfiguration playwrightBrowserConfiguration = ConfigFactory.create(
-                PlaywrightBrowserConfiguration.class, System.getProperties());
+            PlaywrightBrowserConfiguration.class, System.getProperties());
 
     @Getter
     private static final WebAppAuthConfiguration webAppAuthConfiguration = ConfigFactory.create(
