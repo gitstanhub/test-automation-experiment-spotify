@@ -89,19 +89,19 @@ For this project I've used the latest public version of **Spotify app** to cover
 * For practicing with remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
 
 ## Usage
-Run API tests with parameters:<br>
+* Run API tests with parameters:<br>
 
 ```gradle clean :api:test -Dcountry=de```
 
-Run Mobile tests with parameters:<br>
+* Run Mobile tests with parameters:<br>
 
 ```gradle clean :mobile:test -Dcountry=de -Denvironment=local -DplatformName=android -DdeviceName=pixel_4_emulated```
 
-Run Web tests with parameters:<br>
+* Run Web tests with parameters:<br>
 
 ```gradle clean :web:test -Dcountry=uk -Denvironment=remote -Dbrowser=chromium```
 
-You can also run tests without specifying any parameters. In that case the default parameters will be used:<br>
+* You can also run tests without specifying any parameters. In that case the default parameters will be used:<br>
 
 ```gradle clean :api:test```<br>
 
