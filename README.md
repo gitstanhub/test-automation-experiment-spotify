@@ -13,27 +13,25 @@
 - [License](#license)
 
 ## Overview
-Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Page Object Model, Singleton, Factory Method and Dependency Injection can be applied within the same scope or just wonder if **Spring Framework** might be helpful in managing test utilities - this repository could be a great thing to explore and play around! 
+For this project I've used the latest public version of **Spotify app** and covered it with a few automation tests in **API**, **Mobile (Android)** and **Web** modules.
 
-For this project I've used the latest public version of **Spotify app** to cover it with a few automation tests on **API**, **Mobile (Android)** and **Web** layers.
+Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Singleton, Page Object Model, Factory Method and Dependency Injection can be applied within the same scope or just wonder if **Spring Framework** might be useful in managing test components - this repository could be a great thing to explore and play around!
 
-### Supported technology stack
+### Technology stack:
 
 <p align="center">
 <a href="https://appium.io/"><img src="media/icons/appium.png" alt="appium-logo" width="55"></a><a href="https://www.docker.com/"><img src="media/icons/docker.png" alt="docker-logo" width="55"></a><a href="https://github.com/allure-framework"><img src="media/icons/allure.png" alt="allure-logo" width="55"></a><a href="https://gradle.org/"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"></a><a href="https://rest-assured.io/"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"></a><a href="https://www.java.com/en/"><img src="media/icons/java.png" alt="java-logo" width="55"></a><a href="https://junit.org/junit5/"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"></a><a href="https://aerokube.com/moon/"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"></a><a href="https://spring.io/projects/spring-framework"><img src="media/icons/spring.png" alt="spring-logo" width="55"></a><a href="https://playwright.dev/java/"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"></a><a href="https://www.jenkins.io/"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55"></a>
 </p>
 
-### Automated test run showcase
+### Showcase:
 
-<details>
-  <summary>Click to see a test run example from the <b>Mobile</b> module</summary>
 <p align="center">
 <br>
 <img src="media/gifs/mobile_test_run.gif" alt="mobile-test-run" width="400">
 <br>
-<i>Mobile test run</i>
+<i>Automated Mobile test run</i>
 </p>
-</details>
+
 <br>
 <details>
   <summary>Click to see a test run example from the <b>Web</b> module</summary>
@@ -41,74 +39,69 @@ For this project I've used the latest public version of **Spotify app** to cover
 <br>
 <img src="media/gifs/web_test_run.gif" alt="web-test-run">
 <br>
-<i>Web test run</i>
+<i>Automated Web test run</i>
 </p>
 </details>
-<br>
+
 <details>
   <summary>Click to see a test run example from the <b>API</b> module</summary>
 <p align="center">
 <br>
 <img src="media/gifs/api_test_run.gif" alt="api-test-run">
 <br>
-<i>API test run</i>
+<i>Automated API test run</i>
 </p>
 </details>
-<br>
 
-### Reporting Results, Remote Run and Continuous Integration
-* For each module you can generate Allure reports:
+
+### Reporting Results, Remote Run and Continuous Integration:
+* You can generate a new Allure report for each test module:
 <p align="center">
 <img src="media/screenshots/allure_screenshot.png" alt="allure-screenshot">
 </p>
 
-* Web module tests can be launched remotely on a Moon instance:
+* Web tests can be launched remotely on a Moon instance:
 <p align="center">
 <img src="media/screenshots/selenoid_screenshot.png" alt="selenoid-screenshot">
 </p>
 
-* All modules contain parametrised tests well suited for CI flow that you can maintain with Jenkins. Give it a try with a separate Freestlye Project per each module:
+* All the tests are parametrised and well suited for CI flow that you can maintain with Jenkins. Give it a try with a separate Freestlye Project per each module:
 <p align="center">
 <img src="media/screenshots/jenkins_screenshot.png" alt="jenkins-screenshot">
 </p>
 
 ## Installation and Setup
+### General:
 * Clone the repo to a local directory: <br>
-```git clone https://github.com/gitstanhub/test-automation-experiment-spotify.git```
-
-
-* Install <a href="https://appium.io/docs/en/2.1/quickstart/install/">Appium</a> and <a href="https://appium.io/docs/en/2.1/quickstart/uiauto2-driver/">UiAutomator2 Driver</a> before running mobile tests as well as other essentials for the mentioned stack
-
+  ```git clone https://github.com/gitstanhub/test-automation-experiment-spotify.git```
 
 * A <a href="https://www.spotify.com/us/signup">Spotify account</a> signed up for <a href="https://developer.spotify.com/">developers program</a> is required to generate access token for API tests and provide user credentials for Web and Mobile tests
 
+* After creating a Spotify user, make sure to update your account Library with the Artist, Albums and Tracks from the test data properties or replace it with your own set 
 
-* After creating a Spotify user, make sure to add the Artists, Albums and Tracks mentioned in the test data properties in each module to your Library
+* For remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
 
-
-* For practicing with remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
+### Mobile:
+* Android device is required to run mobile tests - you can use a physical one, emulated in <a href="https://developer.android.com/studio?gclid=CjwKCAjwloynBhBbEiwAGY25dFopnpw9Us70vSbwsxOIttDY1AWf62uCQdbWzUwp6jvWt-OSEgehVhoCFq0QAvD_BwE&gclsrc=aw.ds">Android Studio</a> or remote from <a href="https://www.browserstack.com/">Browserstack</a>
+* For a test build you can use the latest public version of <a href="https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_GB">Spotify app</a> downloaded from Google Play
+* Install <a href="https://appium.io/docs/en/2.1/quickstart/install/">Appium</a> and <a href="https://appium.io/docs/en/2.1/quickstart/uiauto2-driver/">UiAutomator2 Driver</a> before running mobile tests
 
 ## Usage
-* Run API tests with parameters:<br>
+* Run a test with default parameters:<br>
 
-```gradle clean :api:test -Dcountry=de```
+```gradle :api:test```<br>
 
-* Run Mobile tests with parameters:<br>
+```gradle :mobile:test```<br>
 
-```gradle clean :mobile:test -Dcountry=de -Denvironment=local -DplatformName=android -DdeviceName=pixel_4_emulated```
+```gradle :web:test```<br>
 
-* Run Web tests with parameters:<br>
+* Run a test with specifying exact parameter values:<br>
 
-```gradle clean :web:test -Dcountry=uk -Denvironment=remote -Dbrowser=chromium```
+```gradle :api:test -Dcountry=de```<br>
 
-* You can also run tests without specifying any parameters. In that case the default parameters will be used:<br>
+```gradle :mobile:test -Dcountry=de -Denvironment=local -DplatformName=android -DdeviceName=pixel_4_emulated```<br>
 
-```gradle clean :api:test```<br>
-
-```gradle clean :mobile:test```<br>
-
-```gradle clean :web:test```
-
+```gradle :web:test -Dcountry=uk -Denvironment=remote -Dbrowser=chromium```<br>
 
 ## Disclaimer
 
