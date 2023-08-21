@@ -20,7 +20,7 @@ For this project I've used the latest public version of **Spotify app** to cover
 ### Supported technology stack
 
 <p align="center">
-<img src="media/icons/appium.png" alt="appium-logo" width="55"><img src="media/icons/docker.png" alt="docker-logo" width="55"><img src="media/icons/allure.png" alt="allure-logo" width="55"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"><img src="media/icons/java.png" alt="java-logo" width="55"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"><img src="media/icons/spring.png" alt="spring-logo" width="55"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55">
+<a href="https://appium.io/"><img src="media/icons/appium.png" alt="appium-logo" width="55"></a><a href="https://www.docker.com/"><img src="media/icons/docker.png" alt="docker-logo" width="55"></a><a href="https://github.com/allure-framework"><img src="media/icons/allure.png" alt="allure-logo" width="55"></a><img src="media/icons/gradle.png" alt="gradle-logo" width="55"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"><img src="media/icons/java.png" alt="java-logo" width="55"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"><img src="media/icons/spring.png" alt="spring-logo" width="55"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55">
 </p>
 
 ### Automated test run showcase
