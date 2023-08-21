@@ -15,8 +15,7 @@
 ## Overview
 For this project I've used the latest public version of **Spotify app** and covered it with a few automation tests in **API**, **Mobile (Android)** and **Web** modules.
 
-Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Singleton, Page Object Model, Factory Method and Dependency Injection can be applied within the same scope or just wonder if **Spring Framework** might be useful in managing test components - this repository could be a great thing to explore and play around! 
-<br><br>
+Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Singleton, Page Object Model, Factory Method and Dependency Injection can be applied within the same scope or just wonder if **Spring Framework** might be useful in managing test components - this repository could be a great thing to explore and play around!
 
 ### Technology stack:
 
