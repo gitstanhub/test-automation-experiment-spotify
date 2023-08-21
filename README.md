@@ -28,6 +28,7 @@ For this project I've used the latest public version of **Spotify app** to cover
 <details>
   <summary>Click to see a test run example from the <b>Mobile</b> module</summary>
 <p align="center">
+<br>
 <img src="media/gifs/mobile_test_run.gif" alt="mobile-test-run" width="400">
 <br>
 <i>Mobile test run</i>
@@ -37,6 +38,7 @@ For this project I've used the latest public version of **Spotify app** to cover
 <details>
   <summary>Click to see a test run example from the <b>Web</b> module</summary>
 <p align="center">
+<br>
 <img src="media/gifs/web_test_run.gif" alt="web-test-run">
 <br>
 <i>Web test run</i>
@@ -46,6 +48,7 @@ For this project I've used the latest public version of **Spotify app** to cover
 <details>
   <summary>Click to see a test run example from the <b>API</b> module</summary>
 <p align="center">
+<br>
 <img src="media/gifs/api_test_run.gif" alt="api-test-run">
 <br>
 <i>API test run</i>
