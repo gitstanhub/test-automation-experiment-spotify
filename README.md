@@ -55,7 +55,7 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 
 
 ### Reporting Results, Remote Run and Continuous Integration:
-* You can generate a new Allure report for each module:
+* You can generate a new Allure report for each test module:
 <p align="center">
 <img src="media/screenshots/allure_screenshot.png" alt="allure-screenshot">
 </p>
