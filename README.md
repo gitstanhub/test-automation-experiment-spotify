@@ -65,7 +65,7 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 <img src="media/screenshots/selenoid_screenshot.png" alt="selenoid-screenshot">
 </p>
 
-* All the tests are parametrised and well suited for CI flow that you can maintain with Jenkins. Give it a try with a separate Freestlye Project per each module:
+* All the tests are parametrised and are well suited for CI flow that you can maintain with Jenkins. Give it a try with a separate Freestlye Project per each module:
 <p align="center">
 <img src="media/screenshots/jenkins_screenshot.png" alt="jenkins-screenshot">
 </p>
@@ -75,19 +75,17 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 * Clone the repo to a local directory: <br>
   ```git clone https://github.com/gitstanhub/test-automation-experiment-spotify.git```
 
-* A <a href="https://www.spotify.com/us/signup">Spotify account</a> signed up for <a href="https://developer.spotify.com/">developers program</a> is required to generate access token for API tests and provide user credentials for Web and Mobile tests
-
-* After creating a Spotify user, make sure to update your account Library with the Artist, Albums and Tracks from the test data properties or replace it with your own set 
-
-* For remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
+* A <a href="https://www.spotify.com/us/signup">Spotify account</a> signed up for the <a href="https://developer.spotify.com/">developers program</a> is required to generate access token for API tests and provide user credentials for Web and Mobile tests
+* After creating a Spotify user, make sure to update your account Library with the Artist, Albums and Tracks from the test data properties or replace it with your own set
+* For remote test runs and CI tasks you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
 
 ### Mobile:
-* Android device is required to run mobile tests - you can use a physical one, emulated in <a href="https://developer.android.com/studio?gclid=CjwKCAjwloynBhBbEiwAGY25dFopnpw9Us70vSbwsxOIttDY1AWf62uCQdbWzUwp6jvWt-OSEgehVhoCFq0QAvD_BwE&gclsrc=aw.ds">Android Studio</a> or remote from <a href="https://www.browserstack.com/">Browserstack</a>
-* For a test build you can use the latest public version of <a href="https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_GB">Spotify app</a> downloaded from Google Play
+* An Android device is required to run mobile tests - you can use a physical one, one emulated in <a href="https://developer.android.com/studio?gclid=CjwKCAjwloynBhBbEiwAGY25dFopnpw9Us70vSbwsxOIttDY1AWf62uCQdbWzUwp6jvWt-OSEgehVhoCFq0QAvD_BwE&gclsrc=aw.ds">Android Studio</a> or a remote one from <a href="https://www.browserstack.com/">Browserstack</a>
+* For a test build you can use the latest public version of the <a href="https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_GB">Spotify app</a> downloaded from Google Play
 * Install <a href="https://appium.io/docs/en/2.1/quickstart/install/">Appium</a> and <a href="https://appium.io/docs/en/2.1/quickstart/uiauto2-driver/">UiAutomator2 Driver</a> before running mobile tests
 
 ## Usage
-* Run a test with default parameters:<br>
+* To run a test with default parameters:<br>
 
 ```gradle :api:test```<br>
 
@@ -95,7 +93,7 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 
 ```gradle :web:test```<br>
 
-* Run a test with specifying exact parameter values:<br>
+* To run a test while specifying exact parameter values:<br>
 
 ```gradle :api:test -Dcountry=de```<br>
 
