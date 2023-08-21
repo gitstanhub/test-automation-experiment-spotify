@@ -80,7 +80,7 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 * For remote test runs and CI tasks you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
 
 ### Mobile:
-* An Android device is required to run mobile tests - you can use a physical one, one emulated in <a href="https://developer.android.com/studio?gclid=CjwKCAjwloynBhBbEiwAGY25dFopnpw9Us70vSbwsxOIttDY1AWf62uCQdbWzUwp6jvWt-OSEgehVhoCFq0QAvD_BwE&gclsrc=aw.ds">Android Studio</a> or a remote one from <a href="https://www.browserstack.com/">Browserstack</a>
+* An Android device is required to run Mobile tests - you can use a physical one, one emulated in <a href="https://developer.android.com/studio?gclid=CjwKCAjwloynBhBbEiwAGY25dFopnpw9Us70vSbwsxOIttDY1AWf62uCQdbWzUwp6jvWt-OSEgehVhoCFq0QAvD_BwE&gclsrc=aw.ds">Android Studio</a> or a remote one from <a href="https://www.browserstack.com/">Browserstack</a>
 * For a test build you can use the latest public version of the <a href="https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_GB">Spotify app</a> downloaded from Google Play
 * Install <a href="https://appium.io/docs/en/2.1/quickstart/install/">Appium</a> and <a href="https://appium.io/docs/en/2.1/quickstart/uiauto2-driver/">UiAutomator2 Driver</a> before running mobile tests
 
@@ -103,7 +103,7 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 
 ## Disclaimer
 
-This project is for educational purposes and serves as a demonstration of test automation techniques. It is not affiliated with, endorsed by, or connected to Spotify. All Spotify logos, names, trademarks, and other proprietary materials are owned by Spotify or its affiliates.
+This project is for educational purposes only and serves as a demonstration of test automation techniques. It is not affiliated with, endorsed by, or connected to Spotify. All Spotify logos, names, trademarks, and other proprietary materials are owned by Spotify or its affiliates.
 
 ## License
 
