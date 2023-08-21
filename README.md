@@ -25,15 +25,17 @@ For this project I've used the latest public version of **Spotify app** to cover
 
 ### Automated test run showcase
 
-<details>
-  <summary>Click to see a test run example from the <b>Mobile</b> module</summary>
+[//]: # (<details>)
+
+[//]: # (  <summary>Click to see a test run example from the <b>Mobile</b> module</summary>)
 <p align="center">
 <br>
 <img src="media/gifs/mobile_test_run.gif" alt="mobile-test-run" width="400">
 <br>
 <i>Mobile test run</i>
 </p>
-</details>
+
+[//]: # (</details>)
 <br>
 <details>
   <summary>Click to see a test run example from the <b>Web</b> module</summary>
