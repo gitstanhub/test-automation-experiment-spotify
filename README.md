@@ -22,7 +22,6 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 <p align="center">
 <a href="https://appium.io/"><img src="media/icons/appium.png" alt="appium-logo" width="55"></a><a href="https://www.docker.com/"><img src="media/icons/docker.png" alt="docker-logo" width="55"></a><a href="https://github.com/allure-framework"><img src="media/icons/allure.png" alt="allure-logo" width="55"></a><a href="https://gradle.org/"><img src="media/icons/gradle.png" alt="gradle-logo" width="55"></a><a href="https://rest-assured.io/"><img src="media/icons/restassured.png" alt="restassured-logo" width="55"></a><a href="https://www.java.com/en/"><img src="media/icons/java.png" alt="java-logo" width="55"></a><a href="https://junit.org/junit5/"><img src="media/icons/junit5.png" alt="junit5-logo" width="55"></a><a href="https://aerokube.com/moon/"><img src="media/icons/selenoid.png" alt="selenoid-logo" width="55"></a><a href="https://spring.io/projects/spring-framework"><img src="media/icons/spring.png" alt="spring-logo" width="55"></a><a href="https://playwright.dev/java/"><img src="media/icons/playwright.png" alt="jenkins-logo" width="55"></a><a href="https://www.jenkins.io/"><img src="media/icons/jenkins.png" alt="jenkins-logo" width="55"></a>
 </p>
-<br>
 
 ### Showcase:
 
@@ -95,7 +94,7 @@ Web
 * For practicing with remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
 
 ## Usage
-Run a test with default parameters:<br>
+* Run a test with default parameters:<br>
 
 ```gradle :api:test```<br>
 
@@ -103,7 +102,7 @@ Run a test with default parameters:<br>
 
 ```gradle clean :web:test```<br>
 
-Run a test with specifying exact parameter values:<br>
+* Run a test with specifying exact parameter values:<br>
 
 ```gradle :api:test -Dcountry=de```<br>
 
