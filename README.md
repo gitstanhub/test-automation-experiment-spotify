@@ -13,9 +13,9 @@
 - [License](#license)
 
 ## Overview
-Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Page Object Model, Singleton, Factory Method and Dependency Injection can be applied within the same scope or just wonder if **Spring Framework** might be helpful in managing test utilities - this repository could be a great thing to explore and play around! 
+For this project I've used the latest public version of **Spotify app** and covered it with a few automation tests on **API**, **Mobile (Android)** and **Web** layers.
 
-For this project I've used the latest public version of **Spotify app** to cover it with a few automation tests on **API**, **Mobile (Android)** and **Web** layers.
+Whether you're looking for a **built-from-scratch** test automation project example, curious to see how **patterns** like Page Object Model, Singleton, Factory Method and Dependency Injection can be applied within the same scope or just wonder if **Spring Framework** might be helpful in managing test utilities - this repository could be a great thing to explore and play around! 
 
 ### Technology stack:
 
@@ -25,9 +25,6 @@ For this project I've used the latest public version of **Spotify app** to cover
 
 ### Showcase:
 
-[//]: # (<details>)
-
-[//]: # (  <summary>Click to see a test run example from the <b>Mobile</b> module</summary>)
 <p align="center">
 <br>
 <img src="media/gifs/mobile_test_run.gif" alt="mobile-test-run" width="400">
@@ -35,7 +32,6 @@ For this project I've used the latest public version of **Spotify app** to cover
 <i>Automated Mobile test run</i>
 </p>
 
-[//]: # (</details>)
 <br>
 <details>
   <summary>Click to see a test run example from the <b>Web</b> module</summary>
