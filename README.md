@@ -79,10 +79,9 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 
 * After creating a Spotify user, make sure to update your account Library with the Artist, Albums and Tracks from the test data properties or replace it with your own set 
 
-* For with remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
+* For remote test runs and CI stuff you can roll out new Jenkins and Moon instances locally using <a href="https://www.docker.com/products/docker-desktop/">Docker</a>
 
 ### Mobile:
-
 * Install <a href="https://appium.io/docs/en/2.1/quickstart/install/">Appium</a> and <a href="https://appium.io/docs/en/2.1/quickstart/uiauto2-driver/">UiAutomator2 Driver</a> before running mobile tests as well as other essentials for the mentioned stack
 
 ## Usage
