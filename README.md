@@ -73,7 +73,9 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 ## Installation and Setup
 ### General:
 * Clone the repo to a local directory: <br>
-  ```git clone https://github.com/gitstanhub/test-automation-experiment-spotify.git```
+```zsh
+git clone https://github.com/gitstanhub/test-automation-experiment-spotify.git
+```
 
 * A <a href="https://www.spotify.com/us/signup">Spotify account</a> signed up for the <a href="https://developer.spotify.com/">developers program</a> is required to generate access token for API tests and provide user credentials for Web and Mobile tests
 * After creating a Spotify user, make sure to update your account Library with the Artist, Albums and Tracks from the test data properties or replace it with your own set
@@ -87,19 +89,31 @@ Whether you're looking for a **built-from-scratch** test automation project exam
 ## Usage
 * To run a test with default parameters:<br>
 
-```gradle :api:test```<br>
+```zsh
+gradle :api:test
+```
 
-```gradle :mobile:test```<br>
+```zsh
+gradle :mobile:test
+```
 
-```gradle :web:test```<br>
+```zsh
+gradle :web:test
+```
 
 * To run a test while specifying exact parameter values:<br>
 
-```gradle :api:test -Dcountry=de```<br>
+```zsh
+gradle :api:test -Dcountry=de
+```
 
-```gradle :mobile:test -Dcountry=de -Denvironment=local -DplatformName=android -DdeviceName=pixel_4_emulated```<br>
+```zsh
+gradle :mobile:test -Dcountry=de -Denvironment=local -DplatformName=android -DdeviceName=pixel_4_emulated
+```
 
-```gradle :web:test -Dcountry=uk -Denvironment=remote -Dbrowser=chromium```<br>
+```zsh
+gradle :web:test -Dcountry=uk -Denvironment=remote -Dbrowser=chromium
+```
 
 ## Disclaimer
 
